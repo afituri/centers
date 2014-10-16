@@ -1,5 +1,17 @@
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted Centers App
+    div.jumbotron
+      h1 Welcome to the Centers App
+      p.lead Welcome to #{title}   
+    div.footer
+  script(src="/javascripts/bootstrap.min.js")
