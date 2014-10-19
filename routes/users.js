@@ -9,5 +9,8 @@ router.get('/', function(req, res) {
 router.get('/login', function(req, res) {
   res.render('login');
 });
-
+ 
+router.get('/login/reset', function(req, res) {
+  res.render('reset');
+});
 module.exports = router;

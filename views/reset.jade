@@ -1,0 +1,36 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted Centers App
+    form#form.form-signin(role='form')
+      h2.form-signin-heading wolcam
+      input#password.form-control(maxlength='40', name='password', size='20', type='password', tabindex='12', value='')
+      input#confirm_password.form-control( maxlength='40', name='confirm_password', size='20', type='password', tabindex='13', value='')
+      
+
+        
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') Submit
+
+
+
+
+
+    p.lead Welcome to #{title}  
+
+
+
+
+
+     div.footer
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/coustumer.js")

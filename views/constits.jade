@@ -1,0 +1,42 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted Centers 
+  div.container    
+    div.panel.panel-default
+      div.panel-heading
+        h3.panel-title.text-right.active   اللجان الأنتخابية 
+      div.panel-body
+          div.table-responsive()  
+            table.table.table-striped.table-bordered.table-condensed.table-hover(id="constits")
+              thead
+                tr
+                  th الرقم
+                  th اللجان الأنتخابية
+                  th أسم المسؤل عن الجنة 
+              tbody
+                tr
+                 td 1
+                 td طرابلس 
+                 td عبد السلام محمد
+                tr
+                 td 2
+                 td  مزدة 
+                 td  محمد مصباح
+                tr
+                 td 3
+                 td سرت 
+                 td محمد محمد سليم
+                tr
+                 td 4
+                 td بنغازي 
+                 td حاتم محمد عبد الباسط
+  script(src="/javascripts/bootstrap.min.js")
