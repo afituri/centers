@@ -15,7 +15,7 @@ block content
       div.panel-heading
         h3.panel-title.text-right.active   اللجان الأنتخابية 
       div.panel-body
-          div.table-responsive()  
+          div.table-responsive  
             table.table.table-striped.table-bordered.table-condensed.table-hover(id="constits")
               thead
                 tr
@@ -23,20 +23,22 @@ block content
                   th اللجان الأنتخابية
                   th أسم المسؤل عن الجنة 
               tbody
-                tr
+                tr(data-id=1)
                  td 1
                  td طرابلس 
                  td عبد السلام محمد
-                tr
+                tr(data-id=2)
                  td 2
                  td  مزدة 
                  td  محمد مصباح
-                tr
+                tr(data-id=3)
                  td 3
                  td سرت 
                  td محمد محمد سليم
-                tr
+                tr(data-id=4)
                  td 4
                  td بنغازي 
                  td حاتم محمد عبد الباسط
+  script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/constits.js")
