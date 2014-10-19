@@ -8,6 +8,11 @@ $(document).ready(function(){
         
       rules: {
         
+        username: {
+          required: true,
+          minlength: 5,
+          
+        },
         password: {
           required: true,
           minlength: 5,
@@ -30,18 +35,14 @@ $(document).ready(function(){
           required: "Please provide a password",
           minlength: "Your password must be at least 5 characters long",
           equalTo: "Please enter the same password as above"
+        },
+        username: {
+          required: "Please provide a username",
+          minlength: "Your username must be at least 5 characters long",
+          
         }
         
       }
     });
-  //$("#password" ).change(function() {
-       // var val=$("#password").val();
-    //var result =  val.length >= 6 && /\d/.test(val) && /[a-z]/i.test(val);
-    //if (!result) {
-    //  $("#password" ).val("")  ;
-      //  alert(val);
-    //}
-    
-  
- // });
+
 });
