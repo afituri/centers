@@ -27,18 +27,18 @@ $(document).ready(function(){
       messages: {
         
         password: {
-          required: "Please provide a password",
-          minlength: "Your password must be at least 5 characters long",
-          loginRegex: "Username must contain only letters, numbers, or dashes."
+          required: "الرجاء إدخال كلمة المور",
+          minlength: "يجب أن تكون كلمة المرور الخاصة بك على الأقل 5 أحرف",
+          loginRegex: "يجب أن يحتوي اسم المستخدم فقط على أحرف أو أرقام ."
         },
         confirm_password: {
-          required: "Please provide a password",
-          minlength: "Your password must be at least 5 characters long",
-          equalTo: "Please enter the same password as above"
+          required: "الرجاء إدخال كلمة المور",
+          minlength: "يجب أن تكون كلمة المرور الخاصة بك على الأقل 5 أحرف",
+          equalTo: "يرجى إدخال كلمة المرور نفسها على النحو الوارد أعلاه."
         },
         username: {
-          required: "Please provide a username",
-          minlength: "Your username must be at least 5 characters long",
+          required: "الرجاء ادخال اسم المستخدم",
+          minlength: "يجب أن يكون اسم المستخدم لا يقل عن 5 أحرف",
           
         }
         
