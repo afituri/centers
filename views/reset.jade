@@ -11,13 +11,20 @@ block content
           a(href="#") Contact
       h3.text-muted Centers App
     form#form.form-signin(role='form')
-      h2.form-signin-heading wolcam
-      input#password.form-control(maxlength='40', name='password', size='20', type='password', tabindex='12', value='')
-      input#confirm_password.form-control( maxlength='40', name='confirm_password', size='20', type='password', tabindex='13', value='')
+      div.row
+        h2.form-signin-heading مرحبا بك
+      div.row
+        lable كلمة المرور
+      div.row
+        input#password.form-control(maxlength='40',placeholder='كلمة المرور', name='password', size='20', type='password', tabindex='12', value='')
+      div.row
+        lable تأكيد كلمة المرور
+        br
+        input#confirm_password.form-control( maxlength='40', placeholder='تأكيد كلمة المرور',name='confirm_password', size='20', type='password', tabindex='13', value='')
       
 
-        
-      button.btn.btn-lg.btn-primary.btn-block(type='submit') Submit
+      div.row 
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') حفظ
 
 
 
