@@ -8,7 +8,12 @@ router.get('/', function(req, res) {
 
 /* GET constits page. */
 router.get('/constits', function(req, res) {
-  res.render('constits', { title: "الجان الأنتخابية" });
+  res.render('constits', { title: "اللجان  الأنتخابية" });
+});
+
+/* GET constits page. */
+router.get('/constits/addconstit', function(req, res) {
+  res.render('addconstit', { title: "اللجان  الأنتخابية" });
 });
 
 
