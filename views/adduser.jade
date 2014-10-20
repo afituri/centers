@@ -22,11 +22,28 @@ block content
       lable البريد الإلكتروني
       input#email.form-control(type="email",name="email", placeholder="كلمة المرور", required="")
       hr
+      lable صﻻحية المستخدم
+      br
+      //select(onchange="{doSomething(...);if(this.options[this.selectedIndex].onclick != null){this.options[this.selectedIndex].onclick(this);}}")
+      //option(onclick="doSomethingElse(...);", value="A") A
+      //option(onclick="doSomethingElse(..);", value="B") B
+      //option(onclick="doSomethingElse(..);", value="Foo") C
+
+
+
       font(size="4", color="black" , face="cursive" )
         select(onchange="changeFont(this.value);")
+          option(value="-1", selected="selected") Choose...
           option(value="0") root
           option(value="1") admin
-          option(value="2") manager
+          option(onclick="doSomethingElse(...);",value="2") manager
+      hr
+      font(size="4", color="black" , face="cursive" )
+        select(onchange="changeFont(this.value);")
+          option(value="0", selected="selected") Choose...
+          option(value="طرابلس") طرابلس
+          option(value="بنغازي") بنغازي
+          option(value="مصراته") مصراته
       hr
       button.btn.btn-lg.btn-primary(type="submit") الدخول
       
