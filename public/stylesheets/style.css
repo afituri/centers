@@ -19,3 +19,6 @@ label.error {
 	color: red;
 	font-style: italic
 }
+#user td:hover {
+    cursor: pointer;
+}
