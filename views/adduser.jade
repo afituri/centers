@@ -1,0 +1,37 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted Centers App
+      form#form.form-signin(role="form")
+        h2.form-signin-heading الرجاء تسجيل الدخول
+        br
+        lable اسم المستخدم
+        input#username.form-control(type="text",name="username", placeholder="اسم المستخدم", required="",autofocus="")
+        hr
+        lable رقم الهاتف
+        input#phonenumber.form-control(type="text",name="phonenumber", placeholder="رقم الهاتف", required="",autofocus="")
+        br
+        lable البريد الإلكتروني
+        input#email.form-control(type="email",name="email", placeholder="كلمة المرور", required="")
+        br
+        select.form-control.input-lg
+          option(value="0") root
+          option(value="1") admin
+          option(value="2") manager
+        br
+        button.btn.btn-lg.btn-primary.btn-block(type="submit") الدخول
+        
+    div.footer
+      script(src="/javascripts/bootstrap.min.js")
+      script(src="/javascripts/jquery-1.11.1.min.js") 
+      script(src="/javascripts/jquery.validate.min.js")
+      script(src="/javascripts/coustumer.js")
+      script(src="/javascripts/emailvalidat.js")
