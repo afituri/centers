@@ -14,29 +14,16 @@ block content
       div.row
         h2.form-signin-heading مرحبا بك
       div.row
-        lable كلمة المرور
+        label(for='password') كلمة المرور
       div.row
         input#password.form-control(maxlength='40',placeholder='كلمة المرور', name='password', size='20', type='password', tabindex='12', value='')
       div.row
-        lable تأكيد كلمة المرور
+        label(for='confirm_password') تأكيد كلمة المرور
         br
         input#confirm_password.form-control( maxlength='40', placeholder='تأكيد كلمة المرور',name='confirm_password', size='20', type='password', tabindex='13', value='')
-      
-
       div.row 
         button.btn.btn-lg.btn-primary.btn-block(type='submit') حفظ
-
-
-
-
-
-    p.lead Welcome to #{title}  
-
-
-
-
-
-     div.footer
+    div.footer
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
