@@ -22,3 +22,6 @@ label.error {
 #user td:hover {
     cursor: pointer;
 }
+#admin td:hover {
+    cursor: pointer;
+}
