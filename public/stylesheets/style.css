@@ -14,3 +14,8 @@ a {
   padding: 15px;
   margin: 0 auto;
 }
+label.error {
+	/* remove the next line when you have trouble in IE6 with labels in list */
+	color: red;
+	font-style: italic
+}
