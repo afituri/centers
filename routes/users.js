@@ -11,6 +11,6 @@ router.get('/login', function(req, res) {
 });
  
 router.get('/login/reset', function(req, res) {
-  res.render('reset');
+  res.render('reset',{ title: 'تغير كلمة المرور' });
 });
 module.exports = router;
