@@ -3,6 +3,10 @@ $(document).ready(function(){
         return this.optional(element) ||/\d/.test(value) && /[a-z]/i.test(value);
     });
 
+  $.validator.addMethod("phoneNO", function(value, element) {
+        return this.optional(element) || /[^0-9]/g.test(value) ;
+    });
+
     // validate signup form on keyup and submit
     $("#form").validate({
         
@@ -11,6 +15,17 @@ $(document).ready(function(){
         username: {
           required: true,
           minlength: 5,
+          
+        },
+        name: {
+          required: true,
+          minlength: 5,
+          
+        },
+        email: {
+          required: true,
+          minlength: 10,
+
           
         },
         password: {
@@ -22,6 +37,11 @@ $(document).ready(function(){
           required: true,
           minlength: 5,
           equalTo: "#password"
+        },
+        phone: {
+          required: true,
+          minlength: 10,
+          phoneNO: true
         }
         },
       messages: {
@@ -39,6 +59,22 @@ $(document).ready(function(){
         username: {
           required: "الرجاء ادخال اسم المستخدم",
           minlength: "يجب أن يكون اسم المستخدم لا يقل عن 5 أحرف",
+          
+        },
+        name: {
+          required: "الرجاء ادخال اسم المستخدم",
+          minlength: "يجب أن يكون اسم المستخدم لا يقل عن 5 أحرف",
+          
+        },
+        email: {
+          required: "email error",
+          minlength: "email error3",
+          
+        },
+        phone: {
+          required: "phonenumber error",
+          minlength: "phonenumber error3",
+          
           
         }
         
