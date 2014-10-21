@@ -10,23 +10,23 @@ block content
         li
           a(href="#") Contact
       h3.text-muted Centers App
-    form#form.form-signin(role='form')
-      div.row
+    div.panel.panel-default.form-signin 
+      div.panel-heading
         h2.form-signin-heading تغير كلمة المرور
-        hr
-      div.row
+      div.panel-body
+        form#form.form-signin(role='form')
         label(for='password') كلمة المرور
         hr
-      div.row
-        input#password.form-control.input-lg(maxlength='40',placeholder='كلمة المرور', name='password', size='20', type='password', tabindex='12', value='')
-      br  
-      div.row
-        label(for='confirm_password') تأكيد كلمة المرور
-        hr
-        input#confirm_password.form-control.input-lg( maxlength='40', placeholder='تأكيد كلمة المرور',name='confirm_password', size='20', type='password', tabindex='13', value='')
-      div.row 
-        br
-        button.btn.btn-lg.btn-primary(type='submit') حفظ
+        div.row
+          input#password.form-control.input-lg(maxlength='40',placeholder='كلمة المرور', name='password', size='20', type='password', tabindex='12', value='')
+        br  
+        div.row
+          label(for='confirm_password') تأكيد كلمة المرور
+          hr
+          input#confirm_password.form-control.input-lg( maxlength='40', placeholder='تأكيد كلمة المرور',name='confirm_password', size='20', type='password', tabindex='13', value='')
+        div.row 
+          br
+          button.btn.btn-lg.btn-primary(type='submit') حفظ
     div.footer
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
