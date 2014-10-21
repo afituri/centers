@@ -7,7 +7,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/adduser', function(req, res) {
-  res.render('adduser', { title: 'adduser' });
+  res.render('adduser', { title: 'إضافة مستخدم' });
 });
 
 module.exports = router;
