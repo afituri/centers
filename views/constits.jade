@@ -13,10 +13,13 @@ block content
   div.container    
     div.panel.panel-default
       div.panel-heading
-        h3.panel-title.text-right.active   اللجان الأنتخابية
+        h1.panel-title.pull-right.active.zero-clipboard  اللجان الأنتخابية
         div.btn-group
-          a.btn.btn-sm(href='/constits/addconstit', role='button') إضافة لجنة 
-            span.glyphicon.glyphicon-plus 
+          a.btn.btn.btn-success.btn-sm(href='/constits/addconstit', role='button') إضافة لجنة 
+            span.glyphicon.glyphicon-plus
+        div.btn-group
+          a.btn.btn.btn-warning.btn-sm(href='/constits/editconstit', role='button') تعديل اللجان 
+            span.glyphicon.glyphicon-edit
       div.panel-body
         div.table-responsive  
           table.table.table-striped.table-bordered.table-condensed.table-hover(id="constits")
