@@ -59,7 +59,7 @@ $(document).ready(function(){
         phone: {
           required: true,
           minlength: 10,
-          phoneNO: true
+          phoneNO: true,
         }
         },
       messages: {
@@ -80,7 +80,7 @@ $(document).ready(function(){
           
         },
         name: {
-          nameValidat: "الرجاء ادخال اسم المستخدم  nameValidat",
+          nameValidat: "الرجاء ادخال اسم المستخدم",
           minlength: "يجب أن يكون اسم المستخدم لا يقل عن 5 أحرف",
           
         },
@@ -96,7 +96,7 @@ $(document).ready(function(){
           selectValidat: "الرجاء الاختيار  constit ",
         },
         phone: {
-          required: "phonenumber error",
+          required: "الرجاء ادخال رقم الهاتف",
           minlength: "phonenumber error3",
         }
         
