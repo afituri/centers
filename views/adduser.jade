@@ -9,7 +9,7 @@ block content
           a(href="#") About
         li
           a(href="#") Contact
-      h3.text-muted Centers App
+      h3.text-muted.text-left Centers App
     div.panel.panel-default.form-signin 
       div.panel-heading.text-right
         h1.panel-title إضافة مستخدم
@@ -22,7 +22,7 @@ block content
           input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
           br
           lable البريد الإلكتروني
-          input#email.form-control(type="email",name="email", placeholder="كلمة المرور",required="")
+          input#email.form-control.text-left(type="email",name="email", placeholder="كلمة المرور",required="")
           br
           font(size="4", color="black" , face="cursive" )
             select#level(name="level")
@@ -31,12 +31,14 @@ block content
               option(value="1") admin
               option(value="2") manager
           br
+          br
           font(size="4", color="black" , face="cursive" )
             select#constit(name="constit")
               option(value="-1", selected="selected") اختر الدائره الانتخابيه
               option(value="طرابلس") طرابلس
               option(value="بنغازي") بنغازي
               option(value="مصراته") مصراته
+          br
           br
           button.btn.btn-lg.btn-primary(type="submit") الدخول
         
