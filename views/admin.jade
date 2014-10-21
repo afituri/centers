@@ -15,33 +15,66 @@ block content
       div.panel-heading
         h3.panel-title.text-right.active   المدراء
         div.btn-group
-          a.btn.btn-success(href='/admin/addmanager', role='button') إضافة مدير
+          a.btn.btn-success.btn-sm(href='/admin/addmanager', role='button') إضافة مدير
             span.glyphicon.glyphicon-plus 
       div.panel-body
           div.table-responsive  
-            table.table.table-striped.table-bordered.table-condensed.table-hover(id="admin")
+            table#user.table.table-bordred.table-striped
               thead
-                tr
-                  th اللجان
-                  th تاريخ التسجيل
-                  th أسم المستخدم 
+                th
+                th الغاء
+                th تعديل 
+                th اللجان
+                th رقم الهاتف
+                th الاسم
+                
               tbody
                 tr(data-id=1)
-                 td طرابلس
-                 td 13/3/2014 
-                 td عبد السلام محمد
+                  td
+                  td
+                    p
+                      button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete', data-placement='top', rel='tooltip')
+                        span.glyphicon.glyphicon-trash
+                  td
+                    p
+                      button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal', data-target='#edit', data-placement='top', rel='tooltip')
+                        span.glyphicon.glyphicon-pencil
+                  td طرابلس 
+                  
+                  td 7777777
+                  td عبد السلام محمد
                 tr(data-id=2)
-                 td سبها
-                 td  15/6/2014 
-                 td  محمد مصباح
+                  td
+                  td
+                    p
+                      button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete', data-placement='top', rel='tooltip')
+                        span.glyphicon.glyphicon-trash
+                  td
+                    p
+                      button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal', data-target='#edit', data-placement='top', rel='tooltip')
+                        span.glyphicon.glyphicon-pencil
+                  td طرابلس 
+                  
+                  td 7777777
+                  td عبد السلام محمد
                 tr(data-id=3)
-                 td بنغازي
-                 td 5/7/2014
-                 td محمد محمد سليم
-                tr(data-id=4)
-                 td سرت
-                 td 9/10/2014
-                 td حاتم محمد عبد الباسط
+                  td
+                  td
+                    p
+                      button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete', data-placement='top', rel='tooltip')
+                        span.glyphicon.glyphicon-trash
+                  td
+                    p
+                      button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal', data-target='#edit', data-placement='top', rel='tooltip')
+                        span.glyphicon.glyphicon-pencil
+                  td طرابلس 
+                  
+                  td 7777777
+                  td عبد السلام محمد
+              
+              
+            
+         
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/rootuser.js")
