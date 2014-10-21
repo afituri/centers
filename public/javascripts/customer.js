@@ -4,7 +4,7 @@ $(document).ready(function(){
     });
 
   $.validator.addMethod("phoneNO", function(value, element) {
-        return this.optional(element) || /[^0-9]/g.test(value) ;
+        return this.optional(element) || /[0-9]{10}/.test(value) ;
     });
 
     // validate signup form on keyup and submit
@@ -17,6 +17,12 @@ $(document).ready(function(){
           minlength: 5,
           
         },
+        level:{
+          required: true  
+        },
+        constit:{
+          required: true  
+        },
         name: {
           required: true,
           minlength: 5,
@@ -25,7 +31,6 @@ $(document).ready(function(){
         email: {
           required: true,
           minlength: 10,
-
           
         },
         password: {
@@ -71,11 +76,15 @@ $(document).ready(function(){
           minlength: "email error3",
           
         },
+        level:{
+          required: "الرجاء الاختيار"
+        },
+        constit:{
+          required: "الرجاء الاختيار"
+        },
         phone: {
           required: "phonenumber error",
           minlength: "phonenumber error3",
-          
-          
         }
         
       }
