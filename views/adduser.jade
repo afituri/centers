@@ -12,25 +12,25 @@ block content
       h3.text-muted Centers App
         form#form.form-signin(role="form")
           h2.form-signin-heading الرجاء تسجيل الدخول
-          
+          br
           lable اسم المستخدم
-          input#username.form-control(type="text",name="username", placeholder="اسم المستخدم", required="",autofocus="")
-          
+          input#name.form-control(type="text",name="name", placeholder="اسم المستخدم", required="",autofocus="")
+          br
           lable رقم الهاتف
-          input#phonenumber.form-control(type="text",name="phonenumber", placeholder="رقم الهاتف", required="",autofocus="")
-          
+          input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
+          br
           lable البريد الإلكتروني
           input#email.form-control(type="email",name="email", placeholder="كلمة المرور",required="")
-          
+          br
           font(size="4", color="black" , face="cursive" )
-            select#ids(name="ids")
+            select#level(name="level")
               option(value="-1", selected="selected") صﻻحية المستخدم
               option(value="0") root
               option(value="1") admin
               option(value="2") manager
           br
           font(size="4", color="black" , face="cursive" )
-            select#idshow
+            select#constit(name="constit")
               option(value="-1", selected="selected") اختر الدائره الانتخابيه
               option(value="طرابلس") طرابلس
               option(value="بنغازي") بنغازي
