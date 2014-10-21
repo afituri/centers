@@ -10,28 +10,38 @@ block content
         li
           a(href="#") Contact
       h3.text-muted Centers App
-      form#form.form-signin(role="form")
-        h2.form-signin-heading الرجاء تسجيل الدخول
-        br
-        lable اسم المستخدم
-        input#username.form-control(type="text",name="username", placeholder="اسم المستخدم", required="",autofocus="")
-        hr
-        lable رقم الهاتف
-        input#phonenumber.form-control(type="text",name="phonenumber", placeholder="رقم الهاتف", required="",autofocus="")
-        br
-        lable البريد الإلكتروني
-        input#email.form-control(type="email",name="email", placeholder="كلمة المرور", required="")
-        br
-        select.form-control.input-lg
-          option(value="0") طرابلس
-          option(value="1") بنغازي
-          option(value="2") سبها
-        br
-        button.btn.btn-lg.btn-primary.btn-block(type="submit") الدخول
+      div.panel.panel-default.form-signin 
+        div.panel-heading.text-right
+          h1.panel-title اضافة مدير
+        div.panel-body
+          
+          form#form.form-signin(role="form")
+            lable اسم المستخدم
+            
+            input#username.form-control(type="text",name="username", placeholder="اسم المستخدم", required="",autofocus="")
+            br
+            lable رقم الهاتف
+            
+            input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
+            br
+            lable البريد الإلكتروني
+            
+            input#email.form-control.text-left(type="email",name="email", placeholder="البريد الالكتروني", required="")
+            br
+            
+            lable الدوائر الانتخابية
+            
+            select.form-control.btn.dropdown-toggle.selectpicker.btn-default( data-style='btn-primary',required='', title='الرجاء الاختيار!')
+              option(value="")
+              option(value="0") طرابلس
+              option(value="1") بنغازي
+              option(value="2") سبها
+            br
+            br
+            button.btn.btn-lg.btn-primary.btn-block(type="submit") تسجيل
         
     div.footer
       script(src="/javascripts/bootstrap.min.js")
       script(src="/javascripts/jquery-1.11.1.min.js") 
       script(src="/javascripts/jquery.validate.min.js")
-      script(src="/javascripts/coustumer.js")
-      script(src="/javascripts/emailvalidat.js")
+      script(src="/javascripts/addmanagervale.js")
