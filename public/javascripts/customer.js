@@ -7,10 +7,7 @@ $(document).ready(function(){
         return this.optional(element) || /[0-9]{10}/.test(value) ;
     });
 
-  $.validator.addMethod("emailValidat", function(value) {
-        return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value) ;
-    });
-   
+  
   $.validator.addMethod("selectValidat", function (value) {
         return (value != '-1');
     });
@@ -42,7 +39,7 @@ $(document).ready(function(){
           
         },
         email: {
-          emailValidat: true,
+          required: true,
           minlength: 10,
           
         },
@@ -85,7 +82,7 @@ $(document).ready(function(){
           
         },
         email: {
-          emailValidat: " هذا ليس بريد اليكتروني ",
+          required: " هذا ليس بريد اليكتروني ",
           minlength: "هذا ليس بريد اليكتروني",
           
         },
