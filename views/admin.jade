@@ -20,7 +20,7 @@ block content
             span.glyphicon.glyphicon-plus 
       div.panel-body
         div.table-responsive  
-          table#user.table.table-bordred.table-striped
+          table#admin.table.table-bordred.table-striped
             thead
               th الاسم
               th رقم الهاتف
@@ -58,7 +58,62 @@ block content
                 td      
                   button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete', data-placement='top', rel='tooltip')
                     span.glyphicon.glyphicon-trash
-         
+
+  
+
+
+
+
+
+  button.demo.btn.btn-primary.btn-large(href='#responsive', data-toggle='modal') View Demo
+  #responsive.modal.hide.fade(data-width='760', tabindex='-1')
+    .modal-header
+      button.close(aria-hidden='true', data-dismiss='modal', type='button') ×
+      h3 Responsive
+    .modal-body
+      .row-fluid
+        .span6
+          h4 Some Input
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+        .span6
+          h4 Some More Input
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+          p
+            input.span12(type='text')
+    .modal-footer
+      button.btn(data-dismiss='modal', type='button') Close
+      button.btn.btn-primary(type='button') Save changes
+       
+
+
+
+
+
+
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
-  script(src="/javascripts/rootuser.js")
+  script(src="/javascripts/admin.js")
