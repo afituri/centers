@@ -5,6 +5,9 @@ $(document).ready(function(){
   $.validator.addMethod("selectValidat", function (value) {
     return (value != '-1');
   });
+  $.validator.addMethod("emailValidat", function(value) {
+    return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value) ;
+  });
   // validate signup form on keyup and submit
   $("#form").validate({      
     rules: {
@@ -19,7 +22,7 @@ $(document).ready(function(){
       },
       email: {
           required: true,
-          email: true
+          emailValidat: true
       },
       phone: {
           required: true,
@@ -33,7 +36,7 @@ $(document).ready(function(){
       },
       email: {
         required: " هذا ليس بريد اليكتروني ",
-        email: "هذا ليس بريد اليكتروني",  
+        emailValidat: "هذا ليس بريد اليكتروني",  
       },
       level: {
         selectValidat: "الرجاء الاختيار ",
