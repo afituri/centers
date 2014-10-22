@@ -18,7 +18,7 @@ $(document).ready(function(){
         return /^[A-Za-z]+$/.test(value) ;
     });
 
-    //^[a-z0-9].*//^[A-Za-z]+$
+    //^[a-z0-9].*//^[A-Za-z]+$[\u0600-\u06FF]
     // validate signup form on keyup and submit
     $("#form").validate({
         
@@ -85,19 +85,19 @@ $(document).ready(function(){
           
         },
         email: {
-          emailValidat: " email error emailValidat ",
-          minlength: "email error3  minlength",
+          emailValidat: " هذا ليس بريد اليكتروني ",
+          minlength: "هذا ليس بريد اليكتروني",
           
         },
         level:{
-          selectValidat: "الرجاء الاختيار  level",
+          selectValidat: "الرجاء الاختيار ",
         },
         constit:{
-          selectValidat: "الرجاء الاختيار  constit ",
+          selectValidat: "الرجاء الاختيار  ",
         },
         phone: {
           required: "الرجاء ادخال رقم الهاتف",
-          minlength: "phonenumber error3",
+          minlength: " يجب أن يكون الهاتف  لا يقل عن 10 ارقام ",
         }
         
       }
