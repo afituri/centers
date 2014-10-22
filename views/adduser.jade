@@ -15,34 +15,33 @@ block content
         h1.panel-title إضافة مستخدم
       div.panel-body
         form#form.form-signin(role="form" , action="/root/adduser", method="post")
-          lable اسم المستخدم
-          input#name.form-control(type="text",name="name", placeholder="اسم المستخدم", required="",autofocus="")
-          br
-          lable رقم الهاتف
-          input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
-          br
-          lable البريد الإلكتروني
-          input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="كلمة المرور",required="")
-          br
+          div.row.form-group
+            lable اسم المستخدم
+            input#name.form-control(type="text",name="name", placeholder="اسم المستخدم", required="",autofocus="")
+          div.row.form-group
+            lable رقم الهاتف
+            input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
+          div.row.form-group
+            lable البريد الإلكتروني
+            input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="كلمة المرور",required="")
           //Select for choose user root , admin or manager
-          font(size="4", color="black" , face="cursive" )
-            select#level(name="level")
-              option(value="-1", selected="selected") صﻻحية المستخدم
-              option(value="0") root
-              option(value="1") admin
-              option(value="2") manager
-          br
-          br
+          div.row.form-group
+            font(size="4", color="black" , face="cursive" )
+              select#level(name="level")
+                option(value="-1", selected="selected") صﻻحية المستخدم
+                option(value="0") root
+                option(value="1") admin
+                option(value="2") manager
           //Select for choose manager of constituencies
-          font(size="4", color="black" , face="cursive" )
-            select#constit(name="constit")
-              option(value="-1", selected="selected") اختر الدائره الانتخابيه
-              option(value="طرابلس") طرابلس
-              option(value="بنغازي") بنغازي
-              option(value="مصراته") مصراته
-          br
-          br
-          button.btn.btn-lg.btn-primary(type="submit") الدخول
+          div.row.form-group
+            font(size="4", color="black" , face="cursive" )
+              select#constit(name="constit")
+                option(value="-1", selected="selected") اختر الدائره الانتخابيه
+                option(value="طرابلس") طرابلس
+                option(value="بنغازي") بنغازي
+                option(value="مصراته") مصراته
+          div.row.form-group
+            button.btn.btn-lg.btn-primary(type="submit") الدخول
         
       div.footer
         script(src="/javascripts/bootstrap.min.js")

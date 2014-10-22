@@ -16,7 +16,6 @@ $(document).ready(function(){
       },
       name: {
           required: true,
-          minlength: 5,  
       },
       email: {
           required: true,
@@ -31,7 +30,6 @@ $(document).ready(function(){
     messages: {
       name: {
         required: "الرجاء ادخال اسم المستخدم",
-        minlength: "يجب أن يكون اسم المستخدم لا يقل عن 5 أحرف",  
       },
       email: {
         required: " هذا ليس بريد اليكتروني ",

@@ -15,19 +15,18 @@ block content
         h1.panel-title الرجاء تسجيل الدخول
       div.panel-body
         form#form.form-signin(role="form")
-          lable اسم المستخدم
-          input#name.form-control(type="text",name="name", placeholder="اسم المستخدم", required="",autofocus="")
-
-          br
-
-          lable كلمة المرور
-          input#password.form-control(type="password",name="password", placeholder="كلمة المرور", required="")
-          label.checkbox
-          
-          input(type="checkbox", value="remember-me")
-          | تذكرني
-          br
-          button.btn.btn-lg.btn-primary(type="submit") الدخول
+          div.row.form-group
+            lable اسم المستخدم
+            input#name.form-control(type="text",name="name", placeholder="اسم المستخدم", required="",autofocus="")
+          div.row.form-group
+            lable كلمة المرور
+            input#password.form-control(type="password",name="password", placeholder="كلمة المرور", required="")
+            label.checkbox
+          div.row.form-group 
+            input(type="checkbox", value="remember-me")
+            | تذكرني
+          div.row.form-group
+            button.btn.btn-lg.btn-primary(type="submit") الدخول
 
       div.footer
         script(src="/javascripts/bootstrap.min.js")
