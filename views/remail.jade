@@ -1,0 +1,26 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted.text-left Centers App
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title استرجاع كلمة المرور
+      div.panel-body
+        form#form.form-signin(role="form")
+          lable ادخال البريد اﻹلكتروني
+          input#inputEmail.form-control(type='text', placeholder='البريد اﻹلكتروني', name="email")
+          br
+          button.btn.btn-lg.btn-primary(type="submit") إسترجاع
+      div.footer
+        script(src="/javascripts/jquery-1.11.1.min.js") 
+        script(src="/javascripts/bootstrap.min.js")
+        script(src="/javascripts/jquery.validate.min.js")
+        script(src="/javascripts/remail.js")

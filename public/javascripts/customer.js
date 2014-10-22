@@ -7,6 +7,15 @@ $(document).ready(function(){
         return this.optional(element) || /[0-9]{10}/.test(value) ;
     });
 
+  
+  $.validator.addMethod("selectValidat", function (value) {
+        return (value != '-1');
+    });
+  $.validator.addMethod("nameValidat", function(value) {
+        return /^[A-Za-z]+$/.test(value) ;
+    });
+
+    //^[a-z0-9].*//^[A-Za-z]+$[\u0600-\u06FF]
     // validate signup form on keyup and submit
     $("#form").validate({
         
@@ -18,13 +27,14 @@ $(document).ready(function(){
           
         },
         level:{
-          required: true  
+          selectValidat: true,
         },
+
         constit:{
-          required: true  
+          selectValidat: true,
         },
         name: {
-          required: true,
+          nameValidat: true,
           minlength: 5,
           
         },
@@ -46,7 +56,7 @@ $(document).ready(function(){
         phone: {
           required: true,
           minlength: 10,
-          phoneNO: true
+          phoneNO: true,
         }
         },
       messages: {
@@ -67,24 +77,24 @@ $(document).ready(function(){
           
         },
         name: {
-          required: "الرجاء ادخال اسم المستخدم",
+          nameValidat: "الرجاء ادخال اسم المستخدم",
           minlength: "يجب أن يكون اسم المستخدم لا يقل عن 5 أحرف",
           
         },
         email: {
-          required: "email error",
-          minlength: "email error3",
+          required: " هذا ليس بريد اليكتروني ",
+          minlength: "هذا ليس بريد اليكتروني",
           
         },
         level:{
-          required: "الرجاء الاختيار"
+          selectValidat: "الرجاء الاختيار ",
         },
         constit:{
-          required: "الرجاء الاختيار"
+          selectValidat: "الرجاء الاختيار  ",
         },
         phone: {
-          required: "phonenumber error",
-          minlength: "phonenumber error3",
+          required: "الرجاء ادخال رقم الهاتف",
+          minlength: " يجب أن يكون الهاتف  لا يقل عن 10 ارقام ",
         }
         
       }

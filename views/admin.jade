@@ -20,7 +20,7 @@ block content
             span.glyphicon.glyphicon-plus 
       div.panel-body
         div.table-responsive  
-          table#user.table.table-bordred.table-striped
+          table#admin.table.table-bordred.table-striped
             thead
               th الاسم
               th رقم الهاتف
@@ -33,7 +33,7 @@ block content
                 td 7777777
                 td طرابلس 
                 td
-                  button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal', data-target='#edit', data-placement='top', rel='tooltip')
+                  button.btn.btn-primary.btn-xs(data-title='Edit',href='#responsive',data-toggle='modal', data-placement='top', rel='tooltip')
                     span.glyphicon.glyphicon-pencil
                 td      
                   button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete', data-placement='top', rel='tooltip')
@@ -58,7 +58,6 @@ block content
                 td      
                   button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete', data-placement='top', rel='tooltip')
                     span.glyphicon.glyphicon-trash
-         
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
-  script(src="/javascripts/rootuser.js")
+  script(src="/javascripts/admin.js")

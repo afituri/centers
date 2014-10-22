@@ -1,0 +1,53 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted Centers 
+  div.container    
+    div.panel.panel-default
+      div.panel-heading
+        h1.panel-title  التقارير   
+      div.panel-body
+        div.table-responsive  
+          table.table.table-striped.table-bordered.table-condensed.table-hover(id="constits")
+            thead
+              tr
+                th اسم المستخدم
+                th نوع النشاط
+                th النشاط
+                th التاريخ
+                th الوقت
+            tbody
+              tr(data-id=1)
+               td أنس بحيح
+               td اضافة 
+               td اضافة لجنة
+               td 2014/31/10
+               td 10:00
+              tr(data-id=2)
+               td محمد حباس
+               td تعديل 
+               td تعديل مركز
+               td 2014/31/10
+               td 10:00
+              tr(data-id=3)
+               td انس الساعدي
+               td مسح 
+               td اضافة مركز
+               td 2014/31/10
+               td 10:00
+              tr(data-id=4)
+               td محمد الشبلي
+               td اضافة 
+               td تعديل لجنة
+               td 2014/31/10
+               td 10:00
+script(src="/javascripts/jquery-1.11.1.min.js")
+script(src="/javascripts/bootstrap.min.js")
