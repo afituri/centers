@@ -22,8 +22,9 @@ block content
           input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
           br
           lable البريد الإلكتروني
-          input#email.form-control.text-left(type="email",name="email", placeholder="كلمة المرور",required="")
+          input#email.form-control.text-left(dir="ltr", type="email",name="email", placeholder="كلمة المرور",required="")
           br
+          //Select for choose user root , admin or manager
           font(size="4", color="black" , face="cursive" )
             select#level(name="level")
               option(value="-1", selected="selected") صﻻحية المستخدم
@@ -32,6 +33,7 @@ block content
               option(value="2") manager
           br
           br
+          //Select for choose manager of constituencies
           font(size="4", color="black" , face="cursive" )
             select#constit(name="constit")
               option(value="-1", selected="selected") اختر الدائره الانتخابيه
