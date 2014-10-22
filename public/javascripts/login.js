@@ -4,7 +4,6 @@ $(document).ready(function(){
     rules: {
       name: {
         required: true,
-        minlength: 5,  
         },
         password: {
           required: true,
@@ -14,7 +13,6 @@ $(document).ready(function(){
     messages: {
       name: {
         required: "الرجاء ادخال اسم المستخدم",
-        minlength: "يجب أن يكون اسم المستخدم لا يقل عن 5 أحرف",  
       },
       password: {
         required: "الرجاء ادخال كلمة المرور",
