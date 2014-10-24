@@ -15,17 +15,17 @@ block content
         h1.panel-title إضافة مستخدم
       div.panel-body
         form#form.form-signin(role="form" , action="/root/adduser", method="post")
-          div.row.form-group
+          div.form-group
             lable اسم المستخدم
             input#name.form-control(type="text",name="name", placeholder="اسم المستخدم", required="",autofocus="")
-          div.row.form-group
+          div.form-group
             lable رقم الهاتف
             input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
-          div.row.form-group
+          div.form-group
             lable البريد الإلكتروني
             input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="كلمة المرور",required="")
           //Select for choose user root , admin or manager
-          div.row.form-group
+          div.form-group
             font(size="4", color="black" , face="cursive" )
               select#level(name="level")
                 option(value="-1", selected="selected") صﻻحية المستخدم
@@ -33,14 +33,14 @@ block content
                 option(value="1") admin
                 option(value="2") manager
           //Select for choose manager of constituencies
-          div.row.form-group
+          div.form-group
             font(size="4", color="black" , face="cursive" )
               select#constit(name="constit")
                 option(value="-1", selected="selected") اختر الدائره الانتخابيه
                 option(value="طرابلس") طرابلس
                 option(value="بنغازي") بنغازي
                 option(value="مصراته") مصراته
-          div.row.form-group
+          div.form-group
             button.btn.btn-lg.btn-primary(type="submit") الدخول
         
       div.footer
