@@ -19,7 +19,16 @@ $(document).ready(function(){
       },
       email: {
           required: true,
-          email: true
+          email: true,
+          remote: {
+            url :"/users/checkEmail",
+            type : "post",
+            data: {
+              email: function() {
+                return $( "#email" ).val();
+              }
+            }
+          }
       },
       phone: {
           required: true,
@@ -34,6 +43,7 @@ $(document).ready(function(){
       email: {
         required: " هذا ليس بريد اليكتروني ",
         email: "هذا ليس بريد اليكتروني",  
+        remote: "هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر"
       },
       level: {
         selectValidat: "الرجاء الاختيار ",
