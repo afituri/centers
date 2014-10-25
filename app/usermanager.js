@@ -7,7 +7,7 @@ module.exports = {
   addUser: function (req, cb) {
     var salt = easyPbkdf2.generateSalt(), //we generate a new salt for every new user
         password = generatePassword(); //we generate a new password for every new user
-    console.log(password);
+    console.log("password : "+password);
     easyPbkdf2.secureHash( password, salt, function( err, passwordHash, originalSalt ) {
       var obj={
             name : req.body.name,
@@ -17,8 +17,8 @@ module.exports = {
             salt : originalSalt,
             level : req.body.level
           }
-      userMgr.activate(obj,req.body.email, function(result){
-        res.send(true);
+      userMgr.addUser(obj, function(result){
+        cb(true);
         //to do list
         //1- if level is 2 "manager" then check if constit has a manager first if not then assign a manager to that constit
         //2- if true we should send an email to the user with the generated password

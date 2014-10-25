@@ -27,5 +27,18 @@ exports.userMgr = {
         }
       });
     });
+  },
+  /* get all users*/
+  getUsers : function(cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `user`',  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
   }
 };

@@ -27,7 +27,7 @@ block content
           //Select for choose user root , admin or manager
           div.form-group
             font(size="4", color="black" , face="cursive" )
-              select#level(name="level")
+              select.form-control#level(name="level")
                 option(value="-1", selected="selected") صﻻحية المستخدم
                 option(value="0") root
                 option(value="1") admin
@@ -35,7 +35,7 @@ block content
           //Select for choose manager of constituencies
           div.form-group
             font(size="4", color="black" , face="cursive" )
-              select#constit(name="constit")
+              select.form-control#constit(name="constit")
                 option(value="-1", selected="selected") اختر الدائره الانتخابيه
                 option(value="طرابلس") طرابلس
                 option(value="بنغازي") بنغازي
@@ -44,8 +44,8 @@ block content
             button.btn.btn-lg.btn-primary(type="submit") الدخول
         
       div.footer
-        script(src="/javascripts/bootstrap.min.js")
         script(src="/javascripts/jquery-1.11.1.min.js") 
+        script(src="/javascripts/bootstrap.min.js")
         script(src="/javascripts/jquery.validate.min.js")
         script(src="/javascripts/adduser.js")
         
