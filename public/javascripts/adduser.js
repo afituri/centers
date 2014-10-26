@@ -32,8 +32,8 @@ $(document).ready(function(){
       },
       phone: {
         required: true,
-		minlength: 10,
-		phoneNO: true,
+		    minlength: 10,
+		    number: true
       }
     },
     messages: {
@@ -54,6 +54,7 @@ $(document).ready(function(){
       phone: {
         required: "الرجاء ادخال رقم الهاتف",
         minlength: " يجب أن يكون الهاتف لا يقل عن 10 ارقام ",
+        number: "الرجاء ادخال رقم الهاتف ",
       }
     }
   });
