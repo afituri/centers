@@ -1,5 +1,6 @@
 var generatePassword = require('password-generator'),
   easyPbkdf2 = require("easy-pbkdf2")(),
+  mailer = require('../app/mailer');
   userMgr = require('../app/user').userMgr;
 
 module.exports = {
@@ -19,7 +20,18 @@ module.exports = {
           }
       userMgr.addUser(obj, function(result){
         console.log(result);
-        cb(true);
+        var obj = {
+          template : "newpassword",
+          email : req.body.email,
+          password : password,
+          subject : "Your HNEC app credentials"
+        }
+
+        mailer.sendPassword(obj,function(result){
+          if(result){
+            cb(true);
+          }
+        });
         //to do list
         //1- if level is 2 "manager" then check if constit has a manager first if not then assign a manager to that constit
         //2- if true we should send an email to the user with the generated password
