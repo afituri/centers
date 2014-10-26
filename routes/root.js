@@ -1,5 +1,5 @@
 var express = require('express');
-var userManager = require('../app/usermanager');
+var userManager = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
 

@@ -1,11 +1,12 @@
 
 /************************************************************************/
-var mysql      = require('mysql');
+var mysql = require('mysql');
+var config = require('../config.json');
 var pool = mysql.createPool({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'dunstuff',
-  database : 'centers',
+  host     : config.host,
+  user     : config.user,
+  password : config.password,
+  database : config.database,
   multipleStatements: true
 });
 
