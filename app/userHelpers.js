@@ -18,6 +18,7 @@ module.exports = {
             level : req.body.level
           }
       userMgr.addUser(obj, function(result){
+        console.log(result);
         cb(true);
         //to do list
         //1- if level is 2 "manager" then check if constit has a manager first if not then assign a manager to that constit
