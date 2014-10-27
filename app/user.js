@@ -3,7 +3,7 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 
 exports.userMgr = {
   /* adding a new user to the system */
-	addUser : function(body,cb){
+  addUser : function(body,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('INSERT INTO `user` SET ?',  body,  function(err, result) {
         conn.release();
@@ -32,6 +32,19 @@ exports.userMgr = {
   getUsers : function(cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT * FROM `user`',  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /* get user by id*/
+  getUser : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone` FROM `user` WHERE iduser = ?',id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

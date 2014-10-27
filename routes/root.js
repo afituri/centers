@@ -7,7 +7,7 @@ var userMgr = require('../app/user').userMgr;
 /* GET home page. */
 router.get('/', function(req, res) {
   userMgr.getUsers(function(results){
-    res.render('root',{title: 'root', users : results});
+    res.render('root',{title: 'المستخدمين', users : results});
   })
 });
 
@@ -23,5 +23,11 @@ router.post('/adduser', function(req, res) {
     });
   });
 });
-
+/* get userby id form for root */
+router.get('/getUser/:id', function(req, res) {
+  console.log("got here");
+  userMgr.getUser(req.params.id,function(result){
+    res.send(result);
+  })
+});
 module.exports = router;
