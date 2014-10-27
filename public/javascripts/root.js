@@ -7,6 +7,7 @@ $(document).ready(function(){
       $("#phone").val(result[0].phone);
       $("#email").val(result[0].email);
       $("#level").val(result[0].level);
+      
     });
   }); 
 });
