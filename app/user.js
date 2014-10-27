@@ -53,5 +53,18 @@ exports.userMgr = {
         }
       });
     });
+  },
+    /* get Manager*/
+  getManager : function(cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone` FROM `user` WHERE level = ?', 2 ,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
   }
 };

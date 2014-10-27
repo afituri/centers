@@ -28,57 +28,64 @@ block content
               th تعديل
               th الغاء 
             tbody
-              tr(data-id=1)
-                td عبد السلام محمد
-                td 7777777
+            for user in users
+              tr
+                td= user.name
+                td= user.phone
                 td طرابلس 
                 td
-                  button.btn.btn-primary.btn-xs(data-title='Edit',href='#edit',data-toggle='modal', data-placement='top', rel='tooltip')
-                    span.glyphicon.glyphicon-pencil
+                    button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-pencil
                 td      
-                  button.btn.btn-danger.btn-xs(data-title='Delete',href='#del', data-toggle='modal', data-placement='top', rel='tooltip')
-                    span.glyphicon.glyphicon-trash
-              tr(data-id=2)
-                td عبد السلام محمد
-                td 7777777
-                td طرابلس 
-                td
-                  button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal', data-target='#edit', data-placement='top', rel='tooltip')
-                    span.glyphicon.glyphicon-pencil
-                td      
-                  button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete', data-placement='top', rel='tooltip')
-                    span.glyphicon.glyphicon-trash
-              tr(data-id=3)
-                td عبد السلام محمد
-                td 7777777
-                td طرابلس 
-                td
-                  button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal', data-target='#edit', data-placement='top', rel='tooltip')
-                    span.glyphicon.glyphicon-pencil
-                td      
-                  button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete', data-placement='top', rel='tooltip')
-                    span.glyphicon.glyphicon-trash
-  #del.modal(data-width='760', tabindex='-1')
-      .modal-dialog
-        .modal-content
-          .modal-headr
-            .modal-title 
-              h2 هل أنت متأكد من حدف؟
-          .modal-body
-             p هل انت متأكد 
-          .modal-footer
-            button.btn.btn-danger(type='button',data-dismiss='modal') delete
-            button.btn.btn-success(data-dismiss='modal', type='button') cancel
-        ////  modal edit
+                    button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal',value="#{user.iduser}", data-target='#delete', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-trash
+  
+  #delete.modal(data-width='760', tabindex='-1')
+    .modal-dialog
+      .modal-content
+        .modal-headr
+          .modal-title 
+            h2 هل أنت متأكد من حدف؟
+        .modal-body
+           p هل انت متأكد 
+        .modal-footer
+          button.btn.btn-danger(type='button',data-dismiss='modal') delete
+          button.btn.btn-success(data-dismiss='modal', type='button') cancel
+  //  modal edit
   #edit.modal(data-width='760', tabindex='-1')
-      .modal-dialog
-        .modal-content
-          .modal-headr
-            .modal-title 
-              h2 تعديل بيانات المدير 
-          .modal-body
-             p المدير المراد تعديل بياناته
-          .modal-footer
+    .modal-dialog
+      .modal-content
+        .modal-headr
+          .modal-title 
+            h2 تعديل بيانات المدير 
+        .modal-body
+          form#form.form-signin(role="form" , action="/root/adduser", method="post")
+            div.form-group
+              lable اسم المستخدم
+              input#name.form-control(type="text",name="name", placeholder="اسم المستخدم", required="",autofocus="")
+            div.form-group
+              lable رقم الهاتف
+              input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
+            div.form-group
+              lable البريد الإلكتروني
+              input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
+            //Select for choose user root , admin or manager
+            div.form-group
+              font(size="4", color="black" , face="cursive" )
+                select.form-control#level(name="level")
+                  option(value="-1", selected="selected") صﻻحية المستخدم
+                  option(value="0") root
+                  option(value="1") admin
+                  option(value="2") manager
+            //Select for choose manager of constituencies
+            div.form-group
+              font(size="4", color="black" , face="cursive" )
+                select.form-control#constit(name="constit")
+                  option(value="-1", selected="selected") اختر الدائره الانتخابيه
+                  option(value="طرابلس") طرابلس
+                  option(value="بنغازي") بنغازي
+                  option(value="مصراته") مصراته
+        .modal-footer
             button.btn.btn-primary(type='button',data-dismiss='modal') save and close 
             button.btn.btn-success(data-dismiss='modal', type='button') cancel
   script(src="/javascripts/jquery-1.11.1.min.js")
