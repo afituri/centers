@@ -22,16 +22,17 @@ module.exports = {
         console.log(result);
         var obj = {
           template : "newpassword",
-          email : req.body.email,
-          password : password,
-          subject : "Your HNEC app credentials"
-        }
-
-        mailer.sendPassword(obj,function(result){
-          if(result){
-            cb(true);
+          subject : "Your HNEC app credentials",
+          locals : {
+            email : req.body.email,
+            user : {
+              email : req.body.email,
+              password : password
+            }
           }
-        });
+        }
+        mailer.send(obj);
+        cb(true);  
         //to do list
         //1- if level is 2 "manager" then check if constit has a manager first if not then assign a manager to that constit
         //2- if true we should send an email to the user with the generated password
