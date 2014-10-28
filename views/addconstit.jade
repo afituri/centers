@@ -29,7 +29,7 @@ block content
         .modal-content 
           .modal-headr
             .modal-title 
-              h2 تعديل بيانات المدير 
+              h2 إضافة بينات المسؤل
           .modal-body
             form#form.form-signin(role="form" , action="/root/adduser", method="post")
               div.form-group
@@ -40,7 +40,7 @@ block content
                 input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
               div.form-group
                 lable البريد الإلكتروني
-                input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
+                input#email.form-control( type="text",name="email", placeholder="البريد الإلكتروني",required="")
                 hr
                 button.btn.btn-primary(type='button',data-dismiss='modal') save and close 
                 button.btn.btn-success(data-dismiss='modal', type='button') cancel
