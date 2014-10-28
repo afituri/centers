@@ -53,5 +53,19 @@ exports.userMgr = {
         }
       });
     });
+  },
+  /* update user to the system */
+  updateUser : function(body,cb){
+    console.log(body);
+    mysqlMgr.connect(function (conn) {
+      conn.query('UPDATE `user` SET  ? WHERE `iduser` = ?',[body,body.iduser],  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(body.name); 
+        }
+      });
+    });
   }
 };
