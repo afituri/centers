@@ -15,12 +15,13 @@ block content
       div.panel-heading
         h1.panel-title.pull-right.active.zero-clipboard  اللجان الأنتخابية
         br  
-      div.input-group
-        input.form-control(type="text",placeholder="أبحث ")
-        spen.glyphicon.glyphicon-search.input-group-addon
-        div.btn-group.pull-left
-          a.btn.btn.btn-success.btn-sm(href='/constits/addconstit', role='button') إضافة لجنة 
-           span.glyphicon.glyphicon-plus 
+      .input-group 
+            input.form-control.input-sm(type="text",name="constitres", placeholder="اللجنة الأنتخابية", required="")
+            .input-group-btn
+              .btn.btn-primary.btn-sm(type="button",data-title='Delete',href='#addmanger', data-toggle='modal', data-placement='top', rel='tooltip')  
+                spen.glyphicon.glyphicon-search
+               a.btn.btn-success.btn-sm(href='/constits/addconstit', role='button') إضافة لجنة 
+                span.glyphicon.glyphicon-plus 
       div.panel-body
         div.table-responsive  
           table.table.table-striped.table-bordered.table-condensed.table-hover(id="constits")
