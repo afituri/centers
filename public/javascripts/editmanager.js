@@ -1,61 +1,46 @@
 $(document).ready(function(){
-  $.validator.addMethod("phoneNO", function(value, element) {
-    return this.optional(element) || /[0-9]{10}/.test(value) ;
+
+  $('#level').editable({
+    source:[
+      {value:0,text:"root"},
+      {value:1,text:"admin"},
+      {value:2,text:"manager"}
+    ]
   });
-  $.validator.addMethod("selectValidat", function (value) {
-    return (value != '-1');
+
+  $('#level1').editable({
+    source:[
+      {value:0,text:"root"},
+      {value:1,text:"admin"},
+      {value:2,text:"manager"}
+    ]
   });
-  // validate signup form on keyup and submit
-  $("#form").validate({
-    rules: {
-      level: {
-        selectValidat: true,
-      },
-      constit: {
-        selectValidat: true,
-      },
-      name: {
-       required: true,
-      },
-      email: {
-        required: true,
-        email: true,
-        remote: {
-          url :"/users/checkEmail",
-          type : "post",
-          data: {
-            email: function() {
-              return $( "#email" ).val();
-            }
-          }
-        }
-      },
-      phone: {
-        required: true,
-		    minlength: 10,
-		    number: true
-      }
-    },
-    messages: {
-      name: {
-        required: "الرجاء ادخال اسم المستخدم",
-      },
-      email: {
-        required: " هذا ليس بريد اليكتروني ",
-        email: "هذا ليس بريد اليكتروني",
-        remote: "هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر"
-      },
-      level: {
-        selectValidat: "الرجاء الاختيار ",
-      },
-      constit: {
-        selectValidat: "الرجاء الاختيار ",
-      },
-      phone: {
-        required: "الرجاء ادخال رقم الهاتف",
-        minlength: " يجب أن يكون الهاتف لا يقل عن 10 ارقام ",
-        number: "الرجاء ادخال رقم الهاتف ",
-      }
-    }
+
+
+  $('#name').editable({
+    url: '/users/edit',
+    type: 'text',
+    pk: 1,
+    name: 'name',
+    title: 'Enter username',
+   // value: '$("#name").val()'
+  });
+
+  $('#phone').editable({
+    url: '/post',
+    type: 'text',
+    pk: 1,
+    name: 'phone',
+    title: 'Enter phone',
+   // value: '$("#phone").val()'
+  });
+
+  $('#email').editable({
+    url: '/post',
+    type: 'text',
+    pk: 1,
+    name: 'email',
+    title: 'Enter email',
+  //  value: '$("#email").val()'
   });
 });

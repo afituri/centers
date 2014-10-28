@@ -10,34 +10,34 @@ block content
         li
           a(href="#") Contact
       h3.text-muted.text-left Centers
-    div.panel.panel-default.form-signin 
-      div.panel-heading.text-right
-        h1.panel-title إضافة مستخدم
-      div.panel-body
-        form#form.form-signin(role="form" , action="/root/adduser", method="post")
-          div.form-group
-            lable اسم المستخدم
-            input#name.form-control(type="text",name="name", placeholder="اسم المستخدم", required="",autofocus="")
-          div.form-group
-            lable رقم الهاتف
-            input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
-          div.form-group
-            lable البريد الإلكتروني
-            input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
-          //Select for choose manager of constituencies
-          div.form-group
-            font(size="4", color="black" , face="cursive" )
-              select.form-control#constit(name="constit")
-                option(value="-1", selected="selected") اختر الدائره الانتخابيه
-                option(value="طرابلس") طرابلس
-                option(value="بنغازي") بنغازي
-                option(value="مصراته") مصراته
-          div.form-group
-            button.btn.btn-lg.btn-primary(type="submit") الدخول
-    br
+  div.container    
+    table#user.table.table-bordered.table-striped(style='clear: both')
+      tbody
+        tr
+          td(width='35%') اسم المدير
+          td(width='65%')
+            a#name(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='اسم المدير' data-value='#{user[0].name}')  #{user[0].name}
+        tr
+          td(width='35%') البريد الالكترونب
+          td(width='65%')
+            a#email(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='البريد الالكترونب', data-value='#{user[0].email}')  #{user[0].email}
+        tr
+          td(width='35%') رقم الهاتف
+          td(width='65%')
+            a#phone(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='رقم الهاتف', data-value='#{user[0].phone}')  #{user[0].phone}
+        tr
+          td الصلاحية
+          td
+            a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')
+        tr
+          td الدوائر
+          td
+            a#level1(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level1}',  data-title='الدوائر')  
+           
     div.footer
-      script(src="/javascripts/jquery-1.11.1.min.js") 
-      script(src="/javascripts/bootstrap.min.js")
-      script(src="/javascripts/jquery.validate.min.js")
-      script(src="/javascripts/editmanager.js")
-      script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/editmanager.js")
+      
