@@ -9,9 +9,9 @@ $(document).ready(function(){
   });
 
   $('#name').editable({
-    url: '/post',
+    url: '/users/edit',
     type: 'text',
-    pk: 'iduser',
+    pk: 1,
     name: 'name',
     title: 'Enter username',
    // value: '$("#name").val()'
@@ -20,7 +20,7 @@ $(document).ready(function(){
   $('#phone').editable({
     url: '/post',
     type: 'text',
-    pk: 'phone',
+    pk: 1,
     name: 'phone',
     title: 'Enter phone',
    // value: '$("#phone").val()'
