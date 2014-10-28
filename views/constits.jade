@@ -14,12 +14,14 @@ block content
     div.panel.panel-default
       div.panel-heading
         h1.panel-title.pull-right.active.zero-clipboard  اللجان الأنتخابية
-        div.btn-group
-          a.btn.btn.btn-success.btn-sm(href='/constits/addconstit', role='button') إضافة لجنة 
-            span.glyphicon.glyphicon-plus
-        div.btn-group
-          a.btn.btn.btn-warning.btn-sm(href='/constits/editconstit', role='button') تعديل اللجان 
-            span.glyphicon.glyphicon-edit
+        br  
+      .input-group 
+            input.form-control.input-sm(type="text",name="constitres", placeholder="اللجنة الأنتخابية", required="")
+            .input-group-btn
+              .btn.btn-primary.btn-sm(type="button",data-title='Delete',href='#addmanger', data-toggle='modal', data-placement='top', rel='tooltip')  
+                spen.glyphicon.glyphicon-search
+               a.btn.btn-success.btn-sm(href='/constits/addconstit', role='button') إضافة لجنة 
+                span.glyphicon.glyphicon-plus 
       div.panel-body
         div.table-responsive  
           table.table.table-striped.table-bordered.table-condensed.table-hover(id="constits")

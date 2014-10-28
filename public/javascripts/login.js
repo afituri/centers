@@ -2,16 +2,16 @@ $(document).ready(function(){
   // validate signup form on keyup and submit
   $("#form").validate({    
     rules: {
-      name: {
+      username: {
         required: true,
-        },
-        password: {
-          required: true,
-          minlength: 5,
-        },
+      },
+      password: {
+        required: true,
+        minlength: 5,
+      },
     },
     messages: {
-      name: {
+      username: {
         required: "الرجاء ادخال اسم المستخدم",
       },
       password: {

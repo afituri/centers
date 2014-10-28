@@ -8,7 +8,6 @@ module.exports = {
   addUser: function (body, cb) {
     var salt = easyPbkdf2.generateSalt(), //we generate a new salt for every new user
         password = generatePassword(); //we generate a new password for every new user
-    console.log("password : "+password);
     easyPbkdf2.secureHash( password, salt, function( err, passwordHash, originalSalt ) {
       var obj={
             name : body.name,
@@ -19,7 +18,6 @@ module.exports = {
             level : body.level
           }
       userMgr.addUser(obj, function(result){
-        console.log(result);
         var obj = {
           template : "newpassword",
           subject : "Your HNEC app credentials",
@@ -31,11 +29,10 @@ module.exports = {
             }
           }
         }
-        mailer.send(obj);
+        mailer.send(obj); // here we send an email with user's credintials
         cb(true);  
         //to do list
         //1- if level is 2 "manager" then check if constit has a manager first if not then assign a manager to that constit
-        //2- if true we should send an email to the user with the generated password
       });
     });
   },

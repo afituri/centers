@@ -54,16 +54,41 @@ exports.userMgr = {
       });
     });
   },
-  /* update user to the system */
-  updateUser : function(body,cb){
-    console.log(body);
+    /* get Manager*/
+  getManager : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `user` SET  ? WHERE `iduser` = ?',[body,body.iduser],  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone` FROM `user` WHERE level = ?', 2 ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
         } else {
-          cb(body.name); 
+          cb(result);
+        }
+      });
+    });
+  },
+  /* getting user by email */
+  getUserByEmail : function(email,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `user` WHERE email = ?',email,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result[0]);
+        }
+      });
+    });
+  },
+  /* getting user by ID */
+  getUserById : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `user` WHERE iduser = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result[0]);
         }
       });
     });
