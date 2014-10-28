@@ -24,14 +24,6 @@ block content
           div.form-group
             lable البريد الإلكتروني
             input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
-          //Select for choose user root , admin or manager
-          div.form-group
-            font(size="4", color="black" , face="cursive" )
-              select.form-control#level(name="level")
-                option(value="-1", selected="selected") صﻻحية المستخدم
-                option(value="0") root
-                option(value="1") admin
-                option(value="2") manager
           //Select for choose manager of constituencies
           div.form-group
             font(size="4", color="black" , face="cursive" )
@@ -42,10 +34,10 @@ block content
                 option(value="مصراته") مصراته
           div.form-group
             button.btn.btn-lg.btn-primary(type="submit") الدخول
-  br
-  div.footer
-    script(src="/javascripts/jquery-1.11.1.min.js") 
-    script(src="/javascripts/bootstrap.min.js")
-    script(src="/javascripts/jquery.validate.min.js")
-    script(src="/javascripts/adduser.js")
-        
+    br
+    div.footer
+      script(src="/javascripts/jquery-1.11.1.min.js") 
+      script(src="/javascripts/bootstrap.min.js")
+      script(src="/javascripts/jquery.validate.min.js")
+      script(src="/javascripts/editmanager.js")
+      script(src="/javascripts/bootstrap-editable.min.js")

@@ -10,14 +10,18 @@ router.get('/', function(req, res) {
   })
 });
 
+/* Edit manager*/
+router.get('/editmanager', function(req, res) {
+  res.render('editmanager', { title: 'تعديل مدير' });
+});
 
-
+/* Add manager  */
 router.get('/addmanager', function(req, res) {
   res.render('addmanager', { title: 'اضافة مدير' });
 });
 
 
-/* get userby level form for admin */
+/* Get user by level form for admin */
 router.get('/getManager/:level', function(req, res) {
   console.log("got here level");
   userMgr.getManager(function(result){
