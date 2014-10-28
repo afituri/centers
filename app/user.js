@@ -53,5 +53,29 @@ exports.userMgr = {
         }
       });
     });
+  },
+  getUserById : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `user` WHERE iduser = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result[0]);
+        }
+      });
+    });
+  },
+  getUserByEmail : function(email,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `user` WHERE email = ?',email,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result[0]);
+        }
+      });
+    });
   }
 };

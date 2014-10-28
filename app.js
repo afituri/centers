@@ -1,16 +1,16 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var constits = require('./routes/constits');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var root = require('./routes/root');
 var admin = require('./routes/admin');
+var passport = require('passport');
 var app = express();
 
 // view engine setup
@@ -23,7 +23,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({secret: 'HnecDev',resave: true,saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/root', root);

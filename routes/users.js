@@ -1,6 +1,10 @@
 var express = require('express');
-var router = express.Router();
+var passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    easyPbkdf2 = require("easy-pbkdf2")();
 var userMgr = require('../app/user').userMgr;
+var router = express.Router();
+var login = require('../app/login')(router);
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -22,8 +26,8 @@ router.post('/checkEmail', function(req, res) {
     } else {
       res.send(false);
     }
-    
   });
 });
+
 
 module.exports = router;
