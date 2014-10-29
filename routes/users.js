@@ -4,7 +4,7 @@ var passport = require('passport'),
     easyPbkdf2 = require("easy-pbkdf2")();
 var userMgr = require('../app/user').userMgr;
 var router = express.Router();
-var login = require('../app/login')(router);
+//var login = require('../app/login')(router);
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -28,6 +28,15 @@ router.post('/checkEmail', function(req, res) {
     }
   });
 });
-
+/* Edit user . */
+router.post('/edit', function(req, res) {
+  userMgr.editUser(req.body, function(result){
+    if(!result[0]){
+      res.send(false);
+    } else {
+      res.send(true);
+    }
+  });
+});
 
 module.exports = router;

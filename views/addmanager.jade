@@ -10,35 +10,35 @@ block content
         li
           a(href="#") Contact
       h3.text-muted.text-left Centers App
-      div.panel.panel-default.form-signin 
-        div.panel-heading.text-right
-          h1.panel-title اضافة مدير
-        div.panel-body
-          form#form.form-signin(role="form")
-            div.form-group
-              lable اسم المستخدم 
-            div.form-group
-              input#username.form-control.input-lg(type="text",name="username", placeholder="اسم المستخدم", required="",autofocus="")
-            div.form-group
-              lable رقم الهاتف
-            div.form-group
-              input#phone.form-control.input-lg(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
-            div.form-group
-              lable البريد الإلكتروني
-            div.form-group
-              input#email.form-control.text-left.input-lg(type="email",name="email",dir="ltr", placeholder="البريد الالكتروني", required="")
-            div.form-group
-              lable الدوائر الانتخابية
-            div.form-group
-              select#select.form-control.btn.dropdown-toggle.selectpicker.btn-default.input-lg( data-style='btn-primary',name="select")
-                option(value="")
-                option(value="0") طرابلس
-                option(value="1") بنغازي
-                option(value="2") سبها
-            div.form-group
-              button.btn.btn-lg.btn-primary(type="submit") تسجيل
-    div.footer
-      script(src="/javascripts/bootstrap.min.js")
-      script(src="/javascripts/jquery-1.11.1.min.js") 
-      script(src="/javascripts/jquery.validate.min.js")
-      script(src="/javascripts/addmanager.js")
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title اضافة مدير
+      div.panel-body
+        form#form.form-signin(role="form")
+          div.form-group
+            lable اسم المستخدم 
+          div.form-group
+            input#username.form-control(type="text",name="username", placeholder="اسم المستخدم", required="",autofocus="")
+          div.form-group
+            lable رقم الهاتف
+          div.form-group
+            input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
+          div.form-group
+            lable البريد الإلكتروني
+          div.form-group
+            input#email.form-control.text-left(type="email",name="email",dir="ltr", placeholder="البريد الالكتروني", required="")
+          div.form-group
+            lable الدوائر الانتخابية
+          div.form-group
+            select#select.form-control.btn.dropdown-toggle.selectpicker.btn-default( data-style='btn-primary',name="select")
+              option(value="")
+              option(value="0") طرابلس
+              option(value="1") بنغازي
+              option(value="2") سبها
+          div.form-group.text-center
+            button.btn.btn-lg.btn-primary(type="submit") تسجيل
+    
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/addmanager.js")

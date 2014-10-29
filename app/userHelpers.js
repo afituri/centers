@@ -5,26 +5,26 @@ var generatePassword = require('password-generator'),
 
 module.exports = {
   /* here we add a new user to the system */
-  addUser: function (req, cb) {
+  addUser: function (body, cb) {
     var salt = easyPbkdf2.generateSalt(), //we generate a new salt for every new user
         password = generatePassword(); //we generate a new password for every new user
     easyPbkdf2.secureHash( password, salt, function( err, passwordHash, originalSalt ) {
       var obj={
-            name : req.body.name,
-            email : req.body.email,
+            name : body.name,
+            email : body.email,
             password : passwordHash,
-            phone : req.body.phone,
+            phone : body.phone,
             salt : originalSalt,
-            level : req.body.level
+            level : body.level
           }
       userMgr.addUser(obj, function(result){
         var obj = {
           template : "newpassword",
           subject : "Your HNEC app credentials",
           locals : {
-            email : req.body.email,
+            email : body.email,
             user : {
-              email : req.body.email,
+              email : body.email,
               password : password
             }
           }

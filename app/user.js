@@ -15,6 +15,19 @@ exports.userMgr = {
       });
     });
   },
+  /* editing user's table field by field */
+  editUser : function(body,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('UPDATE `user` SET '+body.name+' = ? WHERE `iduser` = ?',  [body.value,body.pk],  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(body.name); 
+        }
+      });
+    });
+  },
   /* check if email exists */
   checkEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {

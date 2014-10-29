@@ -1,5 +1,7 @@
 $(document).ready(function(){
-
+  $('#enable').click(function() {
+    $('#user .editable').editable('toggleDisabled');
+  }); 
   $('#level').editable({
     url: '/users/edit',
     source:[
@@ -8,16 +10,6 @@ $(document).ready(function(){
       {value:2,text:"manager"}
     ]
   });
-
-  $('#level1').editable({
-    url: '/users/edit',
-    source:[
-      {value:0,text:"root"},
-      {value:1,text:"admin"},
-      {value:2,text:"manager"}
-    ]
-  });
-
   $('#name').editable({
     url: '/users/edit',
     type: 'text',
@@ -25,7 +17,6 @@ $(document).ready(function(){
     name: 'name',
     title: 'Enter username',
   });
-
   $('#phone').editable({
     url: '/users/edit',
     type: 'text',
@@ -33,7 +24,6 @@ $(document).ready(function(){
     name: 'phone',
     title: 'Enter phone',
   });
-
   $('#email').editable({
     url: '/users/edit',
     type: 'text',
