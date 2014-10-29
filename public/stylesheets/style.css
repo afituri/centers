@@ -1,11 +1,4 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
-a {
-  color: #00B7FF;
-}
 #constits td:hover {
     cursor: pointer;
 }
@@ -24,4 +17,11 @@ label.error {
 }
 #admin td:hover {
     cursor: pointer;
+}
+
+.headerlogo  {
+padding-bottom: 19px;
+margin-top: 0;
+margin-bottom: 0;
+line-height: 40px;
 }
