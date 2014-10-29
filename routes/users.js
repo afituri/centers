@@ -30,7 +30,6 @@ router.post('/checkEmail', function(req, res) {
 });
 
 router.post('/edit', function(req, res) {
-  console.log("got here");
   userMgr.editUser(req.body, function(result){
     if(!result[0]){
       res.send(false);
