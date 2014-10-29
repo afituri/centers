@@ -25,9 +25,11 @@ block content
                 th الاسم
                 th رقم الهاتف
                 th الصلحيات
+                th عرض
+                th الغاء 
               tbody
               for user in users
-                tr(data-id= "#{user.iduser}")
+                tr
 
                   td= user.name
                   td= user.phone
@@ -39,6 +41,22 @@ block content
                         p admin
                       when 2
                         p manager
+                  td
+                    button#viw.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-eye-open
+                  td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
+                       span.glyphicon.glyphicon-trash 
+  #del.modal(data-width='760', tabindex='-1')
+    .modal-dialog
+      .modal-content
+        .modal-headr
+          .modal-title 
+        .modal-body
+           p هل انت متأكد 
+        .modal-footer
+          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+          button.btn.btn-success(data-dismiss='modal', type='button') cancel
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/root.js")

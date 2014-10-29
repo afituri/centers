@@ -1,7 +1,10 @@
 $(document).ready(function(){
+
+  $('#user .editable').editable('disable');
   $('#enable').click(function() {
     $('#user .editable').editable('toggleDisabled');
   }); 
+    
   $('#level').editable({
     url: '/users/edit',
     source:[

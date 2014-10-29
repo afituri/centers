@@ -44,7 +44,7 @@ exports.userMgr = {
   /* get all users*/
   getUsers : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `user`',  function(err, result) {
+      conn.query('SELECT * FROM `user` WHERE status = 1 ',  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -58,6 +58,19 @@ exports.userMgr = {
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone` FROM `user` WHERE iduser = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+    /* delete user by id*/
+  delUser : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('UPDATE `user` SET status = 0 WHERE iduser = ?',id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
