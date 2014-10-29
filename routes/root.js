@@ -35,4 +35,9 @@ router.get('/getUser/:id', function(req, res) {
     res.send(result);
   })
 });
+router.get('/deleteUser/:id', function(req, res) {
+  userMgr.delUser(req.params.id,function(result){
+    res.send(result);
+  })
+});
 module.exports = router;
