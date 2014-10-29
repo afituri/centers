@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   $('#level').editable({
+    url: '/users/edit',
     source:[
       {value:0,text:"root"},
       {value:1,text:"admin"},
@@ -9,6 +10,7 @@ $(document).ready(function(){
   });
 
   $('#level1').editable({
+    url: '/users/edit',
     source:[
       {value:0,text:"root"},
       {value:1,text:"admin"},
@@ -16,31 +18,27 @@ $(document).ready(function(){
     ]
   });
 
-
   $('#name').editable({
     url: '/users/edit',
     type: 'text',
     pk: 1,
     name: 'name',
     title: 'Enter username',
-   // value: '$("#name").val()'
   });
 
   $('#phone').editable({
-    url: '/post',
+    url: '/users/edit',
     type: 'text',
     pk: 1,
     name: 'phone',
     title: 'Enter phone',
-   // value: '$("#phone").val()'
   });
 
   $('#email').editable({
-    url: '/post',
+    url: '/users/edit',
     type: 'text',
     pk: 1,
     name: 'email',
     title: 'Enter email',
-  //  value: '$("#email").val()'
   });
 });

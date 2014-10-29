@@ -28,7 +28,7 @@ router.post('/checkEmail', function(req, res) {
     }
   });
 });
-
+/* Edit user . */
 router.post('/edit', function(req, res) {
   userMgr.editUser(req.body, function(result){
     if(!result[0]){
@@ -38,6 +38,5 @@ router.post('/edit', function(req, res) {
     }
   });
 });
-
 
 module.exports = router;
