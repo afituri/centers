@@ -2,12 +2,14 @@ $(document).ready(function(){
   $.validator.addMethod("phoneNO", function(value, element) {
     return this.optional(element) || /[0-9]{10}/.test(value) ;
   });
+  $.validator.addMethod("selectValidat", function (value) {
+    return (value != '-1');
+  });
   // validate signup form on keyup and submit
   $("#form").validate({
     rules: {
       username: {
-        required: true,
-        minlength: 5, 
+        required: true
       },
       phone: {
         required: true,
@@ -18,14 +20,13 @@ $(document).ready(function(){
         required: true,
         email :true
       },
-      select:{
-        required: true  
+      constit:{
+        selectValidat: true
       }
     },
     messages: {
       username: {
-        required: "الرجاء ادخال اسم المستخدم",
-        minlength: "يجب أن يكون اسم المستخدم لا يقل عن 5 أحرف",  
+        required: "الرجاء ادخال اسم المستخدم"
       },
       phone: {
         required: "الرجاء ادخال رقم الهاتف",
@@ -36,8 +37,8 @@ $(document).ready(function(){
         required: "الرجاء ادخال البريد الالكتروني",
         email :"هذا ليس بريد اليكتروني"
       },
-      select:{
-        required: "الرجاء الاختيار"
+      constit:{
+        selectValidat: "الرجاء الاختيار"
       } 
     }
   });
