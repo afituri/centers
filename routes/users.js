@@ -33,26 +33,27 @@ router.post('/edit', function(req, res) {
   if(req.body.name=="email"){
     userMgr.checkEmail(req.body.value, function(result){
       if(!result[0]){
-        edit_user(req.body);
-      } else {
-        res.status = "exist";
-        res.send({status : "error", value:true, msg:"هذا البريد موجود من قبل" });
-      }
-    });
-  } else {
-      edit_user(req.body);
-
-  }
-});
-function edit_user(body){
-  userMgr.editUser(body, function(result){
+        userMgr.editUser(req.body, function(result){
           if(!result[0]){
             res.send(false);
           } else {
             res.send(true);
           }
         });
-
-
-}
+      } else {
+        res.status = "exist";
+        res.send({status : "error", value:true, msg:"هذا البريد موجود من قبل" });
+      }
+    });
+  } else {
+    userMgr.editUser(req.body, function(result){
+      if(!result[0]){
+        res.send(false);
+      } else {
+        res.send(true);
+      }
+    });
+  }
+});
+ 
 module.exports = router;

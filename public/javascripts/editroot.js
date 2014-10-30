@@ -22,7 +22,6 @@ $(document).ready(function(){
     pk: 1,
     name: 'name',
     title: 'Enter username',
-    toggleDisabled:'manul',
   });
   $('#phone').editable({
     url: '/users/edit',
@@ -45,7 +44,7 @@ $(document).ready(function(){
     if(!v) return 'الرجاء ادخال اسم المستخدم';
   });
   $('#phone').editable('option', 'validate', function(v) {
-    var flag = /[0-9]{10}/.test(v);
+    var flag = /^[0-9\b]+$/.test(v);
     if(!v) return 'الرجاء ادخال رقم الهاتف';
     if(v.length<10) return "يجب أن يكون الهاتف  لا يقل عن 10 ارقام";
     if(!flag) return "هذا ليس رقم هاتف";
