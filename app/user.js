@@ -31,7 +31,7 @@ exports.userMgr = {
   /* check if email exists */
   checkEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `status` FROM `user` WHERE `email` = ? ',  email,  function(err, result) {
+      conn.query('SELECT `status` FROM `user` WHERE status = 1 AND`email` = ? ',  email,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
