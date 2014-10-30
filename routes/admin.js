@@ -25,10 +25,19 @@ router.get('/editmanager/:id', function(req, res) {
     res.render('editmanager',{title: 'تعديل المدراء', user : result});
   })
 });
-
-/* Add manager  */
+/* POST Add manager form for abmin */
 router.get('/addmanager', function(req, res) {
-  res.render('addmanager', { title: 'اضافة مدير' });
+  userHelpers.addUser(req, function (results){
+    userMgr.getUsers(function(results){
+      res.render('admin', { title: 'اضافة مدير' , users : results});
+    });
+  });
+});
+/* Delete manager by id */
+router.get('/deleteUser/:id', function(req, res) {
+  userMgr.delUser(req.params.id,function(result){
+    res.send(result);
+  })
 });
 
 
