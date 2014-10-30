@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var root = require('./routes/root');
 var admin = require('./routes/admin');
+var centers = require('./routes/centers');
 var passport = require('passport');
 var app = express();
 
@@ -31,6 +32,7 @@ app.use('/users', users);
 app.use('/root', root);
 app.use('/admin', admin);
 app.use('/constits',constits);
+app.use('/centers',centers);
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

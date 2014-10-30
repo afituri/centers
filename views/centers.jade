@@ -1,0 +1,80 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted.text-left Centers 
+  div.container    
+    div.panel.panel-default
+      div.panel-heading
+        div.btn-group
+          h3.panel-title.text-right.active المراكز
+        div.btn-group.pull-left
+          a.btn.btn-success.btn-xs(href='/admin/addmanager', role='button') إضافة مدير
+            span.glyphicon.glyphicon-plus 
+      div.panel-body
+        div.table-responsive  
+          table#admin.table.table-bordred.table-striped
+            thead
+              th اسم المركز
+              th رقم المركز
+              th اسم المشرف
+              th رقم الهاتف
+              th تعديل
+              th الغاء 
+            tbody
+              tr
+                td الشروق
+                td 1337
+                td احمد
+                td 0925555252554
+                td
+                    button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="", data-target='#edit', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-eye-open
+                td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                      span.glyphicon.glyphicon-trash 
+              tr
+                td علي وريت
+                td 1344
+                td محمد
+                td 09111123322
+                td
+                    button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="", data-target='#edit', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-eye-open
+                td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                      span.glyphicon.glyphicon-trash 
+              tr
+                td التقدم
+                td 1355
+                td فتحي
+                td 09444787998797
+                td
+                    button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="", data-target='#edit', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-eye-open
+                td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                      span.glyphicon.glyphicon-trash         
+  
+  #del.modal(data-width='760', tabindex='-1')
+    .modal-dialog
+      .modal-content
+        .modal-headr
+          .modal-title
+        .modal-body
+          p هل انت متأكد 
+        .modal-footer
+          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+          button.btn.btn-success(data-dismiss='modal', type='button') cancel
+  
+  script(src="/javascripts/jquery-1.11.1.min.js")
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/admin.js")
+  script(src="/javascripts/editmanager.js")
