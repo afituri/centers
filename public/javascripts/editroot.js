@@ -7,7 +7,7 @@ $(document).ready(function(){
     $('#user .editable').editable('toggleDisabled');
   }); 
  
-  
+
   $('#level').editable({
     url: '/users/edit',
     source:[
@@ -37,6 +37,9 @@ $(document).ready(function(){
     pk: 1,
     name: 'email',
     title: 'Enter email',
+    success: function (res, newValue){
+      return res.msg;
+    }
   });
   $('#name').editable('option', 'validate', function(v) {
     if(!v) return 'الرجاء ادخال اسم المستخدم';
@@ -52,13 +55,5 @@ $(document).ready(function(){
     var emailReg = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     var valid = emailReg.test(v);
     if(!valid) return 'هذا ليس بريد اليكتروني';
-      $.post("/root/checkEmail2",
-  {
-    email:v,
-  },
-  function(data,status){
-    //alert("Data: " + data + "\nStatus: " + status);
-    if(!data) alert("هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر");
-  });
   });
 });
