@@ -25,3 +25,9 @@ margin-top: 0;
 margin-bottom: 0;
 line-height: 40px;
 }
+.popover {
+top: 67px;
+left: 560px;
+display: block;
+right: auto;
+}
