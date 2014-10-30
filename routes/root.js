@@ -23,7 +23,7 @@ router.get('/editroot/:id', function(req, res) {
 
 /* POST adduser form for root */
 router.post('/adduser', function(req, res) {
-  userHelpers.addUser(req, function (results){
+  userHelpers.addUser(req.body, function (results){
     userMgr.getUsers(function(results){
       res.render('root',{title: 'المستخدمين', users : results});
     });
