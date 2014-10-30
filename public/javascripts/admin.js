@@ -1,11 +1,20 @@
 $(document).ready(function(){
-  $('body').on('click', '#user tbody tr td  button', function (){
+  /* Go to user needs view or edit */
+  $('body').on('click', '#view', function (){
     var id = $(this).val();
-    console.log(id);
-    $.get('/admin/getManager/'+id, function(result){
-      $("#name").val(result[0].name);
-      $("#phone").val(result[0].phone);
-      $("#email").val(result[0].email);
-      $("#level").val(result[0].level);
-  }); 
-});
+    window.location.href="http://localhost:3003/admin/editmanager/"+id;
+  });
+  /* Go to user needs view or edit */
+  $('body').on('click', '#delete ', function () {
+    var id = $(this).val();
+    $('#confdelete').val(id);
+  });
+  /* Go to user needs view or edit */ 
+  $('#confdelete').click(function() {
+    var id = $(this).val();
+    $.get('/admin/deleteUser/'+id, function(result){
+      window.location.href="http://localhost:3003/admin";
+    });
+  });
+
+ });
