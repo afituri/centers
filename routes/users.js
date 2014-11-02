@@ -4,7 +4,7 @@ var passport = require('passport'),
     easyPbkdf2 = require("easy-pbkdf2")();
 var userMgr = require('../app/user').userMgr;
 var router = express.Router();
-//var login = require('../app/login')(router);
+var login = require('../app/login')(router);
 
 /* GET users listing. */
 router.get('/', function(req, res) {
