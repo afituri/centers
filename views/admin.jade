@@ -32,7 +32,7 @@ block content
               tr
                 td= user.name
                 td= user.phone
-                td طرابلس
+                td= user.office_name
                 td
                     button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
                       span.glyphicon.glyphicon-eye-open
