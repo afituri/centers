@@ -14,24 +14,25 @@ block content
       div.panel-heading.text-right
         h1.panel-title اضافة مدير
       div.panel-body
-        form#form.form-signin(role="form")
+        form#form.form-signin(role="form" , action="/admin/addmanager", method="post")
           div.form-group
             lable اسم المدير
-            input#username.form-control(type="text",name="username", placeholder="اسم المدير", required="",autofocus="")
+            input#name.form-control(type="text",name="name", placeholder="اسم المدير", required="",autofocus="")
           div.form-group
             lable رقم الهاتف
             input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
           div.form-group
             lable البريد الإلكتروني
             input#email.form-control.text-left(type="email",name="email",dir="ltr", placeholder="البريد الالكتروني", required="")
+          input.form-control(type="hidden",name="level",value="2") 
           div.form-group
             lable اللجان الانتخابية
             font(size="4", color="black" , face="cursive" )
-              select.form-control#constit(name="constit")
+              select.form-control#constit(name="idoffice_user")
                 option(value="-1", selected="selected") اللجان الانتخابية
-                option(value="0") طرابلس
-                option(value="1") بنغازي
-                option(value="2") سبها
+                for office in offices
+                  option(value=office.idoffice) #{office.office_name}
+                
           div.form-group.text-center
             button.btn.btn-lg.btn-primary(type="submit") تسجيل
     

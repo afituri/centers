@@ -4,6 +4,7 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 exports.userMgr = {
   /* adding a new user to the system */
   addUser : function(body,cb){
+    console.log(body);
     mysqlMgr.connect(function (conn) {
       conn.query('INSERT INTO `user` SET ?',  body,  function(err, result) {
         conn.release();
@@ -54,6 +55,19 @@ exports.userMgr = {
       });
     });
   },
+    /* get all office */
+  getOffice : function(cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `office_name`,`idoffice` FROM `office` ',  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
   /* get user by id*/
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
@@ -83,7 +97,7 @@ exports.userMgr = {
     /* get Manager*/
   getManager : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone` FROM `user` WHERE status = 1 AND level = ?', 2 ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone`,`office_name` FROM `user`,`office` WHERE office.idoffice = user.idoffice_user AND user.status = 1 AND user.level = ?', 2 ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -92,7 +106,7 @@ exports.userMgr = {
         }
       });
     });
-  },
+  },/*
   /* getting user by email */
   getUserByEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {

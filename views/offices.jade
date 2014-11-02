@@ -1,0 +1,66 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted.text-left Centers 
+  div.container    
+    div.panel.panel-default
+      div.panel-heading
+        h1.panel-title.pull-right.active.zero-clipboard  اللجان الأنتخابية
+        br  
+      .input-group 
+            input.form-control.input-sm(type="text",name="constitres", placeholder="اللجنة الأنتخابية", required="")
+            .input-group-btn
+              .btn.btn-primary.btn-sm(type="button")  
+                spen.glyphicon.glyphicon-search
+               a.btn.btn-success.btn-sm(type="button",data-title='Delete',href='#addconstit', data-toggle='modal', data-placement='top', rel='tooltip') إضافة لجنة 
+                span.glyphicon.glyphicon-plus 
+      div.panel-body
+        div.table-responsive  
+          table.table.table-striped.table-bordered.table-condensed.table-hover(id="constits")
+            thead
+              tr
+                th الرقم
+                th اللجان الأنتخابية
+                th أسم المسؤل عن الجنة 
+            tbody
+              tr(data-id=1)
+               td 1
+               td طرابلس 
+               td عبد السلام محمد
+              tr(data-id=2)
+               td 2
+               td  مزدة 
+               td  محمد مصباح
+              tr(data-id=3)
+               td 3
+               td سرت 
+               td محمد محمد سليم
+              tr(data-id=4)
+               td 4
+               td بنغازي 
+               td حاتم محمد عبد الباسط      
+  #addconstit.modal(data-width='760', tabindex='-1')
+      .modal-dialog
+        .modal-content 
+          .modal-headr
+            .modal-title 
+              h2 إضافة لجنة إنتخابية 
+          .modal-body
+            form#form.form-signin(role="form" , action="/root/adduser", method="post")
+              div.form-group
+                lable.h3 أسم اللجنة
+                input#name.form-control.input-lg(type="text",name="name", placeholder="اسم اللجنة", required="",autofocus="")
+          .modal-footer
+            button.btn.btn-primary(type='button',data-dismiss='modal') حفظ و إغلاق 
+            button.btn.btn-danger(data-dismiss='modal', type='button') إلغاء 
+  script(src="/javascripts/jquery-1.11.1.min.js")
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/admin.js")

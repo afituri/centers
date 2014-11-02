@@ -8,7 +8,7 @@ $(document).ready(function(){
   // validate signup form on keyup and submit
   $("#form").validate({
     rules: {
-      username: {
+      name: {
         required: true
       },
       phone: {
@@ -25,7 +25,7 @@ $(document).ready(function(){
       }
     },
     messages: {
-      username: {
+      name: {
         required: "الرجاء ادخال اسم المستخدم"
       },
       phone: {
