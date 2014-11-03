@@ -30,7 +30,6 @@ router.get('/addmanager', function(req, res) {
 });
 /* POST Add manager form for abmin */
 router.post('/addmanager', function(req, res) {
-  console.log(req.body);
   userHelpers.addUser(req.body, function (results){
     userMgr.getManager(function(results){
       res.render('admin', { title: 'اضافة مدير' , users : results});

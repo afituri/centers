@@ -12,26 +12,26 @@ block content
       h3.text-muted.text-left Centers App
     div.panel.panel-default.form-signin 
       div.panel-heading.text-right
-        h1.panel-title اضافة مدير
+        h1.panel-title اضافة موظف
       div.panel-body
         form#form.form-signin(role="form" , action="/admin/addmanager", method="post")
           div.form-group
-            lable اسم المدير
-            input#name.form-control(type="text",name="name", placeholder="اسم المدير", required="",autofocus="")
+            lable اسم الموظف
+            input#name.form-control(type="text",name="name", placeholder="اسم الموظف", required="",autofocus="")
           div.form-group
             lable رقم الهاتف
             input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
           div.form-group
             lable البريد الإلكتروني
             input#email.form-control.text-left(type="email",name="email",dir="ltr", placeholder="البريد الالكتروني", required="")
-          input.form-control(type="hidden",name="level",value="2") 
           div.form-group
-            lable اللجان الانتخابية
+            lable مراكز الاقتراع
             font(size="4", color="black" , face="cursive" )
-              select.form-control#constit(name="office_idoffice")
-                option(value="-1", selected="selected") اللجان الانتخابية
-                for office in offices
-                  option(value=office.idoffice) #{office.office_name}
+              select.form-control#constit(name="constit")
+                option(value="-1", selected="selected") مراكز الاقتراع
+                  option(value=1) fffffffffffffff
+                  option(value=2) fثثثثثثثثثثثثثث
+                  option(value=3) يييييييييييييي
                 
           div.form-group.text-center
             button.btn.btn-lg.btn-primary(type="submit") تسجيل
