@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 03, 2014 at 12:56 PM
+-- Generation Time: Nov 03, 2014 at 01:25 PM
 -- Server version: 5.6.19
 -- PHP Version: 5.4.24
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `centers` (
   `center_log` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
   `center_id_2012` int(11) DEFAULT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modify_date` datetime DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1714,7 +1714,7 @@ CREATE TABLE IF NOT EXISTS `constituency` (
   `constituency_name` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
   `constituency_name_ar` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modify_date` datetime DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
@@ -1750,7 +1750,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `type` tinyint(4) NOT NULL,
   `center_idcenter` int(11) NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `modify_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1780,7 +1780,7 @@ CREATE TABLE IF NOT EXISTS `mahalla` (
   `mahalla_name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `village_idvillage` int(11) DEFAULT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modify_date` datetime NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=800 ;
 
@@ -2603,7 +2603,7 @@ CREATE TABLE IF NOT EXISTS `office` (
   `office_name_ar` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
   `region_name` enum('East','West','South','') COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modify_date` datetime DEFAULT NULL,
   `status` tinyint(4) DEFAULT '1'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
@@ -2642,7 +2642,7 @@ CREATE TABLE IF NOT EXISTS `phone` (
   `type` enum('المدار','ليبيانا','ثريا') COLLATE utf8_unicode_ci NOT NULL,
   `user_iduser` int(11) NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modify_date` datetime DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -2659,7 +2659,7 @@ CREATE TABLE IF NOT EXISTS `subconstituency` (
   `subconstituency_name_ar` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `office_idoffice` int(11) DEFAULT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modify_date` datetime DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=86 ;
 
@@ -2768,7 +2768,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `level` tinyint(4) NOT NULL COMMENT '0:root,1:admin,2:manager',
   `office_idoffice` int(11) DEFAULT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modify_date` datetime DEFAULT NULL,
   `salt` varchar(500) COLLATE utf8_unicode_ci DEFAULT 'inactive',
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1:active,0:deleted'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
@@ -2801,7 +2801,7 @@ CREATE TABLE IF NOT EXISTS `village` (
   `village_name` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
   `subconstituency_idsubconstituency` int(11) DEFAULT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modify_date` datetime DEFAULT NULL,
   `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=215 ;
 
