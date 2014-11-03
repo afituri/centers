@@ -5,24 +5,24 @@ var userMgr = require('../app/user').userMgr;
 
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/',userHelpers.isRoot, function(req, res) {
   userMgr.getUsers(function(results){
     res.render('root',{title: 'المستخدمين', users : results});
   })
 });
 
-router.get('/adduser', function(req, res) {
+router.get('/adduser',userHelpers.isRoot, function(req, res) {
   res.render('adduser', { title: 'إضافة مستخدم' });
 });
 
-router.get('/editroot/:id', function(req, res) {
+router.get('/editroot/:id',userHelpers.isRoot, function(req, res) {
   userMgr.getUser(req.params.id,function(result){
     res.render('editroot',{title: 'تعديل مستجدم', user : result});
   })
 });
 
 /* POST adduser form for root */
-router.post('/adduser', function(req, res) {
+router.post('/adduser', userHelpers.isRoot, function(req, res) {
   userHelpers.addUser(req.body, function (results){
     userMgr.getUsers(function(results){
       res.render('root',{title: 'المستخدمين', users : results});
@@ -40,4 +40,5 @@ router.get('/deleteUser/:id', function(req, res) {
     res.send(result);
   })
 });
+
 module.exports = router;
