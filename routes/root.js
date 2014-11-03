@@ -15,9 +15,9 @@ router.get('/adduser', function(req, res) {
   res.render('adduser', { title: 'إضافة مستخدم' });
 });
 
-router.get('/editroot/:id', function(req, res) {
+router.get('/edituser/:id', function(req, res) {
   userMgr.getUser(req.params.id,function(result){
-    res.render('editroot',{title: 'تعديل مستجدم', user : result});
+    res.render('edituser',{title: 'تعديل مستجدم', user : result});
   })
 });
 

@@ -1,8 +1,10 @@
 var express = require('express');
+var Step = require('step');
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     easyPbkdf2 = require("easy-pbkdf2")();
 var userMgr = require('../app/user').userMgr;
+var log = require('../app/log').repo;
 var router = express.Router();
 var login = require('../app/login')(router);
 
@@ -33,7 +35,8 @@ router.post('/edit', function(req, res) {
   if(req.body.name=="email"){
     userMgr.checkEmail(req.body.value, function(result){
       if(!result[0]){
-        var sender=edit_user(req.body);
+    /* log function. */
+        var sender = model_step(req.body,req.session.iduser);
         res.send(sender);
       } else {
         res.status = "exist";
@@ -41,18 +44,33 @@ router.post('/edit', function(req, res) {
       }
     });
   } else {
-   var sender=edit_user(req.body);
+    /* log function. */
+    var sender = model_step(req.body,req.session.iduser);
     res.send(sender);
   }
 });
-function edit_user(body){
-  userMgr.editUser(body, function(result){
-      if(!result[0]){
-        return false;
-      } else {
-        return true;
+
+function model_step(body,id){
+  var flag;
+  Step(
+      /* SELECT OLD VALUE FROM DB */
+      function SelectOld() {
+        log.addrepo(body,id,"user","iduser",this);
+      },
+      /* UPDATE VALUE */
+      function Update(err,result) {
+        userMgr.editUser(body,result,this);
+      },
+      /* INSERT INFORMATION INTO LOG */
+      function InsertLog(err,result) {
+        if(!result[0]){
+          flag=false;
+        } else {
+          flag=true;
+        }
+        log.insertrepo(id,"edit","user",result,body.pk);
       }
-    });
+    );
+  return flag;
 }
- 
 module.exports = router;
