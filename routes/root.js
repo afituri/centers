@@ -12,7 +12,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/adduser', function(req, res) {
-  res.render('adduser', { title: 'إضافة مستخدم' });
+  userMgr.getOffice(function(result){
+    res.render('adduser', { title: 'إضافة مستخدم' , offices : result  });
+  })
 });
 
 router.get('/editroot/:id', function(req, res) {
