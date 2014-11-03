@@ -3,11 +3,11 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 
 exports.repo = {
  /*report  adding a new user to the system */
-  addrepo : function(body,id,tabel,idtabel,cb){
+  addLog : function(body,id,tabel,idtabel,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT '+body.name+' FROM `'+tabel+'` WHERE `'+idtabel+'` = ?',body.pk, function(err, result) {
         conn.release();
-        var key=Object.keys(result[0])
+        var key=Object.keys(result[0]);
         var text =body.name+" : "+result[0][key]+" => "+body.value;
         cb(null,text);
       });
@@ -15,7 +15,7 @@ exports.repo = {
  
   },
   /*add new log*/
-  insertrepo : function (iduser,type,tabel,desc,idtabel){
+  insertLog : function (iduser,type,tabel,desc,idtabel){
     mysqlMgr.connect(function (conn) {
       conn.query('INSERT INTO `log` (`user_iduser`,`type`,`table`,`desc`,`table_idtable`) VALUES(?,?,?,?,?)',[iduser,type,tabel,desc,idtabel],  function(err, result) {
         conn.release();

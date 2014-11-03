@@ -30,7 +30,7 @@ module.exports = {
           }
         }
         mailer.send(obj); // here we send an email with user's credintials
-        cb(true);  
+        cb(result);  
         //to do list
         //1- if level is 2 "manager" then check if constit has a manager first if not then assign a manager to that constit
       });
