@@ -3,31 +3,24 @@ var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
 
-
 /* GET home page. */
 router.get('/',userHelpers.isRoot, function(req, res) {
   userMgr.getUsers(function(results){
     res.render('root',{title: 'المستخدمين', users : results});
   })
 });
-
-
-router.get('/adduser', function(req, res) {
+/* Add user page. */
+router.get('/adduser',userHelpers.isRoot, function(req, res) {
   userMgr.getOffice(function(result){
     res.render('adduser', { title: 'إضافة مستخدم' , offices : result  });
   })
-
-router.get('/adduser',userHelpers.isRoot, function(req, res) {
-  res.render('adduser', { title: 'إضافة مستخدم' });
-
 });
-
+/* Edit user page. */
 router.get('/editroot/:id',userHelpers.isRoot, function(req, res) {
   userMgr.getUser(req.params.id,function(result){
     res.render('editroot',{title: 'تعديل مستجدم', user : result});
   })
 });
-
 /* POST adduser form for root */
 router.post('/adduser', userHelpers.isRoot, function(req, res) {
   userHelpers.addUser(req.body, function (results){
@@ -42,6 +35,7 @@ router.get('/getUser/:id', function(req, res) {
     res.send(result);
   })
 });
+/* Delete user page. */
 router.get('/deleteUser/:id', function(req, res) {
   userMgr.delUser(req.params.id,function(result){
     res.send(result);
