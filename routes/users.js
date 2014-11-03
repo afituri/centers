@@ -1,12 +1,10 @@
 var express = require('express');
-var Step = require('step');
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     easyPbkdf2 = require("easy-pbkdf2")();
 var userMgr = require('../app/user').userMgr;
-var log = require('../app/log').repo;
 var router = express.Router();
-var login = require('../app/login')(router);
+//var login = require('../app/login')(router);
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -35,8 +33,7 @@ router.post('/edit', function(req, res) {
   if(req.body.name=="email"){
     userMgr.checkEmail(req.body.value, function(result){
       if(!result[0]){
-    /* log function. */
-        var sender = model_step(req.body,req.session.iduser);
+        var sender=edit_user(req.body);
         res.send(sender);
       } else {
         res.status = "exist";
@@ -44,33 +41,33 @@ router.post('/edit', function(req, res) {
       }
     });
   } else {
-    /* log function. */
-    var sender = model_step(req.body,req.session.iduser);
+   var sender=edit_user(req.body);
     res.send(sender);
   }
 });
+
 
 function model_step(body,id){
   var flag;
   Step(
       /* SELECT OLD VALUE FROM DB */
-      function SelectOld() {
-        log.addrepo(body,id,"user","iduser",this);
-      },
-      /* UPDATE VALUE */
-      function Update(err,result) {
-        userMgr.editUser(body,result,this);
-      },
-      /* INSERT INFORMATION INTO LOG */
-      function InsertLog(err,result) {
-        if(!result[0]){
-          flag=false;
-        } else {
-          flag=true;
-        }
-        log.insertrepo(id,"edit","user",result,body.pk);
+    function SelectOld() {
+      log.addLog(body,id,"user","iduser",this);
+    },
+    /* UPDATE VALUE */
+    function Update(err,result) {
+      userMgr.editUser(body,result,this);
+    },
+    /* INSERT INFORMATION INTO LOG */
+    function InsertLog(err,result) {
+      if(!result[0]){
+        flag=false;
+      } else {
+        flag=true;
       }
-    );
-  return flag;
+      log.insertLog(id,"edit","user",result,body.pk);
+    }
+  );
 }
+ 
 module.exports = router;
