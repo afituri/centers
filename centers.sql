@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 03, 2014 at 11:42 AM
+-- Generation Time: Nov 03, 2014 at 11:59 AM
 -- Server version: 5.6.19
 -- PHP Version: 5.4.24
 
@@ -2633,6 +2633,22 @@ INSERT INTO `office` (`idoffice`, `office_id`, `office_name`, `office_name_ar`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `phone`
+--
+
+CREATE TABLE IF NOT EXISTS `phone` (
+`idphone` int(11) NOT NULL,
+  `phone_number` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `type` enum('المدار','ليبيانا','ثريا') COLLATE utf8_unicode_ci NOT NULL,
+  `user_iduser` int(11) NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modify_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(4) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subconstituency`
 --
 
@@ -3044,6 +3060,12 @@ ALTER TABLE `office`
  ADD PRIMARY KEY (`idoffice`);
 
 --
+-- Indexes for table `phone`
+--
+ALTER TABLE `phone`
+ ADD PRIMARY KEY (`idphone`);
+
+--
 -- Indexes for table `subconstituency`
 --
 ALTER TABLE `subconstituency`
@@ -3090,6 +3112,11 @@ MODIFY `idmahalla` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=800;
 --
 ALTER TABLE `office`
 MODIFY `idoffice` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `phone`
+--
+ALTER TABLE `phone`
+MODIFY `idphone` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `subconstituency`
 --
