@@ -11,15 +11,15 @@ router.get('/',userHelpers.isRoot, function(req, res) {
   })
 });
 
-<<<<<<< HEAD
+
 router.get('/adduser', function(req, res) {
   userMgr.getOffice(function(result){
     res.render('adduser', { title: 'إضافة مستخدم' , offices : result  });
   })
-=======
+
 router.get('/adduser',userHelpers.isRoot, function(req, res) {
   res.render('adduser', { title: 'إضافة مستخدم' });
->>>>>>> b657a930f44db1b92d9eb3930ccbff1633298040
+
 });
 
 router.get('/editroot/:id',userHelpers.isRoot, function(req, res) {
