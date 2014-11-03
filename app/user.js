@@ -54,6 +54,19 @@ exports.userMgr = {
       });
     });
   },
+  /* get all centers */
+  getCenters : function(cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `centers` WHERE status = 1 ',  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
     /* get all office */
   getOffice : function(cb){
     mysqlMgr.connect(function (conn) {
@@ -80,6 +93,19 @@ exports.userMgr = {
       });
     });
   },
+    /* get center by id*/
+  getCenter : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `centers` WHERE idcenter = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
     /* delete user by id*/
   delUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
@@ -96,7 +122,7 @@ exports.userMgr = {
     /* get Manager*/
   getManager : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone`,`office_name` FROM `user`,`office` WHERE office.idoffice = user.idoffice_user AND user.status = 1 AND user.level = ?', 2 ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone`,`office_name` FROM `user`,`office` WHERE office.idoffice = user.office_idoffice AND user.status = 1 AND user.level = ?', 2 ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

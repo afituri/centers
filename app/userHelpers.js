@@ -36,4 +36,15 @@ module.exports = {
       });
     });
   },
+  /* here we check if the user have root access */
+  isRoot : function (req,res,next) {
+    if (req.isAuthenticated() && req.session.level<=0) { return next(); }
+    res.redirect('/users/login')
+  },
+  /* here we check if the user have admin or higher access */
+  isAdmin : function (req,res,next) {
+    if (req.isAuthenticated() && req.session.level<=1) { return next(); }
+    res.redirect('/users/login')
+  }
 };
+
