@@ -1,26 +1,35 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET home offices  page. */
 router.get('/', function(req, res) {
-  res.render('offices', { title: "اللجان  الأنتخابية" });
+  userMgr.getOffice(function(result){
+    res.render('offices', { title: "اللجان  الأنتخابية" , offices : result});
+  })
 });
 
-/* GET constits page. */
+/* GET office add  page. */
 router.get('/addoffice', function(req, res) {
   res.render('addoffice', { title: "اللجان  الأنتخابية" });
 });
 
-/* GET id  page. */
+
+/* GET centerS id  page. */
 router.get('/:id', function(req, res) {
-  res.render('centers', { title: 'Centers' });
+  res.render('centers', { title: 'Express' });
 });
 
 
-/* GET id  page. */
+/* GET center page  page. */
 router.get('/:id/:cid', function(req, res) {
   res.render('center', { title: 'Express' });
 });
-
+/* delete office  */
+router.get('/deleteoffice/:id', function(req, res) {
+  console.log("you are in officee.root")
+  userMgr.deloff(req.params.id,function(result){
+    res.send(result);
+  })
+});
 
 module.exports = router;

@@ -10,17 +10,24 @@ block content
         li
           a(href="#") Contact
       h3.text-muted.text-left Centers 
-  div.container    
+  div.container 
+   labl.h2 طرابلس
+      labl.h2.text-muted.text-left  125478   
     div.panel.panel-default
       div.panel-heading
         div.btn-group
           h3.panel-title.text-right.active المراكز
         div.btn-group.pull-left
-          a.btn.btn-success.btn-xs(href='/centers/addmanager', role='button') إضافة مدير
+          a.btn.btn-success.btn-xs.btn-lg(href='/centers/addmanager', role='button') إضافة مركز
             span.glyphicon.glyphicon-plus 
-      div.panel-body
+      div.panel-body  
+      .input-group 
+            input.form-control.input-sm(type="text",name="constitres", placeholder="المراكز الأنتخابية", required="")
+            .input-group-btn
+              .btn.btn-primary.btn-sm(type="button")  
+                spen.glyphicon.glyphicon-search
         div.table-responsive  
-          table#admin.table.table-bordred.table-striped
+          table.table.table-striped.table-bordered.table-condensed.table-hover
             thead
               th اسم المركز
               th رقم المركز
