@@ -55,7 +55,7 @@ function model_step(body,id){
   Step(
       /* SELECT OLD VALUE FROM DB */
       function SelectOld() {
-        log.addrepo(body,id,"user","iduser",this);
+        log.addLog(body,id,"user","iduser",this);
       },
       /* UPDATE VALUE */
       function Update(err,result) {
@@ -68,7 +68,7 @@ function model_step(body,id){
         } else {
           flag=true;
         }
-        log.insertrepo(id,"edit","user",result,body.pk);
+        log.insertLog(id,"edit","user",result,body.pk);
       }
     );
   return flag;

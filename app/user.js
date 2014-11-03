@@ -10,7 +10,11 @@ exports.userMgr = {
         if(err) {
           util.log(err);
         } else {
-          cb(body.name); 
+          var results={
+            id:result.insertId,
+            name :body.name
+          }
+          cb(results); 
         }
       });
     });
