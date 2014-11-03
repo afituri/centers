@@ -4,7 +4,6 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 exports.userMgr = {
   /* adding a new user to the system */
   addUser : function(body,cb){
-    console.log(body);
     mysqlMgr.connect(function (conn) {
       conn.query('INSERT INTO `user` SET ?',  body,  function(err, result) {
         conn.release();
@@ -17,14 +16,14 @@ exports.userMgr = {
     });
   },
   /* editing user's table field by field */
-  editUser : function(body,cb){
+  editUser : function(body,rec,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('UPDATE `user` SET '+body.name+' = ? WHERE `iduser` = ?',  [body.value,body.pk],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
         } else {
-          cb(body.name); 
+          cb(null,rec); 
         }
       });
     });
@@ -46,6 +45,19 @@ exports.userMgr = {
   getUsers : function(cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT * FROM `user` WHERE status = 1 ',  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /* get all centers */
+  getCenters : function(cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `centers` WHERE status = 1 ',  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -81,6 +93,19 @@ exports.userMgr = {
       });
     });
   },
+    /* get center by id*/
+  getCenter : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `centers` WHERE idcenter = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
     /* delete user by id*/
   delUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
@@ -97,7 +122,7 @@ exports.userMgr = {
     /* get Manager*/
   getManager : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone`,`office_name` FROM `user`,`office` WHERE office.idoffice = user.idoffice_user AND user.status = 1 AND user.level = ?', 2 ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`level`,`phone`,`office_name` FROM `user`,`office` WHERE office.idoffice = user.office_idoffice AND user.status = 1 AND user.level = ?', 2 ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

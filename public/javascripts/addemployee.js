@@ -26,7 +26,7 @@ $(document).ready(function(){
     },
     messages: {
       name: {
-        required: "الرجاء ادخال اسم الموظف"
+        required: "الرجاء ادخال اسم المستخدم"
       },
       phone: {
         required: "الرجاء ادخال رقم الهاتف",
