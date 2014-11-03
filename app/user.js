@@ -74,7 +74,7 @@ exports.userMgr = {
     /* get all office */
   getOffice : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `office_name`,`idoffice` FROM `office` ',  function(err, result) {
+      conn.query('SELECT * FROM `office` WHERE status = 1 ',  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -145,6 +145,19 @@ exports.userMgr = {
           util.log(err);
         } else {
           cb(result[0]);
+        }
+      });
+    });
+  },
+    /* delete office by id*/
+  deloff : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('UPDATE `office` SET status = 0 WHERE iduser = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
         }
       });
     });
