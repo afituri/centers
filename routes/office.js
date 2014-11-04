@@ -17,42 +17,42 @@ router.get('/editoffice', function(req, res) {
 });
 
 /* GET subconstituency page. */
-router.get('/subcostituency', function(req, res) {
-  res.render('subcostituency', { title: 'اللجان  الأنتخابية الفرعيه' });
+router.get('/subconstituency', function(req, res) {
+  res.render('subconstituency', { title: 'اللجان  الأنتخابية الفرعيه' });
 });
 
 /* GET editsubconstituency page. */
-router.get('/subcostituency/editsubconstituency', function(req, res) {
+router.get('/subconstituency/editsubconstituency', function(req, res) {
   res.render('editsubconstituency', { title: 'تعديل اللجان  الأنتخابية الفرعيه' });
 });
 
 /* GET village page. */
-router.get('/subcostituency/village', function(req, res) {
+router.get('/subconstituency/village', function(req, res) {
   res.render('village', { title: 'المدينة/القرية' });
 });
 
 /* GET editvillage page. */
-router.get('/subcostituency/village/editvillage', function(req, res) {
+router.get('/subconstituency/village/editvillage', function(req, res) {
   res.render('editvillage', { title: 'تعديل المدينة/القرية' });
 });
 
 /* GET mahalla page. */
-router.get('/subcostituency/village/mahalla', function(req, res) {
+router.get('/subconstituency/village/mahalla', function(req, res) {
   res.render('mahalla', { title: 'المحلة' });
 });
 
 /* GET editmahalla page. */
-router.get('/subcostituency/village/mahalla/editmahalla', function(req, res) {
+router.get('/subconstituency/village/mahalla/editmahalla', function(req, res) {
   res.render('editmahalla', { title: 'تعديل المحلة' });
 });
 
 /* GET center page. */
-router.get('/subcostituency/village/mahalla/center', function(req, res) {
+router.get('/subconstituency/village/mahalla/center', function(req, res) {
   res.render('center', { title: 'المراكز' });
 });
 
 /* GET editcenter page. */
-router.get('/subcostituency/village/mahalla/center/editcenter', function(req, res) {
+router.get('/subconstituency/village/mahalla/center/editcenter', function(req, res) {
   res.render('editcenter', { title: 'تعديل المراكز' });
 });
 
