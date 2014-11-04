@@ -11,7 +11,7 @@ block content
           a(href="#") Contact
       h3.text-muted.text-left Centers
   div.container 
-    button#enable.btn.btn-default enable / disable
+    button#enable.btn.btn-default تمكين / تعطيل
     button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal',value="#")
       span.glyphicon.glyphicon-trash 
     div.form-group 
@@ -31,7 +31,36 @@ block content
                   رقم المركز
               td(width='65%')
                 font( size="5")
-                  a#text(href='#', data-type='text', data-pk='#{center[0].idcenter}', data-title='رقم المركز', data-value='center[0].center_id')  #{center[0].center_id}
+                  a#center_id(href='#', data-type='text', data-pk='#{center[0].idcenter}', data-title='رقم المركز', data-value='#{center[0].center_id}')  #{center[0].center_id}
+            tr
+              td(width='35%')
+                font( size="5")
+                  الدوائر الرئيسيه
+              td(width='65%')
+                font( size="5")
+                  a#constituency(href='#', data-type='text', data-pk='#{center[0].idcenter}', data-title='الدوائر الرئيسيه', data-value='#{center[0].center_id}')  #{center[0].center_id}
+            tr
+              td(width='35%')
+                font( size="5")
+                  الدائره الفرعيه
+              td(width='65%')
+                font( size="5")
+                  a#subconstituency(href='#', data-type='text', data-pk='#{center[0].idcenter}', data-title='الدائره الفرعيه', data-value='#{center[0].center_id}')  #{center[0].center_id}
+            tr
+              td(width='35%')
+                font( size="5")
+                  المدينه/القريه
+              td(width='65%')
+                font( size="5")
+                  a#village(href='#', data-type='text', data-pk='#{center[0].idcenter}', data-title='المدينه/القريه', data-value='#{center[0].center_id}')  #{center[0].center_id}
+            tr
+              td(width='35%')
+                font( size="5")
+                  المحله
+              td(width='65%')
+                font( size="5")
+                  a#mahalla(href='#', data-type='text', data-pk='#{center[0].idcenter}', data-title='المحله', data-value='#{center[0].center_id}')  #{center[0].center_id}
+
 
   #del.modal(data-width='760', tabindex='-1')
     .modal-dialog
@@ -51,7 +80,7 @@ block content
         div.btn-group
           h3.panel-title.text-right.active   الموظفين
         div.btn-group.pull-left
-          a.btn.btn-success.btn-xs(href='/admin/addmanager', role='button') إضافة موظف
+          a.btn.btn-success.btn-xs(href='/offices/addemployee', role='button') إضافة موظف
             span.glyphicon.glyphicon-plus 
       div.panel-body
         div.table-responsive  
