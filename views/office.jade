@@ -9,67 +9,80 @@ block content
           a(href="#") About
         li
           a(href="#") Contact
-      h3.text-muted.text-left Centers 
-      .panel.panel-default
-        div.btn-group.pull-left
-            a.btn.btn-success.btn-xs.btn-lg(href='#addoffice', role='button',data-toggle='modal') إضافة مركز
-              span.glyphicon.glyphicon-plus 
-        div.panel-body  
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/hnec_logo.png")
+      
+    .panel.panel-default 
+      div.btn-group.pull-left
+          a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة مركز
+            span.glyphicon.glyphicon-plus 
         .input-group 
-              input.form-control.input-sm(type="text",name="constitres", placeholder="المراكز الأنتخابية", required="")
-              .input-group-btn
-                .btn.btn-primary.btn-sm(type="button")  
-                  spen.glyphicon.glyphicon-search
-          div.table-responsive  
-            table#off.table.table-striped.table-bordered.table-condensed.table-hover
-              thead
-                th أسم اللجنة 
-                th رقمه اللجنة 
-                th   عرض 
-                th   حدف
-              tbody
-                for office in offices
-                  tr
-                    td #{office.office_name}
-                    td #{office.office_id}
-                    td
-                      button#viw.btn.btn-primary.btn-xs(value="#{office.idoffice}")
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{office.office_id}")
-                       span.glyphicon.glyphicon-trash 
-          #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-            .modal-dialog
-              .modal-content
-                .modal-headr.modal-headr-success
-                  .modal-title
-                .modal-body
-                  p.h2 هل انت متأكد 
-                  p 
-                .modal-footer
-                  button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
-                  button.btn.btn-success(data-dismiss='modal', type='button') cancel
-          #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-            .modal-dialog
-              .modal-content
-                .modal-headr.modal-header-success
-                  button.close(type="button",data-dismiss="modal",aria-hidden="true")
-                  h1.glyphicon.glyphicon-plus إضافة لجنة
-                .row
-                  .col-sm-12.col-md-11.col.col-md.offset-4
-                      .modal-body
-                          p إضافة لجنة 
-                          form#form.form-signin(role="form" , action="#", method="post")   
-                            div.form-group
-                              lable اسم اللجنة 
-                              input#name.form-control(type="text",name="name", placeholder="اسم اللجنة", required="",autofocus="")
-                            div.form-group
-                              lable رقم اللجنة 
-                              input#phone.form-control(type="text",name="phone", placeholder="رقم اللجنة", required="",autofocus="")
-                            div.form-group.text-center
-                              button.btn.btn-lg.btn-primary(type="submit") إضـافة      
-                      .modal-footere
-                        button.btn.btn-danger(data-dismiss='modal', type='button') إلغاء
+            input.form-control.input-sm(type="text",name="constitres", placeholder=" أبحث", required="")
+            .input-group-btn
+              .btn.btn-primary.btn-sm(type="button")  
+                spen.glyphicon.glyphicon-search
+        b.text-right اللجان  الأنتخابية     
+      div.panel-body  
+        div.table-responsive  
+          table#off.table.table-striped.table-bordered.table-condensed.table-hover
+            thead
+              th أسم اللجنة 
+              th رقمه اللجنة 
+              th   عرض 
+              th   حدف
+            tbody
+              for office in offices
+                tr
+                  td #{office.office_name}
+                  td #{office.office_id}
+                  td
+                    button#viw.btn.btn-primary.btn-xs(value="#{office.idoffice}")
+                      span.glyphicon.glyphicon-eye-open
+                  td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{office.office_id}")
+                     span.glyphicon.glyphicon-trash 
+        #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  حدف ؟
+              .modal-body
+                p.h2 هل انت متأكد 
+                p 
+              .modal-footer
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+                button.btn.btn-success(data-dismiss='modal', type='button') cancel
+        #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-success
+                button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+                button.close(type="button",data-dismiss="modal",aria-hidden="true")
+                h1 إضافة لجنة
+                  .glyphicon.glyphicon-plus 
+              .row
+                .col-sm-12.col-md-11.col.col-md.offset-4
+                    .modal-body
+                        form#form.form-signin(role="form" , action="#", method="post")   
+                          div.form-group
+                            lable.h3 اسم اللجنة بللغة  الأنجليزية
+                            input#office_name.form-control(type="text",name="office_name", placeholder="اسم اللجنة", required="",autofocus="")
+                          div.form-group
+                            lable.h3 اسم اللجنة بللغة العربية  
+                            input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="اسم اللجنة بلعربي", required="",autofocus="")                            
+                          div.form-group
+                            lable.h3 رقم اللجنة 
+                            input#office_id.form-control(type="text",name="office_id", placeholder="رقم اللجنة", required="",autofocus="")
+                           div.form-group
+                            lable.h3 المنطقة 
+                            select#region_name.form-control(type="text",name="region_name", placeholder="رقم اللجنة", required="",autofocus="")
+                              option(value="") الشرقية 
+                              option(value="") الغربية 
+                              option(value="") الجنوبية 
+                          div.form-group.text-center
+                            button.btn.btn-lg.btn-primary(type="submit") إضـافة      
+                    .modal-footere
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/office.js")

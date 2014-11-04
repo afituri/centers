@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('body').on('click', '#offices tbody tr', function () {
+  $('body').on('click', '#office tbody tr', function () {
     var id = $(this).data("id");
     console.log(id);
   }); 
