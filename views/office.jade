@@ -1,0 +1,76 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted.text-left Centers 
+      .panel.panel-default
+        div.btn-group.pull-left
+            a.btn.btn-success.btn-xs.btn-lg(href='#addoffice', role='button',data-toggle='modal') إضافة مركز
+              span.glyphicon.glyphicon-plus 
+        div.panel-body  
+        .input-group 
+              input.form-control.input-sm(type="text",name="constitres", placeholder="المراكز الأنتخابية", required="")
+              .input-group-btn
+                .btn.btn-primary.btn-sm(type="button")  
+                  spen.glyphicon.glyphicon-search
+          div.table-responsive  
+            table#off.table.table-striped.table-bordered.table-condensed.table-hover
+              thead
+                th أسم اللجنة 
+                th رقمه اللجنة 
+                th   عرض 
+                th   حدف
+              tbody
+                for office in offices
+                  tr
+                    td #{office.office_name}
+                    td #{office.office_id}
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="#{office.idoffice}")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{office.office_id}")
+                       span.glyphicon.glyphicon-trash 
+          #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+            .modal-dialog
+              .modal-content
+                .modal-headr.modal-headr-success
+                  .modal-title
+                .modal-body
+                  p.h2 هل انت متأكد 
+                  p 
+                .modal-footer
+                  button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+                  button.btn.btn-success(data-dismiss='modal', type='button') cancel
+          #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+            .modal-dialog
+              .modal-content
+                .modal-headr
+                  .modal-title
+                .modal-body
+                  .panel-heading
+
+                  form#form.form-signin(role="form" , action="#", method="post")
+                    .row
+                      .center-block
+                        img.profile-img(src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="")
+                    div.form-group
+                      lable اسم اللجنة 
+                      input#name.form-control(type="text",name="name", placeholder="اسم اللجنة", required="",autofocus="")
+                    div.form-group
+                      lable رقم اللجنة 
+                      input#phone.form-control(type="text",name="phone", placeholder="رقم اللجنة", required="",autofocus="")
+                    div.form-group.text-center
+                      button.btn.btn-lg.btn-primary(type="submit") إضـافة
+                .modal-footere
+                  button.btn.btn-success(data-dismiss='modal', type='button') cancel
+  script(src="/javascripts/jquery-1.11.1.min.js")
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/offices.js")
