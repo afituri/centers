@@ -10,6 +10,9 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var root = require('./routes/root');
 var admin = require('./routes/admin');
+var cpanel = require('./routes/cpanel');
+var phone = require('./routes/phone');
+var employee = require('./routes/employee');
 var passport = require('passport');
 var app = express();
 
@@ -31,6 +34,9 @@ app.use('/users', users);
 app.use('/root', root);
 app.use('/admin', admin);
 app.use('/offices',offices);
+app.use('/cpanel',cpanel);
+app.use('/phone',phone);
+app.use('/employee',employee);
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
