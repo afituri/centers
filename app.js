@@ -5,7 +5,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var offices = require('./routes/offices');
+var office= require('./routes/office');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var root = require('./routes/root');
@@ -30,7 +30,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/root', root);
 app.use('/admin', admin);
-app.use('/offices',offices);
+app.use('/office',office);
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
