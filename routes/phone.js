@@ -6,7 +6,12 @@ var log = require('../app/log').repo;
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('cpanel',{title: 'لوحة التحكم'});
+    res.render('phone',{title: 'لوحة التحكم'});
+});
+
+/* GET editphone page. */
+router.get('/editphone', function(req, res) {
+  res.render('editphone', { title: "تعديل ارقام الهواتف" });
 });
 
 module.exports = router;
