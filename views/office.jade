@@ -52,25 +52,24 @@ block content
           #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
             .modal-dialog
               .modal-content
-                .modal-headr
-                  .modal-title
-                .modal-body
-                  .panel-heading
-
-                  form#form.form-signin(role="form" , action="#", method="post")
-                    .row
-                      .center-block
-                        img.profile-img(src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="")
-                    div.form-group
-                      lable اسم اللجنة 
-                      input#name.form-control(type="text",name="name", placeholder="اسم اللجنة", required="",autofocus="")
-                    div.form-group
-                      lable رقم اللجنة 
-                      input#phone.form-control(type="text",name="phone", placeholder="رقم اللجنة", required="",autofocus="")
-                    div.form-group.text-center
-                      button.btn.btn-lg.btn-primary(type="submit") إضـافة
-                .modal-footere
-                  button.btn.btn-success(data-dismiss='modal', type='button') cancel
+                .modal-headr.modal-headr-success
+                  button.close(type="button",data-dismiss="modal",aria-hidden="true")
+                  h1.glyphicon.glyphicon-plus إضافة لجنة
+                .row
+                  .col-sm-12.col-md-11.col.col-md.offset-4
+                      .modal-body
+                          p إضافة لجنة 
+                          form#form.form-signin(role="form" , action="#", method="post")   
+                            div.form-group
+                              lable اسم اللجنة 
+                              input#name.form-control(type="text",name="name", placeholder="اسم اللجنة", required="",autofocus="")
+                            div.form-group
+                              lable رقم اللجنة 
+                              input#phone.form-control(type="text",name="phone", placeholder="رقم اللجنة", required="",autofocus="")
+                            div.form-group.text-center
+                              button.btn.btn-lg.btn-primary(type="submit") إضـافة      
+                      .modal-footere
+                        button.btn.btn-danger(data-dismiss='modal', type='button') إلغاء
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
-  script(src="/javascripts/offices.js")
+  script(src="/javascripts/office.js")
