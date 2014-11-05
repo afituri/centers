@@ -6,6 +6,7 @@ $(document).ready(function(){
     return (value != '-1');
   });
   // validate signup form on keyup and submit
+  
   $("#form").validate({
     rules: {
       name: {
@@ -42,4 +43,5 @@ $(document).ready(function(){
       } 
     }
   });
+
 });

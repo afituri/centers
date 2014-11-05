@@ -28,7 +28,9 @@ block content
           tr
             td(width='35%') رقم الهاتف
             td(width='65%')
-              a#phone(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='رقم الهاتف', data-value='#{user[0].phone}')  #{user[0].phone}
+              each val, index in user
+                a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
+                &nbsp;&nbsp;
           tr
             td الصلاحية
             td
@@ -36,8 +38,7 @@ block content
           tr
             td اللجان
             td
-              a#level1(href='#', data-type='select', data-pk='#{user[0].iduser}', 
-              data-value='#{user[0].level1}',  data-title='اللجان')
+              a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
                 
 
   #del.modal(data-width='760', tabindex='-1')
@@ -50,11 +51,11 @@ block content
         .modal-footer
           button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
           button.btn.btn-success(data-dismiss='modal', type='button') cancel
-  
+    
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/editmanager.js")
   script(src="/javascripts/admin.js")
-      
+  

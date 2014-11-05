@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  $.resul=new Array();
   /*  */
   var defaults = {
         disabled: true,
@@ -8,59 +8,58 @@ $(document).ready(function(){
   $('#enable').click(function() {
     $('#user .editable').editable('toggleDisabled');
   }); 
-  
-  $('#level').editable({
-    url: '/users/edit',
-    source:[
-      {value:0,text:"root"},
-      {value:1,text:"admin"},
-      {value:2,text:"manager"}
-    ]
-  });
+  $.get('/admin/getofes',function(result){
+      console.log(result[0].idoffice);
+      for ( var i = 0 ; i< result.length; i++){
+        var k = new Object({id : i,value : result[i].idoffice, text : result[i].office_name});
+        $.resul.push(k);
+      }
+      
 
-  $('#level1').editable({
-    url: '/users/edit',
-    source:[
-      {value:0,text:"root"},
-      {value:1,text:"admin"},
-      {value:2,text:"manager"}
-    ]
-  });
+    $('#office_idoffice').editable({
+        url: '/users/edit',
+        source: $.resul,
+        select2: {
+            width: 200,
+            placeholder: 'Select country',
+            allowClear: false
+        } 
+    });      
 
+  });
+   // $('#office_idoffice').editable({
+   //   url: '/users/edit',
+    
+   // });
   $('#name').editable({
     url: '/users/edit',
     type: 'text',
     pk: 1,
     name: 'name',
     title: 'Enter username',
+    validate: function(v) {
+      if(!v) return 'الرجاء ادخال اسم المستخدم';
+    }
   });
-
-  $('#phone').editable({
+  $("a[id^='phone_number']" ).editable({
     url: '/users/edit',
     type: 'text',
     pk: 1,
-    name: 'phone',
+    name: 'phone_number',
     title: 'Enter phone',
+    validate: function(v) { 
+      var flag = /^[0-9\b]+$/.test(v);
+      if(!v) return 'الرجاء ادخال رقم الهاتف';
+      if(v.length<10) return "يجب أن يكون الهاتف  لا يقل عن 10 ارقام";
+      if(!flag) return "هذا ليس رقم هاتف";
+    }
   });
-
   $('#email').editable({
     url: '/users/edit',
     type: 'text',
     pk: 1,
     name: 'email',
     title: 'Enter email',
-  });
-  
-  /*  */
-  $('#name').editable('option', 'validate', function(v) {
-    if(!v) return 'الرجاء ادخال اسم المستخدم';
-  });
-  /*  */
-  $('#phone').editable('option', 'validate', function(v) {
-    var flag = /[0-9]{10}/.test(v);
-    if(!v) return 'الرجاء ادخال رقم الهاتف';
-    if(v.length<10) return "يجب أن يكون الهاتف  لا يقل عن 10 ارقام";
-    if(!flag) return "هذا ليس رقم هاتف";
   });
   /*  */
   $('#email').editable('option', 'validate', function(v) {
@@ -69,12 +68,11 @@ $(document).ready(function(){
     var valid = emailReg.test(v);
     if(!valid) return 'هذا ليس بريد اليكتروني';
       $.post("/root/checkEmail2",
-    {
-      email:v,
-    },
-    function(data,status){
-      if(!data) alert("هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر");
-    });
-  });
-
+        {
+          email:v,
+        },
+        function(data,status){
+          if(!data) alert("هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر");
+        });
+      });
 });

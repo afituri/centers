@@ -31,7 +31,7 @@ block content
             for user in users
               tr
                 td= user.name
-                td= user.phone
+                td= user.phone_number
                 td= user.office_name
                 td
                     button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')

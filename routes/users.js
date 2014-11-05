@@ -28,6 +28,10 @@ router.post('/checkEmail', function(req, res) {
 });
 /* Edit user . */
 router.post('/edit', function(req, res) {
+  if(req.body.name=="phone_number"){
+    var sender = model_step_phone(req.body,req.session.iduser);
+        res.send(sender);
+  }else{
   if(req.body.name=="email"){
     userMgr.checkEmail(req.body.value, function(result){
       if(!result[0]){
@@ -41,9 +45,10 @@ router.post('/edit', function(req, res) {
     });
   } else {
     /* log function. */
+    console.log("im in edit");
     var sender = model_step(req.body,req.session.iduser);
     res.send(sender);
-  }
+  }}
 });
 function model_step(body,id){
   var flag;
@@ -64,6 +69,29 @@ function model_step(body,id){
         flag=true;
       }
       log.insertLog(id,"edit","user",result,body.pk);
+    }
+    );
+  return flag;
+}
+function model_step_phone(body,id){
+  var flag;
+  Step(
+    /* SELECT OLD VALUE FROM DB */
+    function SelectOldphone() {
+      log.addLog(body,id,"phone","idphone",this);
+    },
+    /* UPDATE VALUE */
+    function Updatephone(err,result) {
+      userMgr.editphone(body,result,this);
+    },
+    /* INSERT INFORMATION INTO LOG */
+    function InsertLogphone(err,result) {
+      if(!result[0]){
+        flag=false;
+      } else {
+        flag=true;
+      }
+      log.insertLog(id,"edit","phone",result,body.pk);
     }
     );
   return flag;

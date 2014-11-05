@@ -15,7 +15,8 @@ module.exports = {
             password : passwordHash,
             phone : body.phone,
             salt : originalSalt,
-            level : body.level
+            level : body.level,
+            typ: body.typ
           }
       userMgr.addUser(obj, function(result){
         var obj = {
