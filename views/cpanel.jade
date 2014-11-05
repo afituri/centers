@@ -14,33 +14,72 @@ block content
           img(src="../images/hnec_logo.png")
            
   div.container    
-    div.panel.panel-default
-      div.panel-heading
-        div.btn-group
-          h3.panel-title Control panel  
-      div.panel-body  
-        table#user.table
-          tr
-            td
-              a.btn.btn-primary.btn-lg(href="/root" ) users
-            td
-              a.btn.btn-primary.btn-lg(href="#") constituency
-            td
-              a.btn.btn-primary.btn-lg(href="#") subconstituency
-          tr
-            td
-              a.btn.btn-primary.btn-lg(href="#") employees
-            td
-              a.btn.btn-primary.btn-lg(href="#") offices
-            td
-              a.btn.btn-primary.btn-lg(href="#") village
-          tr
-            td
-              a.btn.btn-primary.btn-lg(href="#") mahalla
-            td
-              a.btn.btn-primary.btn-lg(href="#") centers
-            td
-              a.btn.btn-primary.btn-lg(href="#") phone . . .
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title
+          span.glyphicon.glyphicon-bookmark
+          |    لـوحـــة الـتـحــكــم
+      .panel-body
+        .row
+          .col-xs-6.col-md-6  
+            a.btn.btn-danger.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-list-alt
+              br
+              | Apps 
+            p
+            a.btn.btn-warning.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-bookmark
+              br
+              | Bookmarks
+            p
+            a.btn.btn-primary.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-signal
+              br
+              | Reports
+            p
+          .col-xs-6.col-md-6
+            a.btn.btn-primary.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-comment
+              br
+              | Comments
+            p
+            a.btn.btn-success.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-user
+              br
+              | المـــستخدميــــن
+            p
+            a.btn.btn-info.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-file
+              br
+              | Notes
+            p
+          .col-xs-6.col-md-6
+            a.btn.btn-primary.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-picture
+              br
+              | Photos
+            p
+            a.btn.btn-primary.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-tag
+              br
+              | Tags
+
+          .col-xs-6.col-md-6
+            a.btn.btn-primary.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-picture
+              br
+              | Photos
+            p
+            a.btn.btn-primary.btn-block(href="#", role="button")
+              span.glyphicon.glyphicon-tag
+              br
+              | Tags
+     
+        br
+        a.btn.btn-success.btn-lg.btn-block(href="http://www.jquery2dotnet.com/", role="button")
+          span.glyphicon.glyphicon-globe
+          | Website
+
             
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")

@@ -12,6 +12,54 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
-          
-  script(src="/javascripts/jquery-1.11.1.min.js")
+
+font(size="4", color="black" , font="family" )
+    div.container 
+      button#enable.btn.btn-primary تمكــين / تعطـــيل
+      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="")
+        span.glyphicon.glyphicon-trash
+      .col-lg-1
+      a.btn.btn-primary.pull-left(type="button", href="#") رجـــــوع
+      p
+    div.container 
+      div.form-group 
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            tr
+              td(width='35%') اسم اللجنه باللغه العربي
+              td(width='65%')
+                a#name(href='#', data-type='text', data-pk='', data-title='اسم المدير' data-value='')  qqqqqqqqqqqqqqqqq
+            tr
+              td(width='35%') اسم اللجنه باللغه الانجليزيه
+              td(width='65%')
+                a#email(href='#', data-type='text', data-pk='', data-title='البريد الالكترونب', data-value='')  aaaaaaaaaaaaaaaaa
+            tr
+              td(width='35%') رقم اللجنه
+              td(width='65%')
+                a#phone(href='#', data-type='text', data-pk='', data-title='رقم الهاتف', data-value='')  lllllllllllllllllllll
+            tr
+              td موقع اللجنه
+              td
+                a#level1(href='#', data-type='select', data-pk='', 
+                data-value='',  data-title='اللجان')
+                  
+
+    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  حدف ؟
+              .modal-body
+                p.h2 هل انت متأكد 
+                p 
+              .modal-footer
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+                button.btn.btn-success(data-dismiss='modal', type='button') cancel
+  
+  script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/editmanager.js")
+  script(src="/javascripts/admin.js")
+ 
