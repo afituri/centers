@@ -2,7 +2,6 @@ var path           = require('path')
   , templatesDir   = path.resolve(__dirname, '../views/', 'templates')
   , emailTemplates = require('email-templates')
   , nodemailer     = require('nodemailer')
-  , smtpTransport  = require('nodemailer-smtp-transport')
   , config         = require('../config.json');
 
 module.exports = {
