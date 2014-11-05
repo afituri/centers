@@ -47,4 +47,3 @@ module.exports = {
     res.redirect('/users/login')
   }
 };
-

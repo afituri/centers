@@ -1,7 +1,9 @@
 var path           = require('path')
   , templatesDir   = path.resolve(__dirname, '../views/', 'templates')
   , emailTemplates = require('email-templates')
-  , nodemailer     = require('nodemailer');
+  , nodemailer     = require('nodemailer')
+  , smtpTransport  = require('nodemailer-smtp-transport')
+  , config         = require('../config.json');
 
 module.exports = {
 
@@ -12,11 +14,12 @@ module.exports = {
       } else {
 
         // Prepare nodemailer transport object
-        var transport = nodemailer.createTransport("SMTP", {
-          service: "Gmail",
+        var transport = nodemailer.createTransport("SMTP",{
+          host: 'hnec.ly',
+          port: 25,
           auth: {
-            user: "hnec.dev@gmail.com",
-            pass: "Hn3c$3cur3d"
+            user: "apps@hnec.ly",
+            pass: config.epassword
           }
         });
 
@@ -26,7 +29,7 @@ module.exports = {
             console.log(err);
           } else {
             transport.sendMail({
-              from: 'HNEC <hnec.dev@gmail.com>',
+              from: 'HNEC <apps@hnec.ly',
               to: obj.locals.email,
               subject: obj.subject,
               html: html,

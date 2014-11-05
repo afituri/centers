@@ -1,6 +1,7 @@
 {
 	"host" : "localhost",
 	"user" : "root",
-	"password" : "dunstuff",
-	"database" : "centers"
+	"password" : "****",
+	"database" : "centers",
+	"epassword" : "****"
 }
