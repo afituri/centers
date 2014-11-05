@@ -12,6 +12,68 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../../../images/hnec_logo.png")
-          
+    .panel
+        div.btn-group.pull-left
+          .col-sm-4.col-md-1
+            a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
+              span.glyphicon.glyphicon-plus 
+        .col-sm-4.col-md-6
+          .input-group 
+              input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+              .input-group-btn
+                .btn.btn-default(type="button")  
+                  spen.glyphicon.glyphicon-search
+      .panel-body  
+        div.table-responsive  
+          table#off.table.table-striped.table-bordered.table-condensed.table-hover
+            thead
+              th أسم القرية  
+              th الدائرة الفرعية التابعة لها  
+              th   عرض 
+              th   حدف
+            tbody
+                    //for office in offices
+                tr
+                  td 
+                  td 
+                  td
+                    button#viw.btn.btn-primary.btn-xs(value="")
+                      span.glyphicon.glyphicon-eye-open
+                  td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                     span.glyphicon.glyphicon-trash 
+        #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  حدف ؟
+              .modal-body
+                p.h2 هل انت متأكد 
+                p 
+              .modal-footer
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') حذف
+                button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+        #addvillage.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-success
+                button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+                button.close(type="button",data-dismiss="modal",aria-hidden="true")
+                h1 إضافة قرية  
+              .row
+                .col-sm-12.col-md-11.col.col-md.offset-4
+                    .modal-body
+                        form#form.form-signin(role="form" , action="#", method="post") 
+                          div.form-group
+                            lable.h3 أسم القرية  
+                            input#village_name.form-control(type="text",name="office_name_ar", placeholder="أسم القرية", required="",autofocus="")                            
+                           div.form-group
+                            lable.h3 الدائرة الأنتخابية التابعة لها  
+                            select#subconstituency_idsubconstituency.form-control(type="text",name="region_name", placeholder="الدائرة الفرعية ", required="",autofocus="")
+                              option(value="") طرابلس  
+                              option(value="") بنغازي 
+                              option(value="") الجبل! 
+                          div.form-group.text-center
+                            button.btn.btn-lg.btn-primary(type="submit") إضـافة        
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
