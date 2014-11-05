@@ -1,1 +1,25 @@
-h3 You have been added as a user at HNEC apps your username is #{user.email} and password #{user.password}
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title #{user.title}
+    style(media='all', type='text/css')
+  body
+    table(cellspacing='0', cellpadding='0', border='0', width='100%' dir ="rtl")
+      tr
+        td.navbar.navbar-inverse(align='right')
+          //This setup makes the nav background stretch the whole width of the screen. 
+          a.brand.pull-left(href='apps.hnec.ly')
+            img(src="http://centers.hnec.ly/img/hnec_logo.png")
+      tr
+        td
+          hr
+      tr
+        td(bgcolor='#FFFFFF', align='left') لقد تم اضافتك كمستخدم في منظومة المراكز لدى المفوضية العليا للانتخابات، الرجاء زيارة رابط المنظوم واستخدام اسم المستخدم وكلمة المرور:
+          p
+            a(href='apps.hnec.ly/users/login') اضغط هنا لزيارة المنظومة
+          p اسم المستخدم : #{user.email} 
+          p كلمة المرور : #{user.password}
+      tr
+        td(bgcolor='#FFFFFF', align='center')
+          hr
+          p المفوضية العليا للانتخابات
