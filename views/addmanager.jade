@@ -39,7 +39,7 @@ block content
           div.form-group
             lable اللجان الانتخابية
             font(size="4", color="black" , face="cursive" )
-              select.form-control#constit(name="office_idoffice")
+              select.form-control#office_idoffice(name="office_idoffice")
                 option(value="-1", selected="selected") اللجان الانتخابية
                 for office in offices
                   option(value=office.idoffice) #{office.office_name}

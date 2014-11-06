@@ -42,6 +42,7 @@ router.post('/addmanager', function(req, res) {
 router.get('/deleteUser/:id', function(req, res) {
   userMgr.delUser(req.params.id,function(result){
     log.insertLog(req.session.iduser,"delete","user"," delete user ",req.params.id);
+    log.insertLog(req.session.iduser,"delete","phone"," delete phones ",req.params.id);
     res.send(result);
   })
 });
