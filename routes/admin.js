@@ -11,6 +11,10 @@ router.get('/', function(req, res) {
     res.render('admin',{title: 'المدراء', users : results});
   })
 });
+/* GET control panel page. */
+router.get('/cpanelmanager', function(req, res) {
+  res.render('cpanelmanager',{title: 'لوحة التحكم للمدراء'});
+});
 /* Get user by level form for admin */
 router.get('/getManager/:level', function(req, res) {
   userMgr.getManager(function(result){
