@@ -19,11 +19,9 @@ exports.userMgr = {
             name :body.name
           }
           for (var i=0;i<phone.length;i++) {
-              conn.query('INSERT INTO `phone` SET phone_number=?,type=?,user_iduser=?',[phone[i],type[i],results.id]);
-             console.log(phone[i]+" "+type[i]+" "+results.id);
-           
+              conn.query('INSERT INTO `phone` SET phone_number=?,type=?,user_iduser=?',[phone[i],type[i],results.id]);           
               }
-                      conn.release();
+        conn.release();
 
           cb(results); 
         }
@@ -151,6 +149,7 @@ exports.userMgr = {
   delUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('UPDATE `user` SET status = 0 WHERE iduser = ?',id,  function(err, result) {
+        conn.query('UPDATE `phone` SET status = 0 WHERE user_iduser = ?',id);
         conn.release();
         if(err) {
           util.log(err);
@@ -163,7 +162,7 @@ exports.userMgr = {
     /* get Manager*/
   getManager : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone` FROM `user` u,`office` o,`phone` p WHERE o.idoffice = u.office_idoffice AND p.user_iduser = u.iduser AND u.status = 1 AND u.level = ? group by iduser', 2 ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone` FROM `user`,`office`,`phone` WHERE office.idoffice = user.office_idoffice AND phone.user_iduser = user.iduser AND user.status = 1 group by iduser' ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

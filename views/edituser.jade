@@ -15,7 +15,7 @@ block content
           
   div.container    
     button#enable.btn.btn-default enable / disable
-     button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal',value="#{user[0].iduser}")
+    button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal',value="#{user[0].iduser}")
        span.glyphicon.glyphicon-trash 
     table#user.table.table-bordered.table-striped(style='clear: both')
       tbody
@@ -30,21 +30,12 @@ block content
         tr
           td(width='35%') رقم الهاتف
           td(width='65%')
-            a#phone(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='رقم الهاتف', data-value='#{user[0].phone}')  #{user[0].phone}
-        tr
+              each val, index in user
+                a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
+                &nbsp;&nbsp;        tr
           td الصلاحية
           td
             a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')       
-  #del.modal(data-width='760', tabindex='-1')
-    .modal-dialog
-      .modal-content
-        .modal-headr
-          .modal-title 
-        .modal-body
-           p هل انت متأكد 
-        .modal-footer
-          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
-          button.btn.btn-success(data-dismiss='modal', type='button') cancel
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")

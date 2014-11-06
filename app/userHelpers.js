@@ -16,7 +16,8 @@ module.exports = {
             phone : body.phone,
             salt : originalSalt,
             level : body.level,
-            typ: body.typ
+            typ: body.typ,
+            office_idoffice:body.office_idoffice
           }
       userMgr.addUser(obj, function(result){
         var obj = {
