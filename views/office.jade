@@ -12,18 +12,44 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="/../../images/hnec_logo.png")  
-    .panel
-        div.btn-group.pull-left
-          .col-sm-4.col-md-1
-            a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة لجنة
-              span.glyphicon.glyphicon-plus 
-        .col-sm-4.col-md-6
-          .input-group 
-              input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
-              .input-group-btn
-                .btn.btn-default(type="button")  
-                  spen.glyphicon.glyphicon-search
-      .panel-body  
+    .row
+      .col-md-4
+        nav#affix-nav.sidebar.col-md-4
+          ul.nav.sidenav.affix(data-spy='affix', data-offset-top='10')
+            li.active
+              a(href='#cupcake') Cupcake Lorem Ipsum
+              ul.nav
+                li
+                  a(href='#sweetjelly') Sweet Jelly
+                li
+                  a(href='#tiramisu') Tiramisu
+                li.active
+                    a(href='#pie') Pie
+            li
+              a(href='#two') Veggie Lorem Ipsum
+              ul.nav
+                li.
+                  a(href='#coriander') Coriander
+                li
+                  a(href='#kohlrabi') Kohlrabi
+                li
+                  a(href='#amaranth') Amaranth
+                li
+                  a(href='#soybean') Soybean
+
+      .col-md-8      
+        .panel
+            div.btn-group.pull-left
+              .col-sm-4.col-md-1
+                a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة لجنة
+                  span.glyphicon.glyphicon-plus 
+            .col-sm-4.col-md-6
+              .input-group 
+                  input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+                  .input-group-btn
+                    .btn.btn-default(type="button")  
+                      spen.glyphicon.glyphicon-search
+          .panel-body  
         div.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
             thead
