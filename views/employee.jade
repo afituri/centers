@@ -12,48 +12,82 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
-
-          div.container 
-    button#enable.btn.btn-default enable / disable
-    button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal',value="")
-     span.glyphicon.glyphicon-trash 
-    div.form-group 
-      table#user.table.table-bordered.table-striped(style='clear: both')
-        tbody
-          tr
-            td(width='35%') اسم اللجنه باللغه العربي
-            td(width='65%')
-              a#name(href='#', data-type='text', data-pk='', data-title='اسم المدير' data-value='')  qqqqqqqqqqqqqqqqq
-          tr
-            td(width='35%') اسم اللجنه باللغه الانجليزيه
-            td(width='65%')
-              a#email(href='#', data-type='text', data-pk='', data-title='البريد الالكترونب', data-value='')  aaaaaaaaaaaaaaaaa
-          tr
-            td(width='35%') رقم اللجنه
-            td(width='65%')
-              a#phone(href='#', data-type='text', data-pk='', data-title='رقم الهاتف', data-value='')  lllllllllllllllllllll
-          tr
-            td موقع اللجنه
-            td
-              a#level1(href='#', data-type='select', data-pk='', 
-              data-value='',  data-title='اللجان')
-                
-
-  #del.modal(data-width='760', tabindex='-1')
-    .modal-dialog
-      .modal-content
-        .modal-headr
-          .modal-title 
-        .modal-body
-           p هل انت متأكد 
-        .modal-footer
-          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
-          button.btn.btn-success(data-dismiss='modal', type='button') cancel
-  
-  script(src="/javascripts/jquery-1.11.1.min.js") 
+      
+    .panel.panel-default 
+      div.btn-group.pull-left
+          a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة مركز
+            span.glyphicon.glyphicon-plus 
+        .input-group 
+            input.form-control.input-sm(type="text",name="constitres", placeholder=" أبحث", required="")
+            .input-group-btn
+              .btn.btn-primary.btn-sm(type="button")  
+                spen.glyphicon.glyphicon-search
+        b.text-right الموظفين
+      div.panel-body  
+        div.table-responsive  
+          table#off.table.table-striped.table-bordered.table-condensed.table-hover
+            thead
+              th أسم الموظف
+              th رقم الهاتف 
+              th البريد الالكتروني
+              th صفة الموظف
+              th المركز
+            tbody
+              for office in offices
+                tr
+                  td #{employees.employee_name}
+                  td #{employees.email}
+                  td
+                    button#viw.btn.btn-primary.btn-xs(value="#{office.idoffice}")
+                      span.glyphicon.glyphicon-eye-open
+                  td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{office.office_id}")
+                     span.glyphicon.glyphicon-trash 
+        #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  حدف ؟
+              .modal-body
+                p.h2 هل انت متأكد 
+                p 
+              .modal-footer
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+                button.btn.btn-success(data-dismiss='modal', type='button') cancel
+        #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-success
+                button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+                button.close(type="button",data-dismiss="modal",aria-hidden="true")
+                h1 إضافة موظف
+                  .glyphicon.glyphicon-plus 
+              .row
+                .col-sm-12.col-md-11.col.col-md.offset-4
+                    .modal-body
+                        form#form.form-signin(role="form" , action="#", method="post")   
+                          div.form-group
+                            lable.h3 اسم الموظف
+                            input#employee_name.form-control(type="text",name="employee_name", placeholder="اسم الموظف", required="",autofocus="")
+                          div.form-group
+                            lable.h3 البريد الالكتروني
+                            input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="البريد الالكتروني", required="",autofocus="")      
+                          div.form-group
+                            lable.h3 رقم الهاتف 
+                            input#office_id.form-control(type="text",name="office_id", placeholder="رقم الهاتف ", required="",autofocus="")
+                           div.form-group
+                            lable.h3 صفة الموظف
+                            select#region_name.form-control(type="text",name="region_name", placeholder="صفة الموظف", required="",autofocus="")
+                              option(value="0") رئيس مركز
+                              option(value="1") مدير محطة
+                              option(value="2") محقق هوية 
+                              option(value="3") موزع أوراق الاقتراع
+                              option(value="4") مراقب الصندوق
+                              option(value="5") منظم الطابور بالمركز
+                              option(value="6") منظم الطابور بالمحطة
+                          div.form-group.text-center
+                            button.btn.btn-lg.btn-primary(type="submit") إضـافة      
+                    .modal-footere
+  script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
-  script(src="/javascripts/jquery.validate.min.js")
-  script(src="/javascripts/bootstrap-editable.min.js")
-  script(src="/javascripts/editmanager.js")
-  script(src="/javascripts/admin.js")
- 
+  script(src="/javascripts/office.js")
