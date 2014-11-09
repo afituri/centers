@@ -2,6 +2,7 @@ var express = require('express');
 var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
+var centerMgr = require('../app/user').centerMgr;
 var log = require('../app/log').repo;
 var employeeMgr = require('../app/user').employeeMgr;
 
@@ -18,13 +19,12 @@ router.get('/editemployee', function(req, res) {
   res.render('editemployee', { title: "تعديل الموظفين" });
 });
 
-/* GET centers. 
+/* GET centers. */
 router.get('/getCenters', function(req, res) {
-    userMgr.getCenters(function(result){
+    centerMgr.getCenters(function(result){
     res.send(result);
   })
 });
-*/
 
 /* GET addemployee page. */
 router.get('/addemployee', function(req, res) {

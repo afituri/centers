@@ -25,7 +25,7 @@ router.get('/getofes', function(req, res) {
 
 /* GET editoffice by id : page. */
 router.get('/editoffice/:id', function(req, res) {
-  userMgr.getOfficeId(req.params.id,function(result){
+  officeMgr.getOfficeId(req.params.id,function(result){
     res.render('editoffice', { title: "تعديل اللجان  الأنتخابية" , offices : result });
   });
 });

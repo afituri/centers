@@ -65,19 +65,6 @@ exports.userMgr = {
       });
     });
   },
-  /* get all region */
-  getregion : function(cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `idoffice`,`region_name` FROM `office` WHERE status = 1 ',  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
   /* get user by id*/
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
