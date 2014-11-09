@@ -12,7 +12,6 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
-           
   div.container    
     div.panel.panel-default
       div.panel-heading
@@ -33,9 +32,8 @@ block content
               tbody
               for user in users
                 tr
-
                   td= user.name
-                  td= user.phone
+                  td= user.phone_number
                   td
                     case user.level
                       when 0

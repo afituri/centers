@@ -1,6 +1,5 @@
 var mysqlMgr = require('./mysql').mysqlMgr,
     util=require('util');
-
 exports.userMgr = {
   /* adding a new user to the system */
   addUser : function(body,cb){
@@ -9,7 +8,6 @@ exports.userMgr = {
       var type = body.typ
       delete body["phone"];
       delete body["typ"];
-  
       conn.query('INSERT INTO `user` SET ?',  body,  function(err, result) {
         if(err) {
           util.log(err);
@@ -19,7 +17,7 @@ exports.userMgr = {
             name :body.name
           }
           for (var i=0;i<phone.length;i++) {
-              conn.query('INSERT INTO `phone` SET phone_number=?,type=?,user_iduser=?',[phone[i],type[i],results.id]);           
+              conn.query('INSERT INTO `phone` SET user_type = 0, phone_number=?,type=?,user_employee =?',[phone[i],type[i],results.id]);           
               }
         conn.release();
 
@@ -70,7 +68,7 @@ exports.userMgr = {
   /* get all users*/
   getUsers : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `user` WHERE status = 1 ',  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`phone_number`,`level` FROM user LEFT JOIN phone ON  (phone.user_employee = user.iduser AND phone.user_type = 0 ) WHERE  user.status = 1 group by iduser',  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -122,7 +120,7 @@ exports.userMgr = {
   /* get user by id*/
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`email`,`idphone`,`type`,`office_name`,office_idoffice,`phone_number` FROM `user`,`office`,`phone` WHERE office.idoffice = user.office_idoffice AND phone.user_iduser = user.iduser AND user.status = 1 AND user.level = 2 AND user.iduser = ?', id ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN phone ON (phone.user_employee = user.iduser )  RIGHT JOIN office ON (office.idoffice = user.office_idoffice)  WHERE user.status = 1 AND user.iduser = ?', id ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -149,7 +147,7 @@ exports.userMgr = {
   delUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('UPDATE `user` SET status = 0 WHERE iduser = ?',id,  function(err, result) {
-        conn.query('UPDATE `phone` SET status = 0 WHERE user_iduser = ?',id);
+        conn.query('UPDATE `phone` SET status = 0 WHERE user_employee = ?',id);
         conn.release();
         if(err) {
           util.log(err);
@@ -162,7 +160,7 @@ exports.userMgr = {
     /* get Manager*/
   getManager : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone` FROM `user`,`office`,`phone` WHERE office.idoffice = user.office_idoffice AND phone.user_iduser = user.iduser AND user.status = 1 group by iduser' ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone` FROM `user`,`office`,`phone` WHERE office.idoffice = user.office_idoffice AND phone.user_employee = user.iduser AND user.status = 1 AND user.level = 2 group by iduser' ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

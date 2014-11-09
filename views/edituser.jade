@@ -11,8 +11,7 @@ block content
           a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
-          img(src="../images/hnec_logo.png")
-          
+          img(src="../images/hnec_logo.png")    
   div.container    
     button#enable.btn.btn-default enable / disable
     button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal',value="#{user[0].iduser}")
@@ -32,10 +31,25 @@ block content
           td(width='65%')
               each val, index in user
                 a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
-                &nbsp;&nbsp;        tr
+                &nbsp;&nbsp;       
+        tr
           td الصلاحية
           td
             a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')       
+        tr
+          td الصلاحية
+          td
+            a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
+  #del.modal(data-width='760', tabindex='-1')
+    .modal-dialog
+      .modal-content
+        .modal-headr
+          .modal-title 
+        .modal-body
+           p هل انت متأكد 
+        .modal-footer
+          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+          button.btn.btn-success(data-dismiss='modal', type='button') cancel
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
