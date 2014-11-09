@@ -11,15 +11,10 @@ block content
           a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
-          img(src="../images/hnec_logo.png")
-  
-            
-  script(src="/javascripts/jquery-1.11.1.min.js")
-  script(src="/javascripts/bootstrap.min.js")
-      
+          img(src="../images/hnec_logo.png")    
     .panel.panel-default 
       div.btn-group.pull-left
-          a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة مركز
+          a.btn.btn-success(href='', role='button',data-toggle='modal') إضافة مركز
             span.glyphicon.glyphicon-plus 
         .input-group 
             input.form-control.input-sm(type="text",name="constitres", placeholder=" أبحث", required="")
@@ -37,15 +32,15 @@ block content
               th صفة الموظف
               th المركز
             tbody
-              for office in offices
+                  //   for office in offices
                 tr
-                  td #{employees.employee_name}
-                  td #{employees.email}
+                  td 
+                  td 
                   td
-                    button#viw.btn.btn-primary.btn-xs(value="#{office.idoffice}")
+                    button#viw.btn.btn-primary.btn-xs(value="")
                       span.glyphicon.glyphicon-eye-open
                   td      
-                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{office.office_id}")
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
                      span.glyphicon.glyphicon-trash 
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
@@ -75,13 +70,13 @@ block content
                             input#employee_name.form-control(type="text",name="employee_name", placeholder="اسم الموظف", required="",autofocus="")
                           div.form-group
                             lable.h3 البريد الالكتروني
-                            input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="البريد الالكتروني", required="",autofocus="")      
+                            input#office_name_ar.form-control(type="text",name="", placeholder="البريد الالكتروني", required="",autofocus="")      
                           div.form-group
                             lable.h3 رقم الهاتف 
-                            input#office_id.form-control(type="text",name="office_id", placeholder="رقم الهاتف ", required="",autofocus="")
+                            input#office_id.form-control(type="text",name="", placeholder="رقم الهاتف ", required="",autofocus="")
                            div.form-group
                             lable.h3 صفة الموظف
-                            select#region_name.form-control(type="text",name="region_name", placeholder="صفة الموظف", required="",autofocus="")
+                            select#region_name.form-control(type="text",name="", placeholder="صفة الموظف", required="",autofocus="")
                               option(value="0") رئيس مركز
                               option(value="1") مدير محطة
                               option(value="2") محقق هوية 

@@ -18,49 +18,57 @@ router.get('/', function(req, res) {
 
 /* get all region name */
 router.get('/getofes', function(req, res) {
-  userMgr.getregion(function(result){
+  officeMgr.getregion(function(result){
     res.send(result);
   })
 });
 
 /* GET editoffice by id : page. */
-router.get('/editoffice/:id', function(req, res) {
+/*router.get('/editoffice/:id', function(req, res) {
   officeMgr.getOfficeId(req.params.id,function(result){
     res.render('editoffice', { title: "تعديل اللجان  الأنتخابية" , offices : result });
   });
-});
+});*/
 /* GET subconstituency page. */
-router.get('/subconstituency', function(req, res) {
-  res.render('subconstituency', { title: 'اللجان  الأنتخابية الفرعيه' });
+router.get('/:oid', function(req, res) {
+  officeMgr.getOffice(function(result){
+    res.render('office', { title: "اللجان  الأنتخابية" , offices : result});
+  })
 });
 
 /* GET editsubconstituency page. */
-router.get('/subconstituency/editsubconstituency', function(req, res) {
+router.get('/:oid/:sid/editsubconstituency', function(req, res) {
   res.render('editsubconstituency', { title: 'تعديل اللجان  الأنتخابية الفرعيه' });
 });
 
+/* GET subconstitunecy page. */
+router.get('/:oid/:sid', function(req, res) {
+  res.render('subconstitunecy', { title: 'تعديل اللجان  الأنتخابية الفرعيه' });
+});
+
+
 /* GET village page. */
-router.get('/subconstituency/village', function(req, res) {
+router.get('/:oid:/:sid/:vid', function(req, res) {
   res.render('village', { title: 'المدينة/القرية' });
 });
 
 /* GET editvillage page. */
-router.get('/subconstituency/village/editvillage', function(req, res) {
+router.get('/:oid:/:sid/:vid/editvillage', function(req, res) {
   res.render('editvillage', { title: 'تعديل المدينة/القرية' });
 });
 
 /* GET mahalla page. */
-router.get('/subconstituency/village/mahalla', function(req, res) {
+router.get('/:oid/:sid/:vid/:mid', function(req, res) {
   res.render('mahalla', { title: 'المحلة' });
 });
 
 /* GET editmahalla page. */
-router.get('/subconstituency/village/mahalla/editmahalla', function(req, res) {
+router.get('/:oid/:sid/:vid/:mid/editmahalla', function(req, res) {
   res.render('editmahalla', { title: 'تعديل المحلة' });
 });
 
 /* GET center page. */
-router.get('/subconstituency/village/mahalla/center', function(req, res) {
+router.get('/:oid/:sid/:vid/:mid/:cid', function(req, res) {
   officeMgr.getOffice(function(result){
     res.render('center', { title: "المراكز الأنتخابية " , offices : result});
   })
@@ -68,12 +76,12 @@ router.get('/subconstituency/village/mahalla/center', function(req, res) {
 });
 
 /* GET editcenter page. */
-router.get('/subconstituency/village/mahalla/center/editcenter', function(req, res) {
+router.get('/:oid:/:sid:/:vid:/:mid:/:cid/editcenter', function(req, res) {
   res.render('editcenter', { title: 'تعديل المراكز' });
 });
 
 /* delete office  */
-router.get('/deleteoffice/:id', function(req, res) {
+router.get('/:oid:/deleteoffice/', function(req, res) {
   console.log("you are in officee.root")
   officeMgr.deloff(req.params.id,function(result){
     res.send(result);
