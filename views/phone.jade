@@ -12,6 +12,74 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
+    .panel
+        div.btn-group.pull-left
+          .col-sm-4.col-md-1
+            a.btn.btn-success(href='#addphone', role='button',data-toggle='modal') إضافة رقم 
+              span.glyphicon.glyphicon-plus 
+        .col-sm-4.col-md-6
+          .input-group 
+              input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+              .input-group-btn
+                .btn.btn-default(type="button")  
+                  spen.glyphicon.glyphicon-search
+      .panel-body  
+        div.table-responsive  
+          table#off.table.table-striped.table-bordered.table-condensed.table-hover
+            thead
+              th الرقم  
+              th الأسم  
+              th   عرض 
+              th   حدف
+            tbody
+                    //for office in offices
+                tr
+                  td 
+                  td 
+                  td
+                    button#viw.btn.btn-primary.btn-xs(value="")
+                      span.glyphicon.glyphicon-eye-open
+                  td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                     span.glyphicon.glyphicon-trash 
+        #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  حدف ؟
+              .modal-body
+                p.h2 هل انت متأكد 
+                p 
+              .modal-footer
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') حذف
+                button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+        #addphone.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-success
+                button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+                button.close(type="button",data-dismiss="modal",aria-hidden="true")
+                h1 إضافة رقم  
+              .row
+                .col-sm-12.col-md-11.col.col-md.offset-4
+                    .modal-body
+                        form#form.form-signin(role="form" , action="#", method="post") 
+                          div.form-group
+                            lable.h3 رقم الهاتف 
+                            input#phone_number.form-control(type="text",name="phone_number", placeholder="", required="",autofocus="")                            
+                           div.form-group
+                            lable.h3  أسم المستخدم 
+                            select#user_iduser.form-control(type="text",name="user_iduser",  required="",autofocus="")
+                              option(value="") عبد الحفيظ  
+                              option(value="") عبد السميع  
+                              option(value="") صالح  
+                            lable.h3  أسم المستخدم 
+                            select#type.form-control(type="text",name="type", placeholder="رقم اللجنة", required="",autofocus="")
+                              option(value="") ليبيانا  
+                              option(value="") المدار 
+                              option(value="") ثريا 
+                          div.form-group.text-center
+                            button.btn.btn-lg.btn-primary(type="submit") إضـافة      
           
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")

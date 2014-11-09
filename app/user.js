@@ -208,5 +208,33 @@ exports.userMgr = {
         }
       });
     });
-  }
+  },
+
+  /* get sub subconstituency  by id*/
+  getsub : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `subconstituency` WHERE office_idoffice = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+
+  /* get sub subconstituency  by id*/
+  getvillage : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `village` WHERE subconstituency_idsubconstituency = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };
