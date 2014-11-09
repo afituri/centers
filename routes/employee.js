@@ -9,7 +9,7 @@ var employeeMgr = require('../app/employee').employeeMgr;
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  employeeMgr.getemployee(req.params.iduser,req.params.level,function(results){
+  employeeMgr.getemployee(req.session.iduser,req.session.level,function(results){
     res.render('employee',{title: 'الموظفين',employees:results});
   });
 });
