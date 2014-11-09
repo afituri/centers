@@ -9,7 +9,10 @@ block content
           a(href="#") About
         li
           a(href="#") Contact
-      h3.text-muted.text-left Centers App
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/hnec_logo.png")
+          
     div.panel.panel-default.form-signin 
       div.panel-heading.text-right
         h1.panel-title اضافة مدير
@@ -20,7 +23,15 @@ block content
             input#name.form-control(type="text",name="name", placeholder="اسم المدير", required="",autofocus="")
           div.form-group
             lable رقم الهاتف
-            input#phone.form-control(type="text",name="phone", placeholder="رقم الهاتف", required="",autofocus="")
+            .form-group.multiple-form-group.input-group
+              .input-group-btn.input-group-select
+                select#typ.form-control(name="typ[]")
+                  option(value="ليبيانا") ليبيانا
+                  option(value="المدار") المدار
+                  option(value="ثريا") ثريا
+              input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+              span.input-group-btn
+                button.btn.btn-success.btn-add(type='button') +
           div.form-group
             lable البريد الإلكتروني
             input#email.form-control.text-left(type="email",name="email",dir="ltr", placeholder="البريد الالكتروني", required="")
@@ -28,15 +39,18 @@ block content
           div.form-group
             lable اللجان الانتخابية
             font(size="4", color="black" , face="cursive" )
-              select.form-control#constit(name="office_idoffice")
+              select.form-control#office_idoffice(name="office_idoffice")
                 option(value="-1", selected="selected") اللجان الانتخابية
                 for office in offices
                   option(value=office.idoffice) #{office.office_name}
                 
           div.form-group.text-center
             button.btn.btn-lg.btn-primary(type="submit") تسجيل
+          
     
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/addmanager.js")
+  script(src="/javascripts/phone.js")
+

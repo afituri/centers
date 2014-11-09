@@ -13,35 +13,19 @@ block content
         a(href="/")
           img(src="/../../images/hnec_logo.png")  
     .row
-      .col-md-4
-        nav#affix-nav.sidebar.col-md-4
-          ul.nav.sidenav.affix(data-spy='affix', data-offset-top='10')
+      .col-sm-2
+        .navbar-collapse.collapse.sidebar-navbar-collapse
+          ul.nav.navbar-nav
             li.active
-              a(href='#cupcake') Cupcake Lorem Ipsum
-              ul.nav
-                li
-                  a(href='#sweetjelly') Sweet Jelly
-                li
-                  a(href='#tiramisu') Tiramisu
-                li.active
-                    a(href='#pie') Pie
+              h4 اللجان الفىعيد
             li
-              a(href='#two') Veggie Lorem Ipsum
-              ul.nav
-                li.
-                  a(href='#coriander') Coriander
-                li
-                  a(href='#kohlrabi') Kohlrabi
-                li
-                  a(href='#amaranth') Amaranth
-                li
-                  a(href='#soybean') Soybean
-
-      .col-md-8      
+              a(href="#")
+                span.glyphicon.glyphicon-lock طرابلس
+      .col-md-10  
         .panel
             div.btn-group.pull-left
               .col-sm-4.col-md-1
-                a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة لجنة
+                a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
                   span.glyphicon.glyphicon-plus 
             .col-sm-4.col-md-6
               .input-group 
@@ -49,6 +33,9 @@ block content
                   .input-group-btn
                     .btn.btn-default(type="button")  
                       spen.glyphicon.glyphicon-search
+        .panel-body
+          div.table-responsive  
+            table#off.table.table-striped.table-bordered.table-condensed.table-hover
           .panel-body  
         div.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover

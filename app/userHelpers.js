@@ -15,7 +15,9 @@ module.exports = {
             password : passwordHash,
             phone : body.phone,
             salt : originalSalt,
-            level : body.level
+            level : body.level,
+            typ: body.typ,
+            office_idoffice:body.office_idoffice
           }
       userMgr.addUser(obj, function(result){
         var obj = {
@@ -47,4 +49,3 @@ module.exports = {
     res.redirect('/users/login')
   }
 };
-

@@ -3,45 +3,224 @@ block content
   div.container
     div.header
       ul.nav.nav-pills.pull-right
-        li.active
+        .active
           a(href="#") Home
-        li
           a(href="#") About
-        li
           a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
           img(src="../../../images/hnec_logo.png")
-    .panel
-        div.btn-group.pull-left
-          .col-sm-4.col-md-1
-            a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
-              span.glyphicon.glyphicon-plus 
-        .col-sm-4.col-md-6
-          .input-group 
-              input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
-              .input-group-btn
-                .btn.btn-default(type="button")  
-                  spen.glyphicon.glyphicon-search
-      .panel-body  
-        div.table-responsive  
-          table#off.table.table-striped.table-bordered.table-condensed.table-hover
-            thead
-              th أسم القرية  
-              th الدائرة الفرعية التابعة لها  
-              th   عرض 
-              th   حدف
-            tbody
-                    //for office in offices
-                tr
-                  td 
-                  td 
-                  td
-                    button#viw.btn.btn-primary.btn-xs(value="")
-                      span.glyphicon.glyphicon-eye-open
-                  td      
-                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
-                     span.glyphicon.glyphicon-trash 
+    .row
+      .col-sm-2
+        .navbar-collapse.collapse.sidebar-navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              h4 اللجان الفىعيد
+            li
+              a(href="#")
+                span.glyphicon.glyphicon-lock طرابلس
+      .col-md-10  
+        .panel
+            div.btn-group.pull-left
+              .col-sm-4.col-md-1
+                a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
+                  span.glyphicon.glyphicon-plus 
+            .col-sm-4.col-md-6
+              .input-group 
+                  input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+                  .input-group-btn
+                    .btn.btn-default(type="button")  
+                      spen.glyphicon.glyphicon-search
+        .panel-body
+          div.table-responsive  
+            table#off.table.table-striped.table-bordered.table-condensed.table-hover
+              thead
+                th أسم القرية  
+                th الدائرة الفرعية التابعة لها  
+                th   عرض 
+                th   حدف
+              tbody
+                      //for office in offices
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
