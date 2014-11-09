@@ -12,6 +12,39 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
+  div.container    
+    button#enable.btn.btn-default enable / disable
+     button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal')
+       span.glyphicon.glyphicon-trash 
+    table#office.table.table-bordered.table-striped(style='clear: both')
+      tbody
+        tr
+          td(width='35%') أسم اللجنة بلغة الأنجليزية  
+          td(width='65%')
+            a#offEname(href='#', data-type='text', data-title='اسم المستخدم' )
+        tr
+          td(width='35%') أسم اللجنة بلغة العربية  
+          td(width='65%')
+            a#offname(href='#', data-type='text', data-title='البريد الالكترونب')  
+        tr
+          td(width='35%') منطقة اللجنة  
+          td(width='65%')
+            a#offnumber(href='#', data-type='text',  data-title='رقم الهاتف')  
+        tr
+          td الصلاحية
+          td
+            a#place(href='#', data-type='select',  data-title='الصلاحية') 
+    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .modal-headr.modal-header-danger
+             p.h1 هل أنت متأكد من  حدف ؟
+          .modal-body
+            p.h2 هل انت متأكد 
+            p 
+          .modal-footer
+            button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+            button.btn.btn-success(data-dismiss='modal', type='button') cancel
 
   font(size="4", color="black" , font="family" )
     div.container 
@@ -43,22 +76,13 @@ block content
               td      
                 a#region_name(href='#', data-type='select', data-pk='#{offices[0].idoffice}',  data-title='موقع اللجنه',data-value='#{offices[0].region_name}')  #{offices[0].region_name}
 
-    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-          .modal-dialog
-            .modal-content
-              .modal-headr.modal-header-danger
-                 p.h1 هل أنت متأكد من  حدف ؟
-              .modal-body
-                p.h2 هل انت متأكد 
-                p 
-              .modal-footer
-                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
-                button.btn.btn-success(data-dismiss='modal', type='button') cancel
-  
+ 
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/editmanager.js")
+  script(src="/javascripts/admin.js")
   script(src="/javascripts/editoffice.js")
   script(src="/javascripts/office.js")
  

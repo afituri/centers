@@ -56,7 +56,10 @@ router.get('/subconstituency/village/mahalla/editmahalla', function(req, res) {
 
 /* GET center page. */
 router.get('/subconstituency/village/mahalla/center', function(req, res) {
-  res.render('center', { title: 'المراكز' });
+  userMgr.getOffice(function(result){
+    res.render('center', { title: "المراكز الأنتخابية " , offices : result});
+  })
+
 });
 
 /* GET editcenter page. */
@@ -71,5 +74,19 @@ router.get('/deleteoffice/:id', function(req, res) {
     res.send(result);
   })
 });
+/* get sub subconstituency   */
+router.get('/getsub/:id', function(req, res) {
+  userMgr.getsub(req.params.id,function(result){
+    res.send(result);
+  })
+});
+/* get village */
+router.get('/getvillage/:id', function(req, res) {
+  userMgr.getvillage(req.params.id,function(result){
+    res.send(result);
+  })
+});
+
+
 
 module.exports = router;

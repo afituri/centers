@@ -3,8 +3,6 @@ var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
 var log = require('../app/log').repo;
-
-
 /* GET home page. */
 router.get('/',userHelpers.isRoot, function(req, res) {
   userMgr.getUsers(function(results){
@@ -17,10 +15,10 @@ router.get('/adduser',userHelpers.isRoot, function(req, res) {
     res.render('adduser', { title: 'إضافة مستخدم' , offices : result  });
   });
 });
-
 /* Edit user page. */
 router.get('/edituser/:id',userHelpers.isRoot, function(req, res) {
   userMgr.getUser(req.params.id,function(result){
+    console.log("im in root"+result);
     res.render('edituser',{title: 'تعديل مستجدم', user : result});
   });
 });
@@ -43,6 +41,8 @@ router.get('/getUser/:id', function(req, res) {
 router.get('/deleteUser/:id', function(req, res) {
   userMgr.delUser(req.params.id,function(result){
     log.insertLog(req.session.iduser,"delete","user"," delete user ",req.params.id);
+    log.insertLog(req.session.iduser,"delete","phone"," delete phones ",req.params.id);
+
     res.send(result);
   });
 });

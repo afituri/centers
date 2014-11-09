@@ -45,7 +45,6 @@ router.post('/edit', function(req, res) {
     });
   } else {
     /* log function. */
-    console.log("im in edit");
     var sender = model_step(req.body,req.session.iduser);
     res.send(sender);
   }}

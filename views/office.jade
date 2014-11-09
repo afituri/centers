@@ -11,19 +11,32 @@ block content
           a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
-          img(src="../images/hnec_logo.png")
-      
-    .panel.panel-default 
-      div.btn-group.pull-left
-          a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة مركز
-            span.glyphicon.glyphicon-plus 
-        .input-group 
-            input.form-control.input-sm(type="text",name="constitres", placeholder=" أبحث", required="")
-            .input-group-btn
-              .btn.btn-primary.btn-sm(type="button")  
-                spen.glyphicon.glyphicon-search
-        b.text-right اللجان  الأنتخابية     
-      div.panel-body  
+          img(src="/../../images/hnec_logo.png")  
+    .row
+      .col-sm-2
+        .navbar-collapse.collapse.sidebar-navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              h4 اللجان الفىعيد
+            li
+              a(href="#")
+                span.glyphicon.glyphicon-lock طرابلس
+      .col-md-10  
+        .panel
+            div.btn-group.pull-left
+              .col-sm-4.col-md-1
+                a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
+                  span.glyphicon.glyphicon-plus 
+            .col-sm-4.col-md-6
+              .input-group 
+                  input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+                  .input-group-btn
+                    .btn.btn-default(type="button")  
+                      spen.glyphicon.glyphicon-search
+        .panel-body
+          div.table-responsive  
+            table#off.table.table-striped.table-bordered.table-condensed.table-hover
+          .panel-body  
         div.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
             thead
@@ -51,26 +64,25 @@ block content
                 p.h2 هل انت متأكد 
                 p 
               .modal-footer
-                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
-                button.btn.btn-success(data-dismiss='modal', type='button') cancel
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') حذف
+                button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
         #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
               .modal-headr.modal-header-success
                 button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
                 button.close(type="button",data-dismiss="modal",aria-hidden="true")
-                h1 إضافة لجنة
-                  .glyphicon.glyphicon-plus 
+                h1 إضافة لجنة 
               .row
                 .col-sm-12.col-md-11.col.col-md.offset-4
                     .modal-body
-                        form#form.form-signin(role="form" , action="#", method="post")   
+                        form#form.form-signin(role="form" , action="#", method="post") 
                           div.form-group
-                            lable.h3 اسم اللجنة بللغة  الأنجليزية
-                            input#office_name.form-control(type="text",name="office_name", placeholder="اسم اللجنة", required="",autofocus="")
+                            lable.h3 اسم اللجنة باللغة العربية  
+                            input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="اسم اللجنة باللغة العربية", required="",autofocus="")                            
                           div.form-group
-                            lable.h3 اسم اللجنة بللغة العربية  
-                            input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="اسم اللجنة بلعربي", required="",autofocus="")                            
+                            lable.h3 اسم اللجنة باللغة  الأنجليزية
+                            input#office_name.form-control(type="text",name="office_name", placeholder="اسم اللجنة باللغة  الأنجليزية", required="",autofocus="")
                           div.form-group
                             lable.h3 رقم اللجنة 
                             input#office_id.form-control(type="text",name="office_id", placeholder="رقم اللجنة", required="",autofocus="")
@@ -82,7 +94,6 @@ block content
                               option(value="") الجنوبية 
                           div.form-group.text-center
                             button.btn.btn-lg.btn-primary(type="submit") إضـافة      
-                    .modal-footere
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/office.js")

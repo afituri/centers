@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.resul=new Array();
-  /*  */
+  /* disabled  editable*/
   var defaults = {
         disabled: true,
       };
@@ -9,13 +9,10 @@ $(document).ready(function(){
     $('#user .editable').editable('toggleDisabled');
   }); 
   $.get('/admin/getofes',function(result){
-      console.log(result[0].idoffice);
       for ( var i = 0 ; i< result.length; i++){
         var k = new Object({id : i,value : result[i].idoffice, text : result[i].office_name});
         $.resul.push(k);
       }
-      
-
     $('#office_idoffice').editable({
         url: '/users/edit',
         source: $.resul,
@@ -25,12 +22,7 @@ $(document).ready(function(){
             allowClear: false
         } 
     });      
-
   });
-   // $('#office_idoffice').editable({
-   //   url: '/users/edit',
-    
-   // });
   $('#name').editable({
     url: '/users/edit',
     type: 'text',
@@ -61,7 +53,7 @@ $(document).ready(function(){
     name: 'email',
     title: 'Enter email',
   });
-  /*  */
+  /* email valedation */
   $('#email').editable('option', 'validate', function(v) {
     if(!v) return 'الرجاء ادخال بريد اليكتروني';
     var emailReg = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
