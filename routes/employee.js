@@ -5,11 +5,15 @@ var userMgr = require('../app/user').userMgr;
 var centerMgr = require('../app/center').centerMgr;
 var log = require('../app/log').repo;
 var employeeMgr = require('../app/employee').employeeMgr;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 36dc000e0d77faf1f05edf0186cf128e01370b4c
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  employeeMgr.getemployee(req.params.iduser,req.params.level,function(results){
-    res.render('employee',{title: 'الموظفين'});
+  employeeMgr.getemployee(req.session.iduser,req.session.level,function(results){
+    res.render('employee',{title: 'الموظفين',employees:results});
   });
 });
 

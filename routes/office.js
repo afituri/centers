@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
 
 /* get all region name */
 router.get('/getofes', function(req, res) {
-  userMgr.getregion(function(result){
+  officeMgr.getregion(function(result){
     res.send(result);
   })
 });

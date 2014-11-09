@@ -12,14 +12,9 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
-  
-            
-  script(src="/javascripts/jquery-1.11.1.min.js")
-  script(src="/javascripts/bootstrap.min.js")
-      
     .panel.panel-default 
       div.btn-group.pull-left
-          a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة مركز
+          a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة موضف
             span.glyphicon.glyphicon-plus 
         .input-group 
             input.form-control.input-sm(type="text",name="constitres", placeholder=" أبحث", required="")
@@ -32,20 +27,40 @@ block content
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
             thead
               th أسم الموظف
-              th رقم الهاتف 
               th البريد الالكتروني
-              th صفة الموظف
+              th رقم الهاتف
+              th الصفة
               th المركز
+              th تعديل
+              th الغاء 
             tbody
-              for office in offices
+             for employee in employees
                 tr
-                  td #{employees.employee_name}
-                  td #{employees.email}
+                  td #{employee.employee_name}
+                  td #{employee.email}
+                  td #{employee.phone_number}
+                  td 
+                    case employee.type
+                      when 0
+                        p رئيس مركز
+                      when 1
+                        p مدير محطة
+                      when 2
+                        p محقق هوية
+                      when 3
+                        p موزع أوراق الاقتراع
+                      when 4
+                        p مراقب الصندوق
+                      when 5
+                        p منظم الطابور بالمركز
+                      when 6
+                        p منظم الطابور بالمحطة
+                  td #{employee.name}
                   td
-                    button#viw.btn.btn-primary.btn-xs(value="#{office.idoffice}")
+                    button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
                       span.glyphicon.glyphicon-eye-open
                   td      
-                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{office.office_id}")
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
                      span.glyphicon.glyphicon-trash 
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
