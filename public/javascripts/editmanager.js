@@ -8,7 +8,7 @@ $(document).ready(function(){
   $('#enable').click(function() {
     $('#user .editable').editable('toggleDisabled');
   }); 
-  $.get('/admin/getofes',function(result){
+  $.get('/admin/getoffice',function(result){
       for ( var i = 0 ; i< result.length; i++){
         var k = new Object({id : i,value : result[i].idoffice, text : result[i].office_name});
         $.resul.push(k);
