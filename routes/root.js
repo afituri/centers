@@ -2,7 +2,8 @@ var express = require('express');
 var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
-var log = require('../app/log').repo;
+var logMgr = require('../app/log').repoMgr;
+var officeMgr = require('../app/office').officeMgr;
 /* GET home page. */
 router.get('/',userHelpers.isRoot, function(req, res) {
   userMgr.getUsers(function(results){
@@ -11,7 +12,7 @@ router.get('/',userHelpers.isRoot, function(req, res) {
 });
 /* Add user page. */
 router.get('/adduser',userHelpers.isRoot, function(req, res) {
-  userMgr.getOffice(function(result){
+  officeMgr.getOffice(function(result){
     res.render('adduser', { title: 'إضافة مستخدم' , offices : result  });
   });
 });
@@ -25,7 +26,7 @@ router.get('/edituser/:id',userHelpers.isRoot, function(req, res) {
 /* POST adduser form for root */
 router.post('/adduser', userHelpers.isRoot, function(req, res) {
   userHelpers.addUser(req.body, function (results){
-    log.insertLog(req.session.iduser,"add","user"," add new user name : "+results.name,results.id);
+    logMgr.insertLog(req.session.iduser,"add","user"," add new user name : "+results.name,results.id);
     userMgr.getUsers(function(results){
       res.render('root',{title: 'المستخدمين', users : results});
     });
@@ -40,8 +41,8 @@ router.get('/getUser/:id', function(req, res) {
 /* Delete user page. */
 router.get('/deleteUser/:id', function(req, res) {
   userMgr.delUser(req.params.id,function(result){
-    log.insertLog(req.session.iduser,"delete","user"," delete user ",req.params.id);
-    log.insertLog(req.session.iduser,"delete","phone"," delete phones ",req.params.id);
+    logMgr.insertLog(req.session.iduser,"delete","user"," delete user ",req.params.id);
+    logMgr.insertLog(req.session.iduser,"delete","phone"," delete phones ",req.params.id);
 
     res.send(result);
   });

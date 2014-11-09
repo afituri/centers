@@ -2,11 +2,16 @@ var express = require('express');
 var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
-var log = require('../app/log').repo;
+var logMgr = require('../app/log').repoMgr;
+var officeMgr = require('../app/office').officeMgr;
+var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
+var villageMgr = require('../app/village').villageMgr;
+
+
 
 /* GET home office  page. */
 router.get('/', function(req, res) {
-  userMgr.getOffice(function(result){
+  officeMgr.getOffice(function(result){
     res.render('office', { title: "اللجان  الأنتخابية" , offices : result});
   })
 });
@@ -56,7 +61,7 @@ router.get('/subconstituency/village/mahalla/editmahalla', function(req, res) {
 
 /* GET center page. */
 router.get('/subconstituency/village/mahalla/center', function(req, res) {
-  userMgr.getOffice(function(result){
+  officeMgr.getOffice(function(result){
     res.render('center', { title: "المراكز الأنتخابية " , offices : result});
   })
 
@@ -70,23 +75,20 @@ router.get('/subconstituency/village/mahalla/center/editcenter', function(req, r
 /* delete office  */
 router.get('/deleteoffice/:id', function(req, res) {
   console.log("you are in officee.root")
-  userMgr.deloff(req.params.id,function(result){
+  officeMgr.deloff(req.params.id,function(result){
     res.send(result);
   })
 });
 /* get sub subconstituency   */
 router.get('/getsub/:id', function(req, res) {
-  userMgr.getsub(req.params.id,function(result){
+  subconstituencyMgr.getsub(req.params.id,function(result){
     res.send(result);
   })
 });
 /* get village */
 router.get('/getvillage/:id', function(req, res) {
-  userMgr.getvillage(req.params.id,function(result){
+  villageMgr.getvillage(req.params.id,function(result){
     res.send(result);
   })
 });
-
-
-
 module.exports = router;

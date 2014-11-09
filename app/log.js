@@ -1,7 +1,7 @@
 var mysqlMgr = require('./mysql').mysqlMgr,
     util=require('util');
 
-exports.repo = {
+exports.repoMgr = {
  /*report  adding a new user to the system */
   addLog : function(body,id,tabel,idtabel,cb){
     mysqlMgr.connect(function (conn) {

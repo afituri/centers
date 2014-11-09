@@ -4,7 +4,7 @@ var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy,
 easyPbkdf2 = require("easy-pbkdf2")();
 var userMgr = require('../app/user').userMgr;
-var log = require('../app/log').repo;
+var logMgr = require('../app/log').repoMgr;
 var router = express.Router();
 var login = require('../app/login')(router);
 /* GET users listing. */
@@ -54,7 +54,7 @@ function model_step(body,id){
   Step(
     /* SELECT OLD VALUE FROM DB */
     function SelectOld() {
-      log.addLog(body,id,"user","iduser",this);
+      logMgr.addLog(body,id,"user","iduser",this);
     },
     /* UPDATE VALUE */
     function Update(err,result) {
@@ -67,7 +67,7 @@ function model_step(body,id){
       } else {
         flag=true;
       }
-      log.insertLog(id,"edit","user",result,body.pk);
+      logMgr.insertLog(id,"edit","user",result,body.pk);
     }
     );
   return flag;
@@ -77,7 +77,7 @@ function model_step_phone(body,id){
   Step(
     /* SELECT OLD VALUE FROM DB */
     function SelectOldphone() {
-      log.addLog(body,id,"phone","idphone",this);
+      logMgr.addLog(body,id,"phone","idphone",this);
     },
     /* UPDATE VALUE */
     function Updatephone(err,result) {
@@ -90,7 +90,7 @@ function model_step_phone(body,id){
       } else {
         flag=true;
       }
-      log.insertLog(id,"edit","phone",result,body.pk);
+      logMgr.insertLog(id,"edit","phone",result,body.pk);
     }
     );
   return flag;

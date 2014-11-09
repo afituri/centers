@@ -39,19 +39,6 @@ exports.userMgr = {
       });
     });
   },
-  /* editing user's phone*/
-  editphone : function(body,rec,cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `phone` SET `phone_number` = ? WHERE `idphone` = ?',  [body.value,body.pk],  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(null,rec); 
-        }
-      });
-    });
-  },
   /* check if email exists */
   checkEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {
@@ -78,32 +65,6 @@ exports.userMgr = {
       });
     });
   },
-  /* get all centers */
-  getCenters : function(cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `centers` WHERE status = 1 ',  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
-  /* get all centers */
-  getofes : function(cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `idoffice`,`office_name` FROM `office` WHERE status = 1 ',  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
   /* get all region */
   getregion : function(cb){
     mysqlMgr.connect(function (conn) {
@@ -117,49 +78,10 @@ exports.userMgr = {
       });
     });
   },
-  /* get all office */
-  getOffice : function(cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `office` WHERE status = 1 ',  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
-  /* get office by id */
-  getOfficeId : function(id,cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `office` WHERE status = 1 AND idoffice = ? ', id ,  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
   /* get user by id*/
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN phone ON (phone.user_employee = user.iduser )  RIGHT JOIN office ON (office.idoffice = user.office_idoffice)  WHERE user.status = 1 AND user.iduser = ?', id ,  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
-    /* get center by id*/
-  getCenter : function(id,cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `centers` WHERE idcenter = ?',id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -209,19 +131,6 @@ exports.userMgr = {
       });
     });
   },
-    /* delete office by id*/
-  deloff : function(id,cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `office` SET status = 0 WHERE iduser = ?',id,  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
   /* getting user by ID */
   getUserById : function(id,cb){
     mysqlMgr.connect(function (conn) {
@@ -234,33 +143,5 @@ exports.userMgr = {
         }
       });
     });
-  },
-
-  /* get sub subconstituency  by id*/
-  getsub : function(id,cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `subconstituency` WHERE office_idoffice = ?',id,  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
-
-  /* get sub subconstituency  by id*/
-  getvillage : function(id,cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `village` WHERE subconstituency_idsubconstituency = ?',id,  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
+  }, 
 };
