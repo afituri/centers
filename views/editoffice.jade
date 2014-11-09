@@ -46,6 +46,35 @@ block content
             button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
             button.btn.btn-success(data-dismiss='modal', type='button') cancel
 
+  font(size="4", color="black" , font="family" )
+    div.container 
+      button#enable.btn.btn-primary تمكــين / تعطـــيل
+      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="")
+        span.glyphicon.glyphicon-trash
+      .col-lg-1
+      a.btn.btn-primary.pull-left(type="button", href="#") رجـــــوع
+      p
+    div.container
+      div.form-group
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            tr
+              td(width='35%') اسم اللجنه باللغه العربي
+              td(width='65%')
+                a#office_name_ar(href='#', data-type='text', data-pk='#{offices[0].idoffice}', data-title='اسم اللجنه باللغه العربي', data-value='#{offices[0].office_name_ar}')  #{offices[0].office_name_ar}
+                                                            
+            tr
+              td(width='35%') اسم اللجنه باللغه الانجليزيه
+              td(width='65%')
+                a#office_name(href='#', data-type='text', data-pk='', data-title='اسم اللجنه باللغه الانجليزيه', data-value='')  aaaaaaaaaaaaaaaaa
+            tr
+              td(width='35%') رقم اللجنه
+              td(width='65%')
+                a#office_id(href='#', data-type='text', data-pk='', data-title='رقم اللجنه', data-value='')  lllllllllllllllllllll
+            tr
+              td موقع اللجنه
+              td      
+                a#region_name(href='#', data-type='select', data-pk='#{offices[0].idoffice}',  data-title='موقع اللجنه',data-value='#{offices[0].region_name}')  #{offices[0].region_name}
 
  
   script(src="/javascripts/jquery-1.11.1.min.js") 
@@ -54,3 +83,6 @@ block content
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/editmanager.js")
   script(src="/javascripts/admin.js")
+  script(src="/javascripts/editoffice.js")
+  script(src="/javascripts/office.js")
+ 
