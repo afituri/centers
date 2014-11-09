@@ -14,4 +14,11 @@ router.get('/editemployee', function(req, res) {
   res.render('editemployee', { title: "تعديل الموظفين" });
 });
 
+
+/* GET addemployee page. */
+router.get('/addemployee', function(req, res) {
+  res.render('addemployee', { title: "اضافه موظفين" });
+});
+
+
 module.exports = router;
