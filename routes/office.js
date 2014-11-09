@@ -16,11 +16,19 @@ router.get('/', function(req, res) {
   })
 });
 
-/* GET editoffice page. */
-router.get('/editoffice', function(req, res) {
-  res.render('editoffice', { title: "تعديل اللجان  الأنتخابية" });
+/* get all region name */
+router.get('/getofes', function(req, res) {
+  userMgr.getregion(function(result){
+    res.send(result);
+  })
 });
 
+/* GET editoffice by id : page. */
+router.get('/editoffice/:id', function(req, res) {
+  officeMgr.getOfficeId(req.params.id,function(result){
+    res.render('editoffice', { title: "تعديل اللجان  الأنتخابية" , offices : result });
+  });
+});
 /* GET subconstituency page. */
 router.get('/subconstituency', function(req, res) {
   res.render('subconstituency', { title: 'اللجان  الأنتخابية الفرعيه' });
