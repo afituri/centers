@@ -14,6 +14,13 @@ router.get('/editemployee', function(req, res) {
   res.render('editemployee', { title: "تعديل الموظفين" });
 });
 
+/* GET centers. 
+router.get('/getCenters', function(req, res) {
+    userMgr.getCenters(function(result){
+    res.send(result);
+  })
+});
+*/
 
 /* GET addemployee page. */
 router.get('/addemployee', function(req, res) {
