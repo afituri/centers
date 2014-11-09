@@ -26,5 +26,5 @@ exports.centerMgr = {
         }
       });
     });
-  },
+  }
 };
