@@ -5,9 +5,9 @@ exports.userMgr = {
   addUser : function(body,cb){
     mysqlMgr.connect(function (conn) {
       var phone = body.phone;
-      var type = body.typ
+      var type = body.phone_type
       delete body["phone"];
-      delete body["typ"];
+      delete body["phone_type"];
       conn.query('INSERT INTO `user` SET ?',  body,  function(err, result) {
         if(err) {
           util.log(err);
@@ -17,7 +17,7 @@ exports.userMgr = {
             name :body.name
           }
           for (var i=0;i<phone.length;i++) {
-              conn.query('INSERT INTO `phone` SET user_type = 0, phone_number=?,type=?,user_employee =?',[phone[i],type[i],results.id]);           
+              conn.query('INSERT INTO `phone` SET `user_type` = 0, `phone_number` = ?,type=?,`user_employee` =?',[phone[i],type[i],results.id]);           
               }
         conn.release();
 
@@ -42,7 +42,7 @@ exports.userMgr = {
   /* check if email exists */
   checkEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `status` FROM `user` WHERE status = 1 AND`email` = ? ',  email,  function(err, result) {
+      conn.query('SELECT `status` FROM `user` WHERE `status` = 1 AND`email` = ? ',  email,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -81,8 +81,8 @@ exports.userMgr = {
     /* delete user by id*/
   delUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `user` SET status = 0 WHERE iduser = ?',id,  function(err, result) {
-        conn.query('UPDATE `phone` SET status = 0 WHERE user_employee = ?',id);
+      conn.query('UPDATE `user` SET `status` = 0 WHERE `iduser` = ?',id,  function(err, result) {
+        conn.query('UPDATE `phone` SET `status` = 0 WHERE `user_employee` = ?',id);
         conn.release();
         if(err) {
           util.log(err);
@@ -95,7 +95,7 @@ exports.userMgr = {
     /* get Manager*/
   getManager : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone` FROM `user`,`office`,`phone` WHERE office.idoffice = user.office_idoffice AND phone.user_employee = user.iduser AND user.status = 1 AND user.level = 2 group by iduser' ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone` FROM `user`,`office`,`phone` WHERE `office`.`idoffice` = `user`.`office_idoffice` AND `phone`.`user_employee` = `user`.`iduser` AND `user`.`status` = 1 AND `user`.`level` = 2 group by `iduser`' ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -108,7 +108,7 @@ exports.userMgr = {
   /* getting user by email */
   getUserByEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `user` WHERE email = ?',email,  function(err, result) {
+      conn.query('SELECT * FROM `user` WHERE `email` = ?',email,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -121,7 +121,7 @@ exports.userMgr = {
   /* getting user by ID */
   getUserById : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `user` WHERE iduser = ?',id,  function(err, result) {
+      conn.query('SELECT * FROM `user` WHERE `iduser` = ?',id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
