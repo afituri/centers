@@ -5,10 +5,6 @@ var userMgr = require('../app/user').userMgr;
 var centerMgr = require('../app/center').centerMgr;
 var log = require('../app/log').repo;
 var employeeMgr = require('../app/employee').employeeMgr;
-<<<<<<< HEAD
-=======
-
->>>>>>> 36dc000e0d77faf1f05edf0186cf128e01370b4c
 
 /* GET home page. */
 router.get('/', function(req, res) {
