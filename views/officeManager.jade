@@ -20,7 +20,7 @@ block content
                 span.glyphicon.glyphicon-home اللجان الأنتخابية 
             for subb in sub    
               li
-                a(href="http://localhost:3003/office/#{subb.subconstituency_id}") 
+                a(href="http://localhost:3003/office/#{subb.office_idoffice}/#{subb.idsubconstituency}") 
                   span #{subb.subconstituency_name}
         .col-md-9  
           div.btn-group.pull-left

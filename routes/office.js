@@ -19,13 +19,6 @@ router.get('/', function(req, res) {
   });
 });
 
-/* get all region name */
-router.get('/getofes', function(req, res) {
-  officeMgr.getregion(function(result){
-    res.send(result);
-  })
-});
-
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
@@ -35,14 +28,14 @@ router.get('/:oid', function(req, res) {
   })
 });
 
-/* GET editsubconstituency page. */
-router.get('/:oid/:sid/editsubconstituency', function(req, res) {
-  res.render('editsubconstituency', { title: 'تعديل اللجان  الأنتخابية الفرعيه' });
-});
-
 /* GET subconstitunecy page. */
 router.get('/:oid/:sid', function(req, res) {
-  res.render('subconstitunecy', { title: 'تعديل اللجان  الأنتخابية الفرعيه' });
+    villageMgr.getvillage(req.params.oid,function(result){
+      centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
+        res.render('subconstituency', { title: 'تعديل اللجان  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results});
+           console.log(result);
+    })
+  })
 });
 
 
