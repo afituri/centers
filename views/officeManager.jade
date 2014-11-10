@@ -25,10 +25,10 @@ block content
             li.active
               a(href="#") 
                 span.glyphicon.glyphicon-home اللجان الأنتخابية 
-            for office in offices    
+            for subb in sub    
               li
-                a(href="http://localhost:3003/office/#{office.office_id}") 
-                  span #{office.office_name}
+                a(href="http://localhost:3003/office/#{subb.subconstituency_id}") 
+                  span #{subb.subconstituency_name}
         .col-md-9  
           div.btn-group.pull-left
             .col-sm-4.col-md-1
