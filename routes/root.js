@@ -5,9 +5,13 @@ var userMgr = require('../app/user').userMgr;
 var logMgr = require('../app/log').repoMgr;
 var officeMgr = require('../app/office').officeMgr;
 /* GET home page. */
-router.get('/',userHelpers.isRoot, function(req, res) {
-  userMgr.getUsers(function(results){
-    res.render('root',{title: 'المستخدمين', users : results});
+router.get('/', function(req, res) {
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  userMgr.getUsers(limit, function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('root',{title: 'المستخدمين', users : results[0], pagination : pagination});
   });
 });
 /* Add user page. */

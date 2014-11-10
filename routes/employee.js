@@ -3,8 +3,10 @@ var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
 var centerMgr = require('../app/center').centerMgr;
-var log = require('../app/log').repo;
+var logMgr = require('../app/log').repoMgr;
 var employeeMgr = require('../app/employee').employeeMgr;
+var phoneMgr = require('../app/phone').phoneMgr;
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -30,6 +32,12 @@ router.get('/getCenters', function(req, res) {
 /* GET addemployee page. */
 router.get('/addemployee', function(req, res) {
   res.render('addemployee', { title: "اضافه موظفين" });
+});
+/* GET employee phones. */
+router.get('/getphone/:id', function(req, res) {
+  phoneMgr.getphone(req.params.id,function(result){
+    res.send(result);
+  })
 });
 
 module.exports = router;

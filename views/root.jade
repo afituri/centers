@@ -30,24 +30,33 @@ block content
                 th عرض
                 th الغاء 
               tbody
-              for user in users
-                tr
-                  td= user.name
-                  td= user.phone_number
-                  td
-                    case user.level
-                      when 0
-                        p root
-                      when 1
-                        p admin
-                      when 2
-                        p manager
-                  td
-                    button#viw.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
-                      span.glyphicon.glyphicon-eye-open
-                  td      
-                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
-                       span.glyphicon.glyphicon-trash 
+                for user in users
+                  tr
+                    td= user.name
+                    td= user.phone_number
+                    td
+                      case user.level
+                        when 0
+                          p root
+                        when 1
+                          p admin
+                        when 2
+                          p manager
+                    td
+                      button#viw.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
+                         span.glyphicon.glyphicon-trash 
+          div.text-center
+            ul.pagination
+              li(class='#{pagination.previous.disabled}')
+                a(href='?p=#{pagination.previous.n}') السابق
+              for page in pagination.pages
+                li(class="#{page.active}")
+                  a(href='?p=#{page.n}') #{page.n}
+              li(class="#{pagination.next.disabled}")
+                a(href='?p=#{pagination.next.n}') التالي
   #del.modal(data-width='760', tabindex='-1')
     .modal-dialog
       .modal-content

@@ -44,19 +44,10 @@ router.get('/:oid:/:sid/:vid', function(req, res) {
   res.render('village', { title: 'المدينة/القرية' });
 });
 
-/* GET editvillage page. */
-router.get('/:oid:/:sid/:vid/editvillage', function(req, res) {
-  res.render('editvillage', { title: 'تعديل المدينة/القرية' });
-});
 
 /* GET mahalla page. */
 router.get('/:oid/:sid/:vid/:mid', function(req, res) {
   res.render('mahalla', { title: 'المحلة' });
-});
-
-/* GET editmahalla page. */
-router.get('/:oid/:sid/:vid/:mid/editmahalla', function(req, res) {
-  res.render('editmahalla', { title: 'تعديل المحلة' });
 });
 
 /* GET center page. */
@@ -67,10 +58,6 @@ router.get('/:oid/:sid/:vid/:mid/:cid', function(req, res) {
 
 });
 
-/* GET editcenter page. */
-router.get('/:oid:/:sid:/:vid:/:mid:/:cid/editcenter', function(req, res) {
-  res.render('editcenter', { title: 'تعديل المراكز' });
-});
 
 /* delete office  */
 router.get('/:oid:/deleteoffice/', function(req, res) {
