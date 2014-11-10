@@ -5,7 +5,7 @@ exports.employeeMgr = {
   getemployee : function(id,level,id_of,cb){
     mysqlMgr.connect(function (conn) {
       if(level == 0 ){
-        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`idcenter` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =?',id_of,  function(err, result) {
+        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`idcenter` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? GROUP BY `idemployee`',id_of,  function(err, result) {
             conn.release();
             if(err) {
               util.log(err);
@@ -27,17 +27,17 @@ exports.employeeMgr = {
       }     
     });
   },
-   /* get employee by id */
-  getemployee : function(id,cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `employee` WHERE status = 1 AND idemployee = ? ', id ,  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
-    });
-  },
+  //  /* get employee by id */
+  // getemployee : function(id,cb){
+  //   mysqlMgr.connect(function (conn) {
+  //     conn.query('SELECT * FROM `employee` WHERE status = 1 AND idemployee = ? ', id ,  function(err, result) {
+  //       conn.release();
+  //       if(err) {
+  //         util.log(err);
+  //       } else {
+  //         cb(result);
+  //       }
+  //     });
+  //   });
+  // },
 };

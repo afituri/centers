@@ -34,17 +34,14 @@ block content
               th تعديل
               th الغاء 
             tbody
-              - var i = 0
              for employee in employees
-                if i != employee.idemployee
                   tr
                     td #{employee.employee_name}
                     td #{employee.email}
-                      button#b.btn.btn-default(type='button', data-toggle='tooltip', data-placement='top', title= '#{Tooltip on top') Tooltip on top
                     td 
-                       for employ in employees
-                          if employ.idemployee =  employee.idemployee
-                            |#{employ.phone_number}&nbsp;&nbsp;
+                      a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
+                        |#{employee.phone_number}
+                      
                     td 
                       case employee.type
                         when 0
@@ -68,8 +65,6 @@ block content
                     td      
                       button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
                        span.glyphicon.glyphicon-trash 
-                    - i=employee.idemployee
-
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
@@ -80,6 +75,24 @@ block content
                 p 
               .modal-footer
                 button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+                button.btn.btn-success(data-dismiss='modal', type='button') cancel
+        #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-success
+                 p.h1 ارقام الهاتف
+              .modal-body
+                div.panel-body  
+                  div.table-responsive  
+                    table#off.table.table-striped.table-bordered.table-condensed.table-hover
+                      thead
+                        th رقم الهاتف
+                        th النوع
+                      tbody#body
+                            tr
+                              td 
+                              td 
+              .modal-footer
                 button.btn.btn-success(data-dismiss='modal', type='button') cancel
         #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
