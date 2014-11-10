@@ -66,12 +66,12 @@ $(document).ready(function(){
       if(!v) return 'الرجاء ادخال رقم الحساب';
     }
   });
-  $('#subconstituencu_idsubconstituency').editable({
+  $('#subconstituency_idsubconstituency').editable({
     url: '/users/edit',
     type: 'Select',
     pk: 1,
-    name: 'subconstituencu_idsubconstituency',
-    title: 'Enter subconstituencu_idsubconstituency',
+    name: 'subconstituency_idsubconstituency',
+    title: 'Enter subconstituency_idsubconstituency',
     validate: function(v) {
       if(!v) return 'الرجاء ادخال اسم البنك';
     }
@@ -82,11 +82,7 @@ $(document).ready(function(){
     source:[
       {value:0,text:"رئيس مركز"},
       {value:1,text:"مدير محطة"},
-      {value:2,text:"محقق هوية"},
-      {value:3,text:"موزع أوراق الاقتراع"},
-      {value:4,text:"مراقب الصندوق"},
-      {value:5,text:"منظم الطابور بالمركز"},
-      {value:6,text:"منظم الطابور بالمحطة"}
+      {value:3,text:"منظم الطابور بالمحطة"}
     ],
     pk: 1,
     name: 'center_type',
