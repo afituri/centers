@@ -30,7 +30,7 @@ router.get('/getofes', function(req, res) {
 router.get('/:oid', function(req, res) {
   officeMgr.getOffice(function(result){
     centerMgr.getCentersOffice(req.params.oid,function(results){
-      res.render('office', { title: "اللجان  الأنتخابية" , offices : result, centers : results});
+      res.render('officeManager', { title: "اللجان  الأنتخابية" , offices : result, centers : results});
     })
   })
 });
