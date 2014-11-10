@@ -28,9 +28,9 @@ router.get('/getofes', function(req, res) {
 
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
-  officeMgr.getOffice(function(result){
+  subconstituencyMgr.getsub(req.params.oid,function(result){
     centerMgr.getCentersOffice(req.params.oid,function(results){
-      res.render('officeManager', { title: "اللجان  الأنتخابية" , offices : result, centers : results});
+      res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results});
     })
   })
 });

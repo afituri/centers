@@ -4,7 +4,7 @@ exports.subconstituencyMgr = {
   /* get sub subconstituency  by id*/
   getsub : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `subconstituency` WHERE 1office_idoffice1 = ?',id,  function(err, result) {
+      conn.query('SELECT * FROM `subconstituency`  WHERE `status`=1 AND `office_idoffice` = ?',id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
