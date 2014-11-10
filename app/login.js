@@ -38,6 +38,7 @@ module.exports = function (router) {
       req.session.email=user.email;
       req.session.iduser=user.iduser;
       req.session.level=user.level;
+      req.session.office_idoffice=user.office_idoffice;
       res.redirect('/root');
     });
   });

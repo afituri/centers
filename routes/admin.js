@@ -52,8 +52,8 @@ router.get('/deleteUser/:id', function(req, res) {
   })
 });
 /* get oll afeses */
-router.get('/getofes', function(req, res) {
-  officeMgr.getofes(function(result){
+router.get('/getoffice', function(req, res) {
+  officeMgr.getOffice(function(result){
     res.send(result);
   })
 });

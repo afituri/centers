@@ -27,4 +27,17 @@ exports.employeeMgr = {
       }     
     });
   },
+   /* get employee by id */
+  getemployee : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `employee` WHERE status = 1 AND idemployee = ? ', id ,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };
