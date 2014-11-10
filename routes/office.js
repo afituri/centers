@@ -29,7 +29,7 @@ router.get('/getofes', function(req, res) {
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   officeMgr.getOffice(function(result){
-    centerMgr.getCentersOffice(req.params.id,function(results){
+    centerMgr.getCentersOffice(req.params.oid,function(results){
       res.render('office', { title: "اللجان  الأنتخابية" , offices : result, centers : results});
     })
   })
