@@ -1,0 +1,180 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../../../../../images/hnec_logo.png")
+  font(size="4", color="black" , font="family" )
+    div.container 
+      button#enable.btn.btn-primary تمكــين / تعطـــيل
+      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="")
+        span.glyphicon.glyphicon-trash
+      .col-lg-1
+      a.btn.btn-primary.pull-left(type="button", href="#") رجـــــوع
+      p
+    div.container 
+      div.form-group 
+        table#user.table.table-striped.table-bordered.table-condensed.table-hover
+          tbody
+            tr
+              td(width='35%') اسم المركز
+              td(width='65%')
+                a#name(href='#', data-type='text', data-pk='', data-title='اسم المركز' data-value='')  name
+            tr
+              td(width='35%') رقم المركز
+              td(width='65%')
+                a#center_id(href='#', data-type='text', data-pk='', data-title='رقم المركز' data-value='')  center_id 
+            tr
+              td(width='35%') الدائرة الرءيسيه
+              td(width='65%')
+                a#constituency_idconstituency(href='#' , data-type='select', data-pk='', data-title='الدائرة الرءيسيه' data-value='')  constituency_idconstituency
+            tr
+              td(width='35%') اللجنة
+              td(width='65%')
+                a#office_idoffice(href='#', data-type='select', data-pk='', data-title='اللجان', data-value='')  office_idoffice
+            tr
+              td(width='35%') الدائرة الفرعية
+              td(width='65%')
+                a#subconstituency_idsubconstituency(href='#' , data-type='select' ,  data-pk='', data-title='الدائرة الفرعية', data-value='') subconstituency_idsubconstituency
+            tr
+              td القرية / المدينه
+              td
+                a#village_idvillage(href='#', data-type='select', data-pk='', data-value='',  data-title='القرية/المدينه') village_idvillage
+            tr
+              td المحلة
+              td
+                a#mahalla_idmahalla(href='#', data-type='select', data-pk='', data-value='',  data-title='المحلة') mahalla_idmahalla
+            tr
+              td نوع المركز
+              td
+                a#center_type(href='#', data-type='select', data-pk='', data-value='',  data-title='المحلة') center_type
+                  
+    
+      .col-md-12 
+        .panel
+            div.btn-group.pull-left
+              .col-sm-4.col-md-1
+                a.btn.btn-success(href='#addemployee', role='button',data-toggle='modal') إضافة موظف
+                  span.glyphicon.glyphicon-plus 
+            .col-sm-4.col-md-6
+              .input-group 
+                  input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+                  .input-group-btn
+                    .btn.btn-default(type="button")  
+                      spen.glyphicon.glyphicon-search
+
+        .panel-body
+          div.table-responsive
+            table#user.table.table-striped.table-bordered.table-condensed.table-hover
+              thead
+                th أسم الموظف
+                th رقم الهاتف
+                th   عرض 
+                th   حدف
+              tbody
+                      //for office in offices
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+                  tr
+                    td 
+                    td 
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                       span.glyphicon.glyphicon-trash 
+
+  #addemployee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-success
+          button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+          button.close(type="button",data-dismiss="modal",aria-hidden="true")
+          h1 إضافة قرية  
+        .row
+          .col-sm-12.col-md-11.col.col-md.offset-4
+              .modal-body
+                  form#form.form-signin(role="form" , action="#", method="post") 
+                    div.form-group
+                      lable.h3 أسم القرية  
+                      input#village_name.form-control(type="text",name="office_name_ar", placeholder="أسم القرية", required="",autofocus="")                            
+                     div.form-group
+                      lable.h3 الدائرة الأنتخابية التابعة لها  
+                      select#subconstituency_idsubconstituency.form-control(type="text",name="region_name", placeholder="الدائرة الفرعية ", required="",autofocus="")
+                        option(value="") طرابلس  
+                        option(value="") بنغازي 
+                        option(value="") الجبل! 
+                    div.form-group.text-center
+                      button.btn.btn-lg.btn-primary(type="submit") إضـافة        
+
+    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  حدف ؟
+              .modal-body
+                p.h2 هل انت متأكد 
+                p 
+              .modal-footer
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+                button.btn.btn-success(data-dismiss='modal', type='button') cancel
+  
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/center.js")
+  script(src="/javascripts/editcenter.js")
+   
