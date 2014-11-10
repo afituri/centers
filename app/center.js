@@ -17,7 +17,20 @@ exports.centerMgr = {
   /* get all centers */
   getCenters : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `centers` WHERE `status` = 1 ',  function(err, result) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 ',  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /*get centers by office id */
+  getCentersOffice : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= '+id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

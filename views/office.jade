@@ -11,56 +11,45 @@ block content
           a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
-          img(src="/../../images/hnec_logo.png")  
+          img(src="/../../images/hnec_logo.png") 
+  .container      
     .row
-      .col-sm-2
-        .navbar-collapse.collapse.sidebar-navbar-collapse
-          ul.nav.navbar-nav
+        .col-sm-3
+          .nav.nav-pills.nav-stacked
             li.active
-              h4 اللجان الفىعيد
-            li
-              a(href="http://localhost:3003/office/1")
-                span.glyphicon.glyphicon-home شرقية 
-             li
-              a(href="http://localhost:3003/office/2")
-                span.glyphicon.glyphicon-home غربية 
-             li
-              a(href="http://localhost:3003/office/3")
-                span.glyphicon.glyphicon-home جنوبية  
-      .col-md-10  
-        .panel
-            div.btn-group.pull-left
-              .col-sm-4.col-md-1
-                a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
-                  span.glyphicon.glyphicon-plus 
-            .col-sm-4.col-md-6
-              .input-group 
-                  input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
-                  .input-group-btn
-                    .btn.btn-default(type="button")  
-                      spen.glyphicon.glyphicon-search
-        .panel-body
+              a(href="#") 
+                span.glyphicon.glyphicon-home اللجان الأنتخابية 
+            for office in offices    
+              li
+                a(href="http://localhost:3003/office/#{office.office_id}") 
+                  span #{office.office_name}
+        .col-md-9  
+          div.btn-group.pull-left
+            .col-sm-4.col-md-1
+              a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
+                span.glyphicon.glyphicon-plus 
+          .col-md-6
+            .input-group 
+              input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+              .input-group-btn
+                .btn.btn-default(type="button")  
+                  spen.glyphicon.glyphicon-search
           div.table-responsive  
-            table#off.table.table-striped.table-bordered.table-condensed.table-hover
-          .panel-body  
-        div.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
             thead
-              th أسم اللجنة 
-              th رقمه اللجنة 
-              th   عرض 
-              th   حدف
+              th  رقم المركز 
+              th  اسم المركز
+              th   نوع المركز 
+              th  عرض  
             tbody
-              for office in offices
+              for center in centers
                 tr
-                  td #{office.office_name}
-                  td #{office.office_id}
-                  td
-                    button#viw.btn.btn-primary.btn-xs(value="#{office.idoffice}")
-                      span.glyphicon.glyphicon-eye-open
-                  td      
-                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{office.office_id}")
-                     span.glyphicon.glyphicon-trash 
+                  td #{center.center_id}
+                  td #{center.name}
+                  td #{center.center_type}
+                  td 
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{center.center_id}")
+                      span.glyphicon.glyphicon-trash 
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content

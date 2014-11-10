@@ -6,14 +6,17 @@ var logMgr = require('../app/log').repoMgr;
 var officeMgr = require('../app/office').officeMgr;
 var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var villageMgr = require('../app/village').villageMgr;
+var centerMgr = require('../app/center').centerMgr;
 
 
 
 /* GET home office  page. */
 router.get('/', function(req, res) {
   officeMgr.getOffice(function(result){
-    res.render('office', { title: "اللجان  الأنتخابية" , offices : result});
-  })
+    centerMgr.getCenters(function(results){
+      res.render('office', { title: "اللجان  الأنتخابية" , offices : result,centers : results});
+    })
+  });
 });
 
 /* get all region name */
@@ -23,16 +26,12 @@ router.get('/getofes', function(req, res) {
   })
 });
 
-/* GET editoffice by id : page. */
-/*router.get('/editoffice/:id', function(req, res) {
-  officeMgr.getOfficeId(req.params.id,function(result){
-    res.render('editoffice', { title: "تعديل اللجان  الأنتخابية" , offices : result });
-  });
-});*/
-/* GET subconstituency page. */
+/* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   officeMgr.getOffice(function(result){
-    res.render('office', { title: "اللجان  الأنتخابية" , offices : result});
+    centerMgr.getCentersOffice(req.params.id,function(results){
+      res.render('office', { title: "اللجان  الأنتخابية" , offices : result, centers : results});
+    })
   })
 });
 
