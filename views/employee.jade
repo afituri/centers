@@ -34,34 +34,42 @@ block content
               th تعديل
               th الغاء 
             tbody
+              - var i = 0
              for employee in employees
-                tr
-                  td #{employee.employee_name}
-                  td #{employee.email}
-                  td #{employee.phone_number}
-                  td 
-                    case employee.type
-                      when 0
-                        p رئيس مركز
-                      when 1
-                        p مدير محطة
-                      when 2
-                        p محقق هوية
-                      when 3
-                        p موزع أوراق الاقتراع
-                      when 4
-                        p مراقب الصندوق
-                      when 5
-                        p منظم الطابور بالمركز
-                      when 6
-                        p منظم الطابور بالمحطة
-                  td #{employee.name}
-                  td
-                    button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
-                      span.glyphicon.glyphicon-eye-open
-                  td      
-                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
-                     span.glyphicon.glyphicon-trash 
+                if i != employee.idemployee
+                  tr
+                    td #{employee.employee_name}
+                    td #{employee.email}
+                      button#b.btn.btn-default(type='button', data-toggle='tooltip', data-placement='top', title= '#{Tooltip on top') Tooltip on top
+                    td 
+                       for employ in employees
+                          if employ.idemployee =  employee.idemployee
+                            |#{employ.phone_number}&nbsp;&nbsp;
+                    td 
+                      case employee.type
+                        when 0
+                          p رئيس مركز
+                        when 1
+                          p مدير محطة
+                        when 2
+                          p محقق هوية
+                        when 3
+                          p موزع أوراق الاقتراع
+                        when 4
+                          p مراقب الصندوق
+                        when 5
+                          p منظم الطابور بالمركز
+                        when 6
+                          p منظم الطابور بالمحطة
+                    td #{employee.name}
+                    td
+                      button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
+                        span.glyphicon.glyphicon-eye-open
+                    td      
+                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
+                       span.glyphicon.glyphicon-trash 
+                    - i=employee.idemployee
+
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
@@ -109,4 +117,4 @@ block content
                     .modal-footere
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
-  script(src="/javascripts/office.js")
+  script(src="/javascripts/employee.js")

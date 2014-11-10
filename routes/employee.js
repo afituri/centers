@@ -2,14 +2,14 @@ var express = require('express');
 var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
-var centerMgr = require('../app/user').centerMgr;
+var centerMgr = require('../app/center').centerMgr;
 var log = require('../app/log').repo;
 var employeeMgr = require('../app/employee').employeeMgr;
 
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  employeeMgr.getemployee(req.session.iduser,req.session.level,function(results){
+  employeeMgr.getemployee(req.session.iduser,req.session.level,req.session.office_idoffice,function(results){
     res.render('employee',{title: 'الموظفين',employees:results});
   });
 });
