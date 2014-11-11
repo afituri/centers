@@ -36,7 +36,7 @@ block content
                     a#phone(href='#phonee', data-toggle='modal',data-value="#{manager.iduser}")
                       |  #{manager.phone_number}
                   td 
-                    button#viw.btn.btn-primary.btn-xs(  href="/admin/editmanager" data-title='Edit',value="#{manager.iduser}")
+                    button#viw.btn.btn-primary.btn-xs(   data-title='Edit',value="#{manager.iduser}")
                       span.glyphicon.glyphicon-eye-open
 
   #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
