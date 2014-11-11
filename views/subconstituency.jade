@@ -11,44 +11,36 @@ block content
           a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
-          img(src="../../images/hnec_logo.png")
-    ol.breadcrumb
-      li
-        a(href="/office") Office
-        span
-      li.active Subconstituency
-        
-
-    .panel
-        div.btn-group.pull-left
-          .col-sm-4.col-md-1
-            a.btn.btn-success(href='#addsub', role='button',data-toggle='modal') إضافة دائرة فرعية 
-              span.glyphicon.glyphicon-plus 
-        .col-sm-4.col-md-6
-          .input-group 
-              input.form-control(type="text",name="subsearch", placeholder=" أبحث", required="")
+          img(src="/../../images/hnec_logo.png")  
+    .row
+        .panel.col-sm-3
+          .nav.nav-pills.nav-stacked
+            li.active
+              a(href="#") 
+                span.glyphicon.glyphicon-home اللجان الأنتخابية 
+            for village in villages   
+              li
+                a(href="/office/#{officeid}/#{village.subconstituency_idsubconstituency}/#{village.idvillage}") 
+                  span #{village.village_name}
+        .col-md-9 
+          .panel.col-md-6
+            .input-group 
+              input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
               .input-group-btn
                 .btn.btn-default(type="button")  
                   spen.glyphicon.glyphicon-search
-      .panel-body  
-        div.table-responsive  
+          div.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
             thead
-              th رقم الدائرة الفرعية 
-              th اسم الدائرة الفرعية 
-              th   عرض 
-              th   حدف
+              th  رقم المركز 
+              th  اسم المركز
+              th   نوع المركز 
             tbody
-                    //for office in offices
+              for center in centers
                 tr
-                  td 
-                  td 
-                  td
-                    button#viw.btn.btn-primary.btn-xs(value="")
-                      span.glyphicon.glyphicon-eye-open
-                  td      
-                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
-                     span.glyphicon.glyphicon-trash 
+                  td #{center.center_id}
+                  td #{center.name}
+                  td #{center.center_type}
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
@@ -58,35 +50,36 @@ block content
                 p.h2 هل انت متأكد 
                 p 
               .modal-footer
-                button#subdelete.btn.btn-danger(type='button',data-dismiss='modal') حذف
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') حذف
                 button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
-        #addsub.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+        #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
               .modal-headr.modal-header-success
                 button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
                 button.close(type="button",data-dismiss="modal",aria-hidden="true")
-                h1 إضافة دائرة فرعية  
+                h1 إضافة لجنة 
               .row
                 .col-sm-12.col-md-11.col.col-md.offset-4
                     .modal-body
-                form#form.form-signin(role="form" , action="#", method="post") 
+                        form#form.form-signin(role="form" , action="#", method="post") 
                           div.form-group
-                            lable.h3  أسم الدائرة باللغة العربية    
-                            input#subconstituency_name_ar.form-control(type="text",name="office_name_ar", placeholder="أسم القرية ", required="",autofocus="")                            
+                            lable.h3 اسم اللجنة باللغة العربية  
+                            input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="اسم اللجنة باللغة العربية", required="",autofocus="")                            
                           div.form-group
-                            lable.h3  أسم الدائرة الفرعية باللغة الأنجليزية   
-                            input#subconstituency_name.form-control(type="text",name="office_name_ar", placeholder="أسم القرية ", required="",autofocus="")                                                       
+                            lable.h3 اسم اللجنة باللغة  الأنجليزية
+                            input#office_name.form-control(type="text",name="office_name", placeholder="اسم اللجنة باللغة  الأنجليزية", required="",autofocus="")
                           div.form-group
-                            lable.h3  رقم الدائرة الأنتخابية    
-                            input#subconstituency_id.form-control(type="text",name="office_name_ar", placeholder="أسم القرية ", required="",autofocus="")                         
+                            lable.h3 رقم اللجنة 
+                            input#office_id.form-control(type="text",name="office_id", placeholder="رقم اللجنة", required="",autofocus="")
                            div.form-group
-                            lable.h3 الدائرة الفرعية التابعة لها 
-                            select#office_idoffice.form-control(type="text",name="region_name", placeholder=" الدائرة الفرعية ", required="",autofocus="")
-                              option(value="") طرابلس   
-                              option(value="") بنغازي   
-                              option(value="") الجبل   
+                            lable.h3 المنطقة 
+                            select#region_name.form-control(type="text",name="region_name", placeholder="رقم اللجنة", required="",autofocus="")
+                              option(value="") الشرقية 
+                              option(value="") الغربية 
+                              option(value="") الجنوبية 
                           div.form-group.text-center
-                            button.btn.btn-lg.btn-primary(type="submit") إضـافة       
+                            button.btn.btn-lg.btn-primary(type="submit") إضـافة      
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/office.js")

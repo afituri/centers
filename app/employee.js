@@ -68,6 +68,10 @@ exports.employeeMgr = {
   checkEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `status` FROM `employee` WHERE `status` = 1 AND`email` = ? ',  email,  function(err, result) {
+  /* get employee */
+  getEmployee : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `employee` WHERE status = 1 ' ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -77,4 +81,5 @@ exports.employeeMgr = {
       });
     });
   },
+  }
 };
