@@ -11,23 +11,19 @@ block content
           a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
-          img(src="/../../images/hnec_logo.png") 
+          img(src="/../../images/hnec_logo.png")  
     .row
-        .col-sm-3
+        .panel.col-sm-3
           .nav.nav-pills.nav-stacked
             li.active
               a(href="#") 
                 span.glyphicon.glyphicon-home اللجان الأنتخابية 
             for village in villages   
               li
-                a(href="http://localhost:3003/office/#{officeid}/#{village.subconstituency_idsubconstituency}/#{village.idvillage}") 
+                a(href="/office/#{officeid}/#{village.subconstituency_idsubconstituency}/#{village.idvillage}") 
                   span #{village.village_name}
-        .col-md-9  
-          div.btn-group.pull-left
-            .col-sm-4.col-md-1
-              a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
-                span.glyphicon.glyphicon-plus 
-          .col-md-6
+        .col-md-9 
+          .panel.col-md-6
             .input-group 
               input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
               .input-group-btn
@@ -39,16 +35,12 @@ block content
               th  رقم المركز 
               th  اسم المركز
               th   نوع المركز 
-              th  عرض  
             tbody
               for center in centers
                 tr
                   td #{center.center_id}
                   td #{center.name}
                   td #{center.center_type}
-                  td 
-                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{center.center_id}")
-                      span.glyphicon.glyphicon-trash 
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
