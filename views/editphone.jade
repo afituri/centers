@@ -11,8 +11,7 @@ block content
           a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
-          img(src="../images/hnec_logo.png")
-
+          img(src="../../images/hnec_logo.png")
   font(size="4", color="black" , font="family" )
     div.container 
       button#enable.btn.btn-primary تمكــين / تعطـــيل
@@ -26,22 +25,33 @@ block content
         table#user.table.table-bordered.table-striped(style='clear: both')
           tbody
             tr
-              td(width='35%') اسم اللجنه باللغه العربي
+              td(width='35%') اسم الموظف
               td(width='65%')
-                a#name(href='#', data-type='text', data-pk='', data-title='اسم المدير' data-value='')  qqqqqqqqqqqqqqqqq
+                a#employee_name(href='#', data-type='text', data-pk='', data-title='اﻻسم' data-value='')  employee_name
             tr
-              td(width='35%') اسم اللجنه باللغه الانجليزيه
+              td(width='35%') البريد الإلكتروني
               td(width='65%')
-                a#email(href='#', data-type='text', data-pk='', data-title='البريد الالكترونب', data-value='')  aaaaaaaaaaaaaaaaa
+                a#email(href='#', data-type='text', data-pk='', data-title='البريد الإلكتروني' data-value='')  email 
             tr
-              td(width='35%') رقم اللجنه
+              td(width='35%') الرقم الوطني
               td(width='65%')
-                a#phone(href='#', data-type='text', data-pk='', data-title='رقم الهاتف', data-value='')  lllllllllllllllllllll
+                a#nid(href='#', data-type='text', data-pk='', data-title='الرقم الوطني' data-value='')  nid
             tr
-              td موقع اللجنه
+              td(width='35%') اسم البنك
+              td(width='65%')
+                a#bank_name(href='#', data-type='text', data-pk='', data-title='اسم البنك', data-value='')  bank_name
+            tr
+              td(width='35%') رقم الحساب
+              td(width='65%')
+                a#account_number(href='#', data-type='text', data-pk='', data-title='رقم الحساب', data-value='') account_number 
+            tr
+              td الصفة
               td
-                a#level1(href='#', data-type='select', data-pk='', 
-                data-value='',  data-title='اللجان')
+                a#type(href='#', data-type='select', data-pk='', data-value='',  data-title='الصفة') type
+            tr
+              td اسم المركز
+              td
+                a#center_idcenter(href='#', data-type='select', data-pk='', data-value='',  data-title='اسم المركز') center_idcenter
                   
 
     #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
@@ -60,6 +70,6 @@ block content
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
-  script(src="/javascripts/editmanager.js")
   script(src="/javascripts/admin.js")
- 
+  script(src="/javascripts/editemployee.js")
+   
