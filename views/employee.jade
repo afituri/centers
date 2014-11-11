@@ -74,13 +74,13 @@ block content
                 p.h2 هل انت متأكد 
                 p 
               .modal-footer
-                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
+                button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal') delete
                 button.btn.btn-success(data-dismiss='modal', type='button') cancel
         #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
               .modal-headr.modal-header-success
-                 p.h1 ارقام الهاتف
+                 p.h1 ارقام الهواتف
               .modal-body
                 div.panel-body  
                   div.table-responsive  
@@ -89,9 +89,7 @@ block content
                         th رقم الهاتف
                         th النوع
                       tbody#body
-                            tr
-                              td 
-                              td 
+                            
               .modal-footer
                 button.btn.btn-success(data-dismiss='modal', type='button') cancel
         #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")

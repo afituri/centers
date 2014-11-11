@@ -46,7 +46,7 @@ block content
           //Select for choose manager of constituencies
           div.form-group
             font(size="4", color="black" , face="cursive" )
-              select.form-control#constit(name="constit")
+              select.form-control#constit(name="office_idoffice")
                 option(value="-1", selected="selected") اللجان الانتخابية
                 for office in offices
                   option(value=office.idoffice) #{office.office_name}
