@@ -27,4 +27,17 @@ exports.phoneMgr = {
       });
     });
   },
+  /* get phone by id for manager*/
+  getPhoneManager : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `phone_number`,`type` FROM `phone` WHERE `status`=1 AND `user_type`=0 AND `user_employee` = ?',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result); 
+        }
+      });
+    });
+  },
 };
