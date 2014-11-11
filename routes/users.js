@@ -9,8 +9,11 @@ var router = express.Router();
 var login = require('../app/login')(router);
 /* GET users listing. */
 router.get('/', function(req, res) {
-  res.send('respond with a resource');
+  userMgr.getUsers(function(results){
+    res.send('users',{title: 'الــمأســتـخـدمـيـــن', users : results});
+  });
 });
+
 router.get('/login', function(req, res) {
   res.render('login',{ title: 'تسجيل الدخول' });
 });
