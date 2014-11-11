@@ -68,7 +68,7 @@ exports.userMgr = {
   /* get user by id*/
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN phone ON (phone.user_employee = user.iduser )  RIGHT JOIN office ON (office.idoffice = user.office_idoffice)  WHERE user.status = 1 AND user.iduser = ?', id ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM phone,user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1)  WHERE phone.user_employee = user.iduser AND user.status = 1 AND phone.status = 1 AND user.iduser = ?', id ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
