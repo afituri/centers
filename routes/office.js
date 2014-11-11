@@ -30,9 +30,9 @@ router.get('/:oid', function(req, res) {
 
 /* GET subconstitunecy page. */
 router.get('/:oid/:sid', function(req, res) {
-    villageMgr.getvillage(req.params.oid,function(result){
+    villageMgr.getvillage(req.params.sid,function(result){
       centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
-        res.render('subconstituency', { title: 'تعديل اللجان  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results});
+        res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results});
            console.log(result);
     })
   })
