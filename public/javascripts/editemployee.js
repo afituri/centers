@@ -1,13 +1,13 @@
 $(document).ready(function(){
   $.resul=new Array();
   /* disabled  editable*/
-  // var defaults = {
-  //       disabled: true,
-  //     };
-  // $.extend($.fn.editable.defaults, defaults);
+  var defaults = {
+        disabled: true,
+      };
+  $.extend($.fn.editable.defaults, defaults);
   
   $('#enable').click(function() {
-    $('#user.editable').editable('toggleDisabled');
+    $('#user .editable').editable('toggleDisabled');
   }); 
   
   $.get('/employee/getCenters',function(result){
