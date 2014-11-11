@@ -53,5 +53,19 @@ exports.centerMgr = {
         }
       });
     });
-  }
+  },
+  /*Search Centers by id*/
+  searchByCenterId : function(id,cb){
+    id = id+"%";
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `center_id` LIKE ? ',id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };
