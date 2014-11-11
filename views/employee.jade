@@ -41,7 +41,6 @@ block content
                     td 
                       a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
                         |#{employee.phone_number}
-                      
                     td 
                       case employee.type
                         when 0
@@ -111,8 +110,16 @@ block content
                             lable.h3 البريد الالكتروني
                             input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="البريد الالكتروني", required="",autofocus="")      
                           div.form-group
-                            lable.h3 رقم الهاتف 
-                            input#office_id.form-control(type="text",name="office_id", placeholder="رقم الهاتف ", required="",autofocus="")
+                            lable رقم الهاتف
+                            .form-group.multiple-form-group.input-group
+                              .input-group-btn.input-group-select
+                                select#typ.form-control(name="phone_type[]")
+                                  option(value="ليبيانا") ليبيانا
+                                  option(value="المدار") المدار
+                                  option(value="ثريا") ثريا
+                              input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                              span.input-group-btn
+                                button.btn.btn-success.btn-add(type='button') +
                            div.form-group
                             lable.h3 صفة الموظف
                             select#region_name.form-control(type="text",name="region_name", placeholder="صفة الموظف", required="",autofocus="")
@@ -129,3 +136,5 @@ block content
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/employee.js")
+  script(src="/javascripts/phone.js")
+

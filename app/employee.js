@@ -64,10 +64,6 @@ exports.employeeMgr = {
       });
     });
   },
-  /* check if email exists */
-  checkEmail : function(email,cb){
-    mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `status` FROM `employee` WHERE `status` = 1 AND`email` = ? ',  email,  function(err, result) {
   /* get employee */
   getEmployee : function(id,cb){
     mysqlMgr.connect(function (conn) {
@@ -81,5 +77,17 @@ exports.employeeMgr = {
       });
     });
   },
-  }
+  /* check if email exists */
+  checkEmail : function(email,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `status` FROM `employee` WHERE `status` = 1 AND`email` = ? ',  email,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };
