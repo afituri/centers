@@ -13,7 +13,7 @@ block content
         a(href="/")
           img(src="/../../images/hnec_logo.png") 
     .row
-        .panel.col-sm-3
+        .col-sm-3
           .nav.nav-pills.nav-stacked
             li.active
               a(href="#") 
@@ -23,33 +23,32 @@ block content
                 a(href="http://localhost:3003/office/#{office.idoffice}") 
                   span #{office.office_name}
         .col-md-9  
-          .panel.col-md-6
+          div.btn-group.pull-left
+            .col-sm-4.col-md-1
+              a.btn.btn-success(href='#addvillage', role='button',data-toggle='modal') إضافة قرية
+                span.glyphicon.glyphicon-plus 
+          .col-md-6
             .input-group 
-              input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+              input.form-control(type="text",name="idcenter",id = "idcenter")
               .input-group-btn
                 .btn.btn-default(type="button")  
                   spen.glyphicon.glyphicon-search
-          .table-responsive  
-            table#off.table.table-striped.table-bordered.table-condensed.table-hover
-              thead
-                th  رقم المركز 
-                th  اسم المركز
-                th   نوع المركز 
-              tbody
-                for center in centers
-                  tr
-                    td #{center.center_id}
-                    td #{center.name}
-                    td #{center.center_type}  
-          //- div.text-center
-          //-   ul.pagination
-          //-     li(class='#{pagination.previous.disabled}')
-          //-       a(href='?p=#{pagination.previous.n}') السابق
-          //-     for page in pagination.pages
-          //-       li(class="#{page.active}")
-          //-         a(href='?p=#{page.n}') #{page.n}
-          //-     li(class="#{pagination.next.disabled}")
-          //-       a(href='?p=#{pagination.next.n}') التالي
+          div.table-responsive  
+          table#off.table.table-striped.table-bordered.table-condensed.table-hover
+            thead
+              th  رقم المركز 
+              th  اسم المركز
+              th   نوع المركز 
+              th  عرض  
+            tbody#centers
+              for center in centers
+                tr
+                  td #{center.center_id}
+                  td #{center.name}
+                  td #{center.center_type}
+                  td 
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{center.center_id}")
+                      span.glyphicon.glyphicon-trash 
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content

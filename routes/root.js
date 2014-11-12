@@ -23,7 +23,6 @@ router.get('/adduser',userHelpers.isRoot, function(req, res) {
 /* Edit user page. */
 router.get('/edituser/:id',userHelpers.isRoot, function(req, res) {
   userMgr.getUser(req.params.id,function(result){
-    console.log("im in root"+result);
     res.render('edituser',{title: 'تعديل مستجدم', user : result});
   });
 });
@@ -31,9 +30,7 @@ router.get('/edituser/:id',userHelpers.isRoot, function(req, res) {
 router.post('/adduser', userHelpers.isRoot, function(req, res) {
   userHelpers.addUser(req.body, function (results){
     logMgr.insertLog(req.session.iduser,"add","user"," add new user name : "+results.name,results.id);
-    userMgr.getUsers(function(results){
-      res.render('root',{title: 'المستخدمين', users : results});
-    });
+    res.redirect('/root');
   });
 });
 /* get userby id form for root */

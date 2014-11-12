@@ -13,7 +13,7 @@ block content
         a(href="/")
           img(src="../images/hnec_logo.png")    
   div.container    
-    button#enable.btn.btn-default enable / disable
+    button#enable.btn.btn-primary enable / disable
     button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal',value="#{user[0].iduser}")
        span.glyphicon.glyphicon-trash 
     table#user.table.table-bordered.table-striped(style='clear: both')
@@ -33,13 +33,14 @@ block content
                 a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
                 &nbsp;&nbsp;       
         tr
-          td الصلاحية
+          td الصلاحية #{user[0].level}
           td
-            a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')       
-        tr
-          td الصلاحية
-          td
-            a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
+            a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')  
+        if user[0].level == 2   
+          tr
+            td المركز
+            td
+              a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
   #del.modal(data-width='760', tabindex='-1')
     .modal-dialog
       .modal-content

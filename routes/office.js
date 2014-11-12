@@ -20,6 +20,13 @@ router.get('/', function(req, res) {
   });
 });
 
+/* Search by center id */
+router.get('/searchByCenterId/:id', function(req, res) {
+  centerMgr.searchByCenterId(req.params.id,function(results){
+    res.send(results);
+  })
+});
+
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
