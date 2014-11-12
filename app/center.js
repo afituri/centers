@@ -30,7 +30,7 @@ exports.centerMgr = {
   /*get centers by office id */
   getCentersOffice : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= '+id,  function(err, result) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?', [id] ,function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -53,6 +53,15 @@ exports.centerMgr = {
       });
     });
   },
+  getCentersvillage : function(id,cid,vid,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?  AND`subconstituency_idsubconstituency`= ? AND `mahalla_idmahalla`= ? ',[id,cid,vid],  function(err, result) {
+        conn.release();
+        console.log(id+"  "+cid+"  "+vid);
+        });
+    });
+  },
+
   /*Search Centers by id*/
   searchByCenterId : function(id,cb){
     id = id+"%";
@@ -66,5 +75,5 @@ exports.centerMgr = {
         }
       });
     });
-  },
+  }
 };
