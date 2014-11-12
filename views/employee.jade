@@ -102,27 +102,45 @@ block content
               .row
                 .col-sm-12.col-md-11.col.col-md.offset-4
                     .modal-body
-                        form#form.form-signin(role="form" , action="#", method="post")   
+                        form#form.form-signin(role="form" , action="/employee/addemployee", method="post")   
                           div.form-group
                             lable.h3 اسم الموظف
                             input#employee_name.form-control(type="text",name="employee_name", placeholder="اسم الموظف", required="",autofocus="")
                           div.form-group
                             lable.h3 البريد الالكتروني
-                            input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="البريد الالكتروني", required="",autofocus="")      
+                            input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني", required="",autofocus="") 
+                          div.form-group
+                            lable.h3 الرقم الوطني
+                            input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
+                          div.form-group
+                            lable.h3 اسم المصرف
+                            input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
+                          div.form-group
+                            lable.h3 رقم الحساب
+                            input#account_number.form-control(type="text",name="account_number", placeholder="رقم الحساب",autofocus="")
                           div.form-group
                             lable رقم الهاتف
                             .form-group.multiple-form-group.input-group
                               .input-group-btn.input-group-select
-                                select#typ.form-control(name="phone_type[]")
+                                select#phone_type.form-control(name="phone_type[]")
                                   option(value="ليبيانا") ليبيانا
                                   option(value="المدار") المدار
                                   option(value="ثريا") ثريا
                               input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
                               span.input-group-btn
                                 button.btn.btn-success.btn-add(type='button') +
-                           div.form-group
+                          div.form-group
+                            lable.h3 اللجان
+                            select#office_idoffice.form-control(name="office_idoffice", required="",autofocus="")
+                          div.form-group
+                            lable.h3 الدائرة الفرعية
+                            select#subconstituency_idsubconstituency.form-control(name="subconstituency_idsubconstituency", placeholder="صفة الموظف", required="",autofocus="")
+                          div.form-group
+                            lable.h3 المركز
+                            select#center_idcenter.form-control(name="center_idcenter", placeholder="صفة الموظف", required="",autofocus="")
+                          div.form-group
                             lable.h3 صفة الموظف
-                            select#region_name.form-control(type="text",name="region_name", placeholder="صفة الموظف", required="",autofocus="")
+                            select#type.form-control(name="type", placeholder="صفة الموظف", required="",autofocus="")
                               option(value="0") رئيس مركز
                               option(value="1") مدير محطة
                               option(value="2") محقق هوية 
@@ -137,4 +155,5 @@ block content
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/employee.js")
   script(src="/javascripts/phone.js")
+  script(src="/javascripts/addemployee.js")
 
