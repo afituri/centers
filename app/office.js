@@ -53,4 +53,28 @@ exports.officeMgr = {
       });
     });
   },
+  /* get office for admin or manager */
+  getOfficeManager : function(level,office,cb){
+    mysqlMgr.connect(function (conn) {
+      if(level == 2){
+        conn.query('SELECT * FROM `office` WHERE status = 1 AND idoffice = ? ', office ,  function(err, result) {
+          conn.release();
+          if(err) {
+            util.log(err);
+          } else {
+            cb(result);
+          }
+        });
+      }else{
+        conn.query('SELECT * FROM `office` WHERE status = 1',function(err, result) {
+          conn.release();
+          if(err) {
+            util.log(err);
+          } else {
+            cb(result);
+          }
+        });
+      }
+    });
+  },
 };
