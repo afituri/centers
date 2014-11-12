@@ -42,7 +42,15 @@ block content
                 td      
                     button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
                       span.glyphicon.glyphicon-trash 
-  
+        div.text-center
+            ul.pagination
+              li(class='#{pagination.previous.disabled}')
+                a(href='?p=#{pagination.previous.n}') السابق
+              for page in pagination.pages
+                li(class="#{page.active}")
+                  a(href='?p=#{page.n}') #{page.n}
+              li(class="#{pagination.next.disabled}")
+                a(href='?p=#{pagination.next.n}') التالي
   #del.modal(data-width='760', tabindex='-1')
     .modal-dialog
       .modal-content

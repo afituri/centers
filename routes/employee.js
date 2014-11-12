@@ -13,8 +13,12 @@ var Step = require('step');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  employeeMgr.getemployees(req.session.iduser,req.session.level,req.session.office_idoffice,function(results){
-    res.render('employee',{title: 'الموظفين',employees:results});
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  employeeMgr.getemployees(limit,req.session.iduser,req.session.level,req.session.office_idoffice,function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('employee',{title: 'الموظفين',employees:results[0], pagination : pagination});
   });
 });
 

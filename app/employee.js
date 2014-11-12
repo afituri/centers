@@ -2,10 +2,10 @@ var mysqlMgr = require('./mysql').mysqlMgr,
   util=require('util');
 exports.employeeMgr = {
   /* get employee fro manager or root or admin */
-  getemployees : function(id,level,id_of,cb){
+  getemployees : function(limit,id,level,id_of,cb){
     mysqlMgr.connect(function (conn) {
       if(level == 2 ){
-        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? GROUP BY `idemployee`',id_of,  function(err, result) {
+        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? GROUP BY `idemployee`limit ?,10; SELECT COUNT(*) as cnt FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? GROUP BY `idemployee`;',[id_of,limit,id_of],  function(err, result) {
             conn.release();
             if(err) {
               util.log(err);
@@ -15,7 +15,7 @@ exports.employeeMgr = {
                   
         });
       }else{
-        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 GROUP BY `idemployee`',  function(err, result) {
+        conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 GROUP BY `idemployee` limit ?,10; SELECT COUNT(*) as cnt FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 GROUP BY `idemployee`;',limit, function(err, result) {
           conn.release();
           if(err) {
             util.log(err);
