@@ -106,7 +106,7 @@ $(document).ready(function(){
   $('#deleteemployee').click(function() {
     var id = $(this).val();
     $.get('/employee/deleteemployee/'+id, function(result){
-      window.location.href="http://localhost:3003/employee";
+      window.location.href="/employee";
     });
   });
 });

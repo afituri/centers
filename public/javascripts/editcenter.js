@@ -115,7 +115,7 @@ $(document).ready(function(){
   });
 
 
-  $("a[id^='phone_number']" ).editable({
+  $("a[id^='phone_number']").editable({
     url: '/users/edit',
     type: 'text',
     pk: 1,
