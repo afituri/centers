@@ -7,6 +7,7 @@ var officeMgr = require('../app/office').officeMgr;
 var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var villageMgr = require('../app/village').villageMgr;
 var centerMgr = require('../app/center').centerMgr;
+var mahallaMgr = require('../app/mahalla').mahallaMgr;
 
 
 
@@ -39,9 +40,14 @@ router.get('/:oid/:sid', function(req, res) {
 });
 
 
-/* GET village page. */
+  /* GET village page. */
 router.get('/:oid:/:sid/:vid', function(req, res) {
-  res.render('village', { title: 'المدينة/القرية' });
+  console.log("welcome to get village ");
+    mahallaMgr.getmahalla(req.params.vid,function(result){
+      centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
+        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.id , subbid  : req.params.sid , mahallas : result , centers : results});
+    })
+  })        
 });
 
 
