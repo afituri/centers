@@ -99,4 +99,14 @@ $(document).ready(function(){
       return res.msg;
     }
   });
+  $('#delete').click(function() {
+    var id = $(this).val();
+    $('#deleteemployee').val(id);
+  });
+  $('#deleteemployee').click(function() {
+    var id = $(this).val();
+    $.get('/employee/deleteemployee/'+id, function(result){
+      window.location.href="http://localhost:3003/employee";
+    });
+  });
 });

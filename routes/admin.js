@@ -9,8 +9,12 @@ var phoneMgr = require('../app/phone').phoneMgr;
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  userMgr.getManager(function(results){
-    res.render('admin',{title: 'المدراء', users : results});
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  userMgr.getManager(limit, function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('admin',{title: 'المدراء', users : results[0], pagination : pagination});
   })
 });
 

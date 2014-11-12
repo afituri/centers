@@ -8,8 +8,6 @@ var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var villageMgr = require('../app/village').villageMgr;
 var centerMgr = require('../app/center').centerMgr;
 var mahallaMgr = require('../app/mahalla').mahallaMgr;
-
-
 /* GET center page. */
 router.get('/centerViews', function(req, res) {
   centerMgr.getCenters(function(result){
