@@ -9,8 +9,6 @@ var villageMgr = require('../app/village').villageMgr;
 var centerMgr = require('../app/center').centerMgr;
 var mahallaMgr = require('../app/mahalla').mahallaMgr;
 
-
-
 /* GET home office  page. */
 router.get('/', function(req, res) {
   officeMgr.getOffice(function(result){
@@ -46,8 +44,7 @@ router.get('/:oid/:sid', function(req, res) {
   })
 });
 
-
-  /* GET village page. */
+/* GET village page. */
 router.get('/:oid:/:sid/:vid', function(req, res) {
   console.log("welcome to get village ");
     mahallaMgr.getmahalla(req.params.vid,function(result){
@@ -57,20 +54,18 @@ router.get('/:oid:/:sid/:vid', function(req, res) {
   })        
 });
 
-
 /* GET mahalla page. */
 router.get('/:oid/:sid/:vid/:mid', function(req, res) {
   res.render('mahalla', { title: 'المحلة' });
 });
 
 /* GET center page. */
-router.get('/:oid/:sid/:vid/:mid/:cid', function(req, res) {
+router.get('/center/:cid', function(req, res) {
   officeMgr.getOffice(function(result){
     res.render('center', { title: "المراكز الأنتخابية " , offices : result});
   })
 
 });
-
 
 /* delete office  */
 router.get('/:oid:/deleteoffice/', function(req, res) {
