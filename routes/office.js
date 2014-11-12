@@ -45,10 +45,8 @@ router.get('/:oid/:sid', function(req, res) {
 });
 /* GET village page. */
 router.get('/:oid/:sid/:vid', function(req, res) {
-  console.log("welcome to get village ");
     mahallaMgr.getmahalla(req.params.vid,function(result){
       centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
-        console.log(req.params.vid);
         res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results});
     })
   })        

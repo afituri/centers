@@ -55,7 +55,7 @@ exports.centerMgr = {
   },
   getCentersvillage : function(id,cid,vid,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?  AND`subconstituency_idsubconstituency`= ? AND `mahalla_idmahalla`= ? ',[id,cid,vid],  function(err, result) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?  AND`subconstituency_idsubconstituency`= ? AND `village_idvillage`= ? ',[id,cid,vid],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
