@@ -8,6 +8,8 @@ var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var villageMgr = require('../app/village').villageMgr;
 var centerMgr = require('../app/center').centerMgr;
 var mahallaMgr = require('../app/mahalla').mahallaMgr;
+
+
 /* GET center page. */
 router.get('/centerViews', function(req, res) {
   centerMgr.getCenters(function(result){
@@ -73,11 +75,11 @@ router.get('/:oid/:sid', function(req, res) {
   })
 });
 /* GET village page. */
-router.get('/:oid:/:sid/:vid', function(req, res) {
+router.get('/:oid/:sid/:vid', function(req, res) {
   console.log("welcome to get village ");
     mahallaMgr.getmahalla(req.params.vid,function(result){
       centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
-        console.log(results)
+        console.log(req.params.vid);
         res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results});
     })
   })        
@@ -85,12 +87,9 @@ router.get('/:oid:/:sid/:vid', function(req, res) {
 
 /* GET mahalla page. */
 router.get('/:oid/:sid/:vid/:mid', function(req, res) {
-    mahallaMgr.getmahalla(req.params.vid,function(result){
-      centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(results){
-        console.log(results)
-        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results});
-    })
-  })  
+  centerMgr.getCentersmahlla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(results){
+    res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : results});
+  })
 });
 
 /* delete office  */

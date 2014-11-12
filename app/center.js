@@ -78,5 +78,18 @@ exports.centerMgr = {
         }
       });
     });
-  }
+  },
+  getCentersmahlla : function(id,cid,vid,mid,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?  AND`subconstituency_idsubconstituency`= ? AND `mahalla_idmahalla`= ? `mahalla_idmahalla`= ? ',[id,cid,vid,mid],  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+
 };
