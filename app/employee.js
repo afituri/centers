@@ -5,7 +5,7 @@ exports.employeeMgr = {
   getemployees : function(id,level,id_of,cb){
     mysqlMgr.connect(function (conn) {
       if(level == 2 ){
-        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`idcenter` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? GROUP BY `idemployee`',id_of,  function(err, result) {
+        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? GROUP BY `idemployee`',id_of,  function(err, result) {
             conn.release();
             if(err) {
               util.log(err);
@@ -15,7 +15,7 @@ exports.employeeMgr = {
                   
         });
       }else{
-        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`idcenter` = `e`.`center_idcenter` AND `e`.`status`= 1 GROUP BY `idemployee`',  function(err, result) {
+        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 GROUP BY `idemployee`',  function(err, result) {
           conn.release();
           if(err) {
             util.log(err);
@@ -86,6 +86,32 @@ exports.employeeMgr = {
           util.log(err);
         } else {
           cb(result);
+        }
+      });
+    });
+  },
+  addemployee :function(body,cb){
+    mysqlMgr.connect(function (conn) {
+      var phone = body.phone;
+      var type = body.phone_type
+      delete body["phone"];
+      delete body["phone_type"];
+      delete body["office_idoffice"];
+      delete body["subconstituency_idsubconstituency"];
+      conn.query('INSERT INTO `employee` SET ?',  body,  function(err, result) {
+        if(err) {
+          util.log(err);
+        } else {
+          var results={
+            id:result.insertId,
+            name :body.employee_name
+          }
+          for (var i=0;i<phone.length;i++) {
+              conn.query('INSERT INTO `phone` SET `user_type` = 1, `phone_number` = ?,type=?,`user_employee` =?',[phone[i],type[i],results.id]);           
+              }
+        conn.release();
+
+          cb(results); 
         }
       });
     });

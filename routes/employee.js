@@ -6,6 +6,8 @@ var centerMgr = require('../app/center').centerMgr;
 var logMgr = require('../app/log').repoMgr;
 var employeeMgr = require('../app/employee').employeeMgr;
 var phoneMgr = require('../app/phone').phoneMgr;
+var officeMgr = require('../app/office').officeMgr;
+var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var Step = require('step');
 
 
@@ -30,9 +32,12 @@ router.get('/getCenters', function(req, res) {
   })
 });
 
-/* GET addemployee page. */
-router.get('/addemployee', function(req, res) {
-  res.render('addemployee', { title: "اضافه موظفين" });
+/* add employee. */
+router.post('/addemployee', userHelpers.isRoot, function(req, res) {
+  employeeMgr.addemployee(req.body, function (results){
+    logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id);
+    res.redirect('/employee');
+  });
 });
 /* GET employee phones. */
 router.get('/getphone/:id', function(req, res) {
@@ -48,7 +53,24 @@ router.get('/deleteemployee/:id', function(req, res) {
     res.send(result);
   })
 });
-
+/* get offise  . */
+router.get('/getoffice', function(req, res) {
+  officeMgr.getOfficeManager(req.session.level,req.session.office_idoffice,function(result){
+    res.send(result);
+  })
+});
+/* get subconstituency  . */
+router.get('/getsubconstituency/:id', function(req, res) {
+  subconstituencyMgr.getsub(req.params.id,function(result){
+    res.send(result);
+  })
+});
+/* get center  . */
+router.get('/getcenter/:ido/:ids', function(req, res) {
+  centerMgr.getCentersSub(req.params.ido,req.params.ids,function(result){
+    res.send(result);
+  })
+});
 /* Edit employee . */
 router.post('/edit', function(req, res) {
   if(req.body.name=="phone_number"){
