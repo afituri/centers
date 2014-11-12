@@ -30,7 +30,7 @@ $(document).ready(function(){
           }
         }
       },
-      phone: {
+      'phone[]': {
         required: true,
 		    minlength: 10,
 		    number: true
@@ -51,7 +51,7 @@ $(document).ready(function(){
       constit: {
         selectValidat: "الرجاء الاختيار ",
       },
-      phone: {
+      'phone[]': {
         required: "الرجاء ادخال رقم الهاتف",
         minlength: " يجب أن يكون الهاتف لا يقل عن 10 ارقام ",
         number: "الرجاء ادخال رقم الهاتف ",

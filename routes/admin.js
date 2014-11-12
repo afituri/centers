@@ -27,8 +27,12 @@ router.get('/phoneEmployee', function(req, res) {
 
 /* GET phoneManager page. */
 router.get('/phoneManager', function(req, res) {
-  userMgr.getManager(function(result){
-    res.render('phoneManager',{title: 'ارقام هواتف المدراء', managers : result});
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  userMgr.getManager(limit, function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('phoneManager',{title: 'ارقام هواتف المدراء', managers : results[0], pagination : pagination});
   });
 });
 
