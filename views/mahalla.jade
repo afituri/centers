@@ -37,45 +37,9 @@ block content
                   td #{center.center_id}
                   td #{center.name}
                   td #{center.center_type}
-        #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-          .modal-dialog
-            .modal-content
-              .modal-headr.modal-header-danger
-                 p.h1 هل أنت متأكد من  حدف ؟
-              .modal-body
-                p.h2 هل انت متأكد 
-                p 
-              .modal-footer
-                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') حذف
-                button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
-        #addoffice.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-          .modal-dialog
-            .modal-content
-              .modal-headr.modal-header-success
-                button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
-                button.close(type="button",data-dismiss="modal",aria-hidden="true")
-                h1 إضافة لجنة 
-              .row
-                .col-sm-12.col-md-11.col.col-md.offset-4
-                    .modal-body
-                        form#form.form-signin(role="form" , action="#", method="post") 
-                          div.form-group
-                            lable.h3 اسم اللجنة باللغة العربية  
-                            input#office_name_ar.form-control(type="text",name="office_name_ar", placeholder="اسم اللجنة باللغة العربية", required="",autofocus="")                            
-                          div.form-group
-                            lable.h3 اسم اللجنة باللغة  الأنجليزية
-                            input#office_name.form-control(type="text",name="office_name", placeholder="اسم اللجنة باللغة  الأنجليزية", required="",autofocus="")
-                          div.form-group
-                            lable.h3 رقم اللجنة 
-                            input#office_id.form-control(type="text",name="office_id", placeholder="رقم اللجنة", required="",autofocus="")
-                           div.form-group
-                            lable.h3 المنطقة 
-                            select#region_name.form-control(type="text",name="region_name", placeholder="رقم اللجنة", required="",autofocus="")
-                              option(value="") الشرقية 
-                              option(value="") الغربية 
-                              option(value="") الجنوبية 
-                          div.form-group.text-center
-                            button.btn.btn-lg.btn-primary(type="submit") إضـافة      
+                  td 
+                    button#view.btn.btn-primary.btn-xs(href='/center/#{center.center_id}', data-toggle='modal',value="#{center.center_id}")
+                      span.glyphicon.glyphicon-eye-open 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/office.js")

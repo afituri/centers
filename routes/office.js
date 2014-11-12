@@ -17,14 +17,12 @@ router.get('/', function(req, res) {
     })
   });
 });
-
-/* Search by center id */
-router.get('/searchByCenterId/:id', function(req, res) {
-  centerMgr.searchByCenterId(req.params.id,function(results){
-    res.send(results);
+/*center*/
+router.get('/center/:cid', function(req, res) {
+  centerMgr.getCenter(req.params.cid,function(results){
+    res.render('center', { title: 'المدينة/القرية' , centers : results});
   })
 });
-
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
