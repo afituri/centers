@@ -31,6 +31,7 @@ block content
               th  رقم المركز 
               th  اسم المركز
               th   نوع المركز 
+              th  عرض  
             tbody
               for center in centers
                 tr
@@ -38,7 +39,7 @@ block content
                   td #{center.name}
                   td #{center.center_type}
                   td 
-                    button#view.btn.btn-primary.btn-xs(href='/center/#{center.center_id}', data-toggle='modal',value="#{center.center_id}")
+                    button#view.btn.btn-primary.btn-xs(value='#{center.center_id}')
                       span.glyphicon.glyphicon-eye-open 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
