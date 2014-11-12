@@ -2,7 +2,7 @@ $(document).ready(function(){
   /* Go to user needs view or edit */
   $('body').on('click', '#view', function (){
     var id = $(this).val();
-    window.location.href="http://localhost:3003/admin/editmanager/"+id;
+    window.location.href="/admin/editmanager/"+id;
   });
   /* Go to user needs view or edit */
   $('body').on('click', '#delete ', function () {
@@ -13,7 +13,7 @@ $(document).ready(function(){
   $('#confdelete').click(function() {
     var id = $(this).val();
     $.get('/admin/deleteUser/'+id, function(result){
-      window.location.href="http://localhost:3003/admin";
+      window.location.href="/admin";
     });
   });
 

@@ -15,12 +15,12 @@ $(document).ready(function(){
   $('#deleteemployee').click(function() {
     var id = $(this).val();
     $.get('/employee/deleteemployee/'+id, function(result){
-      window.location.href="http://localhost:3003/employee";
+      window.location.href="/employee";
     });
   });
    /* Go to employee needs view or edit */
    $("button[id^='viw']").click(function() {
     var id = $(this).val();
-    window.location.href="http://localhost:3003/employee/editemployee/"+id;
+    window.location.href="/employee/editemployee/"+id;
   });
 });
