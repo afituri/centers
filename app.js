@@ -14,7 +14,6 @@ var cpanel = require('./routes/cpanel');
 var phone = require('./routes/phone');
 var employee = require('./routes/employee');
 var constituency = require('./routes/constituency');
-var pageViews = require('./routes/pageViews');
 var passport = require('passport');
 var app = express();
 
@@ -40,7 +39,7 @@ app.use('/cpanel',cpanel);
 app.use('/phone',phone);
 app.use('/employee',employee);
 app.use('/constituency',constituency);
-app.use('/pageViews',pageViews);
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
