@@ -8,7 +8,36 @@ var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var villageMgr = require('../app/village').villageMgr;
 var centerMgr = require('../app/center').centerMgr;
 var mahallaMgr = require('../app/mahalla').mahallaMgr;
-
+/* GET center page. */
+router.get('/centerViews', function(req, res) {
+  centerMgr.getCenters(function(result){
+    res.render('centerViews', { title: "المراكز" , centers : result});
+  })
+});
+/* GET center page. */
+router.get('/mahallaViews', function(req, res) {
+  mahallaMgr.getMahallas(function(result){
+    res.render('mahallaViews', { title: "المحلة " , mahallas : result});
+  })
+});
+/* GET center page. */
+router.get('/villageViews', function(req, res) {
+  officeMgr.getOffice(function(result){
+    res.render('villageViews', { title: "القرية/المدينة " , villages : result});
+  })
+});
+/* GET center page. */
+router.get('/subconstituencyViews', function(req, res) {
+  officeMgr.getOffice(function(result){
+    res.render('subconstituencyViews', { title: "الدوائر الفرعيه " , subconstituency : result});
+  })
+});
+/* GET center page. */
+router.get('/officeViews', function(req, res) {
+  officeMgr.getOffice(function(result){
+    res.render('officeViews', { title: "اللجان " , offices : result});
+  })
+});
 /* GET home office  page. */
 router.get('/', function(req, res) {
   officeMgr.getOffice(function(result){
@@ -57,14 +86,6 @@ router.get('/:oid:/:sid/:vid', function(req, res) {
 /* GET mahalla page. */
 router.get('/:oid/:sid/:vid/:mid', function(req, res) {
   res.render('mahalla', { title: 'المحلة' });
-});
-
-/* GET center page. */
-router.get('/center/:cid', function(req, res) {
-  officeMgr.getOffice(function(result){
-    res.render('center', { title: "المراكز الأنتخابية " , offices : result});
-  })
-
 });
 
 /* delete office  */

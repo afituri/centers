@@ -15,4 +15,17 @@ exports.mahallaMgr = {
       });
     });
   },
+  /* get all mahhla */
+  getMahallas : function(cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `mahalla` WHERE `status`= 1 ',  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  }
 };

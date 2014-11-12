@@ -1,0 +1,39 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/hnec_logo.png")
+      .panel
+        .col-sm-4.col-md-6
+          .input-group 
+            input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+            .input-group-btn
+              .btn.btn-default(type="button")  
+                spen.glyphicon.glyphicon-search
+      .panel-body  
+        div.table-responsive  
+          table#off.table.table-striped.table-bordered.table-condensed.table-hover
+            thead
+              th اﻻسم
+              th الاسم
+              th رقم الدائره الرئيسيه
+            tbody
+              for constit in constituency
+                tr
+                  td #{constit.constituency_name_ar}
+                  td #{constit.constituency_name}
+                  td #{constit.constituency_id}
+                  
+          
+  script(src="/javascripts/jquery-1.11.1.min.js")
+  script(src="/javascripts/bootstrap.min.js")
+  
