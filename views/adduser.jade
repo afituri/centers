@@ -24,10 +24,18 @@ block content
             lable رقم الهاتف
             .form-group.multiple-form-group.input-group
               .input-group-btn.input-group-select
-                select#typ.form-control(name="phone_type[]")
-                  option(value="ليبيانا") ليبيانا
-                  option(value="المدار") المدار
-                  option(value="ثريا") ثريا
+                button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                  span.concept Phone
+                  span.caret
+                ul.dropdown-menu(role='menu')
+                  li
+                    a(href='#ليبيانا') ليبيانا
+                  li
+                    a(href='#المدار') المدار
+                  li
+                    a(href='#ثريا') ثريا
+                  li
+                input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
               input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
               span.input-group-btn
                 button.btn.btn-success.btn-add(type='button') +
