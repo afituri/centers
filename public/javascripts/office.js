@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
   /* Go to user needs view or edit */
-  $('body').on('click', '#view', function (){
+  $("button[id^='view']").click(function() {
     var id = $(this).val();
-    window.location.href="/admin/editmanager/"+id;
+    window.location.href="/office/center/"+id;
   });
   /* Go to user needs view or edit */
   $('body').on('click', '#delete ', function () {
