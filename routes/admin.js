@@ -2,7 +2,7 @@ var express = require('express');
 var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
-var logMgr = require('../app/log').repo;
+var logMgr = require('../app/log').repoMgr;
 var officeMgr = require('../app/office').officeMgr;
 var employeeMgr = require('../app/employee').employeeMgr;
 var phoneMgr = require('../app/phone').phoneMgr;
@@ -70,9 +70,7 @@ router.get('/addmanager', function(req, res) {
 router.post('/addmanager', function(req, res) {
   userHelpers.addUser(req.body, function (results){
     logMgr.insertLog(req.session.iduser,"add","user"," add new user name : "+results.name,results.id);
-    userMgr.getManager(function(results){
-      res.render('admin', { title: 'اضافة مدير' , users : results});
-    });
+    res.redirect('/admin');
   });
 });
 /* Delete manager by id */

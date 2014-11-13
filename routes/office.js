@@ -30,16 +30,19 @@ router.get('/:oid', function(req, res) {
 router.get('/:oid/:sid', function(req, res) {
     villageMgr.getvillage(req.params.sid,function(result){
       centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
-        res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results});
-           console.log(result);
+        officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
+          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results, names : resultOne});
+      })      
     })
   })
 });
 /* GET village page. */
 router.get('/:oid/:sid/:vid', function(req, res) {
-    mahallaMgr.getmahalla(req.params.vid,function(result){
-      centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
-        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results});
+  mahallaMgr.getmahalla(req.params.vid,function(result){
+    centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
+      officeMgr.getNameOfficeSubconstitVillage(req.params.oid,req.params.sid,req.params.vid,function(resultNames){
+        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results, names : resultNames});
+      })  
     })
   })        
 });

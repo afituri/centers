@@ -75,6 +75,16 @@ router.get('/getcenter/:ido/:ids', function(req, res) {
     res.send(result);
   })
 });
+/* checkEmail employee  . */
+router.post('/checkEmail', function(req, res) {
+  employeeMgr.checkEmail(req.body.email, function(result){
+    if(!result[0]){
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  });
+});
 /* Edit employee . */
 router.post('/edit', function(req, res) {
   if(req.body.name=="phone_number"){
