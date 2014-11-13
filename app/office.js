@@ -27,6 +27,19 @@ exports.officeMgr = {
       });
     });
   },
+    /* get all office */
+  getNameOffice : function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `office_name` FROM `office` WHERE `status` = 1 AND idoffice = ? ', id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
   /* get office by id */
   getOfficeId : function(id,cb){
     mysqlMgr.connect(function (conn) {
