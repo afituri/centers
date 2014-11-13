@@ -53,6 +53,19 @@ exports.officeMgr = {
       });
     });
   },
+  /* get getNameOfficeSubconstitVillage for Breadcrub  */
+  getNameOfficeSubconstitVillage : function(ido,ids,idv,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `office_name`,`subconstituency_name`,`village_name` FROM `office`,`subconstituency`,`village` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND `village`.`status` = 1 AND idoffice = ? AND idsubconstituency = ? AND idvillage = ?',[ido,ids,idv], function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
   /* get office by id */
   getOfficeId : function(id,cb){
     mysqlMgr.connect(function (conn) {

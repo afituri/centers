@@ -48,7 +48,8 @@ router.get('/:oid/:sid', function(req, res) {
 router.get('/:oid/:sid/:vid', function(req, res) {
     mahallaMgr.getmahalla(req.params.vid,function(result){
       centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
-        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results});
+        officeMgr.getNameOfficeSubconstitVillage(req.params.oid,req.params.sid,req.params.vid,function(resultNames){
+          res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results, names : resultNames});
     })
   })        
 });
