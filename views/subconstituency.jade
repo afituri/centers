@@ -14,12 +14,12 @@ block content
           img(src="/../../images/hnec_logo.png")
     ol.breadcrumb
       li
-        a(href="/office") #{names[0].office_name}
+        a(href="/office") Offices
         span
       li
-        a(href="/office/officeManager") #{names[0].subconstituency_name}
+        a(href="/office/officeManager") #{names[0].office_name}
         span
-      li.active subconstituency
+      li.active #{names[0].subconstituency_name}
     .row
         .panel.col-sm-3
           .nav.nav-pills.nav-stacked
