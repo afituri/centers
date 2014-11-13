@@ -17,19 +17,19 @@ router.get('/', function(req, res) {
     })
   });
 });
-
-/* Search by center id */
-router.get('/searchByCenterId/:id', function(req, res) {
-  centerMgr.searchByCenterId(req.params.id,function(results){
-    res.send(results);
+/*center*/
+router.get('/center/:cid', function(req, res) {
+  centerMgr.getCenter(req.params.cid,function(results){
+     res.render('center', { title: 'المدينة/القرية' , center : results });
   })
 });
-
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
     centerMgr.getCentersOffice(req.params.oid,function(results){
-      res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results});
+      officeMgr.getNameOffice(req.params.oid,function(resultName){
+        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results, nameEmp : resultName});
+      })  
     })
   })
 });
@@ -38,16 +38,19 @@ router.get('/:oid', function(req, res) {
 router.get('/:oid/:sid', function(req, res) {
     villageMgr.getvillage(req.params.sid,function(result){
       centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
-        res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results});
-           console.log(result);
+        officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
+          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results, names : resultOne});
+      })      
     })
   })
 });
 /* GET village page. */
 router.get('/:oid/:sid/:vid', function(req, res) {
-    mahallaMgr.getmahalla(req.params.vid,function(result){
-      centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
-        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results});
+  mahallaMgr.getmahalla(req.params.vid,function(result){
+    centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
+      officeMgr.getNameOfficeSubconstitVillage(req.params.oid,req.params.sid,req.params.vid,function(resultNames){
+        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results, names : resultNames});
+      })  
     })
   })        
 });
