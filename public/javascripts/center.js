@@ -1,53 +1,31 @@
 $(document).ready(function(){
-  $('#office_idoffice').change(function() {
-    var id =$(this).val();
-    $.get('/office/getsub/'+id,function(result){
-      var text = "";
-      for (var i=0;i<result.length;i++)
-      {  
-         text += "<option value='"+result[i].idsubconstituency+"'>"+result[i].subconstituency_name+"</option>"; 
-
+ 
+  $("a[id^='phone']").click(function() {
+    var id = $(this).data("value");   
+    $.get('/employee/getphone/'+id, function(result){
+      $('#body').empty();
+      for ( var i = 0; i < result.length;  i++ ) {
+        $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
       }
-      $("#subconstituency_idsubconstituency").append(text);
-
     });
   });
-  $('#subconstituency_idsubconstituency').change(function() {
-    var id =$(this).val();
-    $.get('/office/getvillage/'+id,function(result){
-      var text = "";
-      for (var i=0;i<result.length;i++)
-      {  
-        console.log(result[i].village_name);
-       text += "<option value='"+result[i].idvillage+"'>"+result[i].village_name+"</option>"; 
-
-      }
-      $("#village_idvillage").append(text);
-
+  /* Go to employee needs view or edit */
+  $("button[id^='viw']").click(function() {
+    alert('id');
+    var id = $(this).val();
+    window.location.href="/employee/editemployee/"+id;
+  });
+  $("button[id^='delete']").click(function() {
+    var id = $(this).val();
+    $('#deleteemployee').val(id);
+  });
+  $('#deleteemployee').click(function() {
+    var id = $(this).val();
+    var center = $(this).data("center");
+    $.get('/employee/deleteemployee/'+id, function(result){
+      window.location.href="/center/"+center;
     });
   });
-
-
-  $(document).ready(function(){
-  /* Go to user needs view or edit */
-  $('body').on('click', '#view', function (){
-    var id = $(this).val();
-    window.location.href="/admin/editmanager/"+id;
-  });
-  /* Go to user needs view or edit */
-  $('body').on('click', '#delete ', function () {
-    var id = $(this).val();
-    $('#confdelete').val(id);
-  });
-  /* Go to user needs view or edit */ 
-  $('#confdelete').click(function() {
-    var id = $(this).val();
-    $.get('/admin/deleteUser/'+id, function(result){
-      window.location.href="/admin";
-    });
-  });
-
- });
-
-
 });
+ 
+

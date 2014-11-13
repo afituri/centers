@@ -8,7 +8,7 @@ $(document).ready(function(){
       }
     });
   });
-  $('#delete').click(function() {
+  $("button[id^='delete']").click(function() {
     var id = $(this).val();
     $('#deleteemployee').val(id);
   });

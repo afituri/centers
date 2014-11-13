@@ -27,35 +27,35 @@ block content
             tr
               td(width='35%') اسم المركز
               td(width='65%')
-                a#name(href='#', data-type='text', data-pk='', data-title='اسم المركز' data-value='') name
+                |#{cent[0].name}
             tr
               td(width='35%') رقم المركز
               td(width='65%')
-                a#center_id(href='#', data-type='text', data-pk='', data-title='رقم المركز' data-value='')  center_id 
+                |#{cent[0].center_id}
             tr
-              td الدائرة الرءيسيه
+              td الدائرة الرئسيه
               td
-                a#constituency_idconstituency(href='#' , data-type='select', data-pk='', data-title='الدائرة الرءيسيه' data-value='')  constituency_idconstituency
+                |#{cent[0].constituency_name}
             tr
               td اللجنة
               td
-                a#office_idoffice(href='#', data-type='select', data-pk='', data-title='اللجان', data-value='')  office_idoffice
+                |#{cent[0].office_name}
             tr
               td الدائرة الفرعية
               td
-                a#subconstituency_idsubconstituency(href='#' , data-type='select' ,  data-pk='', data-title='الدائرة الفرعية', data-value='') subconstituency_idsubconstituency
+                |#{cent[0].subconstituency_name}
             tr
               td القرية / المدينه
               td
-                a#village_idvillage(href='#', data-type='select', data-pk='', data-value='',  data-title='القرية/المدينه') village_idvillage
+                |#{cent[0].village_name}
             tr
               td المحلة
               td
-                a#mahalla_idmahalla(href='#', data-type='select', data-pk='', data-value='',  data-title='المحلة') mahalla_idmahalla
+                |#{cent[0].mahalla_name}
             tr
               td نوع المركز
               td
-                a#center_type(href='#', data-type='select', data-pk='', data-value='',  data-title='المحلة') center_type
+                |#{cent[0].center_type}
                   
     
       .col-md-12 
@@ -71,70 +71,73 @@ block content
                     .btn.btn-default(type="button")  
                       spen.glyphicon.glyphicon-search
 
-        .panel-body
-          div.table-responsive
-            table#user.table.table-striped.table-bordered.table-condensed.table-hover
+        div.panel-body  
+          div.table-responsive  
+            table#off.table.table-striped.table-bordered.table-condensed.table-hover
               thead
                 th أسم الموظف
+                th البريد الالكتروني
                 th رقم الهاتف
-                th   عرض 
-                th   حدف
+                th الصفة
+                th المركز
+                th تعديل
+                th الغاء 
               tbody
-                                //-for employee in employees
-                  tr
-                    td 
-                    td 
-                    td
-                      button#viw.btn.btn-primary.btn-xs(value="")
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
-                       span.glyphicon.glyphicon-trash 
-                  tr
-                    td 
-                    td 
-                    td
-                      button#viw.btn.btn-primary.btn-xs(value="")
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
-                       span.glyphicon.glyphicon-trash 
-                  tr
-                    td 
-                    td 
-                    td
-                      button#viw.btn.btn-primary.btn-xs(value="")
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
-                       span.glyphicon.glyphicon-trash 
-                  tr
-                    td 
-                    td 
-                    td
-                      button#viw.btn.btn-primary.btn-xs(value="")
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
-                       span.glyphicon.glyphicon-trash 
-                  tr
-                    td 
-                    td 
-                    td
-                      button#viw.btn.btn-primary.btn-xs(value="")
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
-                       span.glyphicon.glyphicon-trash 
-                  tr
-                    td 
-                    td 
-                    td
-                      button#viw.btn.btn-primary.btn-xs(value="")
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
-                       span.glyphicon.glyphicon-trash 
+                for employee in employees
+                    tr
+                      td #{employee.employee_name}
+                      td #{employee.email}
+                      td 
+                        a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
+                          |#{employee.phone_number}
+                      td 
+                        case employee.type
+                          when 0
+                            p رئيس مركز
+                          when 1
+                            p مدير محطة
+                          when 2
+                            p محقق هوية
+                          when 3
+                            p موزع أوراق الاقتراع
+                          when 4
+                            p مراقب الصندوق
+                          when 5
+                            p منظم الطابور بالمركز
+                          when 6
+                            p منظم الطابور بالمحطة
+                      td #{employee.name}
+                      td
+                        button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
+                          span.glyphicon.glyphicon-eye-open
+                      td      
+                        button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
+                         span.glyphicon.glyphicon-trash 
+            div.text-center
+              ul.pagination
+                li(class='#{pagination.previous.disabled}')
+                  a(href='?p=#{pagination.previous.n}') السابق
+                for page in pagination.pages
+                  li(class="#{page.active}")
+                    a(href='?p=#{page.n}') #{page.n}
+                li(class="#{pagination.next.disabled}")
+                  a(href='?p=#{pagination.next.n}') التالي
+    #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .modal-headr.modal-header-success
+             p.h1 ارقام الهواتف
+          .modal-body
+            div.panel-body  
+              div.table-responsive  
+                table#off.table.table-striped.table-bordered.table-condensed.table-hover
+                  thead
+                    th رقم الهاتف
+                    th النوع
+                  tbody#body
+                        
+          .modal-footer
+            button.btn.btn-success(data-dismiss='modal', type='button') cancel
 
   #addemployee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
@@ -159,22 +162,21 @@ block content
                     div.form-group.text-center
                       button.btn.btn-lg.btn-primary(type="submit") إضـافة        
 
-    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-          .modal-dialog
-            .modal-content
-              .modal-headr.modal-header-danger
-                 p.h1 هل أنت متأكد من  حدف ؟
-              .modal-body
-                p.h2 هل انت متأكد 
-                p 
-              .modal-footer
-                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
-                button.btn.btn-success(data-dismiss='modal', type='button') cancel
-  
+  #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-danger
+           p.h1 هل أنت متأكد من  حدف ؟
+        .modal-body
+          p.h2 هل انت متأكد 
+          p 
+        .modal-footer
+          button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal',data-center="#{cent[0].center_id}") delete
+          button.btn.btn-success(data-dismiss='modal', type='button') cancel
+
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/center.js")
-  script(src="/javascripts/editcenter.js")
    
