@@ -12,8 +12,12 @@ var mahallaMgr = require('../app/mahalla').mahallaMgr;
 /* GET home office  page. */
 router.get('/', function(req, res) {
   officeMgr.getOffice(function(result){
-    centerMgr.getCenters(function(results){
-      res.render('office', { title: "اللجان  الأنتخابية" , offices : result,centers : results});
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+    centerMgr.getCenters(limit,function(results){
+      var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
+      res.render('office', { title: "اللجان  الأنتخابية" , offices : result,centers : results[0],pagination : pagination});
     })
   });
 });
