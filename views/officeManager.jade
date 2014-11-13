@@ -16,11 +16,12 @@ block content
       li
         a(href="/office") Offices
         span
-      li.active #{nameEmp[0].office_name}
+      li.active #{names[0].office_name}
     .row
         .panel.col-sm-3
           .nav.nav-pills.nav-stacked
             li.active
+              a(href="/office/") 
               a(href="/office") 
                 span.glyphicon.glyphicon-home اللجان الأنتخابية 
             for subb in sub    

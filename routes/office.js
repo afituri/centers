@@ -21,31 +21,25 @@ router.get('/', function(req, res) {
     })
   });
 });
-/*center*/
-router.get('/center/:cid', function(req, res) {
-  centerMgr.getCenter(req.params.cid,function(results){
-     res.render('center', { title: 'المدينة/القرية' , center : results });
-  })
-});
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);
     centerMgr.getCentersOffice(req.params.oid,function(results){
-      officeMgr.getNameOffice(req.params.oid,function(resultName){
-        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results, nameEmp : resultName});
-      })  
+      officeMgr.getNameOffice(req.params.oid,function(resultNames){
+        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results, names : resultNames});
+      })
     })
   })
 });
 
 /* GET subconstitunecy page. */
 router.get('/:oid/:sid', function(req, res) {
-    villageMgr.getvillage(req.params.sid,function(result){
-      centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
-        officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
-          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results, names : resultOne});
+  villageMgr.getvillage(req.params.sid,function(result){
+    centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
+      officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
+        res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results, names : resultOne});
       })      
     })
   })
@@ -70,7 +64,6 @@ router.get('/:oid/:sid/:vid/:mid', function(req, res) {
 
 /* delete office  */
 router.get('/:oid:/deleteoffice/', function(req, res) {
-  console.log("you are in officee.root")
   officeMgr.deloff(req.params.id,function(result){
     res.send(result);
   })
