@@ -3,7 +3,7 @@ $(document).ready(function(){
   /* Go to user needs view or edit */
   $("button[id^='view']").click(function() {
     var id = $(this).val();
-    window.location.href="/office/center/"+id;
+    window.location.href="/center/"+id;
   });
   /* Go to user needs view or edit */
   $('body').on('click', '#delete ', function () {

@@ -14,6 +14,7 @@ var cpanel = require('./routes/cpanel');
 var phone = require('./routes/phone');
 var employee = require('./routes/employee');
 var constituency = require('./routes/constituency');
+var center = require('./routes/center');
 var passport = require('passport');
 var app = express();
 
@@ -39,6 +40,7 @@ app.use('/cpanel',cpanel);
 app.use('/phone',phone);
 app.use('/employee',employee);
 app.use('/constituency',constituency);
+app.use('/center', center);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

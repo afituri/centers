@@ -17,19 +17,11 @@ router.get('/', function(req, res) {
     })
   });
 });
-/*center*/
-router.get('/center/:cid', function(req, res) {
-  centerMgr.getCenter(req.params.cid,function(results){
-     res.render('center', { title: 'المدينة/القرية' , center : results });
-  })
-});
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
     centerMgr.getCentersOffice(req.params.oid,function(results){
-      officeMgr.getNameOffice(req.params.oid,function(resultName){
-        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results, nameEmp : resultName});
-      })  
+      res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results});
     })
   })
 });
