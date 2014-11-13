@@ -27,7 +27,9 @@ router.get('/center/:cid', function(req, res) {
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
     centerMgr.getCentersOffice(req.params.oid,function(results){
-      res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results});
+      officeMgr.getNameOffice(req.params.oid,function(resultName){
+        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results, nameEmp : resultName});
+      })  
     })
   })
 });

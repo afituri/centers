@@ -39,6 +39,7 @@ app.use('/cpanel',cpanel);
 app.use('/phone',phone);
 app.use('/employee',employee);
 app.use('/constituency',constituency);
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
