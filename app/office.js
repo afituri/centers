@@ -43,7 +43,7 @@ exports.officeMgr = {
   /* get getNameOfficeSubconstit for Breadcrub  */
   getNameOfficeSubconstit : function(ido,ids,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `office_name`,`subconstituency_name`,` subconstituency_id`,`idoffice` FROM `office`,`subconstituency` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND idoffice = ? AND subconstituency_id = ?',[ido,ids], function(err, result) {
+      conn.query('SELECT `office_name`,`subconstituency_name`,`subconstituency_id`,`idoffice` FROM `office`,`subconstituency` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND idoffice = ? AND subconstituency_id = ?',[ido,ids], function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

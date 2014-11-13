@@ -25,17 +25,19 @@ router.get('/', function(req, res) {
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
     centerMgr.getCentersOffice(req.params.oid,function(results){
-      res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results});
+      officeMgr.getNameOffice(req.params.oid,function(resultNames){
+        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results, names : resultNames});
+      })
     })
   })
 });
 
 /* GET subconstitunecy page. */
 router.get('/:oid/:sid', function(req, res) {
-    villageMgr.getvillage(req.params.sid,function(result){
-      centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
-        officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
-          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results, names : resultOne});
+  villageMgr.getvillage(req.params.sid,function(result){
+    centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
+      officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
+        res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results, names : resultOne});
       })      
     })
   })
@@ -60,7 +62,6 @@ router.get('/:oid/:sid/:vid/:mid', function(req, res) {
 
 /* delete office  */
 router.get('/:oid:/deleteoffice/', function(req, res) {
-  console.log("you are in officee.root")
   officeMgr.deloff(req.params.id,function(result){
     res.send(result);
   })
