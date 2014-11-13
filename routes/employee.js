@@ -31,7 +31,7 @@ router.get('/editemployee/:id', function(req, res) {
 
 /* GET centers. */
 router.get('/getCenters', function(req, res) {
-  centerMgr.getCenters(function(result){
+  centerMgr.getCentersSelect(function(result){
     res.send(result);
   })
 });

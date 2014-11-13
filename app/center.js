@@ -27,6 +27,19 @@ exports.centerMgr = {
       });
     });
   },
+  /* get all centers for select */
+  getCentersSelect : function(cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1',  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
   /*get centers by office id */
   getCentersOffice : function(id,cb){
     mysqlMgr.connect(function (conn) {
