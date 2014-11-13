@@ -33,7 +33,7 @@ $(document).ready(function(){
       'phone[]': {
         required: true,
 		    minlength: 10,
-		    number: true
+		    number: true,
       }
     },
     messages: {
@@ -55,6 +55,13 @@ $(document).ready(function(){
         required: "الرجاء ادخال رقم الهاتف",
         minlength: " يجب أن يكون الهاتف لا يقل عن 10 ارقام ",
         number: "الرجاء ادخال رقم الهاتف ",
+      }
+    },
+    errorPlacement: function(error, element) {
+      if (element.attr("name") == "phone[]") {
+          error.insertAfter("#phone_input");
+      } else {
+          error.insertAfter(element);
       }
     }
   });

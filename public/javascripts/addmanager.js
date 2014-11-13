@@ -12,16 +12,28 @@ $(document).ready(function(){
       name: {
         required: true
       },
-      phone: {
+      'phone[]': {
         required: true,
         minlength: 10,
-        phoneNO: true
+        number: true,
       },
       email: {
         required: true,
-        email :true
+        email: true,
+        remote: {
+          url :"/users/checkEmail",
+          type : "post",
+          data: {
+            email: function() {
+              return $( "#email" ).val();
+            }
+          }
+        }
       },
       constit:{
+        selectValidat: true
+      },
+      office_idoffice:{
         selectValidat: true
       }
     },
@@ -29,18 +41,29 @@ $(document).ready(function(){
       name: {
         required: "الرجاء ادخال اسم الموظف"
       },
-      phone: {
+      'phone[]': {
         required: "الرجاء ادخال رقم الهاتف",
-        minlength: "يجب أن يكون الهاتف  لا يقل عن 10 ارقام",
-        phoneNO:  "هذا ليس رقم هاتف"
+        minlength: " يجب أن يكون الهاتف لا يقل عن 10 ارقام ",
+        number: "الرجاء ادخال رقم الهاتف ",
       },
       email: {
-        required: "الرجاء ادخال البريد الالكتروني",
-        email :"هذا ليس بريد اليكتروني"
+        required: " هذا ليس بريد اليكتروني ",
+        email: "هذا ليس بريد اليكتروني",
+        remote: "هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر"
       },
       constit:{
         selectValidat: "الرجاء الاختيار"
+      },
+      office_idoffice:{
+        selectValidat: "الرجاء الاختيار"
       } 
+    },
+    errorPlacement: function(error, element) {
+      if (element.attr("name") == "phone[]") {
+          error.insertAfter("#phone_input");
+      } else {
+          error.insertAfter(element);
+      }
     }
   });
 
