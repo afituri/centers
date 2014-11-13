@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
 /*center*/
 router.get('/center/:cid', function(req, res) {
   centerMgr.getCenter(req.params.cid,function(results){
-    res.render('center', { title: 'المدينة/القرية' , centers : results});
+     res.render('center', { title: 'المدينة/القرية' , center : results });
   })
 });
 /* GET office by id  page. */

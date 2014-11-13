@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   /* Go to user needs view or edit */
-  $('#view').click(function() {
+  $("button[id^='view']").click(function() {
     var id = $(this).val();
     window.location.href="/office/center/"+id;
   });
