@@ -14,18 +14,18 @@ block content
           img(src="/../../images/hnec_logo.png")
     ol.breadcrumb
       li
-        a(href="/office") Offices
+        a(href="/office") sssss
         span
       li.active #{nameEmp[0].office_name}
     .row
         .panel.col-sm-3
           .nav.nav-pills.nav-stacked
             li.active
-              a(href="http://localhost:3003/office/") 
+              a(href="/office/") 
                 span.glyphicon.glyphicon-home اللجان الأنتخابية 
             for subb in sub    
               li
-                a(href="http://localhost:3003/office/#{subb.office_idoffice}/#{subb.subconstituency_id}") 
+                a(href="/office/#{subb.office_idoffice}/#{subb.subconstituency_id}") 
                   span #{subb.subconstituency_name}
         .col-md-9   
           .panel.col-md-6
