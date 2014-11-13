@@ -27,10 +27,23 @@ exports.officeMgr = {
       });
     });
   },
-    /* get all office */
+  /* get getNameOffice for Breadcrub */
   getNameOffice : function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `office_name` FROM `office` WHERE `status` = 1 AND idoffice = ? ', id,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /* get getNameOfficeSubconstit for Breadcrub  */
+  getNameOfficeSubconstit : function(ido,ids,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `office_name`,`subconstituency_name` FROM `office`,`subconstituency` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND idoffice = ? AND idsubconstituency = ?',[ido,ids], function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

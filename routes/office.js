@@ -40,8 +40,9 @@ router.get('/:oid', function(req, res) {
 router.get('/:oid/:sid', function(req, res) {
     villageMgr.getvillage(req.params.sid,function(result){
       centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
-        res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results});
-           console.log(result);
+        officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
+          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results, names : resultOne});
+      })      
     })
   })
 });
