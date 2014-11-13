@@ -26,9 +26,11 @@ router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);
-    centerMgr.getCentersOffice(req.params.oid,function(results){
+    centerMgr.getCentersOffice(limit,req.params.oid,function(results){
+      var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
       officeMgr.getNameOffice(req.params.oid,function(resultNames){
-        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results, names : resultNames});
+        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results[0], names : resultNames,pagination : pagination});
       })
     })
   })
@@ -37,9 +39,13 @@ router.get('/:oid', function(req, res) {
 /* GET subconstitunecy page. */
 router.get('/:oid/:sid', function(req, res) {
   villageMgr.getvillage(req.params.sid,function(result){
-    centerMgr.getCentersSub(req.params.oid,req.params.sid,function(results){
+    var page = userHelpers.getPage(req);
+    var limit = userHelpers.getLimit(page);
+    centerMgr.getCentersSub(limit,req.params.oid,req.params.sid,function(results){
+      var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
       officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
-        res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results, names : resultOne});
+        res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results[0], names : resultOne ,pagination : pagination});
       })      
     })
   })

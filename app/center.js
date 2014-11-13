@@ -41,9 +41,9 @@ exports.centerMgr = {
     });
   },
   /*get centers by office id */
-  getCentersOffice : function(id,cb){
+  getCentersOffice : function(limit,id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?', [id] ,function(err, result) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ? limit ?,10; SELECT COUNT(*) as cnt FROM `centers`  WHERE `status` = 1 AND `office_idoffice`= ?; ',[id,limit,id] ,function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -54,9 +54,9 @@ exports.centerMgr = {
     });
   },
    /*get centers by sub id */
-  getCentersSub : function(id,cid,cb){
+  getCentersSub : function(limit,id,cid,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?  AND`subconstituency_idsubconstituency`= ? ',[id,cid],  function(err, result) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?  AND`subconstituency_idsubconstituency`= ? limit ?,10; SELECT COUNT(*) as cnt FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?  AND`subconstituency_idsubconstituency`= ? ',[id,cid,limit,id,cid],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
