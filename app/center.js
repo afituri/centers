@@ -15,9 +15,9 @@ exports.centerMgr = {
     });
   },
   /* get all centers */
-  getCenters : function(cb){
+  getCenters : function(limit,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 ',  function(err, result) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 limit ?,10; SELECT COUNT(*) as cnt FROM `centers`  WHERE `status` = 1 ;',limit,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

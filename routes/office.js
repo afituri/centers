@@ -12,24 +12,20 @@ var mahallaMgr = require('../app/mahalla').mahallaMgr;
 /* GET home office  page. */
 router.get('/', function(req, res) {
   officeMgr.getOffice(function(result){
-    centerMgr.getCenters(function(results){
-      res.render('office', { title: "اللجان  الأنتخابية" , offices : result,centers : results});
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+    centerMgr.getCenters(limit,function(results){
+      var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
+      res.render('office', { title: "اللجان  الأنتخابية" , offices : result,centers : results[0],pagination : pagination});
     })
   });
-});
-/*center*/
-router.get('/center/:cid', function(req, res) {
-  centerMgr.getCenter(req.params.cid,function(results){
-     res.render('center', { title: 'المدينة/القرية' , center : results });
-  })
 });
 /* GET office by id  page. */
 router.get('/:oid', function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
     centerMgr.getCentersOffice(req.params.oid,function(results){
-      officeMgr.getNameOffice(req.params.oid,function(resultName){
-        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results, nameEmp : resultName});
-      })  
+      res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results});
     })
   })
 });

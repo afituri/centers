@@ -14,13 +14,14 @@ block content
           img(src="/../../images/hnec_logo.png")
     ol.breadcrumb
       li
-        a(href="/office") Offices
+        a(href="/office") office
         span
-      li.active #{nameEmp[0].office_name}
+      li.active 
     .row
         .panel.col-sm-3
           .nav.nav-pills.nav-stacked
             li.active
+              a(href="/office/") 
               a(href="/office") 
                 span.glyphicon.glyphicon-home اللجان الأنتخابية 
             for subb in sub    
