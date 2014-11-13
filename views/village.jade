@@ -17,10 +17,10 @@ block content
         a(href="/office") Offices
         span
       li
-        a(href="/office/officeManager") #{names[0].office_name}
+        a(href="/office/#{names[0].idoffice}") #{names[0].office_name}
         span
       li
-        a(href="/office/officeManager/subconstituency") #{names[0].subconstituency_name}
+        a(href="/office/#{names[0].idoffice}/#{names[0].subconstituency_id}") #{names[0].subconstituency_name}
         span
       li.active  #{names[0].village_name}
     .row
