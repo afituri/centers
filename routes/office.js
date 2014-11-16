@@ -53,9 +53,13 @@ router.get('/:oid/:sid', function(req, res) {
 /* GET village page. */
 router.get('/:oid/:sid/:vid', function(req, res) {
   mahallaMgr.getmahalla(req.params.vid,function(result){
-    centerMgr.getCentersvillage(req.params.oid,req.params.sid,req.params.vid,function(results){
+    var page = userHelpers.getPage(req);
+    var limit = userHelpers.getLimit(page);
+    centerMgr.getCentersvillage(limit,req.params.oid,req.params.sid,req.params.vid,function(results){
+      var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
       officeMgr.getNameOfficeSubconstitVillage(req.params.oid,req.params.sid,req.params.vid,function(resultNames){
-        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results, names : resultNames});
+        res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results[0], names : resultNames,pagination : pagination});
       })  
     })
   })        
@@ -63,8 +67,12 @@ router.get('/:oid/:sid/:vid', function(req, res) {
 
 /* GET mahalla page. */
 router.get('/:oid/:sid/:vid/:mid', function(req, res) {
-  centerMgr.getCentersmahlla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(results){
-    res.render('mahalla', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : results});
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  centerMgr.getCentersmahlla(limit,req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('mahalla', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],pagination : pagination});
   })
 });
 

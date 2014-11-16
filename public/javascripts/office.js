@@ -7,7 +7,6 @@ $(document).ready(function(){
   });
   /* Go to user needs view or edit */
   $('body').on('click', '#delete ', function () {
-    var id = $(this).val();
     $('#confdelete').val(id);
   });
   /* Go to user needs view or edit */ 

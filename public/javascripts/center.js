@@ -26,6 +26,65 @@ $(document).ready(function(){
       window.location.href="/center/"+center;
     });
   });
+   $("#form").validate({
+    rules: {
+      subconstituency_idsubconstituency: {
+        required: true,
+      },
+      center_idcenter: {
+        required: true,
+      },
+      employee_name: {
+        required: true,
+      },
+      email: {
+        required: true,
+        email: true,
+        remote: {
+          url :"/employee/checkEmail",
+          type : "post",
+          data: {
+            email: function() {
+              return $( "#email" ).val();
+            }
+          }
+        }
+      },
+      'phone[]': {
+        required: true,
+        minlength: 10,
+        number: true,
+      }
+    },
+    messages: {
+      employee_name: {
+        required: "الرجاء ادخال اسم المستخدم",
+      },
+      email: {
+        required: " هذا ليس بريد اليكتروني ",
+        email: "هذا ليس بريد اليكتروني",
+        remote: "هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر"
+      },
+      subconstituency_idsubconstituency: {
+        required: "الرجاء الاختيار ",
+      },
+      center_idcenter: {
+        required: "الرجاء الاختيار ",
+      },
+      'phone[]': {
+        required: "الرجاء ادخال رقم الهاتف",
+        minlength: " يجب أن يكون الهاتف لا يقل عن 10 ارقام ",
+        number: "الرجاء ادخال رقم الهاتف ",
+      }
+    },
+    errorPlacement: function(error, element) {
+      if (element.attr("name") == "phone[]") {
+          error.insertAfter("#phone_input");
+      } else {
+          error.insertAfter(element);
+      }
+    }
+  });
 });
  
 

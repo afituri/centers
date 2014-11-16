@@ -149,16 +149,53 @@ block content
         .row
           .col-sm-12.col-md-11.col.col-md.offset-4
               .modal-body
-                  form#form.form-signin(role="form" , action="#", method="post") 
+                  form#form.form-signin(role="form" , action="/employee/addemployee", method="post")   
                     div.form-group
-                      lable.h3 أسم القرية  
-                      input#village_name.form-control(type="text",name="office_name_ar", placeholder="أسم القرية", required="",autofocus="")                            
-                     div.form-group
-                      lable.h3 الدائرة الأنتخابية التابعة لها  
-                      select#subconstituency_idsubconstituency.form-control(type="text",name="region_name", placeholder="الدائرة الفرعية ", required="",autofocus="")
-                        option(value="") طرابلس  
-                        option(value="") بنغازي 
-                        option(value="") الجبل! 
+                      lable.h3 اسم الموظف
+                      input#employee_name.form-control(type="text",name="employee_name", placeholder="اسم الموظف",autofocus="")
+                    div.form-group
+                      lable.h3 البريد الالكتروني
+                      input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
+                    div.form-group
+                      lable.h3 الرقم الوطني
+                      input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
+                    div.form-group
+                      lable.h3 اسم المصرف
+                      input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
+                    div.form-group
+                      lable.h3 رقم الحساب
+                      input#account_number.form-control(type="text",name="account_number", placeholder="رقم الحساب",autofocus="")
+                    div.form-group
+                      lable رقم الهاتف
+                      .form-group.multiple-form-group.input-group#phone_input
+                        .input-group-btn.input-group-select
+                          button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                            span.concept Phone
+                            span.caret
+                          ul.dropdown-menu(role='menu')
+                            li
+                              a(href='#ليبيانا') ليبيانا
+                            li
+                              a(href='#المدار') المدار
+                            li
+                              a(href='#ثريا') ثريا
+                            li
+                        input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                        span.input-group-btn
+                          button.btn.btn-success.btn-add(type='button') +
+                        input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
+                    div.form-group
+                      lable.h3 صفة الموظف
+                      select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                        option(value="0") رئيس مركز
+                        option(value="1") مدير محطة
+                        option(value="2") محقق هوية 
+                        option(value="3") موزع أوراق الاقتراع
+                        option(value="4") مراقب الصندوق
+                        option(value="5") منظم الطابور بالمركز
+                        option(value="6") منظم الطابور بالمحطة
+                    div.form-group
+                      input.input-group-select-val(type='hidden', value='#{cent[0].center_id}', name='center_idcenter')
                     div.form-group.text-center
                       button.btn.btn-lg.btn-primary(type="submit") إضـافة        
 
@@ -178,5 +215,6 @@ block content
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/phone.js")
   script(src="/javascripts/center.js")
    
