@@ -7,7 +7,7 @@ var log = require('../app/log').repo;
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('constituency',{title: 'الدوائر الرئيسيه'});
+  res.render('constituency',{title: 'الدوائر الرئيسيه'});
 });
 /* GET center page. */
 router.get('/constituencyViews', function(req, res) {

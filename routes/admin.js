@@ -17,14 +17,12 @@ router.get('/', function(req, res) {
     res.render('admin',{title: 'المدراء', users : results[0], pagination : pagination});
   })
 });
-
 /* GET phoneEmployee page. */
 router.get('/phoneEmployee', function(req, res) {
   employeeMgr.getEmployee(function(result){
     res.render('phoneEmployee',{title: 'ارقام هواتف الموظفين', employees : result});
   });
 });
-
 /* GET phoneManager page. */
 router.get('/phoneManager', function(req, res) {
   var page = userHelpers.getPage(req);
@@ -35,19 +33,16 @@ router.get('/phoneManager', function(req, res) {
     res.render('phoneManager',{title: 'ارقام هواتف المدراء', managers : results[0], pagination : pagination});
   });
 });
-
 /* GET employee phones. */
 router.get('/getPhoneManager/:id', function(req, res) {
   phoneMgr.getPhoneManager(req.params.id,function(result){
     res.send(result);
   })
 });
-
 /* GET control panel page. */
 router.get('/cpanelmanager', function(req, res) {
   res.render('cpanelmanager',{title: 'لوحة التحكم للمدراء'});
 });
-
 /* Get user by level form for admin */
 router.get('/getManager/:level', function(req, res) {
   userMgr.getManager(function(result){

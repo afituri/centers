@@ -6,7 +6,7 @@ var log = require('../app/log').repo;
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('cpanel',{title: 'لوحة التحكم'});
+  res.render('cpanel',{title: 'لوحة التحكم'});
 });
 
 module.exports = router;

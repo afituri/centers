@@ -44,7 +44,6 @@ router.get('/deleteUser/:id', function(req, res) {
   userMgr.delUser(req.params.id,function(result){
     logMgr.insertLog(req.session.iduser,"delete","user"," delete user ",req.params.id);
     logMgr.insertLog(req.session.iduser,"delete","phone"," delete phones ",req.params.id);
-
     res.send(result);
   });
 });

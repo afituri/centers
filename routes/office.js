@@ -35,7 +35,6 @@ router.get('/:oid', function(req, res) {
     })
   })
 });
-
 /* GET subconstitunecy page. */
 router.get('/:oid/:sid', function(req, res) {
   villageMgr.getvillage(req.params.sid,function(result){
@@ -64,7 +63,6 @@ router.get('/:oid/:sid/:vid', function(req, res) {
     })
   })        
 });
-
 /* GET mahalla page. */
 router.get('/:oid/:sid/:vid/:mid', function(req, res) {
   var page = userHelpers.getPage(req);
@@ -73,11 +71,10 @@ router.get('/:oid/:sid/:vid/:mid', function(req, res) {
     var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
     var pagination = userHelpers.paginate(page,pageCount);
     officeMgr.getNameOfficeSubconstitVillageMahalla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(resultTwo){
-    res.render('mahalla', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],names:resultTwo,pagination : pagination});
-  })
+      res.render('mahalla', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],names:resultTwo,pagination : pagination});
+    })
   });
-  });
-
+});
 /* delete office  */
 router.get('/:oid:/deleteoffice/', function(req, res) {
   officeMgr.deloff(req.params.id,function(result){
