@@ -64,7 +64,9 @@ router.get('/:oid/:sid/:vid', function(req, res) {
 /* GET mahalla page. */
 router.get('/:oid/:sid/:vid/:mid', function(req, res) {
   centerMgr.getCentersmahlla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(results){
-    res.render('mahalla', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : results});
+    officeMgr.getNameOfficeSubconstitVillageMahalla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(resultTwo){
+      res.render('mahalla', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : results, names : resultTwo});
+    })
   })
 });
 
