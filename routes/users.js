@@ -13,13 +13,15 @@ router.get('/', function(req, res) {
     res.send('users',{title: 'الــمأســتـخـدمـيـــن', users : results});
   });
 });
-
+/* GET login page. */
 router.get('/login', function(req, res) {
   res.render('login',{ title: 'تسجيل الدخول' });
 });
+/* GET reset page. */
 router.get('/login/reset', function(req, res) {
   res.render('reset',{ title: 'تغير كلمة المرور' });
 });
+/*  checkEmail . */
 router.post('/checkEmail', function(req, res) {
   userMgr.checkEmail(req.body.email, function(result){
     if(!result[0]){

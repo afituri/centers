@@ -110,6 +110,7 @@ block content
                       td      
                         button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
                          span.glyphicon.glyphicon-trash 
+          if pagination
             div.text-center
               ul.pagination
                 li(class='#{pagination.previous.disabled}')

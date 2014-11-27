@@ -10,7 +10,6 @@ var officeMgr = require('../app/office').officeMgr;
 var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var Step = require('step');
 
-
 /* GET home page. */
 router.get('/', function(req, res) {
   var page = userHelpers.getPage(req);
@@ -21,21 +20,18 @@ router.get('/', function(req, res) {
     res.render('employee',{title: 'الموظفين',employees:results[0], pagination : pagination});
   });
 });
-
 /* GET editemployee page. */
 router.get('/editemployee/:id', function(req, res) {
   employeeMgr.getemployee(req.params.id,function(result){
     res.render('editemployee', { title: "تعديل الموظفين", employee : result[0],phone : result[1] });
   });
 });
-
 /* GET centers. */
 router.get('/getCenters', function(req, res) {
   centerMgr.getCentersSelect(function(result){
     res.send(result);
   })
 });
-
 /* add employee. */
 router.post('/addemployee', userHelpers.isRoot, function(req, res) {
   employeeMgr.addemployee(req.body, function (results){
