@@ -13,4 +13,13 @@ $(document).ready(function(){
       window.location.href="/root";
     });
   });
+  $("a[id^='phone']").click(function() {
+    var id = $(this).data("value");   
+    $.get('/root/getphone/'+id, function(result){
+      $('#body').empty();
+      for ( var i = 0; i < result.length;  i++ ) {
+        $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+      }
+    });
+  });
 });

@@ -106,6 +106,23 @@ exports.centerMgr = {
       });
     });
   },
+  /*check center in the offise .*/
+  iscenter: function(cid,id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `idcenter`  FROM `centers` WHERE `status` = 1 AND `center_id`=? AND `office_idoffice`= ?',[cid,id],  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          if(result[0]){
+            cb(true);
+          }else{
+            cb(false);
+          }
+        }
+      });
+    });
+  },
   /*Search getCentersmahlla .*/
   getCentersmahlla : function(limit,id,cid,vid,mid,cb){
     mysqlMgr.connect(function (conn) {

@@ -3,6 +3,7 @@ var generatePassword = require('password-generator'),
   url=require('url'),
   mailer = require('../app/mailer');
   userMgr = require('../app/user').userMgr;
+  var centerMgr = require('../app/center').centerMgr;
 
 module.exports = {
   /* here we add a new user to the system */
@@ -48,6 +49,20 @@ module.exports = {
   isAdmin : function (req,res,next) {
     if (req.isAuthenticated() && req.session.level<=1) { return next(); }
     res.redirect('/users/login')
+  },
+   /* here we check if the manager have access to office */
+  isManager : function (req,res,next) {
+    if (req.isAuthenticated() && req.session.level<2) { return next(); }
+    if(req.session.level==2&&req.params.oid==req.session.office_idoffice){ return next(); }
+    res.redirect('/office/'+ req.session.office_idoffice)
+  },
+  isCenter: function (req,res,next) {
+    if (req.isAuthenticated() && req.session.level<2) { return next(); }
+    centerMgr.iscenter(req.params.cid,req.session.office_idoffice,function(result){
+      if(result){ return next(); }
+      res.redirect('/office/'+ req.session.office_idoffice);
+    });
+    
   },
   getPage : function (req){
     var page = 1;

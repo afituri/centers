@@ -3,8 +3,8 @@ var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var centerMgr = require('../app/center').centerMgr;
 var employeeMgr = require('../app/employee').employeeMgr;
-var employees =[];
-router.get('/:cid', function(req, res) {
+var employeess =[];
+router.get('/:cid',userHelpers.isCenter, function(req, res) {
   centerMgr.getCenter(req.params.cid,function(results){
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);
@@ -14,7 +14,7 @@ router.get('/:cid', function(req, res) {
         var pagination = userHelpers.paginate(page,pageCount);
         res.render('center', { title: 'مركز البينات ' , cent : results,employees:result[0], pagination : pagination });
       } else {
-        res.render('center', { title: 'مركز البينات ' , cent : results, employees:employees, pagination : null });
+        res.render('center', { title: 'مركز البينات ' , cent : results,employees:employeess, pagination : null });
       }
     });
   });

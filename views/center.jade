@@ -145,7 +145,7 @@ block content
         .row
           .col-sm-12.col-md-11.col.col-md.offset-4
               .modal-body
-                  form#form.form-signin(role="form" , action="/employee/addemployee", method="post")   
+                  form#form.form-signin(role="form" , action="/employee/addemployeeCenter/#{cent[0].center_id}", method="post")   
                     div.form-group
                       lable.h3 اسم الموظف
                       input#employee_name.form-control(type="text",name="employee_name", placeholder="اسم الموظف",autofocus="")

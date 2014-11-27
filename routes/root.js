@@ -4,8 +4,10 @@ var router = express.Router();
 var userMgr = require('../app/user').userMgr;
 var logMgr = require('../app/log').repoMgr;
 var officeMgr = require('../app/office').officeMgr;
+var phoneMgr = require('../app/phone').phoneMgr;
+
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/',userHelpers.isRoot,function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   userMgr.getUsers(limit, function(results){
@@ -38,6 +40,12 @@ router.get('/getUser/:id', function(req, res) {
   userMgr.getUser(req.params.id,function(result){
     res.send(result);
   });
+});
+/* GET  phones. */
+router.get('/getphone/:id', function(req, res) {
+  phoneMgr.getphoneUser(req.params.id,function(result){
+    res.send(result);
+  })
 });
 /* Delete user page. */
 router.get('/deleteUser/:id', function(req, res) {

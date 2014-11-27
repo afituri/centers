@@ -107,7 +107,7 @@ exports.userMgr = {
   /* getting user by email */
   getUserByEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `user` WHERE `email` = ?',email,  function(err, result) {
+      conn.query('SELECT * FROM `user` WHERE `status` = 1 AND `email` = ?',email,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -120,7 +120,7 @@ exports.userMgr = {
   /* getting user by ID */
   getUserById : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `user` WHERE `iduser` = ?',id,  function(err, result) {
+      conn.query('SELECT * FROM `user` WHERE `status` = 1 AND `iduser` = ?',id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

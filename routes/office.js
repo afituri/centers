@@ -10,7 +10,7 @@ var centerMgr = require('../app/center').centerMgr;
 var mahallaMgr = require('../app/mahalla').mahallaMgr;
 
 /* GET home office  page. */
-router.get('/', function(req, res) {
+router.get('/',userHelpers.isAdmin, function(req, res) {
   officeMgr.getOffice(function(result){
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
   });
 });
 /* GET office by id  page. */
-router.get('/:oid', function(req, res) {
+router.get('/:oid',userHelpers.isManager, function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);
@@ -36,7 +36,7 @@ router.get('/:oid', function(req, res) {
   })
 });
 /* GET subconstitunecy page. */
-router.get('/:oid/:sid', function(req, res) {
+router.get('/:oid/:sid',userHelpers.isManager, function(req, res) {
   villageMgr.getvillage(req.params.sid,function(result){
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);
@@ -50,7 +50,7 @@ router.get('/:oid/:sid', function(req, res) {
   })
 });
 /* GET village page. */
-router.get('/:oid/:sid/:vid', function(req, res) {
+router.get('/:oid/:sid/:vid',userHelpers.isManager, function(req, res) {
   mahallaMgr.getmahalla(req.params.vid,function(result){
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);
@@ -64,7 +64,7 @@ router.get('/:oid/:sid/:vid', function(req, res) {
   })        
 });
 /* GET mahalla page. */
-router.get('/:oid/:sid/:vid/:mid', function(req, res) {
+router.get('/:oid/:sid/:vid/:mid', userHelpers.isManager,function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   centerMgr.getCentersmahlla(limit,req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(results){

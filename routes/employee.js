@@ -9,15 +9,20 @@ var phoneMgr = require('../app/phone').phoneMgr;
 var officeMgr = require('../app/office').officeMgr;
 var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var Step = require('step');
+var employees =[];
 
 /* GET home page. */
 router.get('/', function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   employeeMgr.getemployees(limit,req.session.iduser,req.session.level,req.session.office_idoffice,function(results){
-    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
-    var pagination = userHelpers.paginate(page,pageCount);
-    res.render('employee',{title: 'الموظفين',employees:results[0], pagination : pagination});
+    if(results[1][0] != undefined){
+      var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
+      res.render('employee',{title: 'الموظفين',employees:results[0], pagination : pagination});
+    } else {
+      res.render('employee',{title: 'الموظفين',employees:employees, pagination : null});      
+    }
   });
 });
 /* GET editemployee page. */
@@ -37,6 +42,13 @@ router.post('/addemployee', userHelpers.isRoot, function(req, res) {
   employeeMgr.addemployee(req.body, function (results){
     logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id);
     res.redirect('/employee');
+  });
+});
+/* add employee. center */
+router.post('/addemployeeCenter/:id', userHelpers.isRoot, function(req, res) {
+  employeeMgr.addemployee(req.body, function (results){
+    logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id);
+    res.redirect('/center/'+req.params.id);
   });
 });
 /* GET employee phones. */

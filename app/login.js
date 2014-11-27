@@ -39,7 +39,17 @@ module.exports = function (router) {
       req.session.iduser=user.iduser;
       req.session.level=user.level;
       req.session.office_idoffice=user.office_idoffice;
-      res.redirect('/root');
+      if(user.level == 0){
+        res.redirect('/root');
+      }else{
+        if(user.level == 1){
+          res.redirect('/admin');
+        }else{
+          if(user.level == 2){
+            res.redirect('/office/'+user.office_idoffice);
+          }
+        }
+      }
     });
   });
   // here if a user wants to logout of the app
