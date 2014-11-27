@@ -76,10 +76,38 @@ exports.employeeMgr = {
       });
     });
   },
-   /* get employee by center id */
+  /* get employee by center id */
   getEmployeeCenter : function(limit,id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`center_idcenter`=? AND `e`.`status`= 1 GROUP BY `idemployee` limit ?,10; SELECT COUNT(*) as cnt FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`center_idcenter`=? AND `e`.`status`= 1 GROUP BY `idemployee`;',[id,limit,id], function(err, result) {
+        console.log(result);
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /* get employee by office id */
+  getEmployeeOffice : function(limit,id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `idemployee`,`employee_name`,`office_name`,`phone_number`,`idphone`,`type` FROM `employee`,`office`,`phone` WHERE `office`.`idoffice` = `user`.`office_idoffice` AND `phone`.`user_employee` = `user`.`iduser` AND `user`.`status` = 1 AND `user`.`level` = 2 group by `iduser`limit ?,10; SELECT COUNT(*) as cnt FROM `user`  WHERE `status` = 1 AND `level` = 2;', limit,function(err, result) {
+        console.log(result);
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /* get All employee . */
+  getAllEmployee : function(limit,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `e`.`idemployee`,`e`.`employee_name`,`p`.`phone_number`,`p`.`idphone`,`p`.`type` FROM `employee` e,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `e`.`status` = 1 AND `p`.`status` = 1 AND `p`.`user_type` = 1 group by `idemployee` limit ?,10; SELECT COUNT(*) as cnt FROM  `employee`,`phone` WHERE `phone`.`user_employee` = `employee`.`idemployee` AND `employee`.`status` = 1 AND `phone`.`status` = 1 AND `user_type` = 1 group by `idemployee` ;', limit,function(err, result) {
         console.log(result);
         conn.release();
         if(err) {
