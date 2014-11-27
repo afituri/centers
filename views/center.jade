@@ -56,8 +56,6 @@ block content
               td نوع المركز
               td
                 |#{cent[0].center_type}
-                  
-    
       .col-md-12 
         .panel
             div.btn-group.pull-left
@@ -70,7 +68,6 @@ block content
                   .input-group-btn
                     .btn.btn-default(type="button")  
                       spen.glyphicon.glyphicon-search
-
         div.panel-body  
           div.table-responsive  
             table#off.table.table-striped.table-bordered.table-condensed.table-hover
@@ -136,10 +133,8 @@ block content
                     th رقم الهاتف
                     th النوع
                   tbody#body
-                        
           .modal-footer
             button.btn.btn-success(data-dismiss='modal', type='button') cancel
-
   #addemployee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
@@ -181,10 +176,10 @@ block content
                             li
                               a(href='#ثريا') ثريا
                             li
+                          input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
                         input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
                         span.input-group-btn
                           button.btn.btn-success.btn-add(type='button') +
-                        input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
                     div.form-group
                       lable.h3 صفة الموظف
                       select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
@@ -199,7 +194,6 @@ block content
                       input.input-group-select-val(type='hidden', value='#{cent[0].center_id}', name='center_idcenter')
                     div.form-group.text-center
                       button.btn.btn-lg.btn-primary(type="submit") إضـافة        
-
   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
@@ -211,7 +205,6 @@ block content
         .modal-footer
           button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal',data-center="#{cent[0].center_id}") delete
           button.btn.btn-success(data-dismiss='modal', type='button') cancel
-
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")

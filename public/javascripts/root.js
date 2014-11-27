@@ -11,8 +11,6 @@ $(document).ready(function(){
   	var id = $(this).val();
   	$.get('/root/deleteUser/'+id, function(result){
       window.location.href="/root";
-
     });
-
   });
 });

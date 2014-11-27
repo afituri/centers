@@ -1,5 +1,4 @@
 $(document).ready(function(){
- 
   $("a[id^='phone']").click(function() {
     var id = $(this).data("value");   
     $.get('/employee/getphone/'+id, function(result){
@@ -79,9 +78,9 @@ $(document).ready(function(){
     },
     errorPlacement: function(error, element) {
       if (element.attr("name") == "phone[]") {
-          error.insertAfter("#phone_input");
+        error.insertAfter("#phone_input");
       } else {
-          error.insertAfter(element);
+        error.insertAfter(element);
       }
     }
   });

@@ -5,27 +5,24 @@ $(document).ready(function(){
         disabled: true,
       };
   $.extend($.fn.editable.defaults, defaults);
-  
   $('#enable').click(function() {
     $('#user.editable').editable('toggleDisabled');
   }); 
-  
   $.get('/employee/getCenters',function(result){
-      for ( var i = 0 ; i< result.length; i++){
-        var k = new Object({id : i,value : result[i].idcenter, text : result[i].lname});
-        $.resul.push(k);
-      }
+    for ( var i = 0 ; i< result.length; i++){
+      var k = new Object({id : i,value : result[i].idcenter, text : result[i].lname});
+      $.resul.push(k);
+    }
     $('#center_idcenter').editable({
         url: '/users/edit',
         source: $.resul,
         select2: {
-            width: 200,
-            placeholder: 'Select center',
-            allowClear: false
+          width: 200,
+          placeholder: 'Select center',
+          allowClear: false
         } 
     });      
   });
-  
   $('#name').editable({
     url: '/users/edit',
     type: 'text',
@@ -76,7 +73,6 @@ $(document).ready(function(){
       if(!v) return 'الرجاء ادخال اسم البنك';
     }
   });
-  
   $('#center_type').editable({
     url: '/users/edit',
     source:[
@@ -90,7 +86,6 @@ $(document).ready(function(){
       if(!v) return 'الرجاء اختيار صفة الموظف';
     }
   });
-
   $('#village_idvillage').editable({
     url: '/users/edit',
     type: 'Select',
@@ -101,8 +96,6 @@ $(document).ready(function(){
       if(!v) return 'الرجاء اختيار اسم المركز';
     }
   });
-
-
   $('#mahalla_idmahalla').editable({
     url: '/users/edit',
     type: 'Select',
@@ -113,8 +106,6 @@ $(document).ready(function(){
       if(!v) return 'الرجاء اختيار اسم المركز';
     }
   });
-
-
   $("a[id^='phone_number']").editable({
     url: '/users/edit',
     type: 'text',
@@ -128,7 +119,6 @@ $(document).ready(function(){
       if(!flag) return "هذا ليس رقم هاتف";
     }
   });
-  
   $('#email').editable({
     url: '/users/edit',
     type: 'text',
@@ -148,6 +138,6 @@ $(document).ready(function(){
         },
         function(data,status){
           if(!data) alert("هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر");
-        });
       });
+  });
 });

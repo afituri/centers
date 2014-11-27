@@ -8,11 +8,8 @@ $(document).ready(function(){
       } 
     });
   });
-
   $('body').on('click', '#viw ', function () {
     var id = $(this).val();
     window.location.href="/admin/editmanager/"+id;
   }); 
-
-
 });

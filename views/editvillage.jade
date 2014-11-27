@@ -18,7 +18,6 @@ block content
       button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="")
         span.glyphicon.glyphicon-trash
       a.btn.btn-primary.pull-left(type="button", href="#") رجـــــوع
-        
       div.form-group 
         table#user.table.table-bordered.table-striped(style='clear: both')
           tbody
@@ -39,8 +38,6 @@ block content
               td
                 a#level1(href='#', data-type='select', data-pk='', 
                 data-value='',  data-title='اللجان')
-                  
-
     #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
@@ -52,7 +49,6 @@ block content
               .modal-footer
                 button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
                 button.btn.btn-success(data-dismiss='modal', type='button') cancel
-  
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
