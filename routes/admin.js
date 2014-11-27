@@ -17,10 +17,14 @@ router.get('/', function(req, res) {
     res.render('admin',{title: 'المدراء', users : results[0], pagination : pagination});
   })
 });
-/* GET phoneEmployee page. */
-router.get('/phoneEmployee', function(req, res) {
-  employeeMgr.getEmployee(function(result){
-    res.render('phoneEmployee',{title: 'ارقام هواتف الموظفين', employees : result});
+/* GET All phoneEmployee page. */
+router.get('/phoneEmployeeAll', function(req, res) {
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  employeeMgr.getAllEmployee(limit,function(result){
+    var pageCount = userHelpers.getPageCount(result[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('phoneEmployeeAll',{title: 'ارقام هواتف الموظفين', employees : result[0], pagination : pagination});
   });
 });
 /* GET phoneManager page. */

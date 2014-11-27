@@ -30,15 +30,15 @@ block content
             tbody
               for employee in employees
                 tr
-                  td #{employee.name}
+                  td #{employee.employee_name}
                   td #{employee.type}
                   td
-                    a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.iduser}")
+                    a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
                       |  #{employee.phone_number}
                   td 
-                    button#viw.btn.btn-primary.btn-xs(   data-title='Edit',value="#{employee.iduser}")
+                    button#viw.btn.btn-primary.btn-xs(   data-title='Edit',value="#{employee.idemployee}")
                       span.glyphicon.glyphicon-eye-open
-           div.text-center
+          div.text-center
             ul.pagination
               li(class='#{pagination.previous.disabled}')
                 a(href='?p=#{pagination.previous.n}') السابق
@@ -64,4 +64,4 @@ block content
           button.btn.btn-success(data-dismiss='modal', type='button') cancel
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
-  script(src="/javascripts/phoneManager.js")
+  script(src="/javascripts/phoneEmployeeAll.js")
