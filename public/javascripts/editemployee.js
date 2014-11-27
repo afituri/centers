@@ -5,11 +5,9 @@ $(document).ready(function(){
         disabled: true,
       };
   $.extend($.fn.editable.defaults, defaults);
-  
   $('#enable').click(function() {
     $('#user .editable').editable('toggleDisabled');
   }); 
-  
   $.get('/employee/getCenters',function(result){
       for ( var i = 0 ; i< result.length; i++){
         var k = new Object({id : i,value : result[i].center_id, text : result[i].name});
@@ -19,13 +17,12 @@ $(document).ready(function(){
         url: '/employee/edit',
         source: $.resul,
         select2: {
-            width: 200,
-            placeholder: 'Select center',
-            allowClear: false
+          width: 200,
+          placeholder: 'Select center',
+          allowClear: false
         } 
     });      
   });
-  
   $('#employee_name').editable({
     url: '/employee/edit',
     type: 'text',
@@ -75,7 +72,6 @@ $(document).ready(function(){
       if(!v) return 'الرجاء اختيار صفة الموظف';
     }
   });
-
   $("a[id^='phone_number']" ).editable({
     url: '/employee/edit',
     type: 'text',

@@ -1,6 +1,5 @@
 var mysqlMgr = require('./mysql').mysqlMgr,
     util=require('util');
-
 exports.repoMgr = {
  /*report  adding a new user to the system */
   addLog : function(body,id,tabel,idtabel,cb){
@@ -12,7 +11,6 @@ exports.repoMgr = {
         cb(null,text);
       });
     });
- 
   },
   /*add new log*/
   insertLog : function (iduser,type,tabel,desc,idtabel){

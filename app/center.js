@@ -53,6 +53,19 @@ exports.centerMgr = {
       });
     });
   },
+   /*get centers by sub id for select */
+  getCentersS : function(id,cid,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?  AND`subconstituency_idsubconstituency`= ?',[id,cid],  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
    /*get centers by sub id */
   getCentersSub : function(limit,id,cid,cb){
     mysqlMgr.connect(function (conn) {

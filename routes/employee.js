@@ -71,7 +71,7 @@ router.get('/getsubconstituency/:id', function(req, res) {
 });
 /* get center  . */
 router.get('/getcenter/:ido/:ids', function(req, res) {
-  centerMgr.getCentersSub(req.params.ido,req.params.ids,function(result){
+  centerMgr.getCentersS(req.params.ido,req.params.ids,function(result){
     res.send(result);
   })
 });

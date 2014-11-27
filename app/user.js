@@ -20,7 +20,6 @@ exports.userMgr = {
               conn.query('INSERT INTO `phone` SET `user_type` = 0, `phone_number` = ?,type=?,`user_employee` =?',[phone[i],type[i],results.id]);           
               }
         conn.release();
-
           cb(results); 
         }
       });

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   /* Go to user needs view or edit */
   $("button[id^='view']").click(function() {
     var id = $(this).val();
@@ -16,7 +15,6 @@ $(document).ready(function(){
       window.location.href="/admin";
     });
   });
-
   $('#idcenter').on('input', function(){
     if($('#idcenter').val().length >=3) {
       $.get('/office/searchByCenterId/'+$('#idcenter').val(),function(result){

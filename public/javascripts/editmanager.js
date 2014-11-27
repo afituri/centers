@@ -17,9 +17,9 @@ $(document).ready(function(){
         url: '/users/edit',
         source: $.resul,
         select2: {
-            width: 200,
-            placeholder: 'Select country',
-            allowClear: false
+          width: 200,
+          placeholder: 'Select country',
+          allowClear: false
         } 
     });      
   });
@@ -65,6 +65,6 @@ $(document).ready(function(){
         },
         function(data,status){
           if(!data) alert("هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر");
-        });
       });
+  });
 });

@@ -29,9 +29,9 @@ block content
         tr
           td(width='35%') رقم الهاتف
           td(width='65%')
-              each val, index in user
-                a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
-                &nbsp;&nbsp;       
+            each val, index in user
+              a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
+              &nbsp;&nbsp;       
         tr
           td الصلاحية #{user[0].level}
           td

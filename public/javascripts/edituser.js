@@ -45,19 +45,18 @@ $(document).ready(function(){
       return res.msg;
     }
   });
-
   $.get('/admin/getoffice',function(result){
-      for ( var i = 0 ; i< result.length; i++){
-        var k = new Object({id : i,value : result[i].idoffice, text : result[i].office_name});
-        $.resul.push(k);
-      }
+    for ( var i = 0 ; i< result.length; i++){
+      var k = new Object({id : i,value : result[i].idoffice, text : result[i].office_name});
+      $.resul.push(k);
+    }
     $('#office_idoffice').editable({
         url: '/users/edit',
         source: $.resul,
         select2: {
-            width: 200,
-            placeholder: 'Select country',
-            allowClear: false
+          width: 200,
+          placeholder: 'Select country',
+          allowClear: false
         } 
     });      
   });

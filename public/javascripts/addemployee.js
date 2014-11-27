@@ -5,7 +5,6 @@ $(document).ready(function(){
       $('#office_idoffice').append("<option value = '"+result[i].office_id+"'>"+result[i].office_name+"</option>");
       }
   });
-
   $('#office_idoffice').change(function() {
     var id = $('#office_idoffice').val();
     $('#subconstituency_idsubconstituency').empty();
@@ -26,8 +25,6 @@ $(document).ready(function(){
       }
     });
   });
-
-
   $("#form").validate({
     rules: {
       subconstituency_idsubconstituency: {

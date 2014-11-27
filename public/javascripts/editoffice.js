@@ -10,25 +10,20 @@ $(document).ready(function(){
   }); 
   
   $.get('/office/getregion',function(result){
-      console.log(result[0].idoffice);
-      for ( var i = 0 ; i< result.length; i++){
-        var k = new Object({id : i,value : result[i].idoffice, text : result[i].region_name});
-        $.resul.push(k);
-      }
-      
-
+    for ( var i = 0 ; i< result.length; i++){
+      var k = new Object({id : i,value : result[i].idoffice, text : result[i].region_name});
+      $.resul.push(k);
+    }
     $('#office_idoffice').editable({
         url: '/users/edit',
         source: $.resul,
         select2: {
-            width: 200,
-            placeholder: 'Select country',
-            allowClear: false
+          width: 200,
+          placeholder: 'Select country',
+          allowClear: false
         } 
     });      
-
   });
-
   $('#office_name_ar').editable({
     url: '/users/edit',
     type: 'text',
@@ -39,7 +34,6 @@ $(document).ready(function(){
       if(!v) return 'الرجاء ادخال اسم المستخدم';
     }
   });
-
   $('#office_name').editable({
     url: '/users/edit',
     type: 'text',
@@ -50,8 +44,6 @@ $(document).ready(function(){
       if(!v) return 'الرجاء ادخال اسم المستخدم';
     }
   });
-
-  
   $('#office_id').editable({
     url: '/users/edit',
     type: 'text',
@@ -62,8 +54,6 @@ $(document).ready(function(){
       if(!v) return 'الرجاء ادخال اسم office_id';
     }
   });
-
-
   $('#region_name').editable({
     url: '/users/edit',
     type: 'text',
@@ -74,6 +64,4 @@ $(document).ready(function(){
       if(!v) return 'الرجاء ادخال region_name';
     }
   });
-
-  
 });

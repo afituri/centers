@@ -12,7 +12,6 @@ exports.employeeMgr = {
             } else {
               cb(result);
             } 
-                  
         });
       }else{
         conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `p`.`status`=1 GROUP BY `idemployee` limit ?,10; SELECT COUNT(*) as cnt FROM `employee` e,`centers` c,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `p`.`status`=1 GROUP BY `idemployee`;',limit, function(err, result) {
@@ -123,7 +122,6 @@ exports.employeeMgr = {
               conn.query('INSERT INTO `phone` SET `user_type` = 1, `phone_number` = ?,type=?,`user_employee` =?',[phone[i],type[i],results.id]);           
               }
         conn.release();
-
           cb(results); 
         }
       });
