@@ -26,5 +26,18 @@ exports.mahallaMgr = {
         }
       });
     });
-  }
+  },
+  /* get all mahhla .*/
+  getAllMahalla : function(limit,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `mahalla` WHERE `status`= 1 limit ?,10; SELECT COUNT(*) as cnt FROM `subconstituency`  WHERE `status` = 1 ;',limit,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };

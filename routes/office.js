@@ -28,7 +28,27 @@ router.get('/centerViews', function(req, res) {
   centerMgr.getCenters(limit,function(results){
     var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
     var pagination = userHelpers.paginate(page,pageCount);
-    res.render('centerViews', { title: "اللجان  الأنتخابية" , centers : results[0],pagination : pagination});
+    res.render('centerViews', { title: "المراكز" , centers : results[0],pagination : pagination});
+  })
+});
+/* GET subconstituencyViews. */
+router.get('/subconstituencyViews', function(req, res) {
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  subconstituencyMgr.getAllSubconstituency(limit,function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('subconstituencyViews', { title: "الدوائر الفرعيه" , subconstituencys : results[0],pagination : pagination});
+  })
+});
+/* GET subconstituencyViews. */
+router.get('/mahallaViews', function(req, res) {
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  mahallaMgr.getAllMahalla(limit,function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('mahallaViews', { title: "المحلة" , mahallas : results[0],pagination : pagination});
   })
 });
 /* GET office by id  page. */
