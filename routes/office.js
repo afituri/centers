@@ -21,6 +21,16 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
     })
   });
 });
+/* GET centers. */
+router.get('/centerViews', function(req, res) {
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  centerMgr.getCenters(limit,function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('centerViews', { title: "اللجان  الأنتخابية" , centers : results[0],pagination : pagination});
+  })
+});
 /* GET office by id  page. */
 router.get('/:oid',userHelpers.isManager, function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
