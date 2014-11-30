@@ -27,12 +27,14 @@ block content
               th الرقم
               th اﻻسم باللغة العربيه
               th اﻻسم باللغة اﻻنجليزيه
+              th اسم المنطقة
             tbody
-              for constituency in constituencys
+              for office in offices
                 tr
-                  td #{constituency.constituency_id}
-                  td #{constituency.constituency_name_ar}
-                  td #{constituency.constituency_name}
+                  td #{office.office_id}
+                  td #{office.office_name_ar}
+                  td #{office.office_name}
+                  td #{office.region_name}
       div.text-center
             ul.pagination
               li(class='#{pagination.previous.disabled}')

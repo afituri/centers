@@ -8,6 +8,7 @@ var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var villageMgr = require('../app/village').villageMgr;
 var centerMgr = require('../app/center').centerMgr;
 var mahallaMgr = require('../app/mahalla').mahallaMgr;
+var constituencyMgr = require('../app/constituency').constituencyMgr;
 
 /* GET home office  page. */
 router.get('/',userHelpers.isAdmin, function(req, res) {
@@ -41,7 +42,7 @@ router.get('/subconstituencyViews', function(req, res) {
     res.render('subconstituencyViews', { title: "الدوائر الفرعيه" , subconstituencys : results[0],pagination : pagination});
   })
 });
-/* GET subconstituencyViews. */
+/* GET mahallaViews. */
 router.get('/mahallaViews', function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
@@ -49,6 +50,36 @@ router.get('/mahallaViews', function(req, res) {
     var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
     var pagination = userHelpers.paginate(page,pageCount);
     res.render('mahallaViews', { title: "المحلة" , mahallas : results[0],pagination : pagination});
+  })
+});
+/* GET villageViews. */
+router.get('/villageViews', function(req, res) {
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  villageMgr.getAllVillage(limit,function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('villageViews', { title: "القرية او المدينة" , villages : results[0],pagination : pagination});
+  })
+});
+/* GET officeViews. */
+router.get('/officeViews', function(req, res) {
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  officeMgr.getAllOffice(limit,function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('officeViews', { title: "اللجان" , offices : results[0],pagination : pagination});
+  })
+});
+/* GET cons. */
+router.get('/constituencyViews', function(req, res) {
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  constituencyMgr.getAllConstituency(limit,function(results){
+    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+    var pagination = userHelpers.paginate(page,pageCount);
+    res.render('constituencyViews', { title: "الدوائر الرئيسيه" , constituencys : results[0],pagination : pagination});
   })
 });
 /* GET office by id  page. */
