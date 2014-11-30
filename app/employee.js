@@ -25,6 +25,7 @@ exports.employeeMgr = {
       }     
     });
   },
+  /* Delete employee */
   deleteemployee : function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('UPDATE `employee` SET `status` = 0 WHERE `idemployee` = ?',id,  function(err, result) {
@@ -38,6 +39,7 @@ exports.employeeMgr = {
       });
     });
   },
+  /* get employee  */
   getemployee : function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `idemployee`,`employee_name`,`email`,`type`,`nid`,`account_number`,`bank_name`,`center_idcenter` FROM `employee` WHERE `status`= 1 AND`idemployee` = ?;SELECT `idphone`,`phone_number`,`type` FROM `phone` WHERE `status`= 1 AND `user_type`=1 AND `user_employee` = ?',[id,id],  function(err, result) {
@@ -130,6 +132,7 @@ exports.employeeMgr = {
       });
     });
   },
+  /* Add employee */
   addemployee : function(body,cb){
     mysqlMgr.connect(function (conn) {
       var phone = body.phone;
