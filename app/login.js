@@ -39,11 +39,12 @@ module.exports = function (router) {
       req.session.iduser=user.iduser;
       req.session.level=user.level;
       req.session.office_idoffice=user.office_idoffice;
+      req.session.name=user.name;
       if(user.level == 0){
-        res.redirect('/root');
+        res.redirect('/cpanel');
       }else{
         if(user.level == 1){
-          res.redirect('/admin');
+          res.redirect('/cpanel');
         }else{
           if(user.level == 2){
             res.redirect('/office/'+user.office_idoffice);
