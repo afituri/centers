@@ -21,6 +21,13 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
     })
   });
 });
+
+/* searchByCenterId office  */
+router.get('/searchByCenterId/:id', function(req, res) {
+  centerMgr.searchByCenterId(req.params.id,req.session.level,req.session.office_idoffice,function(result){
+    res.send(result);
+  })
+});
 /* GET office by id  page. */
 router.get('/:oid',userHelpers.isManager, function(req, res) {
   subconstituencyMgr.getsub(req.params.oid,function(result){
@@ -81,6 +88,7 @@ router.get('/:oid:/deleteoffice/', function(req, res) {
     res.send(result);
   })
 });
+
 /* get sub subconstituency   */
 router.get('/getsub/:id', function(req, res) {
   subconstituencyMgr.getsub(req.params.id,function(result){

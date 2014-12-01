@@ -10,6 +10,6 @@ $(document).ready(function(){
   });
   $('body').on('click', '#viw ', function () {
     var id = $(this).val();
-    window.location.href="/admin/editemployee/"+id;
+    window.location.href="/employee/editemployee/"+id;
   }); 
 });

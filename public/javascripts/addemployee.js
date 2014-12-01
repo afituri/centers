@@ -5,7 +5,7 @@ $(document).ready(function(){
       $('#office_idoffice').append("<option value = '"+result[i].office_id+"'>"+result[i].office_name+"</option>");
       }
   });
-  $('#office_idoffice').change(function() {
+  $('#office_idoffice').click(function() {
     var id = $('#office_idoffice').val();
     $('#subconstituency_idsubconstituency').empty();
     $('#center_idcenter').empty();
@@ -15,7 +15,7 @@ $(document).ready(function(){
       }
     });
   });
-  $('#subconstituency_idsubconstituency').change(function() {
+  $('#subconstituency_idsubconstituency').click(function() {
     var ido = $('#office_idoffice').val();
     var ids = $('#subconstituency_idsubconstituency').val();
     $('#center_idcenter').empty();
