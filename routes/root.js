@@ -49,9 +49,11 @@ router.get('/getphone/:id', function(req, res) {
 });
 /* Delete user page. */
 router.get('/deleteUser/:id', function(req, res) {
-  userMgr.delUser(req.params.id,function(result){
-    logMgr.insertLog(req.session.iduser,"delete","user"," delete user ",req.params.id);
-    logMgr.insertLog(req.session.iduser,"delete","phone"," delete phones ",req.params.id);
+  userMgr.delUser(req.params.id,function(result,resultz){
+    logMgr.insertLog(req.session.iduser,"delete","user"," delete user ",req.params.id,resultz[0].name);
+    for(key in result){
+      logMgr.insertLog(req.session.iduser,"delete","phone"," delete phone ",result[key].idphone,result[key].phone_number);
+    }
     res.send(result);
   });
 });

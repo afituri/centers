@@ -12,10 +12,23 @@ exports.repoMgr = {
       });
     });
   },
-  /*add new log*/
-  insertLog : function (iduser,type,tabel,desc,idtabel){
+  /*report   */
+  report : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('INSERT INTO `log` (`user_iduser`,`type`,`table`,`desc`,`table_idtable`) VALUES(?,?,?,?,?)',[iduser,type,tabel,desc,idtabel],  function(err, result) {
+      conn.query('SELECT `u`.`name`,`value`, `type`,`table`,`desc`,`l`.`creation_date`,`table_idtable`  FROM `user` u,`log` l WHERE `l`.`user_iduser`=`u`.`iduser`' , function(err, result) {
+        conn.release();
+         if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /*add new log*/
+  insertLog : function (iduser,type,tabel,desc,idtabel,name){
+    mysqlMgr.connect(function (conn) {
+      conn.query('INSERT INTO `log` (`user_iduser`,`type`,`table`,`desc`,`table_idtable`,`name`) VALUES(?,?,?,?,?,?)',[iduser,type,tabel,desc,idtabel,name],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
