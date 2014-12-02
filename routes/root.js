@@ -37,7 +37,7 @@ router.get('/edituser/:id',userHelpers.isRoot, function(req, res) {
 /* POST adduser form for root */
 router.post('/adduser', userHelpers.isRoot, function(req, res) {
   userHelpers.addUser(req.body, function (results){
-    logMgr.insertLog(req.session.iduser,"add","user"," add new user name : "+results.name,results.id);
+    logMgr.insertLog(req.session.iduser,"add","user"," add new user name : "+results.name,results.id,results.name);
     res.redirect('/root');
   });
 });

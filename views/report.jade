@@ -4,16 +4,78 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          a(href="#") Home
+         h2 الـتـقــاريـــر
         li
-          a(href="#") About
+          //a(href="#") About
         li
-          a(href="#") Contact
+          //a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
-    .panel.panel-default 
-        div.table-responsive  
+    .row
+      .col-sm-3
+        .nav.nav-pills.nav-stacked
+          li.active
+            a(href="/cpanel")
+              span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            p
+          li
+            p
+              a.btn.btn-default.btn-block(href="/office/mahallaViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الــمـحـلـه
+          li
+            p
+              a.btn.btn-default.btn-block(href="/office/villageViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | القـريـه / المـدينـه
+          li
+            p
+              a.btn.btn-default.btn-block(href="/office/officeViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الـلــجـنـه
+          li
+            p
+              a.btn.btn-default.btn-block(href="/office/subconstituencyViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الدوائـر الـفرعـيـه
+          li
+            p
+              a.btn.btn-default.btn-block(href="/root", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | المـستخدميــن
+          li
+            p
+              a.btn.btn-default.btn-block(href="/office/constituencyViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الدوائر الرئـيـسـيه
+          li
+            p
+              a.btn.btn-default.btn-block(href="/admin/phoneManager", role="button")
+                span.glyphicon.glyphicon-earphone.pull-right
+                | هواتـف المـدراء
+          li
+            p
+              a.btn.btn-default.btn-block(href="/employee", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | المـوظـفـيـن
+          li
+            p
+              a.btn.btn-default.btn-block(href="/admin", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | الـمـدراء
+          li
+            p
+              a.btn.btn-default.btn-block(href="/report", role="button")
+                span.glyphicon.glyphicon-list-alt.pull-right
+                | الـتـقـاريــر
+          li
+            p
+              a.btn.btn-default.btn-block(href="/office", role="button")
+                span.glyphicon.glyphicon-th-list.pull-right
+                | اللجـان و المـراكز
+      panel.panel-default 
+        .col-lg-9.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
             thead
               th أسم المستخدم
@@ -45,15 +107,15 @@ block content
                     td #{rec.desc} 
                     td #{rec.creation_date} 
                     td #{rec.value} 
-    if pagination
-      div.text-center
-        ul.pagination
-          li(class='#{pagination.previous.disabled}')
-            a(href='?p=#{pagination.previous.n}') السابق
-          for page in pagination.pages
-            li(class="#{page.active}")
-              a(href='?p=#{page.n}') #{page.n}
-          li(class="#{pagination.next.disabled}")
-            a(href='?p=#{pagination.next.n}') التالي      
+      if pagination
+        div.text-center
+          ul.pagination
+            li(class='#{pagination.previous.disabled}')
+              a(href='?p=#{pagination.previous.n}') السابق
+            for page in pagination.pages
+              li(class="#{page.active}")
+                a(href='?p=#{page.n}') #{page.n}
+            li(class="#{pagination.next.disabled}")
+              a(href='?p=#{pagination.next.n}') التالي      
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
