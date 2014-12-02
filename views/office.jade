@@ -16,8 +16,8 @@ block content
         .panel.col-sm-3
           .nav.nav-pills.nav-stacked
             li.active
-              a(href="#")
-                span.glyphicon.glyphicon-home اللجنة الأنتخابية  
+              a
+                span.glyphicon اللجنة الأنتخابية  
             for office in offices    
               li
                 a(href="/office/#{office.idoffice}") 
@@ -42,8 +42,8 @@ block content
                   td #{center.center_id}
                   td #{center.name}
                   td #{center.center_type}
-                  td 
-                    button#view.btn.btn-primary.btn-xs(value='#{center.center_id}')
+                  td
+                    a.btn.btn.btn-primary.btn-xs(href="/center/#{center.center_id}") 
                       span.glyphicon.glyphicon-eye-open
           div.text-center
             ul.pagination

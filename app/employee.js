@@ -95,7 +95,6 @@ exports.employeeMgr = {
   getEmployeeOffice : function(limit,id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `idemployee`,`employee_name`,`office_name`,`phone_number`,`idphone`,`type` FROM `employee`,`office`,`phone` WHERE `office`.`idoffice` = `user`.`office_idoffice` AND `phone`.`user_employee` = `user`.`iduser` AND `user`.`status` = 1 AND `user`.`level` = 2 group by `iduser`limit ?,10; SELECT COUNT(*) as cnt FROM `user`  WHERE `status` = 1 AND `level` = 2;', limit,function(err, result) {
-        console.log(result);
         conn.release();
         if(err) {
           util.log(err);
@@ -109,7 +108,6 @@ exports.employeeMgr = {
   getAllEmployee : function(limit,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `e`.`idemployee`,`e`.`employee_name`,`p`.`phone_number`,`p`.`idphone`,`p`.`type` FROM `employee` e,`phone` p WHERE `p`.`user_employee` = `e`.`idemployee` AND `e`.`status` = 1 AND `p`.`status` = 1 AND `p`.`user_type` = 1 group by `idemployee` limit ?,10; SELECT COUNT(*) as cnt FROM  `employee`,`phone` WHERE `phone`.`user_employee` = `employee`.`idemployee` AND `employee`.`status` = 1 AND `phone`.`status` = 1 AND `user_type` = 1 group by `idemployee` ;', limit,function(err, result) {
-        console.log(result);
         conn.release();
         if(err) {
           util.log(err);
@@ -117,6 +115,31 @@ exports.employeeMgr = {
           cb(result);
         }
       });
+    });
+  },
+  /*Search employee by name*/
+  searchEmployee : function(name,level,ido,cb){
+    name = name+"%";
+    mysqlMgr.connect(function (conn) {
+      if(level == 2 ){
+        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `e`.`employee_name` LIKE ? AND`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? AND `c`.`status`=1 AND `p`.`status`=1  GROUP BY `idemployee',[name,ido],  function(err, result) {
+            conn.release();
+            if(err) {
+              util.log(err);
+            } else {
+              cb(result);
+            } 
+        });
+      }else{
+        conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `e`.`employee_name` LIKE ? AND `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `p`.`status`=1 GROUP BY `idemployee`',name, function(err, result) {
+          conn.release();
+          if(err) {
+            util.log(err);
+          } else {
+            cb(result);
+          }
+        });
+      }     
     });
   },
   /* check if email exists */

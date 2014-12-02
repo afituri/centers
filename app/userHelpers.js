@@ -54,6 +54,7 @@ module.exports = {
   isManager : function (req,res,next) {
     if (req.isAuthenticated() && req.session.level<2) { return next(); }
     if(req.session.level==2&&req.params.oid==req.session.office_idoffice){ return next(); }
+    if(req.session.iduser==null){res.redirect('/users/login')}
     res.redirect('/office/'+ req.session.office_idoffice)
   },
   isCenter: function (req,res,next) {
@@ -62,7 +63,11 @@ module.exports = {
       if(result){ return next(); }
       res.redirect('/office/'+ req.session.office_idoffice);
     });
-    
+  },
+   /* here we check if the manager have access to office */
+  isLogin : function (req,res,next) {
+    if (req.isAuthenticated() && req.session.iduser!=null) { return next(); }
+    res.redirect('/users/login')
   },
   getPage : function (req){
     var page = 1;

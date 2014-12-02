@@ -4,7 +4,7 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          a(href="/cpanel") لـوحـــة الـتـحــكــم
+          //a(href="/cpanel") لـوحـــة الـتـحــكــم
         li
           //a(href="#") About
         li
@@ -12,6 +12,68 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
+    .row
+      .col-sm-3
+        .nav.nav-pills.nav-stacked
+          li.active
+            a(href="/cpanel")
+              span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            p
+          li
+            p
+              a.btn.btn-danger.btn-block(href="/office/mahallaViews", role="button")
+                span.glyphicon.glyphicon-th
+                | الــمـحـلـه
+          li
+            p
+              a.btn.btn-warning.btn-block(href="/office/villageViews", role="button")
+                span.glyphicon.glyphicon-th
+                | القـريـه / المـدينـه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/officeViews", role="button")
+                span.glyphicon.glyphicon-th
+                | الـلــجـنـه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/subconstituencyViews", role="button")
+                span.glyphicon.glyphicon-th
+                | الدوائـر الـفرعـيـه
+          li
+            p
+              a.btn.btn-success.btn-block(href="/root", role="button")
+                span.glyphicon.glyphicon-user
+                | المـستخدميــن
+          li
+            p
+              a.btn.btn-info.btn-block(href="/office/constituencyViews", role="button")
+                span.glyphicon.glyphicon-th
+                | الدوائر الرئـيـسـيه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin/phoneManager", role="button")
+                span.glyphicon.glyphicon-earphone
+                | هواتـف المـدراء
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/employee", role="button")
+                span.glyphicon.glyphicon-user
+                | المـوظـفـيـن
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/centerViews", role="button")
+                span.glyphicon.glyphicon-th-large
+                | الـمـراكـز
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin/phoneEmployeeAll", role="button")
+                span.glyphicon.glyphicon-earphone
+                | هواتـف المـوظـفـين
+          li
+            p
+              a.btn.btn-success.btn-block(href="/office", role="button")
+                span.glyphicon.glyphicon-th-list
+                | اللجـان و المـراكز
       .panel
         .col-sm-4.col-md-6
           .input-group 
@@ -19,9 +81,8 @@ block content
             .input-group-btn
               .btn.btn-default(type="button")  
                 spen.glyphicon.glyphicon-search
-        a.btn.btn-primary.pull-left(type="button", href="/cpanel") رجـــــوع
       .panel-body  
-        div.table-responsive  
+        .col-lg-9.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
             thead
               th اﻻسم
@@ -31,15 +92,15 @@ block content
                 tr
                   td #{center.name}
                   td #{center.center_id}
-      div.text-center
-            ul.pagination
-              li(class='#{pagination.previous.disabled}')
-                a(href='?p=#{pagination.previous.n}') السابق
-              for page in pagination.pages
-                li(class="#{page.active}")
-                  a(href='?p=#{page.n}') #{page.n}
-              li(class="#{pagination.next.disabled}")
-                a(href='?p=#{pagination.next.n}') التالي 
+        div.text-center
+          ul.pagination
+            li(class='#{pagination.previous.disabled}')
+              a(href='?p=#{pagination.previous.n}') السابق
+            for page in pagination.pages
+              li(class="#{page.active}")
+                a(href='?p=#{page.n}') #{page.n}
+            li(class="#{pagination.next.disabled}")
+              a(href='?p=#{pagination.next.n}') التالي 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   
