@@ -103,7 +103,21 @@ exports.userMgr = {
         }
       });
     });
-  },/*
+  },
+  /* search manager by name_ar  */
+  searchManager:function(name,cb){
+    name=name+"%";
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone`,`type` FROM `user`,`office`,`phone` WHERE `user`.`name` LIKE ? AND`office`.`idoffice` = `user`.`office_idoffice` AND `phone`.`user_employee` = `user`.`iduser` AND `user`.`status` = 1 AND `user`.`level` = 2 group by `iduser`  ',name,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
   /* getting user by email */
   getUserByEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {

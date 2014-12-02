@@ -27,4 +27,18 @@ exports.villageMgr = {
       });
     });
   },
+  /* search village by name_ar  */
+  searchvillage:function(name,cb){
+    name=name+"%";
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `village` WHERE `status`= 1 AND `village_name` LIKE ? ',name,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };

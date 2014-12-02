@@ -17,6 +17,12 @@ router.get('/', function(req, res) {
     res.render('admin',{title: 'المدراء', users : results[0], pagination : pagination});
   })
 });
+/* search manager by name. */
+router.get('/searchManager/:id', function(req, res) {
+  userMgr.searchManager(req.params.id,function(result){
+    res.send(result);
+  })
+});
 /* GET All phoneEmployee page. */
 router.get('/phoneEmployeeAll', function(req, res) {
   req.session.back = req.originalUrl;

@@ -27,4 +27,18 @@ exports.subconstituencyMgr = {
       });
     });
   },
+  /* search subconstituency by name_ar  */
+  searchSubconstituency: function(name,cb){
+    name=name+"%";
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `subconstituency` WHERE `status`=1 AND `subconstituency_name_ar` LIKE ? ',name,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };
