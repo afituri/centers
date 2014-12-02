@@ -4,7 +4,7 @@ exports.centerMgr = {
   /* get center by id*/
   getCenter : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `center_id`,`name`,`center_type`,`constituency_name`,`mahalla_name`,`office_name`,`subconstituency_name`,`village_name` FROM `centers` ce,`constituency` c,`mahalla` m,`office` o,`subconstituency` s,`village` v WHERE `ce`.`center_id` = ? AND `ce`.`status`=1 AND `ce`.`office_idoffice`=`o`.`office_id` AND `ce`.`constituency_idconstituency`= `c`.`constituency_id` AND  `ce`.`subconstituency_idsubconstituency`= `s`.`subconstituency_id` AND `ce`.`mahalla_idmahalla`= `m`.`idmahalla` AND `ce`.`village_idvillage`= `v`.`idvillage`   ',id,  function(err, result) {
+      conn.query('SELECT `center_id`,`name`,`center_type`,`constituency_name_ar`,`mahalla_name`,`office_name_ar`,`subconstituency_name_ar`,`village_name` FROM `centers` ce,`constituency` c,`mahalla` m,`office` o,`subconstituency` s,`village` v WHERE `ce`.`center_id` = ? AND `ce`.`status`=1 AND `ce`.`office_idoffice`=`o`.`office_id` AND `ce`.`constituency_idconstituency`= `c`.`constituency_id` AND  `ce`.`subconstituency_idsubconstituency`= `s`.`subconstituency_id` AND `ce`.`mahalla_idmahalla`= `m`.`idmahalla` AND `ce`.`village_idvillage`= `v`.`idvillage`   ',id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

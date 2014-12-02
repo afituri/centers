@@ -22,10 +22,27 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
     })
   });
 });
-
+/* search Mahalla by name */
+router.get('/searchMahalla/:id', function(req, res) {
+  mahallaMgr.searchMahalla(req.params.id,function(result){
+    res.send(result);
+  })
+});
 /* searchByCenterId office  */
 router.get('/searchByCenterId/:id', function(req, res) {
   centerMgr.searchByCenterId(req.params.id,req.session.level,req.session.office_idoffice,function(result){
+    res.send(result);
+  });
+});
+/* search subconstituency by name_ar  */
+router.get('/searchSubconstituency/:id', function(req, res) {
+  subconstituencyMgr.searchSubconstituency(req.params.id,function(result){
+    res.send(result);
+  });
+});
+/* search village by name_ar  */
+router.get('/searchVillage/:id', function(req, res) {
+  villageMgr.searchvillage(req.params.id,function(result){
     res.send(result);
   });
 });
@@ -163,4 +180,5 @@ router.get('/getvillage/:id', function(req, res) {
     res.send(result);
   })
 });
+
 module.exports = router;

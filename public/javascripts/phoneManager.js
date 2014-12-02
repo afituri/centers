@@ -12,4 +12,17 @@ $(document).ready(function(){
     var id = $(this).val();
     window.location.href="/admin/editmanager/"+id;
   }); 
+  $('#idcenter').on('input', function(){
+    if($('#idcenter').val().length >=3) {
+      $.get('/admin/searchManager/'+$('#idcenter').val(),function(result){
+        $('#centers').empty();
+        $('.pagination').hide();
+        for(key in result){
+          $('#centers').append('<tr><td>'+result[key].name+'</td><td>'+result[key].type+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].iduser+');"data-value="'+result[key].iduser+
+                                '">'+result[key].phone_number+'</a></td><td><a class="btn btn-primary btn-xs"href="/admin/editmanager/'+result[key].iduser+'">'+
+                                '<span class="glyphicon glyphicon-eye-open"></span></a></td>');
+        }
+      });
+    }
+  });
 });
