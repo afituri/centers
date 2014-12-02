@@ -117,16 +117,17 @@ block content
                 a(href='?p=#{page.n}') #{page.n}
             li(class="#{pagination.next.disabled}")
               a(href='?p=#{pagination.next.n}') التالي
-  #del.modal(data-width='760', tabindex='-1')
+  #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
-        .modal-headr
-          .modal-title
+        .modal-headr.modal-header-danger
+          p.h1 هل أنت متأكد من  حدف ؟
         .modal-body
-          p هل انت متأكد 
+          p.h2 هل انت متأكد 
+          p 
         .modal-footer
-          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
-          button.btn.btn-success(data-dismiss='modal', type='button') cancel
+          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
   #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
