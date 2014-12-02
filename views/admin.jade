@@ -83,11 +83,11 @@ block content
               .btn.btn-default(type="button")  
                 spen.glyphicon.glyphicon-search
         div.btn-group.pull-left
-          a.btn.btn-success.btn-xs(href='/admin/addmanager', role='button') إضافة مدير
+          a.btn.btn-success(href='/admin/addmanager', role='button') إضافة مدير
             span.glyphicon.glyphicon-plus 
-      div.panel-body
-        .col-lg-9.table-responsive  
-          table#off.table.table-bordred.table-striped
+      .panel-body
+        .col-lg-9.table-responsive 
+          table#off.table.table-striped
             thead
               th الاسم
               th اللجان
@@ -142,7 +142,7 @@ block content
                   th النوع
                 tbody#body
         .modal-footer
-          button.btn.btn-success(data-dismiss='modal', type='button') cancel
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/admin.js")
