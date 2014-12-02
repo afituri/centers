@@ -40,4 +40,18 @@ exports.mahallaMgr = {
       });
     });
   },
+  /* search Mahalla by name */
+  searchMahalla: function(name,cb){
+    name=name+"%";
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `mahalla` WHERE `status`= 1 AND `mahalla_name` LIKE ? ',name,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };

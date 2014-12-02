@@ -15,7 +15,7 @@ block content
       .panel
         .col-sm-4.col-md-6
           .input-group 
-            input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+            input.form-control(type="text",name="idcenter",id = "idcenter")
             .input-group-btn
               .btn.btn-default(type="button")  
                 spen.glyphicon.glyphicon-search
@@ -25,7 +25,7 @@ block content
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
             thead
               th الاسم
-            tbody
+            tbody#centers
               for mahalla in mahallas
                 tr
                   td #{mahalla.mahalla_name}
@@ -40,3 +40,4 @@ block content
                 a(href='?p=#{pagination.next.n}') التالي 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/mahallaViews.js")

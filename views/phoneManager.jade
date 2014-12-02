@@ -15,7 +15,7 @@ block content
       .panel
         .col-sm-4.col-md-6
           .input-group 
-            input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
+            input.form-control(type="text",name="idcenter",id = "idcenter")
             .input-group-btn
               .btn.btn-default(type="button")  
                 spen.glyphicon.glyphicon-search
@@ -28,7 +28,7 @@ block content
               th النوع
               th رقم الهاتف
               th عرض
-            tbody
+            tbody#centers
               for manager in managers
                 tr
                   td #{manager.name}
@@ -63,6 +63,15 @@ block content
                 tbody#body
         .modal-footer
           button.btn.btn-success(data-dismiss='modal', type='button') cancel
+  script.
+    function pho(id){
+      $.get('/admin/getPhoneManager/'+id, function(result){
+        $('#body').empty();
+        for ( var i = 0; i < result.length;  i++ ) {
+          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+        }
+      });
+    }   
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/phoneManager.js")
