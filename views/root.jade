@@ -50,15 +50,16 @@ block content
                     td      
                       button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
                          span.glyphicon.glyphicon-trash 
-          div.text-center
-            ul.pagination
-              li(class='#{pagination.previous.disabled}')
-                a(href='?p=#{pagination.previous.n}') السابق
-              for page in pagination.pages
-                li(class="#{page.active}")
-                  a(href='?p=#{page.n}') #{page.n}
-              li(class="#{pagination.next.disabled}")
-                a(href='?p=#{pagination.next.n}') التالي
+          if pagination
+            div.text-center
+              ul.pagination
+                li(class='#{pagination.previous.disabled}')
+                  a(href='?p=#{pagination.previous.n}') السابق
+                for page in pagination.pages
+                  li(class="#{page.active}")
+                    a(href='?p=#{page.n}') #{page.n}
+                li(class="#{pagination.next.disabled}")
+                  a(href='?p=#{pagination.next.n}') التالي
   #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content

@@ -51,15 +51,16 @@ block content
                   td 
                     a.btn.btn.btn-primary.btn-xs(href="/center/#{center.center_id}") 
                       span.glyphicon.glyphicon-eye-open
-          div.text-center
-            ul.pagination
-              li(class='#{pagination.previous.disabled}')
-                a(href='?p=#{pagination.previous.n}') السابق
-              for page in pagination.pages
-                li(class="#{page.active}")
-                  a(href='?p=#{page.n}') #{page.n}
-              li(class="#{pagination.next.disabled}")
-                a(href='?p=#{pagination.next.n}') التالي 
+          if pagination
+            div.text-center
+              ul.pagination
+                li(class='#{pagination.previous.disabled}')
+                  a(href='?p=#{pagination.previous.n}') السابق
+                for page in pagination.pages
+                  li(class="#{page.active}")
+                    a(href='?p=#{page.n}') #{page.n}
+                li(class="#{pagination.next.disabled}")
+                  a(href='?p=#{pagination.next.n}') التالي 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/office.js")

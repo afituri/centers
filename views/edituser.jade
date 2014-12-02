@@ -33,7 +33,7 @@ block content
               a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
               &nbsp;&nbsp;       
         tr
-          td الصلاحية #{user[0].level}
+          td الصلاحية 
           td
             a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')  
         if user[0].level == 2   
