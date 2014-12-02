@@ -6,7 +6,6 @@ var employeeMgr = require('../app/employee').employeeMgr;
 var employeess =[];
 router.get('/:cid',userHelpers.isCenter, function(req, res) {
   centerMgr.getCenter(req.params.cid,function(results){
-    req.session.back = req.originalUrl;
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);
     employeeMgr.getEmployeeCenter(limit,req.params.cid,function(result){
