@@ -4,37 +4,101 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          a(href="#") Home
+          //a(href="#") Home
         li
-          a(href="#") About
+          //a(href="#") About
         li
-          a(href="#") Contact
+          //a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
-  div.container    
-    div.panel.panel-default
-      div.panel-heading
-        div.btn-group
-          h3.panel-title.text-right.active   المدراء
-        div.btn-group.pull-left
-          a.btn.btn-success.btn-xs(href='/admin/addmanager', role='button') إضافة مدير
-            span.glyphicon.glyphicon-plus 
+    .row
+      .col-sm-3
+        .nav.nav-pills.nav-stacked
+          li.active
+            a(href="/cpanel")
+              span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            p
+          li
+            p
+              a.btn.btn-danger.btn-block(href="/office/mahallaViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الــمـحـلـه
+          li
+            p
+              a.btn.btn-warning.btn-block(href="/office/villageViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | القـريـه / المـدينـه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/officeViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الـلــجـنـه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/subconstituencyViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الدوائـر الـفرعـيـه
+          li
+            p
+              a.btn.btn-success.btn-block(href="/root", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | المـستخدميــن
+          li
+            p
+              a.btn.btn-info.btn-block(href="/office/constituencyViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الدوائر الرئـيـسـيه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin/phoneManager", role="button")
+                span.glyphicon.glyphicon-earphone.pull-right
+                | هواتـف المـدراء
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/employee", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | المـوظـفـيـن
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | الـمـدراء
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin/phoneEmployeeAll", role="button")
+                span.glyphicon.glyphicon-earphone.pull-right
+                | هواتـف المـوظـفـين
+          li
+            p
+              a.btn.btn-success.btn-block(href="/office", role="button")
+                span.glyphicon.glyphicon-th-list.pull-right
+                | اللجـان و المـراكز
+  
+      div.panel.panel-default
+        div.panel-heading
+          div.btn-group
+            h3.panel-title.text-right.active   المدراء
+          div.btn-group.pull-left
+            a.btn.btn-success.btn-xs(href='/admin/addmanager', role='button') إضافة مدير
+              span.glyphicon.glyphicon-plus 
       div.panel-body
-        div.table-responsive  
-          table#admin.table.table-bordred.table-striped
+        .col-lg-9.table-responsive  
+          table#off.table.table-bordred.table-striped
             thead
               th الاسم
-              th رقم الهاتف
               th اللجان
+              th رقم الهاتف
               th تعديل
               th الغاء 
             tbody
             for user in users
               tr
                 td= user.name
-                td= user.phone_number
                 td= user.office_name
+                td
+                  a#phone(href='#phonee', data-toggle='modal',data-value="#{user.iduser}")
+                    |  #{user.phone_number}
                 td
                   button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
                     span.glyphicon.glyphicon-eye-open
@@ -42,14 +106,14 @@ block content
                   button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
                     span.glyphicon.glyphicon-trash 
         div.text-center
-            ul.pagination
-              li(class='#{pagination.previous.disabled}')
-                a(href='?p=#{pagination.previous.n}') السابق
-              for page in pagination.pages
-                li(class="#{page.active}")
-                  a(href='?p=#{page.n}') #{page.n}
-              li(class="#{pagination.next.disabled}")
-                a(href='?p=#{pagination.next.n}') التالي
+          ul.pagination
+            li(class='#{pagination.previous.disabled}')
+              a(href='?p=#{pagination.previous.n}') السابق
+            for page in pagination.pages
+              li(class="#{page.active}")
+                a(href='?p=#{page.n}') #{page.n}
+            li(class="#{pagination.next.disabled}")
+              a(href='?p=#{pagination.next.n}') التالي
   #del.modal(data-width='760', tabindex='-1')
     .modal-dialog
       .modal-content
@@ -60,7 +124,23 @@ block content
         .modal-footer
           button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
           button.btn.btn-success(data-dismiss='modal', type='button') cancel
+  #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-success
+           p.h1 ارقام الهواتف
+        .modal-body
+          div.panel-body  
+            div.table-responsive  
+              table#off.table.table-striped.table-bordered.table-condensed.table-hover
+                thead
+                  th رقم الهاتف
+                  th النوع
+                tbody#body
+        .modal-footer
+          button.btn.btn-success(data-dismiss='modal', type='button') cancel
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/admin.js")
   script(src="/javascripts/editmanager.js")
+  script(src="/javascripts/phoneManager.js")
