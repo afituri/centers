@@ -89,7 +89,7 @@ router.get('/addmanager', function(req, res) {
 /* POST Add manager form for abmin */
 router.post('/addmanager', function(req, res) {
   userHelpers.addUser(req.body, function (results){
-    logMgr.insertLog(req.session.iduser,"add","user"," add new user name : "+results.name,results.id);
+    logMgr.insertLog(req.session.iduser,"add","user"," add new user name : "+results.name,results.id,results.name);
     res.redirect('/admin');
   });
 });

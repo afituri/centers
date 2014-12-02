@@ -12,38 +12,6 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../../../images/hnec_logo.png")    
-  div.container    
-    button#enable.btn.btn-primary enable / disable
-    button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal',value="#{user[0].iduser}")
-       span.glyphicon.glyphicon-trash 
-    table#user.table.table-bordered.table-striped(style='clear: both')
-      tbody
-        tr
-          td(width='35%') اسم المستخدم
-          td(width='65%')
-            a#name(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='اسم المستخدم' data-value='#{user[0].name}')  #{user[0].name}
-        tr
-          td(width='35%') البريد الالكترونب
-          td(width='65%')
-            a#email(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='البريد الالكترونب', data-value='#{user[0].email}')  #{user[0].email}
-        tr
-          td(width='35%') رقم الهاتف
-          td(width='65%')
-            each val, index in user
-              a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
-              &nbsp;&nbsp;       
-        tr
-          td الصلاحية 
-          td
-            a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')  
-        if user[0].level == 2   
-          tr
-            td المركز
-            td
-              a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
-          img(src="../../../images/hnec_logo.png")   
-  font(size="4", color="black" , font="family" )          
-    div.container 
       button#enable.btn.btn-primary تمكــين / تعطـــيل
       button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="")
         span.glyphicon.glyphicon-trash
@@ -69,7 +37,7 @@ block content
                   a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
                   &nbsp;&nbsp;       
             tr
-              td الصلاحية #{user[0].level}
+              td الصلاحية
               td
                 a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')  
             if user[0].level == 2   
@@ -77,6 +45,17 @@ block content
                 td المركز
                 td
                   a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            each val, index in user
+              tr
+                td(width='35%') #{val.type}
+                td(width='65%')
+                  a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
+                  &nbsp;&nbsp;
+                td
+                  button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
+                        span.glyphicon.glyphicon-trash 
   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
@@ -87,6 +66,17 @@ block content
           p 
         .modal-footer
           button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+  #phone.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-danger
+          p.h1 هل أنت متأكد من  حدف ؟
+        .modal-body
+          p.h2 هل انت متأكد 
+          p 
+        .modal-footer
+          button#confphone.btn.btn-danger(type='button',data-dismiss='modal') حدف
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
