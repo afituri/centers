@@ -10,7 +10,7 @@ $(document).ready(function(){
   }); 
   $.get('/admin/getoffice',function(result){
       for ( var i = 0 ; i< result.length; i++){
-        var k = new Object({id : i,value : result[i].idoffice, text : result[i].office_name});
+        var k = new Object({id : i,value : result[i].idoffice, text : result[i].office_name_ar});
         $.resul.push(k);
       }
     $('#office_idoffice').editable({
