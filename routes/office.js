@@ -53,7 +53,7 @@ router.get('/searchVillage/:id', function(req, res) {
 });
 
 /* GET centers. */
-router.get('/centerViews', function(req, res) {
+router.get('/centerViews',userHelpers.isAdmin,function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   centerMgr.getCenters(limit,function(results){
@@ -67,7 +67,7 @@ router.get('/centerViews', function(req, res) {
   })
 });
 /* GET subconstituencyViews. */
-router.get('/subconstituencyViews', function(req, res) {
+router.get('/subconstituencyViews',userHelpers.isAdmin,function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   subconstituencyMgr.getAllSubconstituency(limit,function(results){
@@ -81,7 +81,7 @@ router.get('/subconstituencyViews', function(req, res) {
   })
 });
 /* GET mahallaViews. */
-router.get('/mahallaViews', function(req, res) {
+router.get('/mahallaViews',userHelpers.isAdmin,function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   mahallaMgr.getAllMahalla(limit,function(results){
@@ -95,7 +95,7 @@ router.get('/mahallaViews', function(req, res) {
   })
 });
 /* GET villageViews. */
-router.get('/villageViews', function(req, res) {
+router.get('/villageViews',userHelpers.isAdmin,function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   villageMgr.getAllVillage(limit,function(results){
@@ -109,7 +109,7 @@ router.get('/villageViews', function(req, res) {
   })
 });
 /* GET officeViews. */
-router.get('/officeViews', function(req, res) {
+router.get('/officeViews',userHelpers.isAdmin,function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   officeMgr.getAllOffice(limit,function(results){
@@ -123,7 +123,7 @@ router.get('/officeViews', function(req, res) {
   })
 });
 /* GET cons. */
-router.get('/constituencyViews', function(req, res) {
+router.get('/constituencyViews',userHelpers.isAdmin,function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   constituencyMgr.getAllConstituency(limit,function(results){

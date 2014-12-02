@@ -64,4 +64,8 @@ router.get('/deleteUser/:id', function(req, res) {
   });
 });
 
+/* GET log in if you arn't log in  */
+router.get('/', userHelpers.isAdmin,function(req, res) {
+  res.render('cpanel',{title: 'لوحة التحكم',name:req.session.name});
+});
 module.exports = router;
