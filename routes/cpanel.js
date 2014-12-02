@@ -5,7 +5,7 @@ var userMgr = require('../app/user').userMgr;
 var log = require('../app/log').repo;
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', userHelpers.isAdmin,function(req, res) {
   res.render('cpanel',{title: 'لوحة التحكم',name:req.session.name});
 });
 
