@@ -25,6 +25,7 @@ router.get('/searchManager/:id', function(req, res) {
 });
 /* GET All phoneEmployee page. */
 router.get('/phoneEmployeeAll', function(req, res) {
+  req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   employeeMgr.getAllEmployee(limit,function(result){

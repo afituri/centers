@@ -4,7 +4,8 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          button.btn.btn-primary.btn-lg(type="button", href='/cpanel')  لـوحـــة الـتـحــكــم
+          //a.btn.btn-primary.btn-lg( role="button", href='/cpanel')  لـوحـــة الـتـحــكــم
+          //a.btn.btn-danger.btn-block(href="/cpanel", role="button")  لـوحـــة الـتـحــكــم
         li 
           //a(href="#") About
         li
@@ -12,68 +13,130 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
-    .panel.panel-default 
-      div.btn-group.pull-left
-          a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة موضف
-            span.glyphicon.glyphicon-plus 
-        .input-group 
-          input.form-control(type="text",name="idcenter",id = "idcenter")
-          .input-group-btn
-            .btn.btn-default(type="button") 
-              spen.glyphicon.glyphicon-search
-        b.text-right الموظفين
-      div.panel-body  
-        div.table-responsive  
-          table#off.table.table-striped.table-bordered.table-condensed.table-hover
-            thead
-              th أسم الموظف
-              th البريد الالكتروني
-              th رقم الهاتف
-              th الصفة
-              th المركز
-              th تعديل
-              th الغاء 
-            tbody#centers
-              for employee in employees
-                  tr
-                    td #{employee.employee_name}
-                    td #{employee.email}
-                    td 
-                      a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
-                        |#{employee.phone_number}
-                    td 
-                      case employee.type
-                        when 0
-                          p رئيس مركز
-                        when 1
-                          p مدير محطة
-                        when 2
-                          p محقق هوية
-                        when 3
-                          p موزع أوراق الاقتراع
-                        when 4
-                          p مراقب الصندوق
-                        when 5
-                          p منظم الطابور بالمركز
-                        when 6
-                          p منظم الطابور بالمحطة
-                    td #{employee.name}
-                    td
-                      button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
-                       span.glyphicon.glyphicon-trash
-          if pagination 
-            div.text-center
-              ul.pagination
-                li(class='#{pagination.previous.disabled}')
-                  a(href='?p=#{pagination.previous.n}') السابق
-                for page in pagination.pages
-                  li(class="#{page.active}")
-                    a(href='?p=#{page.n}') #{page.n}
-                li(class="#{pagination.next.disabled}")
-                  a(href='?p=#{pagination.next.n}') التالي
+    .row
+      .col-sm-3
+        .nav.nav-pills.nav-stacked
+          li.active
+            a(href="/cpanel")
+              span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            p
+          li
+            p
+              a.btn.btn-danger.btn-block(href="/office/mahallaViews", role="button")
+                span.glyphicon.glyphicon-th
+                | الــمـحـلـه
+          li
+            p
+              a.btn.btn-warning.btn-block(href="/office/villageViews", role="button")
+                span.glyphicon.glyphicon-th
+                | القـريـه / المـدينـه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/officeViews", role="button")
+                span.glyphicon.glyphicon-th
+                | الـلــجـنـه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/subconstituencyViews", role="button")
+                span.glyphicon.glyphicon-th
+                | الدوائـر الـفرعـيـه
+          li
+            p
+              a.btn.btn-success.btn-block(href="/root", role="button")
+                span.glyphicon.glyphicon-user
+                | المـستخدميــن
+          li
+            p
+              a.btn.btn-info.btn-block(href="/office/constituencyViews", role="button")
+                span.glyphicon.glyphicon-th
+                | الدوائر الرئـيـسـيه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin/phoneManager", role="button")
+                span.glyphicon.glyphicon-earphone
+                | هواتـف المـدراء
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/employee", role="button")
+                span.glyphicon.glyphicon-user
+                | المـوظـفـيـن
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/centerViews", role="button")
+                span.glyphicon.glyphicon-th-large
+                | الـمـراكـز
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin/phoneEmployeeAll", role="button")
+                span.glyphicon.glyphicon-earphone
+                | هواتـف المـوظـفـين
+          li
+            p
+              a.btn.btn-success.btn-block(href="/office", role="button")
+                span.glyphicon.glyphicon-th-list
+                | اللجـان و المـراكز
+      .panel.panel-default 
+        div.btn-group.pull-left
+            a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة موضف
+              span.glyphicon.glyphicon-plus 
+          .input-group 
+            input.form-control(type="text",name="idcenter",id = "idcenter")
+            .input-group-btn
+              .btn.btn-default(type="button") 
+                spen.glyphicon.glyphicon-search
+          b.text-right الموظفين
+        .col-lg-9.panel-body  
+          div.table-responsive  
+            table#off.table.table-striped.table-bordered.table-condensed.table-hover
+              thead
+                th أسم الموظف
+                th البريد الالكتروني
+                th رقم الهاتف
+                th الصفة
+                th المركز
+                th تعديل
+                th الغاء 
+              tbody#centers
+                for employee in employees
+                    tr
+                      td #{employee.employee_name}
+                      td #{employee.email}
+                      td 
+                        a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
+                          |#{employee.phone_number}
+                      td 
+                        case employee.type
+                          when 0
+                            p رئيس مركز
+                          when 1
+                            p مدير محطة
+                          when 2
+                            p محقق هوية
+                          when 3
+                            p موزع أوراق الاقتراع
+                          when 4
+                            p مراقب الصندوق
+                          when 5
+                            p منظم الطابور بالمركز
+                          when 6
+                            p منظم الطابور بالمحطة
+                      td #{employee.name}
+                      td
+                        button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
+                          span.glyphicon.glyphicon-eye-open
+                      td      
+                        button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
+                         span.glyphicon.glyphicon-trash
+            if pagination 
+              div.text-center
+                ul.pagination
+                  li(class='#{pagination.previous.disabled}')
+                    a(href='?p=#{pagination.previous.n}') السابق
+                  for page in pagination.pages
+                    li(class="#{page.active}")
+                      a(href='?p=#{page.n}') #{page.n}
+                  li(class="#{pagination.next.disabled}")
+                    a(href='?p=#{pagination.next.n}') التالي
         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content

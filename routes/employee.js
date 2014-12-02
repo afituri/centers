@@ -13,6 +13,7 @@ var employees =[];
 
 /* GET home page. */
 router.get('/', function(req, res) {
+   req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   employeeMgr.getemployees(limit,req.session.iduser,req.session.level,req.session.office_idoffice,function(results){
@@ -28,7 +29,8 @@ router.get('/', function(req, res) {
 /* GET editemployee page. */
 router.get('/editemployee/:id', function(req, res) {
   employeeMgr.getemployee(req.params.id,function(result){
-    res.render('editemployee', { title: "تعديل الموظفين", employee : result[0],phone : result[1] });
+    URL= req.session.back;
+    res.render('editemployee', { title: "تعديل الموظفين", employee : result[0],phone : result[1] , url : URL});
   });
 });
 /* GET centers. */
