@@ -67,9 +67,11 @@ router.get('/getphone/:id', function(req, res) {
 });
 /* delete employee */
 router.get('/deleteemployee/:id', function(req, res) {
-  logMgr.insertLog(req.session.iduser,"delete","employee"," delete employee ",req.params.id);
-  logMgr.insertLog(req.session.iduser,"delete","phone"," delete phones employee",req.params.id);
-  employeeMgr.deleteemployee(req.params.id,function(result){
+  employeeMgr.deleteemployee(req.params.id,function(result,resultz){
+    logMgr.insertLog(req.session.iduser,"delete","employee"," delete employee ",req.params.id,resultz[0].employee_name);
+    for(key in result){
+      logMgr.insertLog(req.session.iduser,"delete","phone","delete phones employee",result[key].idphone,result[key].phone_number);
+    }
     res.send(result);
   })
 });
@@ -142,7 +144,7 @@ function model_step(body,id){
       } else {
         flag=true;
       }
-      logMgr.insertLog(id,"edit","employee",result,body.pk);
+      logMgr.insertLog(id,"edit","employee",result,body.pk,body.value);
     }
   );
   return flag;
@@ -165,7 +167,7 @@ function model_step_phone(body,id){
       } else {
         flag=true;
       }
-      logMgr.insertLog(id,"edit","phone",result,body.pk);
+      logMgr.insertLog(id,"edit","phone",result,body.pk,body.value);
     }
   );
   return flag;

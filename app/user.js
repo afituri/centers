@@ -80,14 +80,18 @@ exports.userMgr = {
     /* delete user by id*/
   delUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `user` SET `status` = 0 WHERE `iduser` = ?',id,  function(err, result) {
-        conn.query('UPDATE `phone` SET `status` = 0 WHERE `user_employee` = ?',id);
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
+      conn.query('UPDATE `user` SET `status` = 0 WHERE `iduser` = ?',id,  function(err, result) { 
+        conn.query('SELECT `idphone`,`phone_number` FROM  `phone` WHERE `status` = 1  AND `user_type`=0 AND `user_employee`=?',id,  function(err, results) {
+          conn.query('SELECT `name` FROM  `user` WHERE `iduser` = ? ',id,  function(err, resultz) {
+            conn.query('UPDATE `phone` SET `status` = 0 WHERE `user_employee` = ?',id);
+            conn.release();
+            if(err) {
+            util.log(err);
+            } else {
+              cb(results,resultz);
+            }
+          });
+        });
       });
     });
   },

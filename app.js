@@ -16,6 +16,7 @@ var employee = require('./routes/employee');
 var constituency = require('./routes/constituency');
 var center = require('./routes/center');
 var passport = require('passport');
+var report = require('./routes/report');
 var app = express();
 
 // view engine setup
@@ -41,6 +42,7 @@ app.use('/phone',phone);
 app.use('/employee',employee);
 app.use('/constituency',constituency);
 app.use('/center', center);
+app.use('/report', report);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

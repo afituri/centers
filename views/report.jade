@@ -1,0 +1,49 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/hnec_logo.png")
+    .panel.panel-default 
+        div.table-responsive  
+          table#off.table.table-striped.table-bordered.table-condensed.table-hover
+            thead
+              th أسم المستخدم
+              th نوع التعديل
+              th مكان التعديل
+              th الوصف
+              th التاريخ
+              th الحقل
+            tbody#centers
+              for rec in result
+                  tr
+                    td #{rec.name} 
+                    td 
+                      case rec.type
+                        when "delete"
+                          p مسح
+                        when "add"
+                          p  اضافة
+                        when "edit"
+                          p  تعديل
+                    td 
+                      case rec.table
+                        when "user"
+                          p  المستخدمين
+                        when "phone"
+                          p  الهاتف
+                        when "employee"
+                          p  الموضفين
+                    td #{rec.desc} 
+                    td #{rec.creation_date} 
+                    td #{rec.value} 
+  script(src="/javascripts/jquery-1.11.1.min.js")
+  script(src="/javascripts/bootstrap.min.js")
