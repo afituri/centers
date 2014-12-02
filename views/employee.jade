@@ -74,7 +74,7 @@ block content
               a.btn.btn-success.btn-block(href="/office", role="button")
                 span.glyphicon.glyphicon-th-list.pull-right
                 | اللجـان و المـراكز
-      .panel.panel-default 
+      .col-lg-9.panel
         div.btn-group.pull-left
             a.btn.btn-success(href='#addoffice', role='button',data-toggle='modal') إضافة موضف
               span.glyphicon.glyphicon-plus 
@@ -83,7 +83,6 @@ block content
             .input-group-btn
               .btn.btn-default(type="button") 
                 spen.glyphicon.glyphicon-search
-          b.text-right الموظفين
         .col-lg-9.panel-body  
           div.table-responsive  
             table#off.table.table-striped.table-bordered.table-condensed.table-hover
@@ -188,7 +187,7 @@ block content
                               td
                                 div.form-group
                                   lable.h4 الرقم الوطني
-                                  input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
+                                  input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")      
                               td
                                 div.form-group.pull-left
                                   lable.h4 اسم المصرف
@@ -224,7 +223,7 @@ block content
                                   lable.h4 اللجان
                                   select#office_idoffice.form-control(name="office_idoffice")
                               td
-                                div.form-group
+                                div.form-group.pull-left
                                   lable.h4 الدائرة الفرعية
                                   select#subconstituency_idsubconstituency.form-control(name="subconstituency_idsubconstituency", placeholder="صفة الموظف",autofocus="")
                             tr
@@ -245,9 +244,10 @@ block content
                                     option(value="6") منظم الطابور بالمحطة
                             tr
                               td
+                              td
                                 div.form-group
                                   button.btn.btn-lg.btn-primary(type="submit") إضـافة      
-                    .modal-footere
+                    
   script.
     function pho(id){
       $.get('/employee/getphone/'+id, function(result){
