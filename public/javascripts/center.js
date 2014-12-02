@@ -10,7 +10,6 @@ $(document).ready(function(){
   });
   /* Go to employee needs view or edit */
   $("button[id^='viw']").click(function() {
-    alert('id');
     var id = $(this).val();
     window.location.href="/employee/editemployee/"+id;
   });

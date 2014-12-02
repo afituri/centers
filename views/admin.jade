@@ -4,7 +4,7 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          //a(href="#") Home
+          h2 الـمـدراء
         li
           //a(href="#") About
         li
@@ -74,17 +74,20 @@ block content
               a.btn.btn-success.btn-block(href="/office", role="button")
                 span.glyphicon.glyphicon-th-list.pull-right
                 | اللجـان و المـراكز
-  
-      div.panel.panel-default
-        div.panel-heading
-          div.btn-group
-            h3.panel-title.text-right.active   المدراء
-          div.btn-group.pull-left
-            a.btn.btn-success.btn-xs(href='/admin/addmanager', role='button') إضافة مدير
-              span.glyphicon.glyphicon-plus 
-      div.panel-body
-        .col-lg-9.table-responsive  
-          table#off.table.table-bordred.table-striped
+      
+      .panel
+        .col-sm-4.col-md-6
+          .input-group 
+            input.form-control(type="text",name="idcenter",id = "idcenter")
+            .input-group-btn
+              .btn.btn-default(type="button")  
+                spen.glyphicon.glyphicon-search
+        div.btn-group.pull-left
+          a.btn.btn-success(href='/admin/addmanager', role='button') إضافة مدير
+            span.glyphicon.glyphicon-plus 
+      .panel-body
+        .col-lg-9.table-responsive 
+          table#off.table.table-striped
             thead
               th الاسم
               th اللجان
@@ -139,7 +142,7 @@ block content
                   th النوع
                 tbody#body
         .modal-footer
-          button.btn.btn-success(data-dismiss='modal', type='button') cancel
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/admin.js")

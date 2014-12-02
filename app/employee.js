@@ -29,13 +29,17 @@ exports.employeeMgr = {
   deleteemployee : function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('UPDATE `employee` SET `status` = 0 WHERE `idemployee` = ?',id,  function(err, result) {
-        conn.query('UPDATE `phone` SET `status` = 0 WHERE `user_type`= 1 AND`user_employee` = ?',id);
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        } 
+        conn.query('SELECT `idphone`,`phone_number` FROM  `phone` WHERE `status` = 1  AND `user_type`=1 AND `user_employee`=?',id,  function(err, results) {
+          conn.query('SELECT `employee_name` FROM  `employee` WHERE `idemployee` = ? ',id,  function(err, resultz) {
+            conn.query('UPDATE `phone` SET `status` = 0 WHERE `user_type`= 1 AND`user_employee` = ?',id);
+            conn.release();
+            if(err) {
+              util.log(err);
+            } else {
+              cb(results,resultz);
+            } 
+          });
+        });
       });
     });
   },
