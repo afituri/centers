@@ -1,9 +1,9 @@
 $(document).ready(function(){
   /* Go to user needs view or edit */
-  $("button[id^='view']").click(function() {
-    var id = $(this).val();
-    window.location.href="/center/"+id;
-  });
+  // $("button[id^='view']").click(function() {
+  //   var id = $(this).val();
+  //   window.location.href="/center/"+id;
+  // });
   /* Go to user needs view or edit */
   $('body').on('click', '#delete ', function () {
     $('#confdelete').val(id);
@@ -19,10 +19,11 @@ $(document).ready(function(){
     if($('#idcenter').val().length >=3) {
       $.get('/office/searchByCenterId/'+$('#idcenter').val(),function(result){
         $('#centers').empty();
+        $('.pagination').hide();
         for(key in result){
           $('#centers').append('<tr><td>'+result[key].center_id+'</td><td>'+result[key].name+'</td><td>'+result[key].center_type+
-                                '</td><td><button id="delete" class="btn btn-danger btn-xs" href="#del" data-toggle="modal"'+
-                                ' value="#{'+result[key].center_id+'}" ><span class="glyphicon glyphicon-trash"></span></button></td></tr>');
+                                '</td><td><a class="btn btn-primary btn-xs"href="/center/'+result[key].center_id+'">'+
+                                '<span class="glyphicon glyphicon-eye-open"></span></a></td></tr>');
         }
       });
     }
@@ -85,28 +86,5 @@ $(document).ready(function(){
 
  // });
 
-/*
-
-$(document).ready(function(){
-  $('body').on('click', '#office tbody tr', function () {
-    var id = $(this).data("id");
-    console.log(id);
-  }); 
-    $('body').on('click', '#viw ', function () {
-    var id = $(this).val();
-    window.location.href="http://localhost:3003/office/editoffice";
-  }); 
 
 
-  $('#offdelete').click(function() {
-    var id = $(this).val();
-    $.get('/deleteoffice/:id'+id, function(result){
-      console.log("we get id ")
-      window.location.href="http://localhost:3003/office";
-
-    });
-
-  });
-});
-
-*/

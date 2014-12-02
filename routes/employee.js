@@ -38,14 +38,20 @@ router.get('/getCenters', function(req, res) {
   })
 });
 /* add employee. */
-router.post('/addemployee', userHelpers.isRoot, function(req, res) {
+router.post('/addemployee', userHelpers.isLogin, function(req, res) {
   employeeMgr.addemployee(req.body, function (results){
     logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id);
     res.redirect('/employee');
   });
 });
+/* searchByname employee  */
+router.get('/searchEmployee/:id', function(req, res) {
+  employeeMgr.searchEmployee(req.params.id,req.session.level,req.session.office_idoffice,function(result){
+    res.send(result);
+  })
+});
 /* add employee. center */
-router.post('/addemployeeCenter/:id', userHelpers.isRoot, function(req, res) {
+router.post('/addemployeeCenter/:id',userHelpers.isLogin, function(req, res) {
   employeeMgr.addemployee(req.body, function (results){
     logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id);
     res.redirect('/center/'+req.params.id);

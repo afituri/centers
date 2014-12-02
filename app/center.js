@@ -93,17 +93,28 @@ exports.centerMgr = {
     });
   },
   /*Search Centers by id*/
-  searchByCenterId : function(id,cb){
+  searchByCenterId : function(id,level,ido,cb){
     id = id+"%";
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `center_id` LIKE ? ',id,  function(err, result) {
-        conn.release();
-        if(err) {
-          util.log(err);
-        } else {
-          cb(result);
-        }
-      });
+      if(level<2){
+        conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `center_id` LIKE ? ',id,  function(err, result) {
+          conn.release();
+          if(err) {
+            util.log(err);
+          } else {
+            cb(result);
+          }
+        });
+      }else{
+        conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `office_idoffice`=? AND `center_id` LIKE ? ',[ido,id],  function(err, result) {
+          conn.release();
+          if(err) {
+            util.log(err);
+          } else {
+            cb(result);
+          }
+        });
+      }
     });
   },
   /*check center in the offise .*/
