@@ -9,12 +9,13 @@ var phoneMgr = require('../app/phone').phoneMgr;
 
 /* GET home page. */
 router.get('/', function(req, res) {
+  req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   userMgr.getManager(limit, function(results){
     var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
     var pagination = userHelpers.paginate(page,pageCount);
-    res.render('admin',{title: 'المدراء', users : results[0], pagination : pagination});
+    res.render('admin',{title: 'المدراء', users : results[0], pagination : pagination });
   })
 });
 /* search manager by name. */
@@ -36,6 +37,7 @@ router.get('/phoneEmployeeAll', function(req, res) {
 });
 /* GET phoneManager page. */
 router.get('/phoneManager', function(req, res) {
+  req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   userMgr.getManager(limit, function(results){
@@ -63,7 +65,7 @@ router.get('/getManager/:level', function(req, res) {
 /* Edit manager */
 router.get('/editmanager/:id', function(req, res) {
   userMgr.getUser(req.params.id,function(result){
-    res.render('editmanager',{title: 'تعديل المدراء', user : result});
+    res.render('editmanager',{title: 'تعديل المدراء', user : result , url : req.session.back});
   });
 });
 /* Add manager */

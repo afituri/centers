@@ -8,6 +8,7 @@ var phoneMgr = require('../app/phone').phoneMgr;
 
 /* GET home page. */
 router.get('/',userHelpers.isRoot,function(req, res) {
+  req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   userMgr.getUsers(limit, function(results){
@@ -25,7 +26,7 @@ router.get('/adduser',userHelpers.isRoot, function(req, res) {
 /* Edit user page. */
 router.get('/edituser/:id',userHelpers.isRoot, function(req, res) {
   userMgr.getUser(req.params.id,function(result){
-    res.render('edituser',{title: 'تعديل مستجدم', user : result});
+    res.render('edituser',{title: 'تعديل مستجدم', user : result, url : req.session.back});
   });
 });
 /* POST adduser form for root */
