@@ -6,16 +6,20 @@ var logMgr = require('../app/log').repoMgr;
 var officeMgr = require('../app/office').officeMgr;
 var employeeMgr = require('../app/employee').employeeMgr;
 var phoneMgr = require('../app/phone').phoneMgr;
-
+var res =[];
 /* GET home page. */
 router.get('/', function(req, res) {
   req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   userMgr.getManager(limit, function(results){
-    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
-    var pagination = userHelpers.paginate(page,pageCount);
-    res.render('admin',{title: 'المدراء', users : results[0], pagination : pagination });
+    if(results[1][0] != undefined){
+      var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
+      res.render('admin',{title: 'المدراء', users : results[0], pagination : pagination});
+    }else{
+      res.render('admin',{title: 'المدراء', users : res, pagination : null});
+    }
   })
 });
 /* search manager by name. */
@@ -30,9 +34,13 @@ router.get('/phoneEmployeeAll', function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   employeeMgr.getAllEmployee(limit,function(result){
-    var pageCount = userHelpers.getPageCount(result[1][0].cnt); //cnt is the total count of records
-    var pagination = userHelpers.paginate(page,pageCount);
-    res.render('phoneEmployeeAll',{title: 'ارقام هواتف الموظفين', employees : result[0], pagination : pagination});
+    if(results[1][0] != undefined){
+      var pageCount = userHelpers.getPageCount(result[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
+      res.render('phoneEmployeeAll',{title: 'ارقام هواتف الموظفين', employees : result[0], pagination : pagination});
+    }else{
+      res.render('phoneEmployeeAll',{title: 'ارقام هواتف الموظفين', employees : res, pagination : null});
+    }
   });
 });
 /* GET phoneManager page. */
@@ -41,9 +49,13 @@ router.get('/phoneManager', function(req, res) {
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   userMgr.getManager(limit, function(results){
-    var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
-    var pagination = userHelpers.paginate(page,pageCount);
-    res.render('phoneManager',{title: 'ارقام هواتف المدراء', managers : results[0], pagination : pagination});
+     if(results[1][0] != undefined){
+      var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
+      var pagination = userHelpers.paginate(page,pageCount);
+      res.render('phoneManager',{title: 'ارقام هواتف المدراء', managers : results[0], pagination : pagination});
+    }else{
+      res.render('phoneManager',{title: 'ارقام هواتف المدراء', managers : res, pagination : null});
+    }
   });
 });
 /* GET employee phones. */

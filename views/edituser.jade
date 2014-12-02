@@ -11,6 +11,36 @@ block content
           //a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
+          img(src="../../../images/hnec_logo.png")    
+  div.container    
+    button#enable.btn.btn-primary enable / disable
+    button#delete.btn.btn-danger.btn-xs.pull-left(href='#del', data-toggle='modal',value="#{user[0].iduser}")
+       span.glyphicon.glyphicon-trash 
+    table#user.table.table-bordered.table-striped(style='clear: both')
+      tbody
+        tr
+          td(width='35%') اسم المستخدم
+          td(width='65%')
+            a#name(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='اسم المستخدم' data-value='#{user[0].name}')  #{user[0].name}
+        tr
+          td(width='35%') البريد الالكترونب
+          td(width='65%')
+            a#email(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='البريد الالكترونب', data-value='#{user[0].email}')  #{user[0].email}
+        tr
+          td(width='35%') رقم الهاتف
+          td(width='65%')
+            each val, index in user
+              a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
+              &nbsp;&nbsp;       
+        tr
+          td الصلاحية 
+          td
+            a#level(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].level}',  data-title='الصلاحية')  
+        if user[0].level == 2   
+          tr
+            td المركز
+            td
+              a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
           img(src="../../../images/hnec_logo.png")   
   font(size="4", color="black" , font="family" )          
     div.container 

@@ -7,6 +7,8 @@ var userMgr = require('../app/user').userMgr;
 var logMgr = require('../app/log').repoMgr;
 var router = express.Router();
 var login = require('../app/login')(router);
+var phoneMgr = require('../app/phone').phoneMgr;
+
 /* GET users listing. */
 router.get('/', function(req, res) {
   userMgr.getUsers(function(results){
@@ -72,7 +74,7 @@ function model_step(body,id){
       } else {
         flag=true;
       }
-      logMgr.insertLog(id,"edit","user",result,body.pk);
+      logMgr.insertLog(id,"edit","user",result,body.pk,body.value);
     }
     );
   return flag;
@@ -86,7 +88,7 @@ function model_step_phone(body,id){
     },
     /* UPDATE VALUE */
     function Updatephone(err,result) {
-      userMgr.editphone(body,result,this);
+      phoneMgr.editphone(body,result,this);
     },
     /* INSERT INFORMATION INTO LOG */
     function InsertLogphone(err,result) {
@@ -95,7 +97,7 @@ function model_step_phone(body,id){
       } else {
         flag=true;
       }
-      logMgr.insertLog(id,"edit","phone",result,body.pk);
+      logMgr.insertLog(id,"edit","phone",result,body.pk,body.value);
     }
     );
   return flag;
