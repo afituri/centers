@@ -9,6 +9,7 @@ var phoneMgr = require('../app/phone').phoneMgr;
 var res =[];
 /* GET home page. */
 router.get('/', function(req, res) {
+  req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   userMgr.getManager(limit, function(results){
@@ -44,6 +45,7 @@ router.get('/phoneEmployeeAll', function(req, res) {
 });
 /* GET phoneManager page. */
 router.get('/phoneManager', function(req, res) {
+  req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   userMgr.getManager(limit, function(results){
@@ -75,7 +77,7 @@ router.get('/getManager/:level', function(req, res) {
 /* Edit manager */
 router.get('/editmanager/:id', function(req, res) {
   userMgr.getUser(req.params.id,function(result){
-    res.render('editmanager',{title: 'تعديل المدراء', user : result});
+    res.render('editmanager',{title: 'تعديل المدراء', user : result , url : req.session.back});
   });
 });
 /* Add manager */
