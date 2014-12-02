@@ -14,4 +14,17 @@ exports.subconstituencyMgr = {
       });
     });
   },
+  /* get All subconstituency . */
+  getAllSubconstituency : function(limit,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `subconstituency`  WHERE `status`=1 limit ?,10; SELECT COUNT(*) as cnt FROM `subconstituency`  WHERE `status` = 1 ;',limit,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };

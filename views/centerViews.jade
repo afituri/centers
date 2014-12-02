@@ -4,11 +4,11 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          a(href="#") Homerfrg
+          a(href="/cpanel") لـوحـــة الـتـحــكــم
         li
-          a(href="#") About
+          //a(href="#") About
         li
-          a(href="#") Contact
+          //a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
@@ -19,6 +19,7 @@ block content
             .input-group-btn
               .btn.btn-default(type="button")  
                 spen.glyphicon.glyphicon-search
+        a.btn.btn-primary.pull-left(type="button", href="/cpanel") رجـــــوع
       .panel-body  
         div.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
@@ -30,6 +31,15 @@ block content
                 tr
                   td #{center.name}
                   td #{center.center_id}
+      div.text-center
+            ul.pagination
+              li(class='#{pagination.previous.disabled}')
+                a(href='?p=#{pagination.previous.n}') السابق
+              for page in pagination.pages
+                li(class="#{page.active}")
+                  a(href='?p=#{page.n}') #{page.n}
+              li(class="#{pagination.next.disabled}")
+                a(href='?p=#{pagination.next.n}') التالي 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   

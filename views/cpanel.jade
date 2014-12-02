@@ -3,12 +3,16 @@ block content
   div.container
     div.header
       ul.nav.nav-pills.pull-right
-        li.active
-          a(href="#") Home
-        li
-          a(href="#") About
-        li
-          a(href="#") Contact
+        .dropdown
+          button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true')
+            مـرحـبـا #{name}
+            span.caret
+          ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
+            li(role='presentation')
+              a(role='menuitem', tabindex='-1', href='#') | مـرحـبـا #{name}
+            li(role='presentation')
+              a(role='menuitem', tabindex='-1', href='/users/login') تـسـجـيـل الخـروج
+
       h3.text-muted.text-left 
         a(href="/")
           img(src="/images/hnec_logo.png")
@@ -74,8 +78,8 @@ block content
                 | هـواتـــف الـــمـوظــفــيـن
               p
           br
-          a.btn.btn-success.btn-lg.btn-block(href="http://www.jquery2dotnet.com/", role="button")
-            span.glyphicon.glyphicon-globe
-            | Website
+          a.btn.btn-success.btn-lg.btn-block(href="/office", role="button")
+            span.glyphicon.glyphicon-th-list
+            | الـلــجـان و الــمــراكــز
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")

@@ -66,8 +66,20 @@ exports.officeMgr = {
       });
     });
   },
-  
-    /* get getNameOfficeSubconstitVillageMahalla for Breadcrub  */
+  /* get all office .*/
+  getAllOffice : function(limit,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `office` WHERE `status`= 1 limit ?,10; SELECT COUNT(*) as cnt FROM `office`  WHERE `status` = 1 ;',limit,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /* get getNameOfficeSubconstitVillageMahalla for Breadcrub  */
   getNameOfficeSubconstitVillageMahalla : function(ido,ids,idv,idm,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT `office_name`,`subconstituency_name`,`village_name`,`idvillage`,`subconstituency_id`,`idoffice`,`idmahalla`,`mahalla_name` FROM `office`,`subconstituency`,`village`,`mahalla` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND `village`.`status` = 1 AND `mahalla`.`status` = 1 AND idoffice = ? AND subconstituency_id = ? AND idvillage = ? AND idmahalla = ?',[ido,ids,idv,idm], function(err, result) {

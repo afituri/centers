@@ -4,11 +4,11 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          a(href="#") Home
+          a(href="/cpanel") لـوحـــة الـتـحــكــم 
         li
-          a(href="#") About
+          //a(href="#") About
         li
-          a(href="#") Contact
+          //a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
@@ -170,7 +170,16 @@ block content
                     .modal-footere
   script.
     function pho(id){
-    }                  
+      $.get('/employee/getphone/'+id, function(result){
+        $('#body').empty();
+        for ( var i = 0; i < result.length;  i++ ) {
+          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+        }
+      });
+    }   
+    function del(id){
+      $('#deleteemployee').val(id);
+    }               
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")

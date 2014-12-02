@@ -4,11 +4,11 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          a(href="#") Home
+          a(href="/cpanel") لـوحـــة الـتـحــكــم 
         li
-          a(href="#") About
+          //a(href="#") About
         li
-          a(href="#") Contact
+          //a(href="#") Contact
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
@@ -19,6 +19,7 @@ block content
             .input-group-btn
               .btn.btn-default(type="button")  
                 spen.glyphicon.glyphicon-search
+        a.btn.btn-primary.pull-left(type="button", href="/cpanel") رجـــــوع
       .panel-body  
         div.table-responsive  
           table#off.table.table-striped.table-bordered.table-condensed.table-hover
@@ -51,7 +52,7 @@ block content
     .modal-dialog
       .modal-content
         .modal-headr.modal-header-success
-           p.h1 ارقام الهاتف
+           p.h1 ارقام الهواتف
         .modal-body
           div.panel-body  
             div.table-responsive  
