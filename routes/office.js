@@ -111,9 +111,9 @@ router.get('/constituencyViews', function(req, res) {
 });
 /* GET office by id  page. */
 router.get('/:oid',userHelpers.isManager, function(req, res) {
+  req.session.back = req.originalUrl;
+  console.log(req.session.back);
   subconstituencyMgr.getsub(req.params.oid,function(result){
-    req.session.back = req.url;
-    console.log(req.session.back+"==url1");
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);
     centerMgr.getCentersOffice(limit,req.params.oid,function(results){
@@ -127,7 +127,7 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
 });
 /* GET subconstitunecy page. */
 router.get('/:oid/:sid',userHelpers.isManager, function(req, res) {
-  req.session.back = req.url;
+  req.session.back = req.originalUrl;
   console.log(req.session.back+"==url2");
   villageMgr.getvillage(req.params.sid,function(result){
     var page = userHelpers.getPage(req);
@@ -143,7 +143,7 @@ router.get('/:oid/:sid',userHelpers.isManager, function(req, res) {
 });
 /* GET village page. */
 router.get('/:oid/:sid/:vid',userHelpers.isManager, function(req, res) {
-  req.session.back = req.url;
+  req.session.back = req.originalUrl;
   console.log(req.session.back+"==>url3");
   mahallaMgr.getmahalla(req.params.vid,function(result){
     var page = userHelpers.getPage(req);
