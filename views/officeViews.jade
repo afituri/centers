@@ -89,13 +89,17 @@ block content
               th اﻻسم باللغة العربيه
               th اﻻسم باللغة اﻻنجليزيه
               th اسم المنطقة
+              th عرض 
             tbody
               for office in offices
-                tr
+                tr#office(data-id="#{office.office_id}")
                   td #{office.office_id}
                   td #{office.office_name_ar}
                   td #{office.office_name}
                   td #{office.region_name}
+                  td
+                    a.btn.btn.btn-primary.btn-xs(href="/office/#{office.office_id}") 
+                      span.glyphicon.glyphicon-eye-open
         div.text-center
           ul.pagination
             li(class='#{pagination.previous.disabled}')
@@ -107,3 +111,4 @@ block content
               a(href='?p=#{pagination.next.n}') التالي 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
+  script(src="/public/javascripts/officeViews.js")
