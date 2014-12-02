@@ -13,9 +13,9 @@ exports.repoMgr = {
     });
   },
   /*report   */
-  report : function(cb){
+  report : function(limit,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `u`.`name`,`value`, `type`,`table`,`desc`,`l`.`creation_date`,`table_idtable`  FROM `user` u,`log` l WHERE `l`.`user_iduser`=`u`.`iduser`' , function(err, result) {
+      conn.query('SELECT `u`.`name`,`value`, `type`,`table`,`desc`,`l`.`creation_date`,`table_idtable`  FROM `user` u,`log` l WHERE `l`.`user_iduser`=`u`.`iduser`limit ?,10; SELECT COUNT(*) as cnt FROM `user` u,`log` l WHERE `l`.`user_iduser`=`u`.`iduser`;' ,limit, function(err, result) {
         conn.release();
          if(err) {
           util.log(err);
@@ -28,7 +28,7 @@ exports.repoMgr = {
   /*add new log*/
   insertLog : function (iduser,type,tabel,desc,idtabel,name){
     mysqlMgr.connect(function (conn) {
-      conn.query('INSERT INTO `log` (`user_iduser`,`type`,`table`,`desc`,`table_idtable`,`name`) VALUES(?,?,?,?,?,?)',[iduser,type,tabel,desc,idtabel,name],  function(err, result) {
+      conn.query('INSERT INTO `log` (`user_iduser`,`type`,`table`,`desc`,`table_idtable`,`value`) VALUES(?,?,?,?,?,?)',[iduser,type,tabel,desc,idtabel,name],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

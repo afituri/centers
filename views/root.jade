@@ -4,7 +4,7 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li.active
-          a(href="/cpanel") لـوحـــة الـتـحــكــم 
+          h2 المـــستخدميــــن 
         li
           //a(href="#") About
         li
@@ -12,14 +12,80 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
-  div.container    
-    div.panel.panel-default
-      div.panel-heading
-        div.btn-group
-          h3.panel-title.text-right.active المستخدمين  
+    .row
+      .col-sm-3
+        .nav.nav-pills.nav-stacked
+          li.active
+            a(href="/cpanel")
+              span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            p
+          li
+            p
+              a.btn.btn-danger.btn-block(href="/office/mahallaViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الــمـحـلـه
+          li
+            p
+              a.btn.btn-warning.btn-block(href="/office/villageViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | القـريـه / المـدينـه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/officeViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الـلــجـنـه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/office/subconstituencyViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الدوائـر الـفرعـيـه
+          li
+            p
+              a.btn.btn-success.btn-block(href="/root", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | المـستخدميــن
+          li
+            p
+              a.btn.btn-info.btn-block(href="/office/constituencyViews", role="button")
+                span.glyphicon.glyphicon-th.pull-right
+                | الدوائر الرئـيـسـيه
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin/phoneManager", role="button")
+                span.glyphicon.glyphicon-earphone.pull-right
+                | هواتـف المـدراء
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/employee", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | المـوظـفـيـن
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/admin", role="button")
+                span.glyphicon.glyphicon-user.pull-right
+                | الـمـدراء
+          li
+            p
+              a.btn.btn-primary.btn-block(href="/report", role="button")
+                span.glyphicon.glyphicon-list-alt
+                | الـتـقـارــير
+          li
+            p
+              a.btn.btn-success.btn-block(href="/office", role="button")
+                span.glyphicon.glyphicon-th-list.pull-right
+                | اللجـان و المـراكز
+      .panel
+        .col-sm-4.col-md-6
+          .input-group 
+            input.form-control(type="text",name="idcenter",id = "idcenter")
+            .input-group-btn
+              .btn.btn-default(type="button")  
+                spen.glyphicon.glyphicon-search
         div.btn-group.pull-left
-          a.btn.btn-success.btn-xs(href='/root/adduser', role='button') إضافة مستخدم
+          a.btn.btn-success(href='/root/adduser', role='button') إضافة مستخدم
             span.glyphicon.glyphicon-plus 
+   
+      
       div.panel-body
           div.table-responsive  
             table#user.table.table-bordred.table-striped
@@ -50,15 +116,16 @@ block content
                     td      
                       button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
                          span.glyphicon.glyphicon-trash 
-          div.text-center
-            ul.pagination
-              li(class='#{pagination.previous.disabled}')
-                a(href='?p=#{pagination.previous.n}') السابق
-              for page in pagination.pages
-                li(class="#{page.active}")
-                  a(href='?p=#{page.n}') #{page.n}
-              li(class="#{pagination.next.disabled}")
-                a(href='?p=#{pagination.next.n}') التالي
+          if pagination
+            div.text-center
+              ul.pagination
+                li(class='#{pagination.previous.disabled}')
+                  a(href='?p=#{pagination.previous.n}') السابق
+                for page in pagination.pages
+                  li(class="#{page.active}")
+                    a(href='?p=#{page.n}') #{page.n}
+                li(class="#{pagination.next.disabled}")
+                  a(href='?p=#{pagination.next.n}') التالي
   #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
