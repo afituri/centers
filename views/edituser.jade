@@ -41,16 +41,17 @@ block content
             td المركز
             td
               a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
-  #del.modal(data-width='760', tabindex='-1')
+  #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
-        .modal-headr
-          .modal-title 
+        .modal-headr.modal-header-danger
+          p.h1 هل أنت متأكد من  حدف ؟
         .modal-body
-           p هل انت متأكد 
+          p.h2 هل انت متأكد 
+          p 
         .modal-footer
-          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
-          button.btn.btn-success(data-dismiss='modal', type='button') cancel
+          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
