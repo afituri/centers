@@ -1,0 +1,61 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="#") About
+        li
+          a(href="#") Contact
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/hnec_logo.png")
+    div.container    
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title
+            span.glyphicon.glyphicon-bookmark
+            |    لـوحـــة الـتـحــكــم
+        .panel-body
+          .row
+            .col-xs-6.col-md-6  
+              a.btn.btn-danger.btn-block(href="#", role="button")
+                span.glyphicon.glyphicon-th
+                br
+                | الــمـحـلـه
+              p
+              a.btn.btn-primary.btn-block(href="/admin/phoneEmployeeAll", role="button")
+                span.glyphicon.glyphicon-earphone
+                br
+                | هـواتـــف الـــمـوظــفــيـن
+              p
+              a.btn.btn-primary.btn-block(href="#", role="button")
+                span.glyphicon.glyphicon-th
+                br
+                | الـدوائـــر الــفـرعــيـه
+              p
+            .col-xs-6.col-md-6
+              a.btn.btn-warning.btn-block(href="#", role="button")
+                span.glyphicon.glyphicon-th
+                br
+                | الـقــريـه / المــديــنـه
+              p
+              a.btn.btn-primary.btn-block(href="/employee", role="button")
+                span.glyphicon.glyphicon-user
+                br
+                | الـــمـوظــفــيـن
+              p
+            .col-xs-6.col-md-6
+              a.btn.btn-primary.btn-block(href="/admin/phoneManager", role="button")
+                span.glyphicon.glyphicon-earphone
+                br
+                | هـواتـــف الـــمــــدراء
+              p
+          br
+          a.btn.btn-success.btn-lg.btn-block(href="http://www.jquery2dotnet.com/", role="button")
+            span.glyphicon.glyphicon-globe
+            | Website
+  script(src="/javascripts/jquery-1.11.1.min.js")
+  script(src="/javascripts/bootstrap.min.js")

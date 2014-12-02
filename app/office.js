@@ -30,7 +30,7 @@ exports.officeMgr = {
   /* get getNameOffice for Breadcrub */
   getNameOffice : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `office_name`,`idoffice` FROM `office` WHERE `status` = 1 AND idoffice = ? ', id,  function(err, result) {
+      conn.query('SELECT `office_name_ar`,`idoffice` FROM `office` WHERE `status` = 1 AND idoffice = ? ', id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -43,7 +43,7 @@ exports.officeMgr = {
   /* get getNameOfficeSubconstit for Breadcrub  */
   getNameOfficeSubconstit : function(ido,ids,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `office_name`,`subconstituency_name`,`subconstituency_id`,`idoffice` FROM `office`,`subconstituency` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND idoffice = ? AND subconstituency_id = ?',[ido,ids], function(err, result) {
+      conn.query('SELECT `office_name_ar`,`subconstituency_name_ar`,`subconstituency_id`,`idoffice` FROM `office`,`subconstituency` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND idoffice = ? AND subconstituency_id = ?',[ido,ids], function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -56,7 +56,7 @@ exports.officeMgr = {
   /* get getNameOfficeSubconstitVillage for Breadcrub  */
   getNameOfficeSubconstitVillage : function(ido,ids,idv,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `office_name`,`subconstituency_name`,`village_name`,`idvillage`,`subconstituency_id`,`idoffice` FROM `office`,`subconstituency`,`village` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND `village`.`status` = 1 AND idoffice = ? AND subconstituency_id = ? AND idvillage = ?',[ido,ids,idv], function(err, result) {
+      conn.query('SELECT `office_name_ar`,`subconstituency_name_ar`,`village_name`,`idvillage`,`subconstituency_id`,`idoffice` FROM `office`,`subconstituency`,`village` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND `village`.`status` = 1 AND idoffice = ? AND subconstituency_id = ? AND idvillage = ?',[ido,ids,idv], function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -82,7 +82,7 @@ exports.officeMgr = {
   /* get getNameOfficeSubconstitVillageMahalla for Breadcrub  */
   getNameOfficeSubconstitVillageMahalla : function(ido,ids,idv,idm,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `office_name`,`subconstituency_name`,`village_name`,`idvillage`,`subconstituency_id`,`idoffice`,`idmahalla`,`mahalla_name` FROM `office`,`subconstituency`,`village`,`mahalla` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND `village`.`status` = 1 AND `mahalla`.`status` = 1 AND idoffice = ? AND subconstituency_id = ? AND idvillage = ? AND idmahalla = ?',[ido,ids,idv,idm], function(err, result) {
+      conn.query('SELECT `office_name_ar`,`subconstituency_name_ar`,`village_name`,`idvillage`,`subconstituency_id`,`idoffice`,`idmahalla`,`mahalla_name` FROM `office`,`subconstituency`,`village`,`mahalla` WHERE `subconstituency`.`status` = 1 AND `office`.`status` = 1 AND `village`.`status` = 1 AND `mahalla`.`status` = 1 AND idoffice = ? AND subconstituency_id = ? AND idvillage = ? AND idmahalla = ?',[ido,ids,idv,idm], function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

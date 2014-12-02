@@ -91,7 +91,7 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
       officeMgr.getNameOffice(req.params.oid,function(resultNames){
-        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results[0], names : resultNames,pagination : pagination});
+        res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results[0], names : resultNames,pagination : pagination,level : req.session.level});
       })
     })
   })

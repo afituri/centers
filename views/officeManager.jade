@@ -14,9 +14,10 @@ block content
           img(src="/../../images/hnec_logo.png")
     ol.breadcrumb
       li
-        a(href="/office") اللـجـان
-        span
-      li.active #{names[0].office_name}
+        if level<2
+          a(href="/office") اللـجـان
+          span
+      li.active #{names[0].office_name_ar}
     .row
         .panel.col-sm-3
           .nav.nav-pills.nav-stacked
@@ -27,7 +28,7 @@ block content
             for subb in sub    
               li
                 a(href="/office/#{subb.office_idoffice}/#{subb.subconstituency_id}") 
-                  span #{subb.subconstituency_name}
+                  span #{subb.subconstituency_name_ar}
         .col-md-9   
           .panel.col-md-6
             .input-group 
