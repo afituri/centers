@@ -13,7 +13,7 @@ var employees =[];
 
 /* GET home page. */
 router.get('/', function(req, res) {
-   req.session.back = req.originalUrl;
+  req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   employeeMgr.getemployees(limit,req.session.iduser,req.session.level,req.session.office_idoffice,function(results){
