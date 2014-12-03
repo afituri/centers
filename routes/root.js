@@ -23,9 +23,9 @@ router.get('/',userHelpers.isRoot,function(req, res) {
     if(results[1][0] != undefined){
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
-      res.render('root',{title: 'المستخدمين', users : results[0], pagination : pagination});
+      res.render('root',{title: 'المستخدمين',name:req.session.name, users : results[0], pagination : pagination});
     }else{
-      res.render('root',{title: 'المستخدمين', users : res, pagination : null});
+      res.render('root',{title: 'المستخدمين',name:req.session.name, users : res, pagination : null});
     }
   });
 });
