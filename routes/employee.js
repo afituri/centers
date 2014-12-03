@@ -12,7 +12,7 @@ var Step = require('step');
 var employees =[];
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/',userHelpers.isAdmin, function(req, res) {
   req.session.back = req.originalUrl;
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
