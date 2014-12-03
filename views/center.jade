@@ -60,7 +60,7 @@ block content
         .panel
             div.btn-group.pull-left
               .col-sm-4.col-md-1
-                a.btn.btn-success(href='#addemployee', role='button',data-toggle='modal') إضافة موظف
+                a.btn.btn-success(href='#addemployee', role='button',data-toggle='modal') الإضـافـة
                   span.glyphicon.glyphicon-plus 
             .col-sm-4.col-md-6
               .input-group 
@@ -134,21 +134,21 @@ block content
                     th النوع
                   tbody#body
           .modal-footer
-            button.btn.btn-success(data-dismiss='modal', type='button') cancel
+            button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
   #addemployee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
         .modal-headr.modal-header-success
           button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
           button.close(type="button",data-dismiss="modal",aria-hidden="true")
-          h1 إضافة قرية  
+          h1 الإضـافـة
         .row
           .col-sm-12.col-md-11.col.col-md.offset-4
               .modal-body
                   form#form.form-signin(role="form" , action="/employee/addemployeeCenter/#{cent[0].center_id}", method="post")   
                     div.form-group
-                      lable.h3 اسم الموظف
-                      input#employee_name.form-control(type="text",name="employee_name", placeholder="اسم الموظف",autofocus="")
+                      lable.h3 اﻻسـم
+                      input#employee_name.form-control(type="text",name="employee_name", placeholder="اﻻسـم",autofocus="")
                     div.form-group
                       lable.h3 البريد الالكتروني
                       input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
@@ -181,7 +181,7 @@ block content
                         span.input-group-btn
                           button.btn.btn-success.btn-add(type='button') +
                     div.form-group
-                      lable.h3 صفة الموظف
+                      lable.h3 الـصـفـه
                       select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
                         option(value="0") رئيس مركز
                         option(value="1") مدير محطة
@@ -203,8 +203,8 @@ block content
           p.h2 هل انت متأكد 
           p 
         .modal-footer
-          button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal',data-center="#{cent[0].center_id}") delete
-          button.btn.btn-success(data-dismiss='modal', type='button') cancel
+          button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal',data-center="#{cent[0].center_id}") مـسـح
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
