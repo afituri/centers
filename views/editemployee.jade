@@ -49,7 +49,7 @@ block content
                 if employee[0].type != 7
                   a#type(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
                 else
-                |المفوظية العليا للإنتبخات
+                  |المفوظية العليا للإنتبخات
 
         div.btn-group.pull-left
           button#addPhone.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].idemployee}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
