@@ -42,7 +42,7 @@ router.get('/getCenters', function(req, res) {
 /* add employee. */
 router.post('/addemployee', userHelpers.isLogin, function(req, res) {
   employeeMgr.addemployee(req.body, function (results){
-    logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id);
+    logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id,results.name);
     res.redirect('/employee');
   });
 });
@@ -55,7 +55,7 @@ router.get('/searchEmployee/:id', function(req, res) {
 /* add employee. center */
 router.post('/addemployeeCenter/:id',userHelpers.isLogin, function(req, res) {
   employeeMgr.addemployee(req.body, function (results){
-    logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id);
+    logMgr.insertLog(req.session.iduser,"add","employee"," add new employee name : "+results.name,results.id,results.name);
     res.redirect('/center/'+req.params.id);
   });
 });
