@@ -7,6 +7,13 @@ var officeMgr = require('../app/office').officeMgr;
 var phoneMgr = require('../app/phone').phoneMgr;
 var res =[];
 
+/* Delete user phone. */
+router.get('/deletePhone/:id', function(req, res) {
+  phoneMgr.deletePhone(req.params.id,function(result){
+    logMgr.insertLog(req.session.iduser,"delete","phone"," delete phone ",req.params.id,result[0].phone_number);
+    res.send(result);
+  });
+});
 /* GET home page. */
 router.get('/',userHelpers.isRoot,function(req, res) {
   req.session.back = req.originalUrl;
@@ -63,5 +70,7 @@ router.get('/deleteUser/:id', function(req, res) {
     res.send(result);
   });
 });
+
+
 
 module.exports = router;

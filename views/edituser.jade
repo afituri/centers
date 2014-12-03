@@ -29,13 +29,7 @@ block content
             tr
               td(width='35%') البريد الالكترونب
               td(width='65%')
-                a#email(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='البريد الالكترونب', data-value='#{user[0].email}')  #{user[0].email}
-            tr
-              td(width='35%') رقم الهاتف
-              td(width='65%')
-                each val, index in user
-                  a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
-                  &nbsp;&nbsp;       
+                a#email(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='البريد الالكترونب', data-value='#{user[0].email}')  #{user[0].email}      
             tr
               td الصلاحية
               td
@@ -45,6 +39,9 @@ block content
                 td المركز
                 td
                   a#office_idoffice(href='#', data-type='select', data-pk='#{user[0].iduser}', data-value='#{user[0].office_idoffice}',  data-title='اللجان')
+        div.btn-group.pull-left
+          button#addPhone.btn.btn-success.btn-xs(data-toggle='modal',value="#{user[0].iduser}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
+            span.glyphicon.glyphicon-plus   
         table#user.table.table-bordered.table-striped(style='clear: both')
           tbody
             each val, index in user
@@ -52,7 +49,6 @@ block content
                 td(width='35%') #{val.type}
                 td(width='65%')
                   a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
-                  &nbsp;&nbsp;
                 td
                   button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
                         span.glyphicon.glyphicon-trash 
@@ -76,10 +72,49 @@ block content
           p.h2 هل انت متأكد 
           p 
         .modal-footer
-          button#confphone.btn.btn-danger(type='button',data-dismiss='modal') حدف
+          button#confphone.btn.btn-danger(type='button',data-dismiss='modal',data-id="#{user[0].iduser}") حدف
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+  #add.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-success
+          button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+          button.close(type="button",data-dismiss="modal",aria-hidden="true")
+          h1 إضافة 
+            .glyphicon.glyphicon-plus 
+        .row 
+          .col-md-offset-0 
+              .modal-body
+                form#form.form-signin(role="form" , action="/phone/addPhone", method="post")
+                  table(width="430", align="center")
+                    div.form-group.pull-left
+                      lable.h4 رقم الهاتف
+                      .form-group.multiple-form-group.input-group#phone_input
+                        input.input-group-select-val(type='hidden',value="#{user[0].iduser}", name='user_id[]')
+                        input.input-group-select-val(type='hidden',value="0", name='user_type[]')
+                        .input-group-btn.input-group-select
+                          button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                            span.concept Phone
+                            span.caret
+                          ul.dropdown-menu(role='menu')
+                            li
+                              a(href='#ليبيانا') ليبيانا
+                            li
+                              a(href='#المدار') المدار
+                            li
+                              a(href='#ثريا') ثريا
+                            li
+                          input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
+                          input.input-group-select-val(type='hidden',value="#{user[0].iduser}", name='user_id[]')
+                          input.input-group-select-val(type='hidden',value="0", name='user_type[]')
+                        input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                        span.input-group-btn
+                          button.btn.btn-success.btn-add(type='button') +
+                    div.form-group
+                      button.btn.btn-lg.btn-primary(type="submit") إضـافة    
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/edituser.js")
   script(src="/javascripts/root.js")
+  script(src="/javascripts/phone.js")

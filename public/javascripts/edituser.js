@@ -3,6 +3,16 @@ $(document).ready(function(){
   var defaults = {
     disabled: true,
   };
+  $('body').on('click', '#deletePhone ', function () {
+    var id = $(this).val();
+    $('#confphone').val(id);
+  }); 
+  $('#confphone').click(function() {
+    var id = $(this).val();
+    $.get('/root/deletePhone/'+id, function(result){
+      window.location.href="/root/edituser/"+$('#confphone').data("id");;
+    });
+  });
   $.extend($.fn.editable.defaults, defaults);
   $('#enable').click(function() {
     $('#user .editable').editable('toggleDisabled');
