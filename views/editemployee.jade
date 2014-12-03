@@ -52,7 +52,10 @@ block content
             tr
               td الصفة
               td
-                a#type(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
+                if employee[0].type != 7
+                  a#type(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
+                else
+                المفوظية العليا للإنتبخات
             //- tr
             //-   td اسم المركز
             //-   td

@@ -103,6 +103,8 @@ block content
                             p منظم الطابور بالمركز
                           when 6
                             p منظم الطابور بالمحطة
+                          when 7 
+                            p  موظف المفوظية العليا للغنتخبات 
                       td #{employee.name}
                       td
                         button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
@@ -182,14 +184,18 @@ block content
                           button.btn.btn-success.btn-add(type='button') +
                     div.form-group
                       lable.h3 الـصـفـه
-                      select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
-                        option(value="0") رئيس مركز
-                        option(value="1") مدير محطة
-                        option(value="2") محقق هوية 
-                        option(value="3") موزع أوراق الاقتراع
-                        option(value="4") مراقب الصندوق
-                        option(value="5") منظم الطابور بالمركز
-                        option(value="6") منظم الطابور بالمحطة
+                      if cent[0].center_id == -1
+                        select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                          option(value="7") موظف المفوظية العليا للإنتخبات 
+                      else
+                        select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                          option(value="0") رئيس مركز
+                          option(value="1") مدير محطة
+                          option(value="2") محقق هوية 
+                          option(value="3") موزع أوراق الاقتراع
+                          option(value="4") مراقب الصندوق
+                          option(value="5") منظم الطابور بالمركز
+                          option(value="6") منظم الطابور بالمحطة
                     div.form-group
                       input.input-group-select-val(type='hidden', value='#{cent[0].center_id}', name='center_idcenter')
                     div.form-group.text-center

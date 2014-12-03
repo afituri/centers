@@ -67,4 +67,26 @@ $(document).ready(function(){
           if(!data) alert("هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر");
       });
   });
+  /* Go to user needs view or edit */
+  $('body').on('click', '#delete ', function () {
+    var id = $(this).val();
+    $('#confdelete').val(id);
+  });
+  /* Go to user needs view or edit */ 
+  $('#confdelete').click(function() {
+    var id = $(this).val();
+    $.get('/admin/deleteUser/'+id, function(result){
+      window.location.href="/admin";
+    });
+  });
+  $('body').on('click', '#deletePhone ', function () {
+    var id = $(this).val();
+    $('#confphone').val(id);
+  }); 
+  $('#confphone').click(function() {
+    var id = $(this).val();
+    $.get('/root/deletePhone/'+id, function(result){
+      window.location.href="/admin/editmanager/"+$('#confphone').data("id");;
+    });
+  });
 });
