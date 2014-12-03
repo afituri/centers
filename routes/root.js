@@ -70,7 +70,4 @@ router.get('/deleteUser/:id', function(req, res) {
     res.send(result);
   });
 });
-
-
-
 module.exports = router;
