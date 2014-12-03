@@ -89,4 +89,27 @@ $(document).ready(function(){
       window.location.href="/admin/editmanager/"+$('#confphone').data("id");;
     });
   });
+  $("#form").validate({
+    rules: {
+      'phone[]': {
+        required: true,
+        minlength: 10,
+        number: true,
+      }
+    },
+    messages: {
+      'phone[]': {
+        required: "الرجاء ادخال رقم الهاتف",
+        minlength: " يجب أن يكون الهاتف لا يقل عن 10 ارقام ",
+        number: "الرجاء ادخال رقم الهاتف ",
+      }
+    },
+    errorPlacement: function(error, element) {
+      if (element.attr("name") == "phone[]") {
+          error.insertAfter("#phone_input");
+      } else {
+          error.insertAfter(element);
+      }
+    }
+  });
 });
