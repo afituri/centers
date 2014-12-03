@@ -64,7 +64,7 @@ $(document).ready(function(){
       {value:3,text:"موزع أوراق الاقتراع"},
       {value:4,text:"مراقب الصندوق"},
       {value:5,text:"منظم الطابور بالمركز"},
-      {value:6,text:"منظم الطابور بالمحطة"}
+      {value:6,text:"منظم الطابور بالمحطة"},
     ],
     pk: 1,
     name: 'type',
