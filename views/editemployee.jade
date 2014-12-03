@@ -32,12 +32,6 @@ block content
               td(width='65%')
                 a#email(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='البريد الإلكتروني' data-value='#{employee[0].email}')  #{employee[0].email} 
             tr
-              td(width='35%') رقم الهاتف
-              td(width='65%')
-                each val, i in phone
-                  a#phone_number(href='#', data-type='text', data-pk='#{phone[i].idphone}',name="phone_number", data-title="رقم الهاتف  "+phone[i].type+"", data-value='#{phone[i].phone_number}') 
-                  &nbsp;&nbsp;
-            tr
               td(width='35%') الرقم الوطني
               td(width='65%')
                 a#nid(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='الرقم الوطني' data-value='#{employee[0].nid}')  #{employee[0].nid}
@@ -55,13 +49,21 @@ block content
                 if employee[0].type != 7
                   a#type(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
                 else
-                المفوظية العليا للإنتبخات
-            //- tr
-            //-   td اسم المركز
-            //-   td
-            //-     a#center_idcenter(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].center_idcenter}',  data-title='اسم المركز') 
-                  
+                |المفوظية العليا للإنتبخات
 
+        div.btn-group.pull-left
+          button#addPhone.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].idemployee}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
+            span.glyphicon.glyphicon-plus   
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            each val, i in phone
+              tr
+                td(width='35%') #{phone[i].type}
+                td(width='65%')
+                 a#phone_number(href='#', data-type='text', data-pk='#{phone[i].idphone}',name="phone_number", data-title="رقم الهاتف  "+phone[i].type+"", data-value='#{phone[i].phone_number}') 
+                td
+                  button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
+                    span.glyphicon.glyphicon-trash 
     #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
           .modal-dialog
             .modal-content
@@ -73,9 +75,58 @@ block content
               .modal-footer
                 button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal') حدف
                 button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
+  #phone.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-danger
+          p.h1 هل أنت متأكد من  حدف ؟
+        .modal-body
+          p.h2 هل انت متأكد 
+          p 
+        .modal-footer
+          button#confphone.btn.btn-danger(type='button',data-dismiss='modal',data-id="#{employee[0].idemployee}") حدف
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+  #add.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-success
+          button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+          button.close(type="button",data-dismiss="modal",aria-hidden="true")
+          h1 إضافة 
+            .glyphicon.glyphicon-plus 
+        .row 
+          .col-md-offset-0 
+              .modal-body
+                form#form.form-signin(role="form" , action="/phone/addPhoneE", method="post")
+                  table(width="430", align="center")
+                    div.form-group.pull-left
+                      lable.h4 رقم الهاتف
+                      .form-group.multiple-form-group.input-group#phone_input
+                        input.input-group-select-val(type='hidden',value="#{employee[0].idemployee}", name='user_id[]')
+                        input.input-group-select-val(type='hidden',value="1", name='user_type[]')
+                        .input-group-btn.input-group-select
+                          button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                            span.concept Phone
+                            span.caret
+                          ul.dropdown-menu(role='menu')
+                            li
+                              a(href='#ليبيانا') ليبيانا
+                            li
+                              a(href='#المدار') المدار
+                            li
+                              a(href='#ثريا') ثريا
+                            li
+                          input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
+                          input.input-group-select-val(type='hidden',value="#{employee[0].idemployee}", name='user_id[]')
+                          input.input-group-select-val(type='hidden',value="1", name='user_type[]')
+                        input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                        span.input-group-btn
+                          button.btn.btn-success.btn-add(type='button') +
+                    div.form-group
+                      button.btn.btn-lg.btn-primary(type="submit") إضـافة  
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/editemployee.js")
-   
+  script(src="/javascripts/phone.js")
