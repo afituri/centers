@@ -3,8 +3,8 @@ var router = express.Router();
 var userHelpers = require('../app/userHelpers');
 
 /* GET home page. */
-router.get('/', userHelpers.isAdmin, function(req, res) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+  res.render('/users/login', { title: 'Express' });
 });
 
 module.exports = router;
