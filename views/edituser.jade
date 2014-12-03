@@ -45,13 +45,14 @@ block content
         table#user.table.table-bordered.table-striped(style='clear: both')
           tbody
             each val, index in user
-              tr
-                td(width='35%') #{val.type}
-                td(width='65%')
-                  a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
-                td
-                  button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
-                        span.glyphicon.glyphicon-trash 
+              if val.idphone != null
+                tr
+                  td(width='35%') #{val.type}
+                  td(width='65%')
+                    a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
+                  td
+                    button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
+                          span.glyphicon.glyphicon-trash 
   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
@@ -115,6 +116,7 @@ block content
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
-  script(src="/javascripts/edituser.js")
+  script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/root.js")
   script(src="/javascripts/phone.js")
+  script(src="/javascripts/edituser.js")

@@ -54,7 +54,7 @@ exports.userMgr = {
   /* get all users*/
   getUsers : function(limit,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`phone_number`,`level` FROM user LEFT JOIN phone ON  (phone.user_employee = user.iduser AND phone.user_type = 0 ) WHERE  user.status = 1 group by iduser limit ?,10; SELECT COUNT(*) as cnt FROM `user`  WHERE `status` = 1;', limit,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`phone_number`,`level` FROM user LEFT JOIN phone ON  (phone.user_employee = user.iduser AND phone.user_type = 0 AND phone.status=1) WHERE  user.status = 1 group by iduser limit ?,10; SELECT COUNT(*) as cnt FROM `user`  WHERE `status` = 1;', limit,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -67,7 +67,7 @@ exports.userMgr = {
   /* get user by id*/
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM phone,user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1)  WHERE phone.user_employee = user.iduser AND user.status = 1 AND phone.status = 1 AND user.iduser = ?', id ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1) LEFT JOIN phone ON(phone.user_employee = user.iduser AND phone.status = 1) WHERE  user.iduser = ? AND user.status = 1', id ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
