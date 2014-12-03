@@ -3,12 +3,9 @@ block content
   div.container
     div.header
       ul.nav.nav-pills.pull-right
-        li.active
-          h2 الدوائـر الـفرعـيـه
         li
           .dropdown
-            button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true')
-              مـرحـبـا #{name}
+            button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true') مـرحـبـا #{name}
               span.caret
             ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
               li(role='presentation')
@@ -42,7 +39,7 @@ block content
                 | الـلــجـنـه
           li
             p
-              a.btn.btn-default.btn-block(href="/office/subconstituencyViews", role="button")
+              a.btn.btn-primary.btn-block(href="/office/subconstituencyViews", role="button")
                 span.glyphicon.glyphicon-th.pull-right
                 | الدوائـر الـفرعـيـه
           li
