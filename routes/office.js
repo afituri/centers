@@ -20,9 +20,9 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
       if(results[1][0] != undefined){
         var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
-        res.render('office', { title: "اللجان  الأنتخابية" , offices : result,centers : results[0],pagination : pagination});
+        res.render('office', { title: "اللجان  الأنتخابية",name:req.session.name , offices : result,centers : results[0],pagination : pagination});
       }else{
-        res.render('office', { title: "اللجان  الأنتخابية" , offices : result,centers : res,pagination : null});
+        res.render('office', { title: "اللجان  الأنتخابية" ,name:req.session.name, offices : result,centers : res,pagination : null});
       }
     })
   });
@@ -147,11 +147,11 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
         var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
         officeMgr.getNameOffice(req.params.oid,function(resultNames){
-          res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : results[0], names : resultNames,pagination : pagination,level : req.session.level});
+          res.render('officeManager', { title: "اللجان  الأنتخابية" ,name:req.session.name, sub : result, centers : results[0], names : resultNames,pagination : pagination,level : req.session.level});
         })
       }else{
         officeMgr.getNameOffice(req.params.oid,function(resultNames){
-          res.render('officeManager', { title: "اللجان  الأنتخابية" , sub : result, centers : res, names : resultNames,pagination : null,level : req.session.level});
+          res.render('officeManager', { title: "اللجان  الأنتخابية" ,name:req.session.name, sub : result, centers : res, names : resultNames,pagination : null,level : req.session.level});
         })
       }
     })
@@ -168,11 +168,11 @@ router.get('/:oid/:sid',userHelpers.isManager, function(req, res) {
         var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
         officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
-          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : results[0], names : resultOne ,pagination : pagination});
+          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه',name:req.session.name , officeid :req.params.oid , villages : result, centers : results[0], names : resultOne ,pagination : pagination});
         })  
       }else{
         officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
-          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه' , officeid :req.params.oid , villages : result, centers : res, names : resultOne ,pagination : null});
+          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه',name:req.session.name , officeid :req.params.oid , villages : result, centers : res, names : resultOne ,pagination : null});
         })  
       }    
     })
@@ -189,11 +189,11 @@ router.get('/:oid/:sid/:vid',userHelpers.isManager, function(req, res) {
         var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
         officeMgr.getNameOfficeSubconstitVillage(req.params.oid,req.params.sid,req.params.vid,function(resultNames){
-          res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results[0], names : resultNames,pagination : pagination});
+          res.render('village', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results[0], names : resultNames,pagination : pagination});
         }) 
       }else{
         officeMgr.getNameOfficeSubconstitVillage(req.params.oid,req.params.sid,req.params.vid,function(resultNames){
-          res.render('village', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : res, names : resultNames,pagination : null});
+          res.render('village', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : res, names : resultNames,pagination : null});
         }) 
       } 
     })
@@ -209,11 +209,11 @@ router.get('/:oid/:sid/:vid/:mid', userHelpers.isManager,function(req, res) {
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
       officeMgr.getNameOfficeSubconstitVillageMahalla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(resultTwo){
-        res.render('mahalla', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],names:resultTwo,pagination : pagination});
+        res.render('mahalla', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],names:resultTwo,pagination : pagination});
       })
     }else{
       officeMgr.getNameOfficeSubconstitVillageMahalla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(resultTwo){
-        res.render('mahalla', { title: 'المدينة/القرية' , officeid : req.params.oid , subbid  : req.params.sid  , centers : res,names:resultTwo,pagination : null});
+        res.render('mahalla', { title: 'المدينة/القرية' ,name:req.session.name, officeid : req.params.oid , subbid  : req.params.sid  , centers : res,names:resultTwo,pagination : null});
       })
     }
   });
