@@ -27,7 +27,7 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
   });
 });
 /* GET editemployee page. */
-router.get('/editemployee/:id', function(req, res) {
+router.get('/editemployee/:id',userHelpers.isLogin, function(req, res) {
   employeeMgr.getemployee(req.params.id,function(result){
     URL= req.session.back;
     res.render('editemployee', { title: "تعديل الموظفين", employee : result[0],phone : result[1] , url : URL});
