@@ -4,11 +4,8 @@ block content
     div.header
       ul.nav.nav-pills.pull-right
         li
-          h2 الـلــجـان
-        li
           .dropdown
-            button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true')
-              مـرحـبـا #{name}
+            button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true') مـرحـبـا #{name}
               span.caret
             ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
               li(role='presentation')
@@ -37,7 +34,7 @@ block content
                 | القـريـه / المـدينـه
           li
             p
-              a.btn.btn-default.btn-block(href="/office/officeViews", role="button")
+              a.btn.btn-primary.btn-block(href="/office/officeViews", role="button")
                 span.glyphicon.glyphicon-th.pull-right
                 | الـلــجـان
           li
@@ -45,11 +42,6 @@ block content
               a.btn.btn-default.btn-block(href="/office/subconstituencyViews", role="button")
                 span.glyphicon.glyphicon-th.pull-right
                 | الدوائـر الـفرعـيـه
-          li
-            p
-              a.btn.btn-default.btn-block(href="/root", role="button")
-                span.glyphicon.glyphicon-user.pull-right
-                | المـستخدميــن
           li
             p
               a.btn.btn-default.btn-block(href="/office/constituencyViews", role="button")

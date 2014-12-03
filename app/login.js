@@ -44,7 +44,7 @@ module.exports = function (router) {
         res.redirect('/cpanel');
       }else{
         if(user.level == 1){
-          res.redirect('/cpanel');
+          res.redirect('/cpanel/cpanelAdmin');
         }else{
           if(user.level == 2){
             res.redirect('/office/'+user.office_idoffice);
