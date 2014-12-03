@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $("a[id^='phone']").click(function() {
+  $('body').on('click', '#phone ', function () {
     var id = $(this).data("value");
     $.get('/admin/getPhoneManager/'+id, function(result){
       $('#body').empty();
@@ -8,10 +8,12 @@ $(document).ready(function(){
       } 
     });
   });
+  
   $('body').on('click', '#viw ', function () {
     var id = $(this).val();
     window.location.href="/admin/editmanager/"+id;
   }); 
+  
   $('#idcenter').on('input', function(){
     if($('#idcenter').val().length >=3) {
       $.get('/admin/searchManager/'+$('#idcenter').val(),function(result){
