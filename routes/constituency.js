@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
   res.render('constituency',{title: 'الدوائر الرئيسيه'});
 });
 /* GET center page. */
-router.get('/constituencyViews', function(req, res) {
+router.get('/constituencyViews',userHelpers.isAdmin function(req, res) {
   constituencyMgr.getConstituency(function(result){
     res.render('constituencyViews', { title: "الدوائر الرئيسية" , constituency : result});
   })
