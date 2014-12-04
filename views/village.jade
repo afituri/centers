@@ -3,6 +3,13 @@ block content
   div.container
     div.header
       ul.nav.nav-pills.pull-right
+        li.active
+            if level == 0
+              a(href="/cpanel")
+                span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            else if level == 1
+              a(href="/cpanel/cpanelAdmin")
+                span.glyphicon.h5 لـوحـــة الـتـحــكــم
         li
           .dropdown
             button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true')

@@ -4,7 +4,7 @@ exports.centerMgr = {
   /* get center by id*/
   getCenter : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `center_id`,`name`,`center_type`,`constituency_name_ar`,`mahalla_name`,`office_name_ar`,`subconstituency_name_ar`,`village_name` FROM `centers` ce,`constituency` c,`mahalla` m,`office` o,`subconstituency` s,`village` v WHERE `ce`.`center_id` = ? AND `ce`.`status`=1 AND `ce`.`office_idoffice`=`o`.`office_id` AND `ce`.`constituency_idconstituency`= `c`.`constituency_id` AND  `ce`.`subconstituency_idsubconstituency`= `s`.`subconstituency_id` AND `ce`.`mahalla_idmahalla`= `m`.`idmahalla` AND `ce`.`village_idvillage`= `v`.`idvillage`   ',id,  function(err, result) {
+      conn.query('SELECT `center_lat`,`center_log`,`center_id`,`name`,`center_type`,`constituency_name_ar`,`mahalla_name`,`office_name_ar`,`subconstituency_name_ar`,`village_name` FROM `centers` ce,`constituency` c,`mahalla` m,`office` o,`subconstituency` s,`village` v WHERE `ce`.`center_id` = ? AND `ce`.`status`=1 AND `ce`.`office_idoffice`=`o`.`office_id` AND `ce`.`constituency_idconstituency`= `c`.`constituency_id` AND  `ce`.`subconstituency_idsubconstituency`= `s`.`subconstituency_id` AND `ce`.`mahalla_idmahalla`= `m`.`idmahalla` AND `ce`.`village_idvillage`= `v`.`idvillage`   ',id,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -17,7 +17,7 @@ exports.centerMgr = {
   /* get all centers */
   getCenters : function(limit,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `constituency_idconstituency` <> 0 AND `mahalla_idmahalla` <> 0  AND `subconstituency_idsubconstituency` <> 0 AND `village_idvillage` <>  0 limit ?,10; SELECT COUNT(*) as cnt FROM `centers`  WHERE `status` = 1 AND `constituency_idconstituency` <> 0 AND `mahalla_idmahalla` <> 0  AND `subconstituency_idsubconstituency` <> 0 AND `village_idvillage` <>  0   ;',limit,  function(err, result) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `idcenter` > 0 AND `constituency_idconstituency` <> 0 AND `mahalla_idmahalla` <> 0  AND `subconstituency_idsubconstituency` <> 0 AND `village_idvillage` <>  0 limit ?,10; SELECT COUNT(*) as cnt FROM `centers`  WHERE `status` = 1 AND `constituency_idconstituency` <> 0 AND `mahalla_idmahalla` <> 0  AND `subconstituency_idsubconstituency` <> 0 AND `village_idvillage` <>  0   ;',limit,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -43,7 +43,7 @@ exports.centerMgr = {
   /*get centers by office id */
   getCentersOffice : function(limit,id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `constituency_idconstituency` <> 0 AND `mahalla_idmahalla` <> 0  AND `subconstituency_idsubconstituency` <> 0 AND `village_idvillage` <>  0  AND `office_idoffice`= ? limit ?,10; SELECT COUNT(*) as cnt FROM `centers`  WHERE `status` = 1 AND `constituency_idconstituency` <> 0 AND `mahalla_idmahalla` <> 0  AND `subconstituency_idsubconstituency` <> 0 AND `village_idvillage` <>  0 AND `office_idoffice`= ?; ',[id,limit,id] ,function(err, result) {
+      conn.query('SELECT  *  FROM `centers` WHERE `status` = 1 AND `idcenter` > 0 AND `constituency_idconstituency` <> 0 AND `mahalla_idmahalla` <> 0  AND `subconstituency_idsubconstituency` <> 0 AND `village_idvillage` <>  0  AND `office_idoffice`= ? limit ?,10; SELECT COUNT(*) as cnt FROM `centers`  WHERE `status` = 1 AND `constituency_idconstituency` <> 0 AND `mahalla_idmahalla` <> 0  AND `subconstituency_idsubconstituency` <> 0 AND `village_idvillage` <>  0 AND `office_idoffice`= ?; ',[id,limit,id] ,function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

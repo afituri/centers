@@ -2,6 +2,8 @@ var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     easyPbkdf2 = require("easy-pbkdf2")(),
     userMgr = require('../app/user').userMgr;
+var logMgr = require('../app/log').repoMgr;
+
 
 //read the passport api docs if you wanna know what this does
 passport.use(new LocalStrategy(

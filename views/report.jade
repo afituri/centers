@@ -19,8 +19,12 @@ block content
       .col-sm-3
         .nav.nav-pills.nav-stacked
           li.active
-            a(href="/cpanel")
-              span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            if level == 0
+              a(href="/cpanel")
+                span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            else if level == 1
+              a(href="/cpanel/cpanelAdmin")
+                span.glyphicon.h5 لـوحـــة الـتـحــكــم
             p
           li
             p
@@ -59,7 +63,7 @@ block content
                 | الـمـدراء
           li
             p
-              a.btn.btn-default.btn-block(href="/report", role="button")
+              a.btn.btn-primary.btn-block(href="/report", role="button")
                 span.glyphicon.glyphicon-list-alt.pull-right
                 | الـتـقـاريــر
           li

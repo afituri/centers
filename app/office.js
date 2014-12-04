@@ -17,7 +17,7 @@ exports.officeMgr = {
   /* get all office */
   getOffice : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `office` WHERE `status` = 1 ',  function(err, result) {
+      conn.query('SELECT * FROM `office` WHERE `status` = 1 AND `idoffice` > 0 ',  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
