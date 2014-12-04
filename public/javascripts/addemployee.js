@@ -2,7 +2,7 @@ $(document).ready(function(){
   $.get('/employee/getoffice',function(result){
     $('#office_idoffice').empty();
     for ( var i = 0; i < result.length;  i++ ) {
-      $('#office_idoffice').append("<option value = '"+result[i].office_id+"'>"+result[i].office_name+"</option>");
+      $('#office_idoffice').append("<option value = '"+result[i].office_id+"'>"+result[i].office_name_ar+"</option>");
       }
   });
   $('#office_idoffice').click(function() {
@@ -11,7 +11,7 @@ $(document).ready(function(){
     $('#center_idcenter').empty();
     $.get('/employee/getsubconstituency/'+id,function(result){
       for ( var i = 0; i < result.length;  i++ ) {
-        $('#subconstituency_idsubconstituency').append("<option value = '"+result[i].subconstituency_id+"'>"+result[i].subconstituency_name+"</option>");
+        $('#subconstituency_idsubconstituency').append("<option value = '"+result[i].subconstituency_id+"'>"+result[i].subconstituency_name_ar+"</option>");
       }
     });
   });
