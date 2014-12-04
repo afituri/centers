@@ -4,7 +4,7 @@ var userHelpers = require('../app/userHelpers');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('/users/login', { title: 'Express' });
+  res.redirect('/users/login');
 });
 
 module.exports = router;
