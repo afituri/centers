@@ -15,7 +15,7 @@ exports.repoMgr = {
   /*report   */
   report : function(limit,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `u`.`name`,`value`, `type`,`table`,`desc`,`l`.`creation_date`,`table_idtable`  FROM `user` u,`log` l WHERE `l`.`user_iduser`=`u`.`iduser`limit ?,10; SELECT COUNT(*) as cnt FROM `user` u,`log` l WHERE `l`.`user_iduser`=`u`.`iduser`;' ,limit, function(err, result) {
+      conn.query('SELECT `u`.`name`,`value`, `type`,`table`,`desc`,`l`.`creation_date`,`table_idtable`  FROM `user` u,`log` l WHERE `l`.`user_iduser`=`u`.`iduser` order by idlog desc limit ?,10 ; SELECT COUNT(*) as cnt FROM `user` u,`log` l WHERE `l`.`user_iduser`=`u`.`iduser`;' ,limit, function(err, result) {
         conn.release();
          if(err) {
           util.log(err);
