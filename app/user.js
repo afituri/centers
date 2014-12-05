@@ -98,7 +98,7 @@ exports.userMgr = {
     /* get Manager*/
   getManager : function(limit,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone`,`type` FROM `user`,`office`,`phone` WHERE `office`.`idoffice` = `user`.`office_idoffice` AND `phone`.`user_employee` = `user`.`iduser` AND `user`.`status` = 1 AND `user`.`level` = 2 group by `iduser`limit ?,10; SELECT COUNT(*) as cnt FROM `user`  WHERE `status` = 1 AND `level` = 2;', limit,function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`phone_number`,`level` FROM user LEFT JOIN phone ON  (phone.user_employee = user.iduser AND phone.user_type = 0 AND phone.status=1) WHERE  user.status = 1 AND user.level=2 group by iduser limit ?,10; SELECT COUNT(*) as cnt FROM `user`  WHERE `status` = 1 AND level=2;', limit,function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
