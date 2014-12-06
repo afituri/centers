@@ -19,8 +19,12 @@ block content
       .col-sm-3
         .nav.nav-pills.nav-stacked
           li.active
-            a(href="/cpanel")
-              span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            if level == 0
+              a(href="/cpanel")
+                span.glyphicon.h5 لـوحـــة الـتـحــكــم
+            else if level == 1
+              a(href="/cpanel/cpanelAdmin")
+                span.glyphicon.h5 لـوحـــة الـتـحــكــم
             p
           li
             p
@@ -89,6 +93,10 @@ block content
                           p  اضافة
                         when "edit"
                           p  تعديل
+                        when "login"
+                          p  تـسـجـيـل دخول
+                        when "logout"
+                          p  تـسـجـيـل خروج
                     td 
                       case rec.table
                         when "user"

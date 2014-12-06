@@ -20,9 +20,9 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
       if(results[1][0] != undefined){
         var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
-        res.render('office', { title: "اللجان  الأنتخابية",name:req.session.name , offices : result,centers : results[0],pagination : pagination});
+        res.render('office', { title: "اللجان  الأنتخابية",name:req.session.name , offices : result,centers : results[0],pagination : pagination,level:req.session.level});
       }else{
-        res.render('office', { title: "اللجان  الأنتخابية" ,name:req.session.name, offices : result,centers : res,pagination : null});
+        res.render('office', { title: "اللجان  الأنتخابية" ,name:req.session.name, offices : result,centers : res,pagination : null,level:req.session.level});
       }
     })
   });
@@ -74,9 +74,9 @@ router.get('/subconstituencyViews',userHelpers.isAdmin,function(req, res) {
     if(results[1][0] != undefined){
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
-      res.render('subconstituencyViews', { title: "الدوائر الفرعيه" ,name:req.session.name, subconstituencys : results[0],pagination : pagination});
+      res.render('subconstituencyViews', { title: "الدوائر الفرعيه" ,name:req.session.name, subconstituencys : results[0],pagination : pagination,level:req.session.level});
     }else{
-      res.render('subconstituencyViews', { title: "الدوائر الفرعيه" ,name:req.session.name, subconstituencys : res,pagination : null});
+      res.render('subconstituencyViews', { title: "الدوائر الفرعيه" ,name:req.session.name, subconstituencys : res,pagination : null,level:req.session.level});
     }
   })
 });
@@ -88,9 +88,9 @@ router.get('/mahallaViews',userHelpers.isAdmin,function(req, res) {
     if(results[1][0] != undefined){
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
-      res.render('mahallaViews', { title: "المحلة",name:req.session.name , mahallas : results[0],pagination : pagination});
+      res.render('mahallaViews', { title: "المحلة",name:req.session.name , mahallas : results[0],pagination : pagination,level:req.session.level});
     }else{
-      res.render('mahallaViews', { title: "المحلة" ,name:req.session.name, mahallas : res,pagination : null});
+      res.render('mahallaViews', { title: "المحلة" ,name:req.session.name, mahallas : res,pagination : null,level:req.session.level});
     }
   })
 });
@@ -102,9 +102,9 @@ router.get('/villageViews',userHelpers.isAdmin,function(req, res) {
     if(results[1][0] != undefined){
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
-      res.render('villageViews', { title: "القرية او المدينة" ,name:req.session.name, villages : results[0],pagination : pagination});
+      res.render('villageViews', { title: "القرية او المدينة" ,name:req.session.name, villages : results[0],pagination : pagination,level:req.session.level});
     }else{
-      res.render('villageViews', { title: "القرية او المدينة" ,name:req.session.name, villages : res,pagination : null});
+      res.render('villageViews', { title: "القرية او المدينة" ,name:req.session.name, villages : res,pagination : null,level:req.session.level});
     }
   })
 });
@@ -116,9 +116,9 @@ router.get('/officeViews',userHelpers.isAdmin,function(req, res) {
     if(results[1][0] != undefined){
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
-      res.render('officeViews', { title: "اللجان" ,name:req.session.name, offices : results[0],pagination : pagination});
+      res.render('officeViews', { title: "اللجان" ,name:req.session.name, offices : results[0],pagination : pagination,level:req.session.level});
     }else{
-      res.render('officeViews', { title: "اللجان" ,name:req.session.name, offices : res,pagination : null});
+      res.render('officeViews', { title: "اللجان" ,name:req.session.name, offices : res,pagination : null,level:req.session.level});
     }
   })
 });
@@ -130,9 +130,9 @@ router.get('/constituencyViews',userHelpers.isAdmin,function(req, res) {
     if(results[1][0] != undefined){
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
-      res.render('constituencyViews', { title: "الدوائر الرئيسيه" ,name:req.session.name, constituencys : results[0],pagination : pagination});
+      res.render('constituencyViews', { title: "الدوائر الرئيسيه" ,name:req.session.name, constituencys : results[0],pagination : pagination,level:req.session.level});
     }else{
-      res.render('constituencyViews', { title: "الدوائر الرئيسيه" ,name:req.session.name, constituencys : res,pagination : null});
+      res.render('constituencyViews', { title: "الدوائر الرئيسيه" ,name:req.session.name, constituencys : res,pagination : null,level:req.session.level});
     }
   })
 });
@@ -168,11 +168,11 @@ router.get('/:oid/:sid',userHelpers.isManager, function(req, res) {
         var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
         officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
-          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه',name:req.session.name , officeid :req.params.oid , villages : result, centers : results[0], names : resultOne ,pagination : pagination});
+          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه',name:req.session.name , officeid :req.params.oid , villages : result, centers : results[0], names : resultOne ,pagination : pagination,level:req.session.level});
         })  
       }else{
         officeMgr.getNameOfficeSubconstit(req.params.oid,req.params.sid,function(resultOne){
-          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه',name:req.session.name , officeid :req.params.oid , villages : result, centers : res, names : resultOne ,pagination : null});
+          res.render('subconstituency', { title: ' الدوائر  الأنتخابية الفرعيه',name:req.session.name , officeid :req.params.oid , villages : result, centers : res, names : resultOne ,pagination : null,level:req.session.level});
         })  
       }    
     })
@@ -189,11 +189,11 @@ router.get('/:oid/:sid/:vid',userHelpers.isManager, function(req, res) {
         var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
         officeMgr.getNameOfficeSubconstitVillage(req.params.oid,req.params.sid,req.params.vid,function(resultNames){
-          res.render('village', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results[0], names : resultNames,pagination : pagination});
+          res.render('village', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : results[0], names : resultNames,pagination : pagination,level:req.session.level});
         }) 
       }else{
         officeMgr.getNameOfficeSubconstitVillage(req.params.oid,req.params.sid,req.params.vid,function(resultNames){
-          res.render('village', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : res, names : resultNames,pagination : null});
+          res.render('village', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid , mahallas : result , centers : res, names : resultNames,pagination : null,level:req.session.level});
         }) 
       } 
     })
@@ -209,11 +209,11 @@ router.get('/:oid/:sid/:vid/:mid', userHelpers.isManager,function(req, res) {
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
       officeMgr.getNameOfficeSubconstitVillageMahalla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(resultTwo){
-        res.render('mahalla', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],names:resultTwo,pagination : pagination});
+        res.render('mahalla', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],names:resultTwo,pagination : pagination,level:req.session.level});
       })
     }else{
       officeMgr.getNameOfficeSubconstitVillageMahalla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(resultTwo){
-        res.render('mahalla', { title: 'المدينة/القرية' ,name:req.session.name, officeid : req.params.oid , subbid  : req.params.sid  , centers : res,names:resultTwo,pagination : null});
+        res.render('mahalla', { title: 'المدينة/القرية' ,name:req.session.name, officeid : req.params.oid , subbid  : req.params.sid  , centers : res,names:resultTwo,pagination : null,level:req.session.level});
       })
     }
   });
