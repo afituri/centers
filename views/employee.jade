@@ -166,31 +166,26 @@ block content
                 .col-md-offset-0 
                     .modal-body
                         form#form.form-signin(role="form" , action="/employee/addemployee", method="post")
-                          table(width="430", align="center")
-                            tr
-                              td
+                          .row
+                            .col-md-6
                                 div.form-group
                                   lable.h4 اﻻسم
                                   input#employee_name.form-control(type="text",name="employee_name", placeholder="اسم الموظف",autofocus="")
-                              td
-                                div.form-group.pull-left
-                                  lable.h4 البريد الالكتروني
-                                  input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
-                            tr
-                              td
                                 div.form-group
                                   lable.h4 الرقم الوطني
-                                  input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")      
-                              td
-                                div.form-group.pull-left
-                                  lable.h4 اسم المصرف
-                                  input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
-                            tr
-                              td
+                                  input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")    
                                 div.form-group
                                   lable.h4 رقم الحساب
                                   input#account_number.form-control(type="text",name="account_number", placeholder="رقم الحساب",autofocus="")
-                              td
+                            .col-xs-6.col-md-6
+                               div.form-group.pull-left
+                                  lable.h4 البريد الالكتروني
+                                  input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="")
+                                div.form-group.pull-left
+                                  lable.h4 اسم المصرف
+                                  input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
+                                div.form-group.pull-left
+                            .col-xs-12.col-md-12
                                 div.form-group.pull-left
                                   lable.h4 رقم الهاتف
                                   .form-group.multiple-form-group.input-group#phone_input
@@ -210,21 +205,17 @@ block content
                                     input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
                                     span.input-group-btn
                                       button.btn.btn-success.btn-add(type='button') +
-                            tr
-                              td
+                            .col-md-6
                                 div.form-group
                                   lable.h4 اللجان
                                   select#office_idoffice.form-control(name="office_idoffice")
-                              td
+                                div.form-group
+                                  lable.h4 المركز
+                                  select#center_idcenter.form-control(name="center_idcenter", placeholder="صفة الموظف",autofocus="") 
+                            .col-xs-6.col-md-6
                                 div.form-group.pull-left
                                   lable.h4 الدائرة الفرعية
                                   select#subconstituency_idsubconstituency.form-control(name="subconstituency_idsubconstituency", placeholder="صفة الموظف",autofocus="")
-                            tr
-                              td
-                                div.form-group
-                                  lable.h4 المركز
-                                  select#center_idcenter.form-control(name="center_idcenter", placeholder="صفة الموظف",autofocus="")
-                              td
                                 div.form-group.pull-left
                                   lable.h4 الصفة
                                   select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
@@ -235,12 +226,7 @@ block content
                                     option(value="4") مراقب الصندوق
                                     option(value="5") منظم الطابور بالمركز
                                     option(value="6") منظم الطابور بالمحطة
-                            tr
-                              td
-                              td
-                                div.form-group
-                                  button.btn.btn-lg.btn-primary(type="submit") إضـافة      
-                    
+
   script.
     function pho(id){
       $.get('/employee/getphone/'+id, function(result){
