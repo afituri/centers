@@ -4,6 +4,7 @@ var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy,
 easyPbkdf2 = require("easy-pbkdf2")();
 var userMgr = require('../app/user').userMgr;
+var userHelpers = require('../app/userHelpers');
 var logMgr = require('../app/log').repoMgr;
 var router = express.Router();
 var login = require('../app/login')(router);
@@ -16,7 +17,7 @@ router.get('/', function(req, res) {
   });
 });
 /* GET login page. */
-router.get('/login', function(req, res) {
+router.get('/login',userHelpers.isLogin, function(req, res) {
   res.render('login',{ title: 'تسجيل الدخول' });
 });
 /* GET reset page. */

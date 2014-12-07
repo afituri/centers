@@ -43,18 +43,21 @@ module.exports = {
   /* here we check if the user have root access */
   isRoot : function (req,res,next) {
     if (req.isAuthenticated() && req.session.level<=0) { return next(); }
+    if(req.isAuthenticated() && req.session.level== 1){res.redirect('/cpanel/cpanelAdmin') }
+    if(req.isAuthenticated() && req.session.level== 2){res.redirect('/office/'+req.session.office_idoffice) }
     res.redirect('/users/login')
   },
   /* here we check if the user have admin or higher access */
   isAdmin : function (req,res,next) {
     if (req.isAuthenticated() && req.session.level<=1) { return next(); }
+    if(req.isAuthenticated() && req.session.level== 2){res.redirect('/office/'+req.session.office_idoffice) }
     res.redirect('/users/login')
   },
    /* here we check if the manager have access to office */
   isManager : function (req,res,next) {
     if (req.isAuthenticated() && req.session.level<2) { return next(); }
-    if(req.session.level==2&&req.params.oid==req.session.office_idoffice){ return next(); }
-    if(req.session.iduser==null){res.redirect('/users/login')}
+    if(req.isAuthenticated() && req.session.level==2 && req.params.oid==req.session.office_idoffice){ return next(); }
+    if(!req.isAuthenticated()){res.redirect('/users/login')}
     res.redirect('/office/'+ req.session.office_idoffice)
   },
   isCenter: function (req,res,next) {
@@ -65,9 +68,24 @@ module.exports = {
     });
   },
    /* here we check if the manager have access to office */
+  isAcsees : function (req,res,next) {
+    if (req.isAuthenticated() && req.session.level<2 ) { return next(); }
+    if (req.isAuthenticated() && req.session.level==2 ){
+      centerMgr.getidOffis(req.params.id,function(result){
+        if(result[0].office_idoffice == req.session.office_idoffice){ return next(); }
+          res.redirect('/office/'+ req.session.office_idoffice);
+      });
+    }
+    if (!req.isAuthenticated()){
+     res.redirect('/users/login')
+    }
+  },
+  /* here we check user if login */
   isLogin : function (req,res,next) {
-    if (req.isAuthenticated() && req.session.iduser!=null) { return next(); }
-    res.redirect('/users/login')
+    if (!req.isAuthenticated()) { return next(); }
+    if (req.isAuthenticated() && req.session.level==2 ){res.redirect('/office/'+ req.session.office_idoffice);}
+    if (req.isAuthenticated() && req.session.level==1 ){res.redirect('/cpanel/cpanelAdmin');}
+    if (req.isAuthenticated() && req.session.level==0 ){res.redirect('/cpanel');}
   },
   getPage : function (req){
     var page = 1;
