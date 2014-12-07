@@ -120,7 +120,7 @@ exports.centerMgr = {
   /*check center in the offise .*/
   iscenter: function(cid,id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `idcenter`  FROM `centers` WHERE `status` = 1 AND `office_idoffice`= ?',[cid,id],  function(err, result) {
+      conn.query('SELECT `idcenter`  FROM `centers` WHERE `status` = 1 AND `center_id`=? AND `office_idoffice`= ?',[cid,id],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -130,6 +130,19 @@ exports.centerMgr = {
           }else{
             cb(false);
           }
+        }
+      });
+    });
+  },
+    /*check Offis id .*/
+  getidOffis: function(cid,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `office_idoffice` FROM `centers` c,`employee` e WHERE `c`.`status` = 1 AND `e`.`status` = 1 AND `e`.`idemployee` = ? AND `e`.`center_idcenter` = `c`.`center_id`',cid,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
         }
       });
     });
