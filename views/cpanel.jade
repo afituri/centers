@@ -15,12 +15,12 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="/images/hnec_logo.png")
-    div.container
+    div.container    
       .panel.panel-primary
         .panel-heading
           h3.panel-title
             span.glyphicon.glyphicon-bookmark
-            |  لـوحـــة الـتـحــكــم
+            |    لـوحـــة الـتـحــكــم
         .panel-body
           .row
             .col-xs-6.col-md-6  
@@ -38,8 +38,7 @@ block content
                 span.glyphicon.glyphicon-th
                 br
                 | الـلــجـنـة
-              p
-            .col-xs-6.col-md-6
+              pc
               a.btn.btn-primary.btn-block(href="/office/subconstituencyViews", role="button")
                 span.glyphicon.glyphicon-th
                 br
@@ -77,6 +76,10 @@ block content
                 br
                 | الـتـقـاريـــر
               p
+                div.form-group
+                  input.input-group-select-val(type='hidden', value='#{cent[0].center_id}', name='center_idcenter')
+                div.form-group.text-center
+                  button.btn.btn-lg.btn-primary(type="submit") إضـافة        
           br
           a.btn.btn-success.btn-lg.btn-block(href="/office", role="button")
             span.glyphicon.glyphicon-th-list
