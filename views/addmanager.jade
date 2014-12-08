@@ -50,7 +50,7 @@ block content
               select.form-control#office_idoffice(name="office_idoffice")
                 option(value="-1", selected="selected") اللجان الانتخابية
                 for office in offices
-                  option(value=office.idoffice) #{office.office_name}
+                  option(value=office.idoffice) #{office.office_name_ar}
           div.form-group.text-center
             button.btn.btn-lg.btn-primary(type="submit") تسجيل
   script(src="/javascripts/jquery-1.11.1.min.js") 
