@@ -3,15 +3,14 @@ block content
   div.container
     div.header
       ul.nav.nav-pills.pull-right
-        li
-          .dropdown
-            button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true') مـرحـبـا #{name}
-              span.caret
-            ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
-              li(role='presentation')
-                a(role='menuitem', tabindex='-1', href='#') | مـرحـبـا #{name}
-              li(role='presentation')
-                a(role='menuitem', tabindex='-1', href='/users/logout') تـسـجـيـل الخـروج
+        .dropdown
+          button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true') مـرحـبـا #{name}
+            span.caret
+          ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
+            li(role='presentation')
+              a(role='menuitem', tabindex='-1', href='#') | مـرحـبـا #{name}
+            li(role='presentation')
+              a(href='/users/logout', role='menuitem', tabindex='-1') تـسـجـيـل الخـروج
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/hnec_logo.png")
@@ -197,7 +196,7 @@ block content
                                       button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
                                         span.concept Phone
                                         span.caret
-                                      ul.dropdown-menu(role='menu')
+                                      ul.dropdown-phone(role='menu')
                                         li
                                           a(href='#ليبيانا') ليبيانا
                                         li
@@ -250,5 +249,5 @@ block content
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/employee.js")
-  script(src="/javascripts/phone.js")
   script(src="/javascripts/addemployee.js")
+  script(src="/javascripts/phone.js")
