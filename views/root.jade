@@ -62,61 +62,6 @@ block content
               a.btn.btn-default.btn-block(href="/office", role="button")
                 span.glyphicon.glyphicon-th-list.pull-right
                 | اللجـان و المـراكز
-      .panel
-        .col-sm-4.col-md-6
-          .input-group 
-            input.form-control(type="text",name="idcenter",id = "idcenter")
-            .input-group-btn
-              .btn.btn-default(type="button")  
-                spen.glyphicon.glyphicon-search
-        div.btn-group.pull-left
-          a.btn.btn-success(href='/root/adduser', role='button') إضافة مستخدم
-            span.glyphicon.glyphicon-plus 
-
-      div.panel-body
-          .col-lg-9.table-responsive  
-            table#user.table.table-striped.table-bordered.table-condensed.table-hover
-              thead
-                th الاسم
-                th رقم الهاتف
-                th الصلحيات
-                th عرض
-                th الغاء 
-              tbody#centers
-                for user in users
-                  tr
-                    td= user.name
-                    td 
-                      a#phone(href='#phonee', data-toggle='modal',data-value="#{user.iduser}")
-                        |#{user.phone_number}
-                    td
-                      case user.level
-                        when 0
-                          p root
-                        when 1
-                          p admin
-                        when 2
-                          p manager
-                    td
-                      button#viw.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
-                        span.glyphicon.glyphicon-eye-open
-                    td      
-                      button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
-                         span.glyphicon.glyphicon-trash 
-          if pagination
-            div.text-center
-              ul.pagination
-                li(class='#{pagination.previous.disabled}')
-                  a(href='?p=#{pagination.previous.n}') السابق
-                for page in pagination.pages
-                  li(class="#{page.active}")
-                    a(href='?p=#{page.n}') #{page.n}
-                li(class="#{pagination.next.disabled}")
-                  a(href='?p=#{pagination.next.n}') التالي
-
-            a.btn.btn-default.btn-block(href="/office", role="button")
-              span.glyphicon.glyphicon-th-list.pull-right
-              | اللجـان و المـراكز
       .col-md-9
         .panel.panel-info
           .panel-heading.clearfix
@@ -137,7 +82,7 @@ block content
                   th الصلحيات
                   th عرض
                   th الغاء 
-                tbody
+                tbody#centers
                   for user in users
                     tr
                       td= user.name
