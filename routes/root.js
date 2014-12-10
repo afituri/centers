@@ -14,6 +14,12 @@ router.get('/deletePhone/:id', function(req, res) {
     res.send(result);
   });
 });
+/* searchByname user  */
+router.get('/searchUser/:id', function(req, res) {
+  userMgr.searchUser(req.params.id,function(result){
+    res.send(result);
+  })
+});
 /* GET home page. */
 router.get('/',userHelpers.isRoot,function(req, res) {
   req.session.back = req.originalUrl;

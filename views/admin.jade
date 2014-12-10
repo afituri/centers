@@ -90,20 +90,20 @@ block content
               th رقم الهاتف
               th تعديل
               th الغاء 
-            tbody
-            for user in users
-              tr
-                td= user.name
-                td= user.office_name_ar
-                td
-                  a#phone(href='#phonee', data-toggle='modal',data-value="#{user.iduser}")
-                    |  #{user.phone_number}
-                td
-                  button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
-                    span.glyphicon.glyphicon-eye-open
-                td      
-                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
-                    span.glyphicon.glyphicon-trash 
+            tbody#centers
+              for user in users
+                tr
+                  td= user.name
+                  td= user.office_name_ar
+                  td
+                    a#phone(href='#phonee', data-toggle='modal',data-value="#{user.iduser}")
+                      |  #{user.phone_number}
+                  td
+                    button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{user.iduser}", data-target='#edit', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-eye-open
+                  td      
+                    button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{user.iduser}")
+                      span.glyphicon.glyphicon-trash 
         if pagination
           div.text-center
             ul.pagination
@@ -140,6 +140,18 @@ block content
                 tbody#body
         .modal-footer
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
+  script.
+    function pho(id){
+      $.get('/admin/getPhoneManager/'+id, function(result){
+        $('#body').empty();
+        for ( var i = 0; i < result.length;  i++ ) {
+          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+        }
+      });
+    }   
+    function del(id){
+      $('#confdelete').val(id);
+    }
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/admin.js")

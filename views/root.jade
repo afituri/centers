@@ -92,7 +92,7 @@ block content
                 th الصلحيات
                 th عرض
                 th الغاء 
-              tbody
+              tbody#centers
                 for user in users
                   tr
                     td= user.name
@@ -149,6 +149,18 @@ block content
         .modal-footer
           button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+  script.
+    function pho(id){
+      $.get('/root/getphone/'+id, function(result){
+        $('#body').empty();
+        for ( var i = 0; i < result.length;  i++ ) {
+          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+        }
+      });
+    }   
+    function del(id){
+      $('#confdelete').val(id);
+    }
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/root.js")

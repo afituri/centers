@@ -26,7 +26,7 @@ router.get('/',userHelpers.isAdmin,function(req, res) {
 });
 
 /* search manager by name. */
-router.get('/searchManager/:id',userHelpers.isAdmin,function(req, res) {
+router.get('/searchManager/:id',function(req, res) {
   userMgr.searchManager(req.params.id,function(result){
     res.send(result);
   })
@@ -62,7 +62,7 @@ router.get('/phoneManager',userHelpers.isAdmin,function(req, res) {
   });
 });
 /* GET employee phones. */
-router.get('/getPhoneManager/:id',userHelpers.isAdmin,function(req, res) {
+router.get('/getPhoneManager/:id',function(req, res) {
   phoneMgr.getPhoneManager(req.params.id,function(result){
     res.send(result);
   })

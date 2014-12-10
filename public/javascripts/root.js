@@ -1,4 +1,23 @@
 $(document).ready(function(){
+  $('#idcenter').on('input', function(){
+    var type=["root","admin","manager"];
+    if($('#idcenter').val().length >=3) {
+      $.get('/root/searchUser/'+$('#idcenter').val(),function(result){
+        $('#centers').empty();
+        $('.pagination').hide();
+        
+        for(key in result){
+          var p = "";
+          if (result[key].phone_number != null){
+           p=result[key].phone_number ;
+          }
+          $('#centers').append('<tr><td>'+result[key].name+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].iduser+');"data-value="'+result[key].iduser+
+                                '">'+p+'</a></td><td>'+type[result[key].level]+'</td><td><a class="btn btn-primary btn-xs"href="/root/edituser/'+result[key].iduser+'">'+
+                                '<span class="glyphicon glyphicon-eye-open"></span></a></td><td><a class="btn btn-danger btn-xs"onClick="del('+result[key].iduser+');" href="#del"data-toggle="modal"> <span class="glyphicon glyphicon-trash"></span></a> </td></tr>');
+        }
+      });
+    }
+  });
   $('body').on('click', '#viw ', function () {
     var id = $(this).val();
     window.location.href="/root/edituser/"+id;

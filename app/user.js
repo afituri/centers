@@ -67,7 +67,7 @@ exports.userMgr = {
   /* get user by id*/
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1) LEFT JOIN phone ON(phone.user_employee = user.iduser AND phone.status = 1) WHERE  user.iduser = ? AND user.status = 1', id ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1) LEFT JOIN phone ON(phone.user_employee = user.iduser AND phone.status = 1 AND phone.user_type =0) WHERE  user.iduser = ? AND user.status = 1', id ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -112,11 +112,26 @@ exports.userMgr = {
   searchManager:function(name,cb){
     name=name+"%";
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`office_name`,`phone_number`,`idphone`,`type` FROM `user`,`office`,`phone` WHERE `user`.`name` LIKE ? AND`office`.`idoffice` = `user`.`office_idoffice` AND `phone`.`user_employee` = `user`.`iduser` AND `user`.`status` = 1 AND `user`.`level` = 2 group by `iduser`  ',name,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`office_name_ar`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`email` FROM user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1) LEFT JOIN phone ON(phone.user_employee = user.iduser AND phone.status = 1 AND phone.user_type =0) WHERE  user.name LIKE ? AND user.status = 1 AND user.level=2  group by iduser', name ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
         } else {
+          cb(result);
+        }
+      });
+    });
+  },
+  /* search user by name  */
+  searchUser:function(name,cb){
+    name=name+"%";
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1) LEFT JOIN phone ON(phone.user_employee = user.iduser AND phone.status = 1 AND phone.user_type =0) WHERE  user.name LIKE ? AND user.status = 1 group by iduser', name ,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          console.log(result);
           cb(result);
         }
       });
