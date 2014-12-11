@@ -1,6 +1,5 @@
 $(document).ready(function(){
   $('#idcenter').on('input', function(){
-    //var type=["root","admin","manager"];
     if($('#idcenter').val().length >=3) {
       $.get('/admin/searchManager/'+$('#idcenter').val(),function(result){
         $('#centers').empty();
@@ -17,7 +16,7 @@ $(document).ready(function(){
         }
       });
     }
-  });/**/
+  });
   /* Go to user needs view or edit */
   $('body').on('click', '#view', function (){
     var id = $(this).val();

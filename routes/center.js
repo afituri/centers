@@ -19,4 +19,12 @@ router.get('/:cid',userHelpers.isCenter, function(req, res) {
     });
   });
 });
+
+/* search searchEmpInCenter. */
+router.get('/searchEmpInCenter/:id/:idc',function(req, res) {
+  employeeMgr.searchEmpInCenter(req.params.id,req.params.idc,function(result){
+    res.send(result);
+  })
+});
+
 module.exports = router;

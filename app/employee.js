@@ -146,6 +146,20 @@ exports.employeeMgr = {
       }     
     });
   },
+  /*Search employee in center*/
+  searchEmpInCenter : function(name,idc,cb){
+    name = name+"%";
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `e`.`employee_name` LIKE ? AND`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `c`.`center_id` =? AND `e`.`status`= 1 AND `c`.`status`=1 AND `p`.`status`=1  GROUP BY `idemployee',[name,idc],  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        } 
+      });     
+    });
+  },
   /* check if email exists */
   checkEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {
