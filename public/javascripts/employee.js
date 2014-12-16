@@ -8,7 +8,7 @@ $(document).ready(function(){
         $('.pagination').hide();
         for(key in result){
           $('#centers').append('<tr><td >'+result[key].employee_name+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
-                                '">'+result[key].phone_number+'</a></td><td>'+type[result[key].type]+'</td><td width="12%"><a href="#" tabindex="0" id="'+result[key].idemployee+'" data-toggle="popover" data-trigger="hover"  title="اسم المركز" data-content="'+result[key].name+'">'+result[key].name+'</a>'+
+                                '">'+result[key].phone_number+'</a></td><td>'+type[result[key].type]+'</td><td width="12%"><a href="#" tabindex="0" id="'+result[key].idemployee+'" data-toggle="popover" data-trigger="hover" data-placement="top" title="اسم المركز" data-content="'+result[key].name+'">'+result[key].name+'</a>'+
                                 '</td><td width="3%"><a class="btn btn-primary btn-xs"href="/employee/editemployee/'+result[key].idemployee+'">'+
                                 '<span class="glyphicon glyphicon-eye-open"></span></a></td><td width="3%"><a class="btn btn-danger btn-xs"onClick="del('+result[key].idemployee+');" href="#del"data-toggle="modal"> <span class="glyphicon glyphicon-trash"></span></a> </td></tr>');
         }
@@ -44,19 +44,4 @@ $(document).ready(function(){
     var id = $(this).val();
     window.location.href="/employee/editemployee/"+id;
   });
- // $('.po-markup > .po-link').popover({
- //    trigger: 'hover',
- //    html: true,  // must have if HTML is contained in popover
-
- //    // get the title and conent
- //    title: function() {
- //      return $(this).parent().find('.po-title').html();
- //    },
- //    content: function() {
- //      return $(this).parent().find('.po-body').html();
- //    },
-
- //    container: 'body',
- //    placement: 'top'
- //  });
 });

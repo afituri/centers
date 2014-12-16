@@ -70,17 +70,17 @@ block content
                 .btn.btn-default(type="button")  
                   spen.glyphicon.glyphicon-search
             .btn-group.pull-left
-              a.btn.btn-success(href='/root/adduser', role='button') إضافة مستخدم
+              a.btn.btn-success(href='/admin/addmanager', role='button') إضافة مستخدم
                 span.glyphicon.glyphicon-plus 
           .panel-body
             table-responsive
               table#off.table.table-striped.table-bordered.table-condensed.table-hover
                 thead
-                  th الاسم
-                  th اللجان
-                  th رقم الهاتف
-                  th تعديل
-                  th الغاء 
+                  th(width='10%') الاسم
+                  th(width='3%')اللجان
+                  th(width='3%')رقم الهاتف
+                  th(width='2%') تعديل
+                  th(width='2%')الغاء 
                 tbody#centers
                   for user in users
                     tr
@@ -123,7 +123,9 @@ block content
            p.h1 ارقام الهواتف
         .modal-body
           div.panel-body  
-            div.table-responsive  
+            div.table-responsive 
+              table.table.table-striped.table-bordered.table-condensed.table-hover
+                tbody#emaill 
               table#off.table.table-striped.table-bordered.table-condensed.table-hover
                 thead
                   th رقم الهاتف
@@ -135,6 +137,8 @@ block content
     function pho(id){
       $.get('/admin/getPhoneManager/'+id, function(result){
         $('#body').empty();
+        $('#emaill').empty();
+        $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
         for ( var i = 0; i < result.length;  i++ ) {
           $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
         }

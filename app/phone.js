@@ -31,7 +31,7 @@ exports.phoneMgr = {
   /* get phone by id for User*/
   getphoneUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `phone_number`,`type` FROM `phone` WHERE `status`=1 AND `user_type`=0 AND`user_employee` = ?',id,  function(err, result) {
+      conn.query('SELECT `phone_number`,`type`,`email` FROM `phone` p,`user` u WHERE `p`.`status`=1 AND `user_type`=0 AND `u`.`status`=1 AND`user_employee` = ?  AND `u`.`iduser` = ?',[id,id],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -44,7 +44,7 @@ exports.phoneMgr = {
   /* get phone by id for manager*/
   getPhoneManager : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `phone_number`,`type` FROM `phone` WHERE `status`=1 AND `user_type`=0 AND `user_employee` = ?',id,  function(err, result) {
+      conn.query('SELECT `phone_number`,`email`,`p`.`type` FROM `phone` p,`user` u WHERE `p`.`status`=1 AND `u`.`status`=1 AND `u`.`level`=2 AND `user_type`=0 AND `user_employee` = ? AND `u`.`iduser` = ?',[id,id],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

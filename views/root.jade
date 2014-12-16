@@ -77,11 +77,11 @@ block content
             table-responsive  
               table#user.table.table-striped.table-bordered.table-condensed.table-hover
                 thead
-                  th الاسم
-                  th رقم الهاتف
-                  th الصلحيات
-                  th عرض
-                  th الغاء 
+                  th(width='10%') الاسم
+                  th(width='3%') رقم الهاتف
+                  th(width='3%') الصلحيات
+                  th(width='2%') عرض
+                  th(width='2%') الغاء 
                 tbody#centers
                   for user in users
                     tr
@@ -122,6 +122,8 @@ block content
         .modal-body
           div.panel-body  
             div.table-responsive  
+              table.table.table-striped.table-bordered.table-condensed.table-hover
+                tbody#emaill
               table#off.table.table-striped.table-bordered.table-condensed.table-hover
                 thead
                   th رقم الهاتف
@@ -144,6 +146,8 @@ block content
     function pho(id){
       $.get('/root/getphone/'+id, function(result){
         $('#body').empty();
+        $('#emaill').empty();
+        $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
         for ( var i = 0; i < result.length;  i++ ) {
           $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
         }

@@ -105,21 +105,8 @@ block content
                             when 6
                               p منظم الطابور بالمحطة
                         td 
-                          a(href='#', tabindex='0', role='button', data-toggle='popover', data-trigger='hover',placement='top', title='اسم المركز', data-content="#{employee.name}") 
+                          a(href='#', tabindex='0', role='button',data-placement="top", data-toggle='popover', data-trigger='hover',placement='top', title='اسم المركز', data-content="#{employee.name}") 
                             |#{employee.name}
-
-                          //- .po-markup
-                          //-   a.po-link(href='#') #{employee.name}
-                          //-   .po-content.hidden
-                          //-     .po-title
-                          //-       | اسم المركز
-                          //-     // ./po-title
-                          //-     .po-body
-                          //-       table.table.table-striped.table-bordered.table-condensed.table-hover
-                          //-         tbody
-                          //-           tr
-                          //-             td(width='100%')
-                          //-               |#{employee.name}
                         td
                           button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
                             span.glyphicon.glyphicon-eye-open
@@ -250,16 +237,6 @@ block content
         }
       });
     }   
-    function del(id){
-      $('#deleteemployee').val(id);
-    } 
-    function hov(t){
-      $(document).ready(function(){
-        $(t).parent().find('.po-content').removeClass("hidden");
-        $(t).parent().find('.po-content'). addClass("popover fade top in");
-        $(t).parent().find('.po-content').css({ top: "auto", left: "auto", display: "block"});
-      });     
-    }      
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
