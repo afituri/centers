@@ -64,72 +64,71 @@ block content
               td خطوط الطول
               td
                 |#{cent[0].center_log}
-      .col-md-12 
-        .panel
-            div.btn-group.pull-left
-              .col-sm-4.col-md-1
-                a.btn.btn-success(href='#addemployee', role='button',data-toggle='modal') الإضـافـة
-                  span.glyphicon.glyphicon-plus 
-            .col-sm-4.col-md-6
-              .input-group 
-                  input.form-control(type="text",name="constitres", placeholder=" أبحث", required="")
-                  .input-group-btn
-                    .btn.btn-default(type="button")  
-                      spen.glyphicon.glyphicon-search
-        div.panel-body  
-          div.table-responsive  
-            table#off.table.table-striped.table-bordered.table-condensed.table-hover
-              thead
-                th أسم الموظف
-                th البريد الالكتروني
-                th رقم الهاتف
-                th الصفة
-                th المركز
-                th تعديل
-                th الغاء 
-              tbody
-                for employee in employees
-                    tr
-                      td #{employee.employee_name}
-                      td #{employee.email}
-                      td 
-                        a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
-                          |#{employee.phone_number}
-                      td 
-                        case employee.type
-                          when 0
-                            p رئيس مركز
-                          when 1
-                            p مدير محطة
-                          when 2
-                            p محقق هوية
-                          when 3
-                            p موزع أوراق الاقتراع
-                          when 4
-                            p مراقب الصندوق
-                          when 5
-                            p منظم الطابور بالمركز
-                          when 6
-                            p منظم الطابور بالمحطة
-                          when 7 
-                            p  موظف المفوظية العليا للغنتخبات 
-                      td #{employee.name}
-                      td
-                        button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
-                          span.glyphicon.glyphicon-eye-open
-                      td      
-                        button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
-                         span.glyphicon.glyphicon-trash 
-          if pagination
-            div.text-center
-              ul.pagination
-                li(class='#{pagination.previous.disabled}')
-                  a(href='?p=#{pagination.previous.n}') السابق
-                for page in pagination.pages
-                  li(class="#{page.active}")
-                    a(href='?p=#{page.n}') #{page.n}
-                li(class="#{pagination.next.disabled}")
-                  a(href='?p=#{pagination.next.n}') التالي
+  
+        .panel.panel-info
+          .panel-heading.clearfix
+            .input-group.panel-title.pull-right.col-xs-6
+              input.form-control(placeholder=" أبحث",type="text",name="idcenter",id = "idcenter")
+              .input-group-btn
+                .btn.btn-default(type="button")  
+                  spen.glyphicon.glyphicon-search
+            .btn-group.pull-left
+              a.btn.btn-success(href='#addemployee', role='button',data-toggle='modal') الإضـافـة
+                span.glyphicon.glyphicon-plus 
+          .panel-body
+            table-responsive  
+              table#off.table.table-striped.table-bordered.table-condensed.table-hover
+                thead
+                  th أسم الموظف
+                  th البريد الالكتروني
+                  th رقم الهاتف
+                  th الصفة
+                  th المركز
+                  th تعديل
+                  th الغاء 
+                tbody#centers
+                  for employee in employees
+                      tr
+                        td #{employee.employee_name}
+                        td #{employee.email}
+                        td 
+                          a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
+                            |#{employee.phone_number}
+                        td 
+                          case employee.type
+                            when 0
+                              p رئيس مركز
+                            when 1
+                              p مدير محطة
+                            when 2
+                              p محقق هوية
+                            when 3
+                              p موزع أوراق الاقتراع
+                            when 4
+                              p مراقب الصندوق
+                            when 5
+                              p منظم الطابور بالمركز
+                            when 6
+                              p منظم الطابور بالمحطة
+                            when 7 
+                              p  موظف المفوظية العليا للغنتخبات 
+                        td #{employee.name}
+                        td
+                          button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
+                            span.glyphicon.glyphicon-eye-open
+                        td      
+                          button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.idemployee}")
+                           span.glyphicon.glyphicon-trash 
+            if pagination
+              div.text-center
+                ul.pagination
+                  li(class='#{pagination.previous.disabled}')
+                    a(href='?p=#{pagination.previous.n}') السابق
+                  for page in pagination.pages
+                    li(class="#{page.active}")
+                      a(href='?p=#{page.n}') #{page.n}
+                  li(class="#{pagination.next.disabled}")
+                    a(href='?p=#{pagination.next.n}') التالي
     #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
       .modal-dialog
         .modal-content
@@ -219,6 +218,18 @@ block content
         .modal-footer
           button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal',data-center="#{cent[0].center_id}") مـسـح
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
+  script.
+    function pho(id){
+      $.get('/employee/getphone/'+id, function(result){
+        $('#body').empty();
+        for ( var i = 0; i < result.length;  i++ ) {
+          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+        }
+      });
+    }   
+    function del(id){
+      $('#deleteemployee').val(id);
+    }
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
