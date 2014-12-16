@@ -105,18 +105,21 @@ block content
                             when 6
                               p منظم الطابور بالمحطة
                         td 
-                          .po-markup
-                            a.po-link(href='#') #{employee.name}
-                            .po-content.hidden
-                              .po-title
-                                | اسم المركز
-                              // ./po-title
-                              .po-body
-                                table.table.table-striped.table-bordered.table-condensed.table-hover
-                                  tbody
-                                    tr
-                                      td(width='100%')
-                                        |#{employee.name}
+                          a(href='#', tabindex='0', role='button', data-toggle='popover', data-trigger='hover',placement='top', title='اسم المركز', data-content="#{employee.name}") 
+                            |#{employee.name}
+
+                          //- .po-markup
+                          //-   a.po-link(href='#') #{employee.name}
+                          //-   .po-content.hidden
+                          //-     .po-title
+                          //-       | اسم المركز
+                          //-     // ./po-title
+                          //-     .po-body
+                          //-       table.table.table-striped.table-bordered.table-condensed.table-hover
+                          //-         tbody
+                          //-           tr
+                          //-             td(width='100%')
+                          //-               |#{employee.name}
                         td
                           button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
                             span.glyphicon.glyphicon-eye-open

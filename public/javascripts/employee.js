@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $("[data-toggle=popover]").popover();
   $('#idcenter').on('input', function(){
     var type=["رئيس مركز","مدير محطة","محقق هوية","موزع أوراق الاقتراع","مراقب الصندوق","منظم الطابور بالمركز","منظم الطابور بالمحطة"];
     if($('#idcenter').val().length >=3) {
@@ -6,15 +7,17 @@ $(document).ready(function(){
         $('#centers').empty();
         $('.pagination').hide();
         for(key in result){
-          $('#centers').append('<tr><td width="5%">'+result[key].employee_name+'</td><td width="4%"><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
-                                '">'+result[key].phone_number+'</a></td><td width="8%">'+type[result[key].type]+'</td><td width="7%"><div class="po-markup"><a class="po-link" href="#" onmouseover="hov(this)">'+result[key].name+'</a><div class="po-content hidden"><div class="po-title">اسم المركز</div><div class="po-body">'+
-                                '<table class ="table table-striped table-bordered table-condensed table-hover"><tbody><tr><td width="100%">'+result[key].name
-                                  +'</td></tr></tbody></table></div></div></div></td><td width="3%"><a class="btn btn-primary btn-xs"href="/employee/editemployee/'+result[key].idemployee+'">'+
+          $('#centers').append('<tr><td >'+result[key].employee_name+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
+                                '">'+result[key].phone_number+'</a></td><td>'+type[result[key].type]+'</td><td width="12%"><a href="#" tabindex="0" id="'+result[key].idemployee+'" data-toggle="popover" data-trigger="hover"  title="اسم المركز" data-content="'+result[key].name+'">'+result[key].name+'</a>'+
+                                '</td><td width="3%"><a class="btn btn-primary btn-xs"href="/employee/editemployee/'+result[key].idemployee+'">'+
                                 '<span class="glyphicon glyphicon-eye-open"></span></a></td><td width="3%"><a class="btn btn-danger btn-xs"onClick="del('+result[key].idemployee+');" href="#del"data-toggle="modal"> <span class="glyphicon glyphicon-trash"></span></a> </td></tr>');
         }
+        $("[data-toggle=popover]").popover();
       });
     }
+
   });
+
   $("a[id^='phone']").click(function() {
     var id = $(this).data("value");   
     $.get('/employee/getphone/'+id, function(result){
@@ -41,19 +44,19 @@ $(document).ready(function(){
     var id = $(this).val();
     window.location.href="/employee/editemployee/"+id;
   });
- $('.po-markup > .po-link').popover({
-    trigger: 'hover',
-    html: true,  // must have if HTML is contained in popover
+ // $('.po-markup > .po-link').popover({
+ //    trigger: 'hover',
+ //    html: true,  // must have if HTML is contained in popover
 
-    // get the title and conent
-    title: function() {
-      return $(this).parent().find('.po-title').html();
-    },
-    content: function() {
-      return $(this).parent().find('.po-body').html();
-    },
+ //    // get the title and conent
+ //    title: function() {
+ //      return $(this).parent().find('.po-title').html();
+ //    },
+ //    content: function() {
+ //      return $(this).parent().find('.po-body').html();
+ //    },
 
-    container: 'body',
-    placement: 'top'
-  });
+ //    container: 'body',
+ //    placement: 'top'
+ //  });
 });
