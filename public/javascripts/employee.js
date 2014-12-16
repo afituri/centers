@@ -6,9 +6,11 @@ $(document).ready(function(){
         $('#centers').empty();
         $('.pagination').hide();
         for(key in result){
-          $('#centers').append('<tr><td>'+result[key].employee_name+'</td><td>'+result[key].email+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
-                                '">'+result[key].phone_number+'</a></td><td>'+type[result[key].type]+'</td><td>'+result[key].name+'</td><td><a class="btn btn-primary btn-xs"href="/employee/editemployee/'+result[key].idemployee+'">'+
-                                '<span class="glyphicon glyphicon-eye-open"></span></a></td><td><a class="btn btn-danger btn-xs"onClick="del('+result[key].idemployee+');" href="#del"data-toggle="modal"> <span class="glyphicon glyphicon-trash"></span></a> </td></tr>');
+          $('#centers').append('<tr><td width="5%">'+result[key].employee_name+'</td><td width="4%"><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
+                                '">'+result[key].phone_number+'</a></td><td width="8%">'+type[result[key].type]+'</td><td width="7%"><div class="po-markup"><a class="po-link" href="#" onmouseover="hov(this)">'+result[key].name+'</a><div class="po-content hidden"><div class="po-title">اسم المركز</div><div class="po-body">'+
+                                '<table class ="table table-striped table-bordered table-condensed table-hover"><tbody><tr><td width="100%">'+result[key].name
+                                  +'</td></tr></tbody></table></div></div></div></td><td width="3%"><a class="btn btn-primary btn-xs"href="/employee/editemployee/'+result[key].idemployee+'">'+
+                                '<span class="glyphicon glyphicon-eye-open"></span></a></td><td width="3%"><a class="btn btn-danger btn-xs"onClick="del('+result[key].idemployee+');" href="#del"data-toggle="modal"> <span class="glyphicon glyphicon-trash"></span></a> </td></tr>');
         }
       });
     }
@@ -17,6 +19,8 @@ $(document).ready(function(){
     var id = $(this).data("value");   
     $.get('/employee/getphone/'+id, function(result){
       $('#body').empty();
+      $('#emaill').empty();
+      $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
       for ( var i = 0; i < result.length;  i++ ) {
         $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
       }
@@ -36,5 +40,20 @@ $(document).ready(function(){
    $("button[id^='viw']").click(function() {
     var id = $(this).val();
     window.location.href="/employee/editemployee/"+id;
+  });
+ $('.po-markup > .po-link').popover({
+    trigger: 'hover',
+    html: true,  // must have if HTML is contained in popover
+
+    // get the title and conent
+    title: function() {
+      return $(this).parent().find('.po-title').html();
+    },
+    content: function() {
+      return $(this).parent().find('.po-body').html();
+    },
+
+    container: 'body',
+    placement: 'top'
   });
 });

@@ -75,18 +75,16 @@ block content
             table-responsive  
               table#off.table.table-striped.table-bordered.table-condensed.table-hover
                 thead
-                  th أسم الموظف
-                  th البريد الالكتروني
-                  th رقم الهاتف
-                  th الصفة
-                  th المركز
-                  th تعديل
-                  th الغاء 
+                  th(width='10%')  أسم الموظف
+                  th(width='4%') رقم الهاتف
+                  th(width='10%') الصفة
+                  th(width='4%') المركز
+                  th(width='3%') تعديل
+                  th(width='3%') الغاء 
                 tbody#centers
                   for employee in employees
                       tr
                         td #{employee.employee_name}
-                        td #{employee.email}
                         td 
                           a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
                             |#{employee.phone_number}
@@ -106,7 +104,19 @@ block content
                               p منظم الطابور بالمركز
                             when 6
                               p منظم الطابور بالمحطة
-                        td #{employee.name}
+                        td 
+                          .po-markup
+                            a.po-link(href='#') #{employee.name}
+                            .po-content.hidden
+                              .po-title
+                                | اسم المركز
+                              // ./po-title
+                              .po-body
+                                table.table.table-striped.table-bordered.table-condensed.table-hover
+                                  tbody
+                                    tr
+                                      td(width='100%')
+                                        |#{employee.name}
                         td
                           button#viw.btn.btn-primary.btn-xs(value="#{employee.idemployee}")
                             span.glyphicon.glyphicon-eye-open
@@ -138,10 +148,12 @@ block content
           .modal-dialog
             .modal-content
               .modal-headr.modal-header-success
-                p.h1 ارقام الهواتف
+                p.h1 ارقام الاتصال
               .modal-body
                 div.panel-body  
                   div.table-responsive  
+                    table.table.table-striped.table-bordered.table-condensed.table-hover
+                      tbody#emaill
                     table#off.table.table-striped.table-bordered.table-condensed.table-hover
                       thead
                         th رقم الهاتف
@@ -223,12 +235,13 @@ block content
                                     option(value="6") منظم الطابور بالمحطة
                             .col-xs-12.col-md-12
                               div.form-group.text-center
-                                button.btn.btn-lg.btn-primary(type="submit") إضـافة        
-
+                                button.btn.btn-lg.btn-primary(type="submit") إضـافة  
   script.
     function pho(id){
       $.get('/employee/getphone/'+id, function(result){
         $('#body').empty();
+        $('#emaill').empty();
+        $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
         for ( var i = 0; i < result.length;  i++ ) {
           $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
         }
@@ -236,7 +249,14 @@ block content
     }   
     function del(id){
       $('#deleteemployee').val(id);
-    }               
+    } 
+    function hov(t){
+      $(document).ready(function(){
+        $(t).parent().find('.po-content').removeClass("hidden");
+        $(t).parent().find('.po-content'). addClass("popover fade top in");
+        $(t).parent().find('.po-content').css({ top: "auto", left: "auto", display: "block"});
+      });     
+    }      
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")

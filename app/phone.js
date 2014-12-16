@@ -18,7 +18,7 @@ exports.phoneMgr = {
   /* get phone by id for employee*/
   getphone : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `phone_number`,`type` FROM `phone` WHERE `status`=1 AND `user_type`=1 AND`user_employee` = ?',id,  function(err, result) {
+      conn.query('SELECT `email`,`phone_number`,`p`.`type` FROM `phone` p,`employee` WHERE `p`.`status`=1 AND `user_type`=1 AND`user_employee` = ? AND `idemployee`=?',[id,id],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

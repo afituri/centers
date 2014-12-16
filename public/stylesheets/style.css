@@ -222,3 +222,12 @@ border-right:1px solid #dadada;
     left: 0;
   }
 }
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+.table {
+  table-layout:fixed;
+}
