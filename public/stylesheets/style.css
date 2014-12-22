@@ -6,6 +6,10 @@
   max-width: 330px;
   margin: 0 auto;
 }
+#radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
 label.error {
 	
 	color: red;

@@ -52,9 +52,14 @@ router.post('/edit', function(req, res) {
       }
     });
   } else {
+    if(req.body.name=="p_type"){
+      var sender = model_step_phone_type(req.body,req.session.iduser);
+        res.send(sender);
+    }else{
     /* log function. */
-    var sender = model_step(req.body,req.session.iduser);
-    res.send(sender);
+      var sender = model_step(req.body,req.session.iduser);
+      res.send(sender);
+    }
   }}
 });
 function model_step(body,id){
@@ -90,6 +95,29 @@ function model_step_phone(body,id){
     /* UPDATE VALUE */
     function Updatephone(err,result) {
       phoneMgr.editphone(body,result,this);
+    },
+    /* INSERT INFORMATION INTO LOG */
+    function InsertLogphone(err,result) {
+      if(!result[0]){
+        flag=false;
+      } else {
+        flag=true;
+      }
+      logMgr.insertLog(id,"edit","phone",result,body.pk,body.value);
+    }
+    );
+  return flag;
+}
+function model_step_phone_type(body,id){
+  var flag;
+  Step(
+    /* SELECT OLD VALUE FROM DB */
+    function SelectOldphone() {
+      logMgr.addLog(body,id,"phone","idphone",this);
+    },
+    /* UPDATE VALUE */
+    function Updatephone(err,result) {
+      phoneMgr.editphoneType(body,result,this);
     },
     /* INSERT INFORMATION INTO LOG */
     function InsertLogphone(err,result) {

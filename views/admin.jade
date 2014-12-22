@@ -77,10 +77,10 @@ block content
               table#off.table.table-striped.table-bordered.table-condensed.table-hover
                 thead
                   th(width='10%') الاسم
-                  th(width='3%')اللجان
-                  th(width='3%')رقم الهاتف
+                  th(width='3%') اللجان
+                  th(width='3%') رقم الهاتف
                   th(width='2%') تعديل
-                  th(width='2%')الغاء 
+                  th(width='2%') الغاء 
                 tbody#centers
                   for user in users
                     tr
@@ -130,6 +130,7 @@ block content
                 thead
                   th رقم الهاتف
                   th النوع
+                  td الملكية
                 tbody#body
         .modal-footer
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
@@ -140,7 +141,7 @@ block content
         $('#emaill').empty();
         $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
         for ( var i = 0; i < result.length;  i++ ) {
-          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td><td>"+result[i].p_type+"</td></tr>");
         }
       });
     }   

@@ -3,6 +3,14 @@ $(document).ready(function(){
   var defaults = {
     disabled: true,
   };
+  $('body').on('click', '#radioBtn a', function () {
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    var a=$(this).siblings("#p_type" );
+    a.val(sel);
+    $(this).siblings("a").removeClass('active').addClass('notActive');
+    $(this).removeClass('notActive').addClass('active');
+  })
   $('body').on('click', '#deletePhone ', function () {
     var id = $(this).val();
     $('#confphone').val(id);
@@ -25,6 +33,14 @@ $(document).ready(function(){
       {value:2,text:"manager"}
     ]
   });
+  $('a[id^="p_type"]').editable({
+    url: '/users/edit',
+    source:[
+      {value:"المفوضية",text:"المفوضية"},
+      {value:"شخصي",text:"شخصي"},
+    ]
+  });
+  
   $('#name').editable({
     url: '/users/edit',
     type: 'text',

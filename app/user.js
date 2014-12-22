@@ -5,9 +5,11 @@ exports.userMgr = {
   addUser : function(body,cb){
     mysqlMgr.connect(function (conn) {
       var phone = body.phone;
-      var type = body.phone_type
+      var type = body.phone_type;
+      var p_type = body.p_type;
       delete body["phone"];
       delete body["phone_type"];
+      delete body["p_type"];
       conn.query('INSERT INTO `user` SET ?',  body,  function(err, result) {
         if(err) {
           util.log(err);
@@ -17,7 +19,7 @@ exports.userMgr = {
             name :body.name
           }
           for (var i=0;i<phone.length;i++) {
-              conn.query('INSERT INTO `phone` SET `user_type` = 0, `phone_number` = ?,type=?,`user_employee` =?',[phone[i],type[i],results.id]);           
+              conn.query('INSERT INTO `phone` SET `user_type` = 0, `phone_number` = ?,type=?,`user_employee` =?,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);           
               }
         conn.release();
           cb(results); 
@@ -67,7 +69,7 @@ exports.userMgr = {
   /* get user by id*/
   getUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1) LEFT JOIN phone ON(phone.user_employee = user.iduser AND phone.status = 1 AND phone.user_type =0) WHERE  user.iduser = ? AND user.status = 1', id ,  function(err, result) {
+      conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`p_type`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1) LEFT JOIN phone ON(phone.user_employee = user.iduser AND phone.status = 1 AND phone.user_type =0) WHERE  user.iduser = ? AND user.status = 1', id ,  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

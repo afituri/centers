@@ -24,22 +24,29 @@ block content
           div.form-group
             lable رقم الهاتف
             .form-group.multiple-form-group.input-group#phone_input
-              .input-group-btn.input-group-select
-                button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
-                  span.concept Phone
-                  span.caret
-                ul.dropdown-phone(role='menu')
-                  li
-                    a(href='#ليبيانا') ليبيانا
-                  li
-                    a(href='#المدار') المدار
-                  li
-                    a(href='#ثريا') ثريا
-                  li
-                input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
-              input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
-              span.input-group-btn
-                button.btn.btn-success.btn-add(type='button') +
+              .input-group
+                #radioBtn.btn-group
+                  a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+                  a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+                  input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+              .input-group
+                .input-group-btn.input-group-select
+                  button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                    span.concept ليبيانا
+                    span.caret
+                  ul.dropdown-phone(role='menu')
+                    li
+                      a(href='#ليبيانا') ليبيانا
+                    li
+                      a(href='#المدار') المدار
+                    li
+                      a(href='#ثريا') ثريا
+                    li
+                  input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+                input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                span.input-group-btn
+                  button.btn.btn-success.btn-add(type='button') +
+
           div.form-group
             lable البريد الإلكتروني
             input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
@@ -61,6 +68,7 @@ block content
                   option(value=office.idoffice) #{office.office_name_ar}
           div.form-group.text-center
             button.btn.btn-lg.btn-primary(type="submit") الدخول
+      
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")

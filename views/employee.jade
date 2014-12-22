@@ -148,6 +148,7 @@ block content
                       thead
                         th رقم الهاتف
                         th النوع
+                        td الملكية
                       tbody#body
               .modal-footer
                 button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
@@ -186,22 +187,29 @@ block content
                                 div.form-group.pull-left
                                   lable.h4 رقم الهاتف
                                   .form-group.multiple-form-group.input-group#phone_input
-                                    .input-group-btn.input-group-select
-                                      button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
-                                        span.concept Phone
-                                        span.caret
-                                      ul.dropdown-phone(role='menu')
-                                        li
-                                          a(href='#ليبيانا') ليبيانا
-                                        li
-                                          a(href='#المدار') المدار
-                                        li
-                                          a(href='#ثريا') ثريا
-                                        li
-                                      input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
-                                    input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
-                                    span.input-group-btn
-                                      button.btn.btn-success.btn-add(type='button') +
+                                     .input-group
+                                      #radioBtn.btn-group
+                                        a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+                                        a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+                                        input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+                                    .input-group
+                                      .input-group-btn.input-group-select
+                                        button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                                          span.concept ليبيانا
+                                          span.caret
+                                        ul.dropdown-phone(role='menu')
+                                          li
+                                            a(href='#ليبيانا') ليبيانا
+                                          li
+                                            a(href='#المدار') المدار
+                                          li
+                                            a(href='#ثريا') ثريا
+                                          li
+                                        input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+                                      input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                                      span.input-group-btn
+                                        button.btn.btn-success.btn-add(type='button') +
+
                             .col-md-6
                                 div.form-group
                                   lable.h4 اللجان
@@ -233,7 +241,7 @@ block content
         $('#emaill').empty();
         $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
         for ( var i = 0; i < result.length;  i++ ) {
-          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td><td>"+result[i].p_type+"</td></tr>");
         }
       });
     }   

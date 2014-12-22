@@ -39,7 +39,7 @@ $(document).ready(function(){
       $('#emaill').empty();
       $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
       for ( var i = 0; i < result.length;  i++ ) {
-        $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+        $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td><td>"+result[i].p_type+"</td></tr>");
       }
     });
   });

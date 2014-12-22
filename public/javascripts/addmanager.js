@@ -5,6 +5,14 @@ $(document).ready(function(){
   $.validator.addMethod("selectValidat", function (value) {
     return (value != '-1');
   });
+  $('body').on('click', '#radioBtn a', function () {
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    var a=$(this).siblings("#p_type" );
+    a.val(sel);
+    $(this).siblings("a").removeClass('active').addClass('notActive');
+    $(this).removeClass('notActive').addClass('active');
+  })
   // validate signup form on keyup and submit
   $("#form").validate({
     rules: {

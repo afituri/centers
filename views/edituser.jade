@@ -47,10 +47,12 @@ block content
             each val, index in user
               if val.idphone != null
                 tr
-                  td(width='35%') #{val.type}
-                  td(width='65%')
+                  td(width='10%') #{val.type}
+                  td(width='55%')
                     a#phone_number(href='#', data-type='text', data-pk='#{val.idphone}',name="phone_number", data-title="رقم الهاتف  "+val.type+"", data-value='#{val.phone_number}') 
-                  td
+                  td(width='10%') 
+                    a#p_type(href='#', data-type='select', data-pk='#{val.idphone}', name="p_type",data-value='#{val.p_type}',  data-title='الملكية') 
+                  td(width='10%')
                     button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
                       span.glyphicon.glyphicon-trash 
   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
@@ -93,24 +95,30 @@ block content
                       .form-group.multiple-form-group.input-group#phone_input
                         input.input-group-select-val(type='hidden',value="#{user[0].iduser}", name='user_id[]')
                         input.input-group-select-val(type='hidden',value="0", name='user_type[]')
-                        .input-group-btn.input-group-select
-                          button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
-                            span.concept Phone
-                            span.caret
-                          ul.dropdown-phone(role='menu')
-                            li
-                              a(href='#ليبيانا') ليبيانا
-                            li
-                              a(href='#المدار') المدار
-                            li
-                              a(href='#ثريا') ثريا
-                            li
-                          input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
-                          input.input-group-select-val(type='hidden',value="#{user[0].iduser}", name='user_id[]')
-                          input.input-group-select-val(type='hidden',value="0", name='user_type[]')
-                        input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
-                        span.input-group-btn
-                          button.btn.btn-success.btn-add(type='button') +
+                        .input-group
+                          #radioBtn.btn-group
+                            a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+                            a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+                            input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+                        .input-group
+                          .input-group-btn.input-group-select
+                            button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                              span.concept ليبيانا
+                              span.caret
+                            ul.dropdown-phone(role='menu')
+                              li
+                                a(href='#ليبيانا') ليبيانا
+                              li
+                                a(href='#المدار') المدار
+                              li
+                                a(href='#ثريا') ثريا
+                              li
+                            input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+                            input.input-group-select-val(type='hidden',value="#{user[0].iduser}", name='user_id[]')
+                            input.input-group-select-val(type='hidden',value="0", name='user_type[]')
+                          input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                          span.input-group-btn
+                            button.btn.btn-success.btn-add(type='button') +
                     div.form-group
                       button.btn.btn-lg.btn-primary(type="submit") إضـافة    
   script(src="/javascripts/jquery-1.11.1.min.js")

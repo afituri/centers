@@ -18,8 +18,9 @@ router.get('/editphone', function(req, res) {
 router.post('/addphone', function(req, res) {
   var phone = req.body.phone;
   var type = req.body.phone_type
+  var p_type = req.body.p_type
   for (var i=0;i<phone.length;i++) {
-    phoneMgr.addphone(req.session.iduser,phone[i],type[i],req.body.user_id[0],req.body.user_type[0], function (results){ });
+    phoneMgr.addphone(req.session.iduser,phone[i],type[i],p_type[i],req.body.user_id[0],req.body.user_type[0], function (results){ });
   }
   res.redirect('/root/edituser/'+req.body.user_id[0]);
 });
@@ -27,16 +28,18 @@ router.post('/addphone', function(req, res) {
 router.post('/addphoneM', function(req, res) {
   var phone = req.body.phone;
   var type = req.body.phone_type
+  var p_type = req.body.p_type
   for (var i=0;i<phone.length;i++) {
-    phoneMgr.addphone(req.session.iduser,phone[i],type[i],req.body.user_id[0],req.body.user_type[0], function (results){ });
+    phoneMgr.addphone(req.session.iduser,phone[i],type[i],p_type[i],req.body.user_id[0],req.body.user_type[0], function (results){ });
   }
   res.redirect('/admin/editmanager/'+req.body.user_id[0]);
 });
 router.post('/addphoneE', function(req, res) {
   var phone = req.body.phone;
   var type = req.body.phone_type
+  var p_type = req.body.p_type
   for (var i=0;i<phone.length;i++) {
-    phoneMgr.addphone(req.session.iduser,phone[i],type[i],req.body.user_id[0],req.body.user_type[0], function (results){ });
+    phoneMgr.addphone(req.session.iduser,phone[i],type[i],p_type[i],req.body.user_id[0],req.body.user_type[0], function (results){ });
   }
   res.redirect('/employee/editemployee/'+req.body.user_id[0]);
 });

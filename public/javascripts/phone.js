@@ -12,7 +12,12 @@ $(document).ready(function(){
     .html('–');
 
     $formGroupClone.find('input').val('');
-    $formGroupClone.find('.concept').text('Phone');
+    $formGroupClone.find('.concept').text('ليبيانا');
+    $formGroupClone.find('#in').val('ليبيانا');
+    $formGroupClone.find('#p_type').val('المفوضية');
+    $formGroupClone.find('#radioBtn a').first().removeClass('notActive').addClass('active');
+    $formGroupClone.find('#radioBtn a').first().next().removeClass('active').addClass('notActive');
+
     $formGroupClone.insertAfter($formGroup);
 
     var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');

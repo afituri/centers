@@ -8,6 +8,14 @@ $(document).ready(function(){
   $('#enable').click(function() {
     $('#user .editable').editable('toggleDisabled');
   }); 
+  $('body').on('click', '#radioBtn a', function () {
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    var a=$(this).siblings("#p_type" );
+    a.val(sel);
+    $(this).siblings("a").removeClass('active').addClass('notActive');
+    $(this).removeClass('notActive').addClass('active');
+  })
   $.get('/employee/getCenters',function(result){
       for ( var i = 0 ; i< result.length; i++){
         var k = new Object({id : i,value : result[i].center_id, text : result[i].name});
@@ -22,6 +30,13 @@ $(document).ready(function(){
           allowClear: false
         } 
     });      
+  });
+  $('a[id^="p_type"]').editable({
+    url: '/users/edit',
+    source:[
+      {value:"المفوضية",text:"المفوضية"},
+      {value:"شخصي",text:"شخصي"},
+    ]
   });
   $('#employee_name').editable({
     url: '/employee/edit',

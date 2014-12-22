@@ -46,7 +46,7 @@ exports.employeeMgr = {
   /* get employee  */
   getemployee : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `idemployee`,`employee_name`,`email`,`type`,`nid`,`account_number`,`bank_name`,`center_idcenter` FROM `employee` WHERE `status`= 1 AND`idemployee` = ?;SELECT `idphone`,`phone_number`,`type` FROM `phone` WHERE `status`= 1 AND `user_type`=1 AND `user_employee` = ?',[id,id],  function(err, result) {
+      conn.query('SELECT `idemployee`,`employee_name`,`email`,`type`,`nid`,`account_number`,`bank_name`,`center_idcenter` FROM `employee` WHERE `status`= 1 AND`idemployee` = ?;SELECT `idphone`,`phone_number`,`type`,`p_type` FROM `phone` WHERE `status`= 1 AND `user_type`=1 AND `user_employee` = ?',[id,id],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -177,7 +177,9 @@ exports.employeeMgr = {
   addemployee : function(body,cb){
     mysqlMgr.connect(function (conn) {
       var phone = body.phone;
-      var type = body.phone_type
+      var type = body.phone_type;
+      var p_type = body.p_type;
+      delete body["p_type"];
       delete body["phone"];
       delete body["phone_type"];
       delete body["office_idoffice"];
@@ -191,7 +193,7 @@ exports.employeeMgr = {
             name :body.employee_name
           }
           for (var i=0;i<phone.length;i++) {
-              conn.query('INSERT INTO `phone` SET `user_type` = 1, `phone_number` = ?,type=?,`user_employee` =?',[phone[i],type[i],results.id]);           
+              conn.query('INSERT INTO `phone` SET `user_type` = 1, `phone_number` = ?,type=?,`user_employee` =? ,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);           
               }
         conn.release();
           cb(results); 
