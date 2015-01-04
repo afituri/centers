@@ -18,6 +18,14 @@ $(document).ready(function(){
       });
     }
   });
+  $('body').on('click', '#radioBtn a', function () {
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    var a=$(this).siblings("#p_type" );
+    a.val(sel);
+    $(this).siblings("a").removeClass('active').addClass('notActive');
+    $(this).removeClass('notActive').addClass('active');
+  })
 
   $("a[id^='phone']").click(function() {
     var id = $(this).data("value");   
