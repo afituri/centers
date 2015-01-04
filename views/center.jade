@@ -173,22 +173,28 @@ block content
                     div.form-group
                       lable رقم الهاتف
                       .form-group.multiple-form-group.input-group#phone_input
-                        .input-group-btn.input-group-select
-                          button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
-                            span.concept Phone
-                            span.caret
-                          ul.dropdown-phone(role='menu')
-                            li
-                              a(href='#ليبيانا') ليبيانا
-                            li
-                              a(href='#المدار') المدار
-                            li
-                              a(href='#ثريا') ثريا
-                            li
-                          input.input-group-select-val(type='hidden', value='phone', name='phone_type[]')
-                        input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
-                        span.input-group-btn
-                          button.btn.btn-success.btn-add(type='button') +
+                        .input-group
+                          #radioBtn.btn-group
+                            a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+                            a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+                            input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+                        .input-group
+                          .input-group-btn.input-group-select
+                            button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                              span.concept ليبيانا
+                              span.caret
+                            ul.dropdown-phone(role='menu')
+                              li
+                                a(href='#ليبيانا') ليبيانا
+                              li
+                                a(href='#المدار') المدار
+                              li
+                                a(href='#ثريا') ثريا
+                              li
+                            input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+                          input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                          span.input-group-btn
+                            button.btn.btn-success.btn-add(type='button') +
                     div.form-group
                       lable.h3 الـصـفـه
                       if cent[0].center_id == -1
