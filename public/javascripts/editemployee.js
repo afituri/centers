@@ -69,17 +69,50 @@ $(document).ready(function(){
     name: 'bank_name',
     title: 'Enter bank name',
   });
-  
-  $('#type').editable({
+    $('#type_h').editable({
     url: '/employee/edit',
     source:[
-      {value:0,text:"رئيس مركز"},
-      {value:1,text:"مدير محطة"},
-      {value:2,text:"محقق هوية"},
-      {value:3,text:"موزع أوراق الاقتراع"},
-      {value:4,text:"مراقب الصندوق"},
-      {value:5,text:"منظم الطابور بالمركز"},
-      {value:6,text:"منظم الطابور بالمحطة"},
+      {value:0,text:"المدير العام"},
+      {value:1,text:"مكتب المدير العام"},
+      {value:2,text:"مكتب المتابعة الميدانية"},
+      {value:3,text:"منسق امني"},
+      {value:4,text:"المكتب القانوني"},
+      {value:5,text:"ادارة البيانات"},
+      {value:6,text:"التدريب"},
+      {value:7,text:"تقنية المعلومات"},
+      {value:8,text:"المرشحين"},
+      {value:9,text:"الدعم اللوجستي"},
+      {value:10,text:"التوعية والعلاقات العامة"},
+      {value:11,text:"المراقبين"},
+      {value:12,text:"الادارية"},
+      {value:13,text:"المالية"},
+      {value:14,text:"خدمات"},
+      {value:15,text:"الاستعلامات"},
+    ],
+    pk: 1,
+    name: 'type',
+    validate: function(v) {
+      if(!v) return 'الرجاء اختيار صفة الموظف';
+    }
+  });
+  $('#type_e').editable({
+    url: '/employee/edit',
+    source:[
+      {value:16,text:"رئيس اللجنة الانتخابية"},
+      {value:17,text:"منسق العمليات"},
+      {value:18,text:"منسق الشؤون الادارية والمالية"},
+      {value:19,text:"منسق التوعية والعلاقات"},
+      {value:20,text:"منسق امني"},
+      {value:21,text:"المرشحين"},
+      {value:22,text:"الدعم اللوجستي"},
+      {value:23,text:"التوعية والعلاقات العامة"},
+      {value:24,text:"المراقبين"},
+      {value:25,text:"التدريب"},
+      {value:26,text:"تقنية معلومات"},
+      {value:27,text:"موظف مالية واداري"},
+      {value:28,text:"مراجع مالي"},
+      {value:29,text:"خدمات"},
+      {value:30,text:"غفير"},
     ],
     pk: 1,
     name: 'type',

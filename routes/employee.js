@@ -9,6 +9,7 @@ var phoneMgr = require('../app/phone').phoneMgr;
 var officeMgr = require('../app/office').officeMgr;
 var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var Step = require('step');
+var employee_type = require('../employee_type.json');
 var employees =[];
 
 /* GET home page. */
@@ -20,9 +21,9 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
     if(results[1][0] != undefined){
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
-      res.render('employee',{title: 'الموظفين',name:req.session.name,employees:results[0], pagination : pagination,level:req.session.level});
+      res.render('employee',{title: 'الموظفين',name:req.session.name,employees:results[0], pagination : pagination,level:req.session.level,employee_type:employee_type});
     } else {
-      res.render('employee',{title: 'الموظفين',name:req.session.name,employees:employees, pagination : null,level:req.session.level});      
+      res.render('employee',{title: 'الموظفين',name:req.session.name,employees:employees, pagination : null,level:req.session.level,employee_type:employee_type});      
     }
   });
 });
@@ -46,9 +47,14 @@ router.post('/addemployee', function(req, res) {
     res.redirect('/employee');
   });
 });
+/* employee type  */
+router.get('/employee_type', function(req, res) {
+  res.send(employee_type);
+});
 /* searchByname employee  */
 router.get('/searchEmployee/:id', function(req, res) {
   employeeMgr.searchEmployee(req.params.id,req.session.level,req.session.office_idoffice,function(result){
+    console.log(result);
     res.send(result);
   })
 });

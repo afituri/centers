@@ -88,22 +88,7 @@ block content
                         td 
                           a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")
                             |#{employee.phone_number}
-                        td 
-                          case employee.type
-                            when 0
-                              p رئيس مركز
-                            when 1
-                              p مدير محطة
-                            when 2
-                              p محقق هوية
-                            when 3
-                              p موزع أوراق الاقتراع
-                            when 4
-                              p مراقب الصندوق
-                            when 5
-                              p منظم الطابور بالمركز
-                            when 6
-                              p منظم الطابور بالمحطة
+                        td #{employee_type.hnec[employee.type]} #{employee_type.employee[employee.type]}
                         td 
                           a(href='#', tabindex='0', role='button',data-placement="top", data-toggle='popover', data-trigger='hover',placement='top', title='اسم المركز', data-content="#{employee.name}") 
                             |#{employee.name}
@@ -224,13 +209,8 @@ block content
                                 div.form-group.pull-left
                                   lable.h4 الصفة
                                   select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
-                                    option(value="0") رئيس مركز
-                                    option(value="1") مدير محطة
-                                    option(value="2") محقق هوية 
-                                    option(value="3") موزع أوراق الاقتراع
-                                    option(value="4") مراقب الصندوق
-                                    option(value="5") منظم الطابور بالمركز
-                                    option(value="6") منظم الطابور بالمحطة
+                            
+                                    
                             .col-xs-12.col-md-12
                               div.form-group.text-center
                                 button.btn.btn-lg.btn-primary(type="submit") إضـافة  

@@ -5,7 +5,7 @@ exports.employeeMgr = {
   getemployees : function(limit,id,level,id_of,cb){
     mysqlMgr.connect(function (conn) {
       if(level == 2 ){
-        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? AND `c`.`status`=1 GROUP BY `idemployee`limit ?,10; SELECT COUNT(*) as cnt FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? AND `c`.`status`=1 GROUP BY `idemployee`;',[id_of,limit,id_of],  function(err, result) {
+        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? AND `c`.`status`=1 GROUP BY `idemployee`limit ?,10; SELECT COUNT(*) as cnt FROM `centers` c,`employee` e  WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? AND `c`.`status`=1;',[id_of,limit,id_of],  function(err, result) {
             conn.release();
             if(err) {
               util.log(err);
@@ -14,7 +14,7 @@ exports.employeeMgr = {
             } 
         });
       }else{
-        conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`status`=1 GROUP BY `idemployee`limit ?,10; SELECT COUNT(*) as cnt FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`status`=1 GROUP BY `idemployee`;',limit, function(err, result) {
+        conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`status`=1 GROUP BY `idemployee`limit ?,10; SELECT COUNT(*) as cnt FROM `employee` WHERE `status`=1 ;',limit, function(err, result) {
           conn.release();
           if(err) {
             util.log(err);
@@ -28,10 +28,11 @@ exports.employeeMgr = {
   /* Delete employee */
   deleteemployee : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `employee` SET `status` = 0 WHERE `idemployee` = ?',id,  function(err, result) {
+      var date = new Date();
+      conn.query('UPDATE `employee` SET `status` = 0 ,`modify_date`=? WHERE `idemployee` = ?',[id,date],  function(err, result) {
         conn.query('SELECT `idphone`,`phone_number` FROM  `phone` WHERE `status` = 1  AND `user_type`=1 AND `user_employee`=?',id,  function(err, results) {
           conn.query('SELECT `employee_name` FROM  `employee` WHERE `idemployee` = ? ',id,  function(err, resultz) {
-            conn.query('UPDATE `phone` SET `status` = 0 WHERE `user_type`= 1 AND`user_employee` = ?',id);
+            conn.query('UPDATE `phone` SET `status` = 0 ,`modify_date` = ? WHERE `user_type`= 1 AND`user_employee` = ?',[date,id]);
             conn.release();
             if(err) {
               util.log(err);
@@ -51,6 +52,7 @@ exports.employeeMgr = {
         if(err) {
           util.log(err);
         } else {
+          console.log(result);
           cb(result);
         } 
       });
@@ -59,7 +61,8 @@ exports.employeeMgr = {
   /* editing employee table field by field */
   editEmployee : function(body,rec,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `employee` SET '+body.name+' = ? WHERE `idemployee` = ?',  [body.value,body.pk],  function(err, result) {
+      var date = new Date();
+      conn.query('UPDATE `employee` SET '+body.name+' = ?,`modify_date` = ? WHERE `idemployee` = ?',  [body.value,date,body.pk],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -126,7 +129,7 @@ exports.employeeMgr = {
     name = name+"%";
     mysqlMgr.connect(function (conn) {
       if(level == 2 ){
-        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `e`.`employee_name` LIKE ? AND`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`office_idoffice` =? AND `c`.`status`=1 AND `p`.`status`=1  GROUP BY `idemployee',[name,ido],  function(err, result) {
+        conn.query('SELECT  `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `e`.`employee_name` LIKE ? AND`c`.`office_idoffice` =? AND `c`.`status`=1 GROUP BY `idemployee`',[name,ido],  function(err, result) {
             conn.release();
             if(err) {
               util.log(err);
@@ -135,7 +138,7 @@ exports.employeeMgr = {
             } 
         });
       }else{
-        conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `employee` e,`centers` c,`phone` p WHERE `e`.`employee_name` LIKE ? AND `p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `p`.`status`=1 GROUP BY `idemployee`',name, function(err, result) {
+        conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`employee_name` LIKE ? AND `e`.`status`= 1 AND `c`.`status`=1 GROUP BY `idemployee`',name, function(err, result) {
           conn.release();
           if(err) {
             util.log(err);

@@ -24,7 +24,7 @@ block content
         table#user.table.table-bordered.table-striped(style='clear: both')
           tbody
             tr
-              td(width='35%') اسم الموظف
+              td(width='35%') اسم الموظف 
               td(width='65%')
                 a#employee_name(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='اﻻسم' data-value='#{employee[0].employee_name}')  #{employee[0].employee_name}
             tr
@@ -45,11 +45,11 @@ block content
                 a#account_number(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='رقم الحساب', data-value='#{employee[0].account_number} ') #{employee[0].account_number} 
             tr
               td الصفة
-              td
-                if employee[0].type != 7
-                  a#type(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
+              td 
+                if employee[0].center_idcenter < 0
+                  a#type_h(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
                 else
-                  |المفوظية العليا للإنتبخات
+                  a#type_e(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
 
         div.btn-group.pull-left
           button#addPhone.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].idemployee}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف

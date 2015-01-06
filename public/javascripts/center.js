@@ -1,21 +1,34 @@
 $(document).ready(function(){
-  
+   $("[data-toggle=popover]").popover();
   $('#idcenter').on('input', function(){
-    var typet = ["رئيس مركز","مدير محطة","محقق هوية","موزع أوراق الاقتراع","مراقب الصندوق","منظم الطابور بالمركز","منظم الطابور بالمحطة","موظف المفوظية العليا للغنتخبات"];
+
+    $.typet=new Array();
     if($('#idcenter').val().length >=3) {
+     
       $.get('/center/searchEmpInCenter/'+$('#idcenter').val()+'/'+$('#deleteemployee').data('center'),function(result){
         $('#centers').empty();
         $('.pagination').hide();
+        $.getJSON( "/employee/employee_type", function( json ) {
+          for(key in json.hnec){
+            $.typet.push(json.hnec[key]);
+          }
+          for(key in json.employee){
+            $.typet.push(json.employee[key]);
+          }
+       
         for(key in result){
           var p = "";
           if (result[key].phone_number != null){
           p = result[key].phone_number ;
           }
-          $('#centers').append('<tr><td>'+result[key].employee_name+'</td><td>'+result[key].email+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
-                                '">'+p+'</a></td><td>'+typet[result[key].type]+'</td><td>'+result[key].name+'</td><td><a class="btn btn-primary btn-xs"href="/employee/editemployee/'+result[key].idemployee+'">'+
-                                '<span class="glyphicon glyphicon-eye-open"></span></a></td><td><a class="btn btn-danger btn-xs"onClick="del('+result[key].idemployee+');" href="#del"data-toggle="modal"> <span class="glyphicon glyphicon-trash"></span></a> </td></tr>');
+          $('#centers').append('<tr><td >'+result[key].employee_name+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
+                                '">'+p+'</a></td><td>'+$.typet[result[key].type]+'</td><td width="12%"><a href="#" tabindex="0" id="'+result[key].idemployee+'" data-toggle="popover" data-trigger="hover" data-placement="top" title="اسم المركز" data-content="'+result[key].name+'">'+result[key].name+'</a>'+
+                                '</td><td width="3%"><a class="btn btn-primary btn-xs"href="/employee/editemployee/'+result[key].idemployee+'">'+
+                                '<span class="glyphicon glyphicon-eye-open"></span></a></td><td width="3%"><a class="btn btn-danger btn-xs"onClick="del('+result[key].idemployee+');" href="#del"data-toggle="modal"> <span class="glyphicon glyphicon-trash"></span></a> </td></tr>');
         }
+        $("[data-toggle=popover]").popover();
       });
+       });
     }
   });
   $('body').on('click', '#radioBtn a', function () {
@@ -30,9 +43,11 @@ $(document).ready(function(){
   $("a[id^='phone']").click(function() {
     var id = $(this).data("value");   
     $.get('/employee/getphone/'+id, function(result){
-      $('#body').empty();
+     $('#body').empty();
+      $('#emaill').empty();
+      $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
       for ( var i = 0; i < result.length;  i++ ) {
-        $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td></tr>");
+        $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td><td>"+result[i].p_type+"</td></tr>");
       }
     });
   });

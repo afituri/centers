@@ -5,7 +5,8 @@ exports.phoneMgr = {
   /* editing user's phone*/
   editphone : function(body,rec,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `phone` SET `phone_number` = ? WHERE `idphone` = ?',[body.value,body.pk],  function(err, result) {
+      var date = new Date();
+      conn.query('UPDATE `phone` SET `phone_number` = ? ,`modify_date`=? WHERE `idphone` = ?',[body.value,date,body.pk],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -18,7 +19,8 @@ exports.phoneMgr = {
    /* editing user's phone*/
   editphoneType : function(body,rec,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `phone` SET `p_type` = ? WHERE `idphone` = ?',[body.value,body.pk],  function(err, result) {
+      var date = new Date();
+      conn.query('UPDATE `phone` SET `p_type` = ?,`modify_date`=? WHERE `idphone` = ?',[body.value,date,body.pk],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -69,8 +71,9 @@ exports.phoneMgr = {
   },
   deletePhone: function(id,cb){
     mysqlMgr.connect(function (conn) {
+      var date = new Date();
       conn.query('SELECT `phone_number`,`type` FROM `phone` WHERE `idphone` = ?',id,  function(err, result) {
-        conn.query('UPDATE `phone` SET `status` = 0 WHERE `idphone` = ?',id);       
+        conn.query('UPDATE `phone` SET `status` = 0 ,`modify_date`=? WHERE `idphone` = ?',[id,date]);       
         conn.release();
         if(err) {
           util.log(err);

@@ -30,7 +30,8 @@ exports.userMgr = {
   /* editing user's table field by field */
   editUser : function(body,rec,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `user` SET '+body.name+' = ? WHERE `iduser` = ?',  [body.value,body.pk],  function(err, result) {
+      var date = new Date();
+      conn.query('UPDATE `user` SET '+body.name+' = ?,`modify_date`=? WHERE `iduser` = ?',  [body.value,date,body.pk],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -82,10 +83,11 @@ exports.userMgr = {
     /* delete user by id*/
   delUser : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('UPDATE `user` SET `status` = 0 WHERE `iduser` = ?',id,  function(err, result) { 
+      var date = new Date();
+      conn.query('UPDATE `user` SET `status` = 0 ,`modify_date`=? WHERE `iduser` = ?',[date,id],  function(err, result) { 
         conn.query('SELECT `idphone`,`phone_number` FROM  `phone` WHERE `status` = 1  AND `user_type`=0 AND `user_employee`=?',id,  function(err, results) {
           conn.query('SELECT `name` FROM  `user` WHERE `iduser` = ? ',id,  function(err, resultz) {
-            conn.query('UPDATE `phone` SET `status` = 0 WHERE `user_employee` = ?',id);
+            conn.query('UPDATE `phone` SET `status` = 0,`modify_date`=? WHERE `user_employee` = ?',[id,date]);
             conn.release();
             if(err) {
             util.log(err);
