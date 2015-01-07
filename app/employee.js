@@ -87,7 +87,7 @@ exports.employeeMgr = {
   /* get employee by center id */
   getEmployeeCenter : function(limit,id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.status = 1) WHERE `c`.`center_id` = `e`.`center_idcenter` AND `e`.`center_idcenter`=? AND `e`.`status`= 1 GROUP BY `idemployee` limit ?,10; SELECT COUNT(*) as cnt FROM `centers` c,`employee` e LEFT JOIN`phone` p ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.status = 1) WHERE `c`.`center_id` = `e`.`center_idcenter` AND `e`.`center_idcenter`=? AND `e`.`status`= 1 GROUP BY `idemployee`',[id,limit,id], function(err, result) {
+      conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.status = 1) WHERE `c`.`center_id` = `e`.`center_idcenter` AND `e`.`center_idcenter`=? AND `e`.`status`= 1 GROUP BY `idemployee` limit ?,10; SELECT COUNT(*) as cnt FROM `employee` e  WHERE `e`.`center_idcenter`=? AND `e`.`status`= 1 ',[id,limit,id], function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
