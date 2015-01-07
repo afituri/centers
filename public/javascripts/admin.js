@@ -4,7 +4,6 @@ $(document).ready(function(){
       $.get('/admin/searchManager/'+$('#idcenter').val(),function(result){
         $('#centers').empty();
         $('.pagination').hide();
-        
         for(key in result){
           var p = "";
           if (result[key].phone_number != null){

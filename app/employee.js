@@ -52,7 +52,6 @@ exports.employeeMgr = {
         if(err) {
           util.log(err);
         } else {
-          console.log(result);
           cb(result);
         } 
       });
