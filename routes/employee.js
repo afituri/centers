@@ -54,7 +54,6 @@ router.get('/employee_type', function(req, res) {
 /* searchByname employee  */
 router.get('/searchEmployee/:id', function(req, res) {
   employeeMgr.searchEmployee(req.params.id,req.session.level,req.session.office_idoffice,function(result){
-    console.log(result);
     res.send(result);
   })
 });

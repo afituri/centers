@@ -1,10 +1,8 @@
 $(document).ready(function(){
-   $("[data-toggle=popover]").popover();
+  $("[data-toggle=popover]").popover();
   $('#idcenter').on('input', function(){
-
     $.typet=new Array();
     if($('#idcenter').val().length >=3) {
-     
       $.get('/center/searchEmpInCenter/'+$('#idcenter').val()+'/'+$('#deleteemployee').data('center'),function(result){
         $('#centers').empty();
         $('.pagination').hide();
@@ -15,18 +13,17 @@ $(document).ready(function(){
           for(key in json.employee){
             $.typet.push(json.employee[key]);
           }
-       
-        for(key in result){
-          var p = "";
-          if (result[key].phone_number != null){
-          p = result[key].phone_number ;
-          }
-          $('#centers').append('<tr><td >'+result[key].employee_name+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
+          for(key in result){
+            var p = "";
+            if (result[key].phone_number != null){
+            p = result[key].phone_number ;
+            }
+            $('#centers').append('<tr><td >'+result[key].employee_name+'</td><td><a id="phone" href="#phonee" data-toggle="modal" onClick="pho('+result[key].idemployee+');"data-value="'+result[key].idemployee+
                                 '">'+p+'</a></td><td>'+$.typet[result[key].type]+'</td><td width="12%"><a href="#" tabindex="0" id="'+result[key].idemployee+'" data-toggle="popover" data-trigger="hover" data-placement="top" title="اسم المركز" data-content="'+result[key].name+'">'+result[key].name+'</a>'+
                                 '</td><td width="3%"><a class="btn btn-primary btn-xs"href="/employee/editemployee/'+result[key].idemployee+'">'+
                                 '<span class="glyphicon glyphicon-eye-open"></span></a></td><td width="3%"><a class="btn btn-danger btn-xs"onClick="del('+result[key].idemployee+');" href="#del"data-toggle="modal"> <span class="glyphicon glyphicon-trash"></span></a> </td></tr>');
         }
-        $("[data-toggle=popover]").popover();
+          $("[data-toggle=popover]").popover();
       });
        });
     }
