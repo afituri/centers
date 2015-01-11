@@ -57,7 +57,8 @@ $(document).ready(function(){
   $('#deleteemployee').click(function() {
     var id = $(this).val();
     $.get('/employee/deleteemployee/'+id, function(result){
-      window.location.href="/employee";
+      // window.location.href="/employee";
+      $('#'+id).remove();
     });
   });
    /* Go to employee needs view or edit */

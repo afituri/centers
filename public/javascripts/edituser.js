@@ -11,6 +11,16 @@ $(document).ready(function(){
     $(this).siblings("a").removeClass('active').addClass('notActive');
     $(this).removeClass('notActive').addClass('active');
   })
+  $('body').on('click', '#delete ', function () {
+    var id = $(this).val();
+    $('#confdelete').val(id);
+  }); 
+  $('#confdelete').click(function() {
+    var id = $(this).val();
+    $.get('/root/deleteUser/'+id, function(result){
+      window.location.href="/root";
+    });
+  });
   $('body').on('click', '#deletePhone ', function () {
     var id = $(this).val();
     $('#confphone').val(id);

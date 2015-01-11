@@ -13,7 +13,7 @@ block content
         a(href="/")
           img(src="../../../images/hnec_logo.png")    
       button#enable.btn.btn-primary تمكــين / تعطـــيل
-      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="")
+      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="#{user[0].iduser}")
         span.glyphicon.glyphicon-trash
       .col-lg-1
       a.btn.btn-primary.pull-left( href="#{url}" type="button") رجـــــوع
@@ -125,6 +125,5 @@ block content
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/jquery.validate.min.js")
-  script(src="/javascripts/root.js")
   script(src="/javascripts/phone.js")
   script(src="/javascripts/edituser.js")

@@ -84,7 +84,7 @@ block content
                   th(width='2%') الغاء 
                 tbody#centers
                   for user in users
-                    tr
+                    tr(id = user.iduser)
                       td= user.name
                       td 
                         a#phone(href='#phonee', data-toggle='modal',data-value="#{user.iduser}")

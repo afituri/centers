@@ -30,7 +30,8 @@ $(document).ready(function(){
   $('#confdelete').click(function() {
     var id = $(this).val();
     $.get('/admin/deleteUser/'+id, function(result){
-      window.location.href="/admin";
+      // window.location.href="/admin";
+      $('#'+id).remove();
     });
   });
     $('body').on('click', '#phone ', function () {

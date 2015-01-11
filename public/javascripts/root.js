@@ -29,7 +29,8 @@ $(document).ready(function(){
   $('#confdelete').click(function() {
   	var id = $(this).val();
   	$.get('/root/deleteUser/'+id, function(result){
-      window.location.href="/root";
+      // window.location.href="/root";
+      $('#'+id).remove();
     });
   });
   $("a[id^='phone']").click(function() {

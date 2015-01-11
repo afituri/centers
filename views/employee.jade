@@ -83,7 +83,7 @@ block content
                   th(width='3%') الغاء 
                 tbody#centers
                   for employee in employees
-                      tr
+                      tr(id = employee.idemployee)
                         td #{employee.employee_name}
                         td 
                           a#phone(href='#phonee', data-toggle='modal',data-value="#{employee.idemployee}")

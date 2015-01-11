@@ -29,7 +29,7 @@ exports.employeeMgr = {
   deleteemployee : function(id,cb){
     mysqlMgr.connect(function (conn) {
       var date = new Date();
-      conn.query('UPDATE `employee` SET `status` = 0 ,`modify_date`=? WHERE `idemployee` = ?',[id,date],  function(err, result) {
+      conn.query('UPDATE `employee` SET `status` = 0 ,`modify_date`=? WHERE `idemployee` = ?',[date,id],  function(err, result) {
         conn.query('SELECT `idphone`,`phone_number` FROM  `phone` WHERE `status` = 1  AND `user_type`=1 AND `user_employee`=?',id,  function(err, results) {
           conn.query('SELECT `employee_name` FROM  `employee` WHERE `idemployee` = ? ',id,  function(err, resultz) {
             conn.query('UPDATE `phone` SET `status` = 0 ,`modify_date` = ? WHERE `user_type`= 1 AND`user_employee` = ?',[date,id]);
