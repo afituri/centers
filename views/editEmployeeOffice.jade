@@ -1,0 +1,182 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="/cpanel") لـوحـــة الـتـحــكــم 
+        li
+          //a(href="#") About
+        li
+          //a(href="#") Contact
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../../images/hnec_logo.png")
+    font(size="4", color="black" , font="family" )
+    div.container 
+      button#enable.btn.btn-primary تمكــين / تعطـــيل
+      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="#{employee[0].idemployee}")
+        span.glyphicon.glyphicon-trash
+      .col-lg-1
+      a.btn.btn-primary.pull-left(type="button", href="#{url}") رجـــــوع
+    div.container 
+      div.form-group 
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            tr
+              td(width='35%') اسم الموظف 
+              td(width='65%')
+                a#employee_name(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='اﻻسم' data-value='#{employee[0].employee_name}')  #{employee[0].employee_name}
+            tr
+              td(width='35%') البريد الإلكتروني
+              td(width='65%')
+                a#email(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='البريد الإلكتروني' data-value='#{employee[0].email}')  #{employee[0].email} 
+            tr
+              td(width='35%') الرقم الوطني
+              td(width='65%')
+                a#nid(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='الرقم الوطني' data-value='#{employee[0].nid}')  #{employee[0].nid}
+            tr
+              td(width='35%') اسم البنك
+              td(width='65%')
+                a#bank_name(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='اسم البنك', data-value='#{employee[0].bank_name}')  #{employee[0].bank_name}
+            tr
+              td(width='35%') رقم الحساب
+              td(width='65%')
+                a#account_number(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='رقم الحساب', data-value='#{employee[0].account_number} ') #{employee[0].account_number} 
+            tr
+              td الصفة
+              td 
+                if employee[0].center_idcenter < 0
+                  a#type_h(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
+                else
+                  a#type_e(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].type}',  data-title='الصفة') 
+
+        div.btn-group.pull-left
+          button#addPhone.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].idemployee}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
+            span.glyphicon.glyphicon-plus   
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            each val, i in phone
+              tr
+                td(width='10%') #{phone[i].type}
+                td(width='55%')
+                 a#phone_number(href='#', data-type='text', data-pk='#{phone[i].idphone}',name="phone_number", data-title="رقم الهاتف  "+phone[i].type+"", data-value='#{phone[i].phone_number}') 
+                td(width='10%') 
+                  a#p_type(href='#', data-type='select', data-pk='#{val.idphone}', name="p_type",data-value='#{val.p_type}',  data-title='الملكية') 
+                td(width='10%')
+                  button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
+                    span.glyphicon.glyphicon-trash 
+    #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .modal-headr.modal-header-success
+             p.h1 ارقام الهواتف
+          .modal-body
+            div.panel-body  
+              div.table-responsive  
+                table.table.table-striped.table-bordered.table-condensed.table-hover
+                  tbody#emaill
+                table#off.table.table-striped.table-bordered.table-condensed.table-hover
+                  thead
+                    th رقم الهاتف
+                    th النوع
+                    td الملكية
+                  tbody#body
+          .modal-footer
+            button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
+  #addemployee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-success
+          button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+          button.close(type="button",data-dismiss="modal",aria-hidden="true")
+          h1 الإضـافـة
+        .row
+          .col-sm-12.col-md-11.col.col-md.offset-4
+              .modal-body
+                  form#form.form-signin(role="form" , action="/employee/addemployeeCenter/#{cent[0].center_id}", method="post")   
+                    div.form-group
+                      lable.h3 اﻻسـم
+                      input#employee_name.form-control(type="text",name="employee_name", placeholder="اﻻسـم",autofocus="")
+                    div.form-group
+                      lable.h3 البريد الالكتروني
+                      input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
+                    div.form-group
+                      lable.h3 الرقم الوطني
+                      input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
+                    div.form-group
+                      lable.h3 اسم المصرف
+                      input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
+                    div.form-group
+                      lable.h3 رقم الحساب
+                      input#account_number.form-control(type="text",name="account_number", placeholder="رقم الحساب",autofocus="")
+                    div.form-group
+                      lable رقم الهاتف
+                      .form-group.multiple-form-group.input-group#phone_input
+                        .input-group
+                          #radioBtn.btn-group
+                            a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+                            a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+                            input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+                        .input-group
+                          .input-group-btn.input-group-select
+                            button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                              span.concept ليبيانا
+                              span.caret
+                            ul.dropdown-phone(role='menu')
+                              li
+                                a(href='#ليبيانا') ليبيانا
+                              li
+                                a(href='#المدار') المدار
+                              li
+                                a(href='#ثريا') ثريا
+                              li
+                            input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+                          input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                          span.input-group-btn
+                            button.btn.btn-success.btn-add(type='button') +
+                    div.form-group
+                      lable.h3 الـصـفـه
+                      if cent[0].center_id == -1
+                        select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                          for data,i in employee_type.hnec
+                            option(value="#{i}") #{data} 
+                      else
+                        select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                          for data,i in employee_type.employee
+                            option(value="#{i}") #{data} 
+                    div.form-group
+                      input.input-group-select-val(type='hidden', value='#{cent[0].center_id}', name='center_idcenter')
+                    div.form-group.text-center
+                      button.btn.btn-lg.btn-primary(type="submit") إضـافة        
+  #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-danger
+           p.h1 هل أنت متأكد من  حدف ؟
+        .modal-body
+          p.h2 هل انت متأكد 
+          p 
+        .modal-footer
+          button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal',data-center="#{cent[0].center_id}") مـسـح
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
+  script.
+    function pho(id){
+      $.get('/employee/getphone/'+id, function(result){
+        $('#body').empty();
+        $('#emaill').empty();
+        $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
+        for ( var i = 0; i < result.length;  i++ ) {
+          $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td><td>"+result[i].p_type+"</td></tr>");
+        }
+      });
+    }   
+    function del(id){
+      $('#deleteemployee').val(id);
+    }
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/phone.js")
+  script(src="/javascripts/center.js")
