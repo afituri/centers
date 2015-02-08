@@ -9,6 +9,8 @@ var villageMgr = require('../app/village').villageMgr;
 var centerMgr = require('../app/center').centerMgr;
 var mahallaMgr = require('../app/mahalla').mahallaMgr;
 var constituencyMgr = require('../app/constituency').constituencyMgr;
+var employeeOfficeMgr = require('../app/employeeOffice').employeeOfficeMgr;
+var employee_type = require('../employee_type.json');
 var res =[];
 /* GET home office  page. */
 router.get('/',userHelpers.isAdmin, function(req, res) {
@@ -157,6 +159,28 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
     })
   })
 });
+// employeeoffcie
+router.get('/:oid/employeeOffice', function(req, res) {
+  employeeOfficeMgr.getEmployeeOffice(req.params.oid,function(results){
+    res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:results,type:employee_type});
+  });
+});
+/* add employee. */
+router.post('/EmployeeOffice/addemployee', function(req, res) {
+  employeeOfficeMgr.addemployeeoffice(req.body, function (results){
+    res.redirect('/office/');
+  });
+});
+
+/*   delete employee */
+router.get('/deleteemployee/:id', function(req, res) {
+  console.log("asdasdasdad00");
+  employeeOfficeMgr.deleteemployeeoffice(req.params.id,function(result,resultz){
+    
+    res.send(result);
+      })
+});
+
 /* GET subconstitunecy page. */
 router.get('/:oid/:sid',userHelpers.isManager, function(req, res) {
   req.session.back = req.originalUrl;
