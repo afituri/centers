@@ -1,9 +1,7 @@
 var mysqlMgr = require('./mysql').mysqlMgr,
   util=require('util');
 exports.employeeOfficeMgr = {
-
   /* get employee  */
-
   getEmployeeOffice : function(oid,cb){
     mysqlMgr.connect(function (conn) {
       console.log(oid)
@@ -17,7 +15,8 @@ exports.employeeOfficeMgr = {
       });
     });
   },
-    addemployeeoffice : function(body,cb){
+  /* Add employee office  */
+  addemployeeoffice : function(body,cb){
     mysqlMgr.connect(function (conn) {
       var phone = body.phone;
       var type = body.phone_type;
@@ -34,10 +33,10 @@ exports.employeeOfficeMgr = {
             name :body.employee_name
           }
           for (var i=0;i<phone.length;i++) {
-              conn.query('INSERT INTO `phone` SET `user_type` = 2, `phone_number` = ?,type=?,`user_employee` =? ,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);           
-              }
-        conn.release();
-          cb(results); 
+              conn.query('INSERT INTO `phone` SET `user_type` = 2, `phone_number` = ?,type=?,`user_employee` =? ,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);
+            }
+              conn.release();
+              cb(results); 
         }
       });
     });
@@ -62,4 +61,18 @@ exports.employeeOfficeMgr = {
       });
     });
   },
+  /* Edit employee */
+  getEmployeeOfficeById : function(ide,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT * FROM `employeeOffice` WHERE `status` = 1  AND `id_emp_office`=?',ide,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        } 
+      });
+    });
+  },
+
 };

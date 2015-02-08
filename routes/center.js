@@ -5,6 +5,7 @@ var centerMgr = require('../app/center').centerMgr;
 var employeeMgr = require('../app/employee').employeeMgr;
 var employeess =[];
 var employee_type = require('../employee_type.json');
+
 router.get('/:cid',userHelpers.isCenter, function(req, res) {
   centerMgr.getCenter(req.params.cid,function(results){
     var page = userHelpers.getPage(req);

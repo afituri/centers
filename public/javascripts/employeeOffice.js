@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+  // $.resul=new Array();
+
+  /* disabled  editable */
+
+
  /* Go to emlpoyeeOffice needs view or edit */
  
   // $("[data-toggle=popover]").popover();
@@ -49,18 +55,21 @@ $(document).ready(function(){
   //       $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td><td>"+result[i].p_type+"</td></tr>");
   //     }
   //   });
-  // });
+  // });  // 
   /* Go to employee needs view or edit */
-  $("button[id^='viw']").click(function() {
-    var id = $(this).val();
-    window.location.href="/employee/editemployee/"+id;
+
+  $('body').on('click', '#viw', function () {
+    var ide = $(this).val();
+    window.location.href="/office/editEmployeeOffice/"+ide;
   });
-    $('body').on('click', '#delete', function () {
+
+
+  $('body').on('click', '#delete', function () {
     var id = $(this).val();
     $('#deleteemployee').val(id);
     $("#deleteemployee").attr('data-id',$(this).data("value"));
-
   });
+
   $('#deleteemployee').click(function() {
     var id = $(this).val();
     var center = $(this).data("id");

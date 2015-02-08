@@ -166,7 +166,7 @@ router.get('/:oid/employeeOffice', function(req, res) {
   });
 });
 /* add employee. */
-router.post('/EmployeeOffice/addemployee', function(req, res) {
+router.post('/employeeOffice/addemployee', function(req, res) {
   employeeOfficeMgr.addemployeeoffice(req.body, function (results){
     res.redirect('/office/');
   });
@@ -174,11 +174,24 @@ router.post('/EmployeeOffice/addemployee', function(req, res) {
 
 /*   delete employee */
 router.get('/deleteemployee/:id', function(req, res) {
-  console.log("asdasdasdad00");
   employeeOfficeMgr.deleteemployeeoffice(req.params.id,function(result,resultz){
-    
     res.send(result);
-      })
+  })
+});
+
+
+/* Edit employee */
+// router.post('/editEmployee/', function(req, res) {
+//   employeeOfficeMgr.deleteemployeeoffice(req.body,function(result,resultz){
+//     res.send(result);
+//   })
+// });
+
+// Edit employee Offcie
+router.get('/editEmployeeOffice/:ide', function(req, res) {
+  employeeOfficeMgr.getEmployeeOfficeById(req.params.ide,function(result){
+    res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result});
+  });
 });
 
 /* GET subconstitunecy page. */
