@@ -73,7 +73,6 @@ $(document).ready(function(){
       }
     }
   });
-  $(document).ready(function(){
     $('#constit').hide();
     $('#level').change(function() {
       if($('#level').val() == '2') {
@@ -81,6 +80,5 @@ $(document).ready(function(){
       } else {
         $('#constit').hide();
       }
-    });
   });
 });

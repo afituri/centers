@@ -6,7 +6,7 @@ $(document).ready(function(){
 			$('#office_idoffice').append("<option value = '"+result[i].office_id+"'>"+result[i].office_name_ar+"</option>");
 		}
 	});
-	$('#office_idoffice').click(function() {
+	$('#office_idoffice').on('change',function() {
 		$('#su').addClass('hidden');
 		$('#ce').addClass('hidden');
 		$('#ty').addClass('hidden');
@@ -25,7 +25,7 @@ $(document).ready(function(){
 		});
 	}
 	});
-	$('#subconstituency_idsubconstituency').click(function() {
+	$('#subconstituency_idsubconstituency').on('change',function() {
 		var ido = $('#office_idoffice').val();
 		var ids = $('#subconstituency_idsubconstituency').val();
 		$('#ce').addClass('hidden');
@@ -42,7 +42,7 @@ $(document).ready(function(){
 		});
 	}
 	});
-	$('#center_idcenter').click(function() {
+	$('#center_idcenter').on('change',function() {
 		var id = $('#center_idcenter').val();
 		$('#ty').addClass('hidden');
 		if(id !=''){

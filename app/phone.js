@@ -73,9 +73,10 @@ exports.phoneMgr = {
     mysqlMgr.connect(function (conn) {
       var date = new Date();
       conn.query('SELECT `phone_number`,`type` FROM `phone` WHERE `idphone` = ?',id,  function(err, result) {
-        conn.query('UPDATE `phone` SET `status` = 0 ,`modify_date`=? WHERE `idphone` = ?',[id,date]);       
+        conn.query('UPDATE `phone` SET `status` = 0 ,`modify_date`=? WHERE `idphone` = ?',[date,id]);       
         conn.release();
         if(err) {
+          console.log(result);
           util.log(err);
         } else {
           cb(result); 
