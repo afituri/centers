@@ -11,7 +11,7 @@ block content
     font(size="4", color="black" , font="family" )
     div.container 
       button#enable.btn.btn-primary تمكــين / تعطـــيل
-      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="#{employee[0].id_emp_office}")
+      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="#")
         span.glyphicon.glyphicon-trash
       .col-md-1
       a.btn.btn-primary.pull-left(type="button", href="#{url}") رجـــــوع
@@ -40,13 +40,9 @@ block content
               td(width='65%')
                 a#acount_number(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='رقم الحساب', data-value='#{employee[0].acount_number} ') #{employee[0].acount_number}
             tr
-              td(width='35%') اللجنة
-              td(width='65%')
-                a#office_id(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='اللجمة', data-value='#{employee[0].office_id} ') #{employee[0].office_id}
-            tr
               td(width='35%') الصفة
               td(width='65%')
-                a#type(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='الصفة', data-value='#{employee[0].type} ') #{employee[0].type} 
+                a#type(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الصفة', data-value='#{employee[0].type} ') #{employee[0].type} 
 
         div.btn-group.pull-left
           button#addPhone.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].idemployee}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
@@ -95,9 +91,9 @@ block content
           button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal',data-value='#{employee[0].id_emp_office}',data-center="#") مـسـح
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
 
-  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/editEmployeeOffice.js")
-  
+  script(src="/javascripts/phone.js")

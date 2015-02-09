@@ -11,6 +11,7 @@ var mahallaMgr = require('../app/mahalla').mahallaMgr;
 var constituencyMgr = require('../app/constituency').constituencyMgr;
 var employeeOfficeMgr = require('../app/employeeOffice').employeeOfficeMgr;
 var employee_type = require('../employee_type.json');
+
 var res =[];
 /* GET home office  page. */
 router.get('/',userHelpers.isAdmin, function(req, res) {
@@ -161,14 +162,16 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
 });
 // employeeoffcie
 router.get('/:oid/employeeOffice', function(req, res) {
+  req.session.back = req.originalUrl;
   employeeOfficeMgr.getEmployeeOffice(req.params.oid,function(results){
     res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:results,type:employee_type});
   });
 });
 /* add employee. */
-router.post('/employeeOffice/addemployee', function(req, res) {
+router.post('/employeeOffice/addEmployee', function(req, res) {
   employeeOfficeMgr.addemployeeoffice(req.body, function (results){
-    res.redirect('/office/');
+    console.log(results);
+    res.redirect('/office/'+results+'/employeeOffice/');
   });
 });
 
@@ -179,18 +182,22 @@ router.get('/deleteemployee/:id', function(req, res) {
   })
 });
 
-
 /* Edit employee */
-// router.post('/editEmployee/', function(req, res) {
-//   employeeOfficeMgr.deleteemployeeoffice(req.body,function(result,resultz){
-//     res.send(result);
-//   })
-// });
+router.post('/editEmployeeOfficeUpdate/', function(req, res) {
+  employeeOfficeMgr.editEmployeeOfficeEditable(req.body,function(result){
+    res.send(result);
+  })
+});
+
+/* get oll afeses */
+router.get('/getEmployeeType_json',userHelpers.isAdmin,function(req, res) {
+    res.send(employee_type);
+});
 
 // Edit employee Offcie
 router.get('/editEmployeeOffice/:ide', function(req, res) {
   employeeOfficeMgr.getEmployeeOfficeById(req.params.ide,function(result){
-    res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result});
+    res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result, url : req.session.back});
   });
 });
 

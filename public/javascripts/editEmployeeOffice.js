@@ -1,18 +1,39 @@
 $(document).ready(function(){
 
+  $.type_h=new Array();
+
   var defaults = {
-        disabled: true,
+    disabled: true,
   };
+
+  $.getJSON("/employee/employee_type", function( json ) {
+    var type=json.hnec;
+    var i = 0;
+    for(key in json.hnec){
+      var k = new Object({id : i,value : key, text : json.hnec[key]});
+      i++;
+      $.type_h.push(k);
+    }
+      
+    $('#type').editable({
+        url: '',
+        source:$.type_h,
+        pk: 1,
+        name: 'type',
+        validate: function(v) {
+          if(!v) return 'الرجاء اختيار صفة الموظف';
+        }
+    }); 
+       
+  });
 
   $.extend($.fn.editable.defaults, defaults);
   $('body').on('click', '#enable', function () {
     $('#user .editable').editable('toggleDisabled');
   });
 
- 
-
   $('#emp_office_name').editable({
-    url: '#',
+    url: '/office/editEmployeeOfficeUpdate/',
     type: 'text',
     pk: 1,
     name: 'emp_office_name',
@@ -23,7 +44,7 @@ $(document).ready(function(){
   });
 
   $('#email').editable({
-    url: '#',
+    url: '/office/editEmployeeOfficeUpdate/',
     type: 'text',
     pk: 1,
     name: 'email',
@@ -34,7 +55,7 @@ $(document).ready(function(){
   });
 
   $('#nid').editable({
-    url: '#',
+    url: '/office/editEmployeeOfficeUpdate/',
     type: 'text',
     pk: 1,
     name: 'nid',
@@ -45,7 +66,7 @@ $(document).ready(function(){
   });
 
   $('#bank_name').editable({
-    url: '#',
+    url: '/office/editEmployeeOfficeUpdate/',
     type: 'text',
     pk: 1,
     name: 'bank_name',
@@ -56,7 +77,7 @@ $(document).ready(function(){
   });
 
   $('#acount_number').editable({
-    url: '#',
+    url: '/office/editEmployeeOfficeUpdate/',
     type: 'text',
     pk: 1,
     name: 'acount_number',
@@ -66,27 +87,13 @@ $(document).ready(function(){
     }
   });
 
-
-  $('#office_id').editable({
-    url: '#',
-    type: 'text',
-    pk: 1,
-    name: 'office_id',
-    title: 'Enter center office_id',
-    validate: function(v) {
-      if(!v) return 'الرجاء ادخال اسم الموظف';
-    }
+  $('#deleteemployee').click(function() {
+    var id = $(this).val();
+    var center = $(this).data("id");
+    $.get('/office/deleteemployee/'+id, function(result){
+      window.location.href="/office/"+center+"/EmployeeOffice";
+    });
   });
 
-  $('#type').editable({
-    url: '#',
-    type: 'text',
-    pk: 1,
-    name: 'type',
-    title: 'Enter center type',
-    validate: function(v) {
-      if(!v) return 'الرجاء ادخال اسم الموظف';
-    }
-  });
 
 });

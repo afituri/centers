@@ -36,7 +36,7 @@ exports.employeeOfficeMgr = {
               conn.query('INSERT INTO `phone` SET `user_type` = 2, `phone_number` = ?,type=?,`user_employee` =? ,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);
             }
               conn.release();
-              cb(results); 
+              cb(body.office_id); 
         }
       });
     });
@@ -61,10 +61,24 @@ exports.employeeOfficeMgr = {
       });
     });
   },
-  /* Edit employee */
+  /* Get employee */
   getEmployeeOfficeById : function(ide,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT * FROM `employeeOffice` WHERE `status` = 1  AND `id_emp_office`=?',ide,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        } 
+      });
+    });
+  },
+  /* Edit employee */
+  editEmployeeOfficeEditable : function(body,cb){
+    mysqlMgr.connect(function (conn) {
+      var date = new Date();
+      conn.query('UPDATE `employeeOffice` SET '+body.name+' = ?,`modify_date`=? WHERE `id_emp_office` = ?',  [body.value,date,body.pk],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
