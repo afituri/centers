@@ -37,10 +37,10 @@ block content
                       tr(id = 3)
                         td #{employee.emp_office_name}
                         td #{employee.phone_number}
-                          a#phone(href='', data-toggle='modal',data-value="")
-                        td #{employee.type}
+                        for ty,id in type.hnec
+                           if id ==  employee.type
+                            td #{ty}
                         td #{employee.office_name_ar}
-                          a(href='#', tabindex='0', role='button',data-placement="top", data-toggle='popover', data-trigger='hover',placement='top', title='اسم المركز', data-content="") 
                         td
                           button#viw.btn.btn-primary.btn-xs(value="#{employee.id_emp_office}")
                             span.glyphicon.glyphicon-eye-open

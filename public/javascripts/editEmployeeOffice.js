@@ -89,11 +89,10 @@ $(document).ready(function(){
 
   $('#deleteemployee').click(function() {
     var id = $(this).val();
-    var center = $(this).data("id");
+    var center = $(this).data("value");
     $.get('/office/deleteemployee/'+id, function(result){
       window.location.href="/office/"+center+"/EmployeeOffice";
     });
   });
-
 
 });

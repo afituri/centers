@@ -3,9 +3,9 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 exports.employeeOfficeMgr = {
   /* get employee  */
   getEmployeeOffice : function(oid,cb){
-    mysqlMgr.connect(function (conn) {
-      console.log(oid)
-      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON ( `p`.`user_employee` = `e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`office_id`= `e`.`office_id` AND`e`.`office_id`= ? AND`e`.`status` = 1 ' ,[oid],function(err, result) {
+    mysqlMgr.connect(function (conn) { 
+      // conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `e`.`office_id`=?;' ,[oid,limit,oid],function(err, result) {
+      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` ' ,[oid],function(err, result) {
         conn.release();
         if(err) {
           util.log(err);

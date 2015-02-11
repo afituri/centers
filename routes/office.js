@@ -160,17 +160,17 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
     })
   })
 });
-// employeeoffcie
+// employeeoffcie  //  ,pagination : pagination
 router.get('/:oid/employeeOffice', function(req, res) {
   req.session.back = req.originalUrl;
   employeeOfficeMgr.getEmployeeOffice(req.params.oid,function(results){
+    console.log(results);
     res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:results,type:employee_type});
   });
 });
 /* add employee. */
 router.post('/employeeOffice/addEmployee', function(req, res) {
   employeeOfficeMgr.addemployeeoffice(req.body, function (results){
-    console.log(results);
     res.redirect('/office/'+results+'/employeeOffice/');
   });
 });
@@ -197,7 +197,7 @@ router.get('/getEmployeeType_json',userHelpers.isAdmin,function(req, res) {
 // Edit employee Offcie
 router.get('/editEmployeeOffice/:ide', function(req, res) {
   employeeOfficeMgr.getEmployeeOfficeById(req.params.ide,function(result){
-    res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result, url : req.session.back});
+    res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result, url:req.session.back,type:employee_type});
   });
 });
 
