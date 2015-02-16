@@ -2,13 +2,26 @@ var mysqlMgr = require('./mysql').mysqlMgr,
   util=require('util');
 exports.employeeOfficeMgr = {
   /* get employee  */
-  getEmployeeOffice : function(oid,cb){
+  getEmployeeOffice : function(limt,oid,cb){
     mysqlMgr.connect(function (conn) { 
-      // conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `e`.`office_id`=?;' ,[oid,limit,oid],function(err, result) {
-      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` ' ,[oid],function(err, result) {
+      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `office_id`=?;' ,[oid,limt,oid],function(err, result) {
+      //conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` ' ,[oid],function(err, result) {
         conn.release();
         if(err) {
-          util.log(err);
+          util.log(ergetEmployeeOfficer);
+        } else {
+          cb(result);
+        } 
+      });
+    });
+  },
+  //get employee eidt 
+    getEmployeeedit : function(limt,oid,cb){
+    mysqlMgr.connect(function (conn) { 
+      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `office_id`=?;' ,[oid,limt,oid],function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(ergetEmployeeOfficer);
         } else {
           cb(result);
         } 
@@ -64,7 +77,7 @@ exports.employeeOfficeMgr = {
   /* Get employee */
   getEmployeeOfficeById : function(ide,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `employeeOffice` WHERE `status` = 1  AND `id_emp_office`=?',ide,  function(err, result) {
+      conn.query('SELECT * FROM `employeeOffice` WHERE `status` = 1  AND `id_emp_office`=? ; SELECT `idphone`,`phone_number`,`type`,`p_type` FROM `phone` WHERE `status`= 1 AND `user_type`=2 AND `user_employee` = ?',[ide,ide],function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -88,5 +101,16 @@ exports.employeeOfficeMgr = {
       });
     });
   },
-
+  checkEmail : function(email,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('SELECT `status` FROM `employeeOffice` WHERE `status` = 1 AND`email` = ? ',  email,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 };

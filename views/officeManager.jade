@@ -29,48 +29,61 @@ block content
           span
       li.active #{names[0].office_name_ar}
     .row
-        .panel.col-sm-3
-          .nav.nav-pills.nav-stacked
-            li.active
-              a(href="/office")
-                span.glyphicon الدائرة الفرعية 
-            for subb in sub    
-              li
-                a(href="/office/#{subb.office_idoffice}/#{subb.subconstituency_id}") 
-                  span #{subb.subconstituency_name_ar}
-        .col-md-9   
-          .panel.col-md-6
-            .input-group 
-              input.form-control(type="text",name="idcenter",id = "idcenter")
-              .input-group-btn
-                .btn.btn-default(type="button") 
-                  spen.glyphicon.glyphicon-search
-          div.table-responsive  
-          table#off.table.table-striped.table-bordered.table-condensed.table-hover
-            thead
-              th  رقم المركز 
-              th  اسم المركز
-              th   نوع المركز 
-              th  عرض  
-            tbody#centers
-              for center in centers
-                tr
-                  td #{center.center_id}
-                  td #{center.name}
-                  td #{center.center_type}
-                  td 
-                    a.btn.btn.btn-primary.btn-xs(href="/center/#{center.center_id}") 
-                      span.glyphicon.glyphicon-eye-open
-          if pagination
-            div.text-center
-              ul.pagination
-                li(class='#{pagination.previous.disabled}')
-                  a(href='?p=#{pagination.previous.n}') السابق
-                for page in pagination.pages
-                  li(class="#{page.active}")
-                    a(href='?p=#{page.n}') #{page.n}
-                li(class="#{pagination.next.disabled}")
-                  a(href='?p=#{pagination.next.n}') التالي 
+      .panel.col-md-3
+        .nav.nav-pills.nav-stacked
+          li.active
+            a(href="/office")
+              span.glyphicon الدائرة الفرعية 
+          for subb in sub    
+            li
+              a(href="/office/#{subb.office_idoffice}/#{subb.subconstituency_id}") 
+                span #{subb.subconstituency_name_ar}
+      //- .input-group.col-md-6-left
+      .col-md-9   
+        .panel.panel-info
+          .row
+            .col-md-6
+              .input-group
+                input.form-control(type="text",name="idcenter",id = "idcenter")
+                .input-group-btn
+                  .btn.btn-default(type="button") 
+                    spen.glyphicon.glyphicon-search
+            .pull-left
+              .col-md-6
+                a.btn.btn-primary(href='/office/#{sub[0].office_idoffice}/EmployeeOffice', role='button') الـمـوظفيــن
+
+        //- .panel
+        //-   .panel-heading.clearfix
+        //-     .btn-group.pull-left
+        //-       a.btn.btn-success(href='/office/#{sub[0].office_idoffice}/EmployeeOffice', role='button',data-toggle='modal') إضافة موضف
+        //-         span.glyphicon.glyphicon-plus 
+
+        div.table-responsive  
+        table#off.table.table-striped.table-bordered.table-condensed.table-hover
+          thead
+            th  رقم المركز 
+            th  اسم المركز
+            th   نوع المركز 
+            th  عرض  
+          tbody#centers
+            for center in centers
+              tr
+                td #{center.center_id}
+                td #{center.name}
+                td #{center.center_type}
+                td 
+                  a.btn.btn.btn-primary.btn-xs(href="/center/#{center.center_id}") 
+                    span.glyphicon.glyphicon-eye-open
+        if pagination
+          div.text-center
+            ul.pagination
+              li(class='#{pagination.previous.disabled}')
+                a(href='?p=#{pagination.previous.n}') السابق
+              for page in pagination.pages
+                li(class="#{page.active}")
+                  a(href='?p=#{page.n}') #{page.n}
+              li(class="#{pagination.next.disabled}")
+                a(href='?p=#{pagination.next.n}') التالي 
   script(src="/javascripts/jquery-1.11.1.min.js")
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/office.js")

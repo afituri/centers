@@ -50,13 +50,13 @@ block content
             if pagination
               div.text-center
                 ul.pagination
-                  li(class='')
-                    a(href='?p=') السابق
+                  li(class='#{pagination.previous.disabled}')
+                    a(href='?p=#{pagination.previous.n}') السابق
                   for page in pagination.pages
-                    li(class="")
-                      a(href='?p=')
-                  li(class="")
-                    a(href='?p=') التالي
+                    li(class="#{page.active}")
+                      a(href='?p=#{page.n}') #{page.n}
+                  li(class="#{pagination.next.disabled}")
+                    a(href='?p=#{pagination.next.n}') التالي 
     #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
       .modal-dialog
         .modal-content
@@ -84,59 +84,59 @@ block content
           h1 الإضـافـة
         .row
           .col-sm-12.col-md-11.col.col-md.offset-4
-              .modal-body
-                  form#form.form-signin(role="form" , action="/office/employeeOffice/addEmployee", method="post")   
-                    div.form-group
-                      lable.h3 اﻻسـم
-                      input#emp_office_name.form-control(type="text",name="emp_office_name", placeholder="اﻻسـم",autofocus="")
-                    div.form-group
-                      lable.h3 البريد الالكتروني
-                      input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
-                    div.form-group
-                      lable.h3 الرقم الوطني
-                      input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
-                    div.form-group
-                      lable.h3 اسم المصرف
-                      input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
-                    div.form-group
-                      lable.h3 رقم الحساب
-                      input#acount_number.form-control(type="text",name="acount_number", placeholder="رقم الحساب",autofocus="")
-                    div.form-group
-                      lable رقم الهاتف
-                      .form-group.multiple-form-group.input-group#phone_input
-                        .input-group
-                          #radioBtn.btn-group
-                            a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
-                            a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
-                            input#p_type(type='hidden', name='p_type[]',value="المفوضية")
-                        .input-group
-                          .input-group-btn.input-group-select
-                            button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
-                              span.concept ليبيانا
-                              span.caret
-                            ul.dropdown-phone(role='menu')
-                              li
-                                a(href='#ليبيانا') ليبيانا
-                              li
-                                a(href='#المدار') المدار
-                              li
-                                a(href='#ثريا') ثريا
-                              li
-                            input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
-                          input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
-                          span.input-group-btn
-                            button.btn.btn-success.btn-add(type='button') +
-                    div.from-group
-                      lable.h3 اللجنة 
-                        select#office_id.form-control(name="office_id",placeholder="اللجنة",aria-hidden="true")
-                          option(value="#{employees[0].office_id}") #{employees[0].office_name_ar}
-                    div.form-group
-                      lable.h3 الـصـفـه
-                        select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
-                          for ty,id in type.hnec
-                            option(value="#{id}") #{ty}
-                    div.form-group.text-center
-                      button.btn.btn-lg.btn-primary(type="submit") إضـافة        
+            .modal-body
+              form#form.form-signin(role="form" , action="/office/employeeOffice/addEmployee", method="post")   
+                div.form-group
+                  lable.h3 اﻻسـم
+                  input#emp_office_name.form-control(type="text",name="emp_office_name", placeholder="اﻻسـم",autofocus="")
+                div.form-group
+                  lable.h3 البريد الالكتروني
+                  input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
+                div.form-group
+                  lable.h3 الرقم الوطني
+                  input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
+                div.form-group
+                  lable.h3 اسم المصرف
+                  input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
+                div.form-group
+                  lable.h3 رقم الحساب
+                  input#acount_number.form-control(type="text",name="acount_number", placeholder="رقم الحساب",autofocus="")
+                div.form-group
+                  lable رقم الهاتف
+                  .form-group.multiple-form-group.input-group#phone_input
+                    .input-group
+                      #radioBtn.btn-group
+                        a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+                        a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+                        input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+                    .input-group
+                      .input-group-btn.input-group-select
+                        button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                          span.concept ليبيانا
+                          span.caret
+                        ul.dropdown-phone(role='menu')
+                          li
+                            a(href='#ليبيانا') ليبيانا
+                          li
+                            a(href='#المدار') المدار
+                          li
+                            a(href='#ثريا') ثريا
+                          li
+                        input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+                      input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                      span.input-group-btn
+                        button.btn.btn-success.btn-add(type='button') +
+                div.from-group.hidden
+                  lable.h3 اللجنة 
+                    select#office_id.form-control(name="office_id",placeholder="اللجنة",aria-hidden="true")
+                      option(value="#{idoffice}") #{idoffice}
+                div.form-group
+                  lable.h3 الـصـفـه
+                    select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                      for ty,id in type.hnec
+                        option(value="#{id}") #{ty}
+                div.form-group.text-center
+                  button.btn.btn-lg.btn-primary(type="submit") إضـافة        
   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content

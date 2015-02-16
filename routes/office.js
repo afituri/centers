@@ -11,7 +11,7 @@ var mahallaMgr = require('../app/mahalla').mahallaMgr;
 var constituencyMgr = require('../app/constituency').constituencyMgr;
 var employeeOfficeMgr = require('../app/employeeOffice').employeeOfficeMgr;
 var employee_type = require('../employee_type.json');
-
+var ss = [];
 var res =[];
 /* GET home office  page. */
 router.get('/',userHelpers.isAdmin, function(req, res) {
@@ -163,9 +163,20 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
 // employeeoffcie  //  ,pagination : pagination
 router.get('/:oid/employeeOffice', function(req, res) {
   req.session.back = req.originalUrl;
-  employeeOfficeMgr.getEmployeeOffice(req.params.oid,function(results){
-    console.log(results);
-    res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:results,type:employee_type});
+  var idoffice = req.params.oid;
+  var page = userHelpers.getPage(req);
+  var limit = userHelpers.getLimit(page);
+  employeeOfficeMgr.getEmployeeOffice(limit,req.params.oid,function(results){
+    if(results[1][0].cnt != 0 ){
+      if (results[1][0] != undefined){
+        var pageCount = userHelpers.getPageCount(results[1][0].cnt);
+        console.log(pageCount); //cnt is the total count of records
+        var pagination = userHelpers.paginate(page,pageCount);
+          console.log('ssssssssssssssssss');
+          res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:results[0],type:employee_type,pagination : pagination,idoffice:idoffice});
+    }}else{
+        res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:ss,type:employee_type,pagination : null,idoffice:idoffice});
+        }
   });
 });
 /* add employee. */
@@ -180,6 +191,16 @@ router.get('/deleteemployee/:id', function(req, res) {
   employeeOfficeMgr.deleteemployeeoffice(req.params.id,function(result,resultz){
     res.send(result);
   })
+});
+    //chick mail
+router.post('/employeeoffice/checkEmail', function(req, res) {
+  employeeOfficeMgr.checkEmail(req.body.email, function(result){
+    if(!result[0]){
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  });
 });
 
 /* Edit employee */
@@ -197,7 +218,12 @@ router.get('/getEmployeeType_json',userHelpers.isAdmin,function(req, res) {
 // Edit employee Offcie
 router.get('/editEmployeeOffice/:ide', function(req, res) {
   employeeOfficeMgr.getEmployeeOfficeById(req.params.ide,function(result){
-    res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result, url:req.session.back,type:employee_type});
+    if(result[0] != undefined){
+      console.log(result[1]);
+    res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result[0],phone:result[1], url:req.session.back,type:employee_type});
+  }else{
+    res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:res, url:req.session.back,type:employee_type});
+  }
   });
 });
 
@@ -253,6 +279,9 @@ router.get('/:oid/:sid/:vid/:mid', userHelpers.isManager,function(req, res) {
       var pageCount = userHelpers.getPageCount(results[1][0].cnt); //cnt is the total count of records
       var pagination = userHelpers.paginate(page,pageCount);
       officeMgr.getNameOfficeSubconstitVillageMahalla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(resultTwo){
+        var officeid = results[0].office_id
+        console.log(officeid);
+        console.log(results);
         res.render('mahalla', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],names:resultTwo,pagination : pagination,level:req.session.level});
       })
     }else{

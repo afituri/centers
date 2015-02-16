@@ -46,21 +46,75 @@ block content
                   if id == employee[0].type           
                     a#type(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الصفة', data-value='#{employee[0].type} ') #{ty}
         div.btn-group.pull-left
-          button#addPhone.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].idemployee}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
+          button#add.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].idemployee}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
             span.glyphicon.glyphicon-plus   
-        table.table.table-bordered.table-striped(style='clear: both')
+        table#user.table.table-bordered.table-striped(style='clear: both')
           tbody
-            //- each val, i in phone
-            //-   tr
-            //-     td(width='10%') #{phone[i].type}
-            //-     td(width='55%')
-            //-      a#phone_number(href='#', data-type='text', data-pk='#{phone[i].idphone}',name="phone_number", data-title="رقم الهاتف  "+phone[i].type+"", data-value='#{phone[i].phone_number}') 
-            //-     td(width='10%') 
-            //-       a#p_type(href='#', data-type='select', data-pk='#{val.idphone}', name="p_type",data-value='#{val.p_type}',  data-title='الملكية') 
-            //-     td(width='10%')
-            //-       button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
-            //-         span.glyphicon.glyphicon-trash
-              
+            each val, i in phone
+              tr
+                td(width='10%') #{phone[i].type}
+                td(width='55%')
+                 a#phone_number(href='#', data-type='text', data-pk='#{phone[i].idphone}',name="phone_number", data-title="رقم الهاتف  "+phone[i].type+"", data-value='#{phone[i].phone_number}') #{phone[i].phone_number}
+                td(width='10%') 
+                  a#p_type(href='#', data-type='select', data-pk='#{val.idphone}', name="p_type",data-value='#{val.p_type}',  data-title='الملكية') 
+                td(width='10%')
+                  button#deletePhone.btn.btn-danger.btn-xs(data-toggle='modal',value="#{val.idphone}", data-target='#phone', data-placement='top', rel='tooltip')
+                    span.glyphicon.glyphicon-trash
+  //- #phone.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+  //-   .modal-dialog
+  //-     .modal-content
+  //-       .modal-headr.modal-header-danger
+  //-         p.h1 هل أنت متأكد من  حدف ؟
+  //-       .modal-body
+  //-         p.h2 هل انت متأكد 
+  //-         p 
+  //-       .modal-footer
+  //-         button#confphone.btn.btn-danger(type='button',data-dismiss='modal',data-id="#{user[0].iduser}") حدف
+  //-         button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+  //- #add.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+  //-   .modal-dialog
+  //-     .modal-content
+  //-       .modal-headr.modal-header-success
+  //-         button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+  //-         button.close(type="button",data-dismiss="modal",aria-hidden="true")
+  //-         h1 إضافة 
+  //-           .glyphicon.glyphicon-plus 
+  //-       .row 
+  //-         .col-md-offset-0 
+  //-             .modal-body
+  //-               form#form.form-signin(role="form" , action="/phone/addPhone", method="post")
+  //-                 table(width="430", align="center")
+  //-                   div.form-group.pull-left
+  //-                     lable.h4 رقم الهاتف
+  //-                     .form-group.multiple-form-group.input-group#phone_input
+  //-                       input.input-group-select-val(type='hidden',value="#{user[0].iduser}", name='user_id[]')
+  //-                       input.input-group-select-val(type='hidden',value="0", name='user_type[]')
+  //-                       .input-group
+  //-                         #radioBtn.btn-group
+  //-                           a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+  //-                           a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+  //-                           input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+  //-                       .input-group
+  //-                         .input-group-btn.input-group-select
+  //-                           button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+  //-                             span.concept ليبيانا
+  //-                             span.caret
+  //-                           ul.dropdown-phone(role='menu')
+  //-                             li
+  //-                               a(href='#ليبيانا') ليبيانا
+  //-                             li
+  //-                               a(href='#المدار') المدار
+  //-                             li
+  //-                               a(href='#ثريا') ثريا
+  //-                             li
+  //-                           input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+  //-                           input.input-group-select-val(type='hidden',value="#{user[0].iduser}", name='user_id[]')
+  //-                           input.input-group-select-val(type='hidden',value="0", name='user_type[]')
+  //-                         input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+  //-                         span.input-group-btn
+  //-                           button.btn.btn-success.btn-add(type='button') +
+  //-                   div.form-group
+  //-                     button.btn.btn-lg.btn-primary(type="submit") إضـافة 
     #phonee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
       .modal-dialog
         .modal-content
