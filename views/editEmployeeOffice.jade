@@ -3,8 +3,17 @@ block content
   div.container
     div.header
       ul.nav.nav-pills.pull-right
+        li
+          .dropdown
+            button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='true') مـرحـبـا 
+              span.caret
+            ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
+              li(role='presentation')
+                a(role='menuitem', tabindex='-1', href='#') | مـرحـبـا 
+              li(role='presentation')
+                a(href='/users/logout', role='menuitem', tabindex='-1') تـسـجـيـل الخـروج
         li.active
-          //- a(href="/cpanel") لـوحـــة الـتـحــكــم 
+          a(href="/cpanel") الصفحة الرئيسية
       h3.text-muted.text-left 
         a(href="/")
           img(src="../../../images/hnec_logo.png")
