@@ -77,19 +77,19 @@ $(document).ready(function(){
 			employee_name: {
 				required: true,
 			},
-			email: {
-				required: true,
-				email: true,
-				remote: {
-					url :"/employee/checkEmail",
-					type : "post",
-					data: {
-						email: function() {
-							return $( "#email" ).val();
-						}
-					}
-				}
-			},
+			// email: {
+			// 	required: true,
+			// 	email: true,
+			// 	remote: {
+			// 		url :"/employee/checkEmail",
+			// 		type : "post",
+			// 		data: {
+			// 			email: function() {
+			// 				return $( "#email" ).val();
+			// 			}
+			// 		}
+			// 	}
+			// },
 			'phone[]': {
 				required: true,
 				minlength: 10,
@@ -100,11 +100,11 @@ $(document).ready(function(){
 			employee_name: {
 				required: "الرجاء ادخال اسم المستخدم",
 			},
-			email: {
-				required: " هذا ليس بريد اليكتروني ",
-				email: "هذا ليس بريد اليكتروني",
-				remote: "هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر"
-			},
+			// email: {
+			// 	required: " هذا ليس بريد اليكتروني ",
+			// 	email: "هذا ليس بريد اليكتروني",
+			// 	remote: "هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر"
+			// },
 			subconstituency_idsubconstituency: {
 				required: "الرجاء الاختيار ",
 			},
