@@ -1,4 +1,5 @@
 var express = require('express');
+var Step = require('step');
 var userHelpers = require('../app/userHelpers');
 var router = express.Router();
 var userMgr = require('../app/user').userMgr;
@@ -10,6 +11,7 @@ var centerMgr = require('../app/center').centerMgr;
 var mahallaMgr = require('../app/mahalla').mahallaMgr;
 var constituencyMgr = require('../app/constituency').constituencyMgr;
 var employeeOfficeMgr = require('../app/employeeOffice').employeeOfficeMgr;
+var phoneMgr = require('../app/phone').phoneMgr;
 var employee_type = require('../employee_type.json');
 var ss = [];
 var res =[];
@@ -170,9 +172,7 @@ router.get('/:oid/employeeOffice', function(req, res) {
     if(results[1][0].cnt != 0 ){
       if (results[1][0] != undefined){
         var pageCount = userHelpers.getPageCount(results[1][0].cnt);
-        console.log(pageCount); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
-          console.log('ssssssssssssssssss');
           res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:results[0],type:employee_type,pagination : pagination,idoffice:idoffice});
     }}else{
         res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:ss,type:employee_type,pagination : null,idoffice:idoffice});
@@ -191,6 +191,18 @@ router.get('/deleteemployee/:id', function(req, res) {
   employeeOfficeMgr.deleteemployeeoffice(req.params.id,function(result,resultz){
     res.send(result);
   })
+});
+// editEmpOfficeTypePhone
+router.post('/editEmpOfficeTypePhone', function(req, res) {
+  if(req.body.name=="phone_number"){
+    var sender = model_step_phone(req.body,req.session.iduser);
+      res.send(sender);
+  } else {
+      if(req.body.name=="p_type"){
+        var sender = model_step_phone_type(req.body,req.session.iduser);
+          res.send(sender);
+      }
+    }
 });
     //chick mail
 router.post('/employeeoffice/checkEmail', function(req, res) {
@@ -219,7 +231,6 @@ router.get('/getEmployeeType_json',userHelpers.isAdmin,function(req, res) {
 router.get('/editEmployeeOffice/:ide', function(req, res) {
   employeeOfficeMgr.getEmployeeOfficeById(req.params.ide,function(result){
     if(result[0] != undefined){
-      console.log(result[1]);
     res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result[0],phone:result[1], url:req.session.back,type:employee_type});
   }else{
     res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:res, url:req.session.back,type:employee_type});
@@ -280,8 +291,6 @@ router.get('/:oid/:sid/:vid/:mid', userHelpers.isManager,function(req, res) {
       var pagination = userHelpers.paginate(page,pageCount);
       officeMgr.getNameOfficeSubconstitVillageMahalla(req.params.oid,req.params.sid,req.params.vid,req.params.mid,function(resultTwo){
         var officeid = results[0].office_id
-        console.log(officeid);
-        console.log(results);
         res.render('mahalla', { title: 'المدينة/القرية',name:req.session.name , officeid : req.params.oid , subbid  : req.params.sid  , centers : results[0],names:resultTwo,pagination : pagination,level:req.session.level});
       })
     }else{
@@ -310,5 +319,52 @@ router.get('/getvillage/:id', function(req, res) {
     res.send(result);
   })
 });
+
+function model_step_phone(body,id){
+  var flag;
+  Step(
+    /* SELECT OLD VALUE FROM DB */
+    function SelectOldphone() {
+      logMgr.addLog(body,id,"phone","idphone",this);
+    },
+    /* UPDATE VALUE */
+    function Updatephone(err,result) {
+      phoneMgr.editphone(body,result,this);
+    },
+    /* INSERT INFORMATION INTO LOG */
+    function InsertLogphone(err,result) {
+      if(!result[0]){
+        flag=false;
+      } else {
+        flag=true;
+      }
+      logMgr.insertLog(id,"edit","phone",result,body.pk,body.value);
+    }
+    );
+  return flag;
+}
+function model_step_phone_type(body,id){
+  var flag;
+  Step(
+    /* SELECT OLD VALUE FROM DB */
+    function SelectOldphone() {
+      logMgr.addLog(body,id,"phone","idphone",this);
+    },
+    /* UPDATE VALUE */
+    function Updatephone(err,result) {
+      phoneMgr.editphoneType(body,result,this);
+    },
+    /* INSERT INFORMATION INTO LOG */
+    function InsertLogphone(err,result) {
+      if(!result[0]){
+        flag=false;
+      } else {
+        flag=true;
+      }
+      logMgr.insertLog(id,"edit","phone",result,body.pk,body.value);
+    }
+    );
+  return flag;
+}
 
 module.exports = router;

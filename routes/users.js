@@ -34,6 +34,7 @@ router.post('/checkEmail', function(req, res) {
     }
   });
 });
+
 /* Edit user . */
 router.post('/edit', function(req, res) {
   if(req.body.name=="phone_number"){

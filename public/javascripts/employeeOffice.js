@@ -98,19 +98,6 @@ $(document).ready(function(){
       acount_number: {
         required: true,
       },
-      email: {
-        required: true,
-        email: true,
-        remote: {
-          url :"/office/employeeoffice/checkEmail",
-          type : "post",
-          data: {
-            email: function() {
-              return $( "#email" ).val();
-            }
-          }
-        }
-      },
       'phone[]': {
         required: true,
         minlength: 10,
@@ -135,11 +122,6 @@ $(document).ready(function(){
       },
       acount_number: {
         required: "الرجاء ادخال اسم المستخدم",
-      },
-      email: {
-        required: " هذا ليس بريد اليكتروني ",
-        email: "هذا ليس بريد اليكتروني",
-        remote: "هذا البريد الالكتروني تم تسجيله من قبل الرجاء اختيار بريد آخر"
       },
       'phone[]': {
         required: "الرجاء ادخال رقم الهاتف",

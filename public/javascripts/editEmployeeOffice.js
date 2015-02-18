@@ -6,6 +6,15 @@ $(document).ready(function(){
     disabled: true,
   };
 
+  $('body').on('click', '#radioBtn a', function () {
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    var a=$(this).siblings("#p_type" );
+    a.val(sel);
+    $(this).siblings("a").removeClass('active').addClass('notActive');
+    $(this).removeClass('notActive').addClass('active');
+  })
+
   $.extend($.fn.editable.defaults, defaults);
   $('body').on('click', '#enable', function () {
     $('#user .editable').editable('toggleDisabled');
@@ -31,9 +40,29 @@ $(document).ready(function(){
     }); 
        
   });
+
+  $('body').on('click', '#deletePhone ', function () {
+    var id = $(this).val();
+    $('#confphone').val(id);
+  }); 
+  $('#confphone').click(function() {
+    var id = $(this).val();
+    var idEmp = $(this).data("id");
+    $.get('/root/deletePhone/'+id, function(result){
+      window.location.href="/office/editEmployeeOffice/"+idEmp;
+    });
+  });
+
+  $('a[id^="p_type"]').editable({
+    url: '/office/editEmpOfficeTypePhone/',
+    source:[
+      {value:"المفوضية",text:"المفوضية"},
+      {value:"شخصي",text:"شخصي"},
+    ]
+  });
   
   $("a[id^='phone_number']" ).editable({
-    url: '/users/edit',
+    url: '/office/editEmpOfficeTypePhone/',
     type: 'text',
     pk: 1,
     name: 'phone_number',
@@ -64,9 +93,6 @@ $(document).ready(function(){
     pk: 1,
     name: 'email',
     title: 'Enter center email',
-    validate: function(v) {
-      if(!v) return 'الرجاء ادخال البريد الالكتروني';
-    }
   });
 
   $('#nid').editable({

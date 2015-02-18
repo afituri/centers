@@ -24,6 +24,17 @@ router.post('/addphone', function(req, res) {
   }
   res.redirect('/root/edituser/'+req.body.user_id[0]);
 });
+/* POST addphone  */
+router.post('/addPhoneEmployeeOffice', function(req, res) {
+  var phone = req.body.phone;
+  var type = req.body.phone_type
+  var p_type = req.body.p_type
+  for (var i=0;i<phone.length;i++) {
+    phoneMgr.addphone(req.session.iduser,phone[i],type[i],p_type[i],req.body.user_id[0],req.body.user_type[0], function (results){ });
+  }
+  console.log(req.body.user_id[0]);
+  res.redirect('/office/editEmployeeOffice/'+req.body.user_id[0]);
+});
 /* POST addphoneM  */
 router.post('/addphoneM', function(req, res) {
   var phone = req.body.phone;
