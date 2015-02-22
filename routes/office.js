@@ -163,7 +163,7 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
   })
 });
 // employeeoffcie  //  ,pagination : pagination
-router.get('/:oid/employeeOffice', function(req, res) {
+router.get('/:oid/employeeOffice',userHelpers.isManager, function(req, res) {
   req.session.back = req.originalUrl;
   var idoffice = req.params.oid;
   var page = userHelpers.getPage(req);
@@ -180,20 +180,20 @@ router.get('/:oid/employeeOffice', function(req, res) {
   });
 });
 /* add employee. */
-router.post('/employeeOffice/addEmployee', function(req, res) {
+router.post('/employeeOffice/addEmployee',userHelpers.isManager, function(req, res) {
   employeeOfficeMgr.addemployeeoffice(req.body, function (results){
     res.redirect('/office/'+results+'/employeeOffice/');
   });
 });
 
 /*   delete employee */
-router.get('/deleteemployee/:id', function(req, res) {
+router.get('/deleteemployee/:id',userHelpers.isManager,function(req, res) {
   employeeOfficeMgr.deleteemployeeoffice(req.params.id,function(result,resultz){
     res.send(result);
   })
 });
 // editEmpOfficeTypePhone
-router.post('/editEmpOfficeTypePhone', function(req, res) {
+router.post('/editEmpOfficeTypePhone',userHelpers.isManager, function(req, res) {
   if(req.body.name=="phone_number"){
     var sender = model_step_phone(req.body,req.session.iduser);
       res.send(sender);
@@ -205,7 +205,7 @@ router.post('/editEmpOfficeTypePhone', function(req, res) {
     }
 });
     //chick mail
-router.post('/employeeoffice/checkEmail', function(req, res) {
+router.post('/employeeoffice/checkEmail',userHelpers.isManager, function(req, res) {
   employeeOfficeMgr.checkEmail(req.body.email, function(result){
     if(!result[0]){
       res.send(true);
@@ -216,7 +216,7 @@ router.post('/employeeoffice/checkEmail', function(req, res) {
 });
 
 /* Edit employee */
-router.post('/editEmployeeOfficeUpdate/', function(req, res) {
+router.post('/editEmployeeOfficeUpdate/',userHelpers.isManager, function(req, res) {
   employeeOfficeMgr.editEmployeeOfficeEditable(req.body,function(result){
     res.send(result);
   })
