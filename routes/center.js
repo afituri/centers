@@ -14,9 +14,9 @@ router.get('/:cid',userHelpers.isCenter, function(req, res) {
       if(result[1][0] != undefined){
         var pageCount = userHelpers.getPageCount(result[1][0].cnt); //cnt is the total count of records
         var pagination = userHelpers.paginate(page,pageCount);
-        res.render('center', { title: 'مركز البينات ' , cent : results,employees:result[0], pagination : pagination , url : req.session.back,employee_type:employee_type });
+        res.render('center', { title: 'مركز البيانات ' , cent : results,employees:result[0], pagination : pagination , url : req.session.back,employee_type:employee_type });
       } else {
-        res.render('center', { title: 'مركز البينات ' , cent : results,employees:employeess, pagination : null, url : req.session.back,employee_type:employee_type });
+        res.render('center', { title: 'مركز البيانات ' , cent : results,employees:employeess, pagination : null, url : req.session.back,employee_type:employee_type });
       }
     });
   });
