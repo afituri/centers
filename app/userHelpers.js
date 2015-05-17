@@ -41,6 +41,35 @@ module.exports = {
       });
     });
   },
+
+  updatePass: function (body, cb) {
+    var salt = easyPbkdf2.generateSalt(), //we generate a new salt for every new user
+        password = body.value; //we generate a new password for every new user
+    easyPbkdf2.secureHash( password, salt, function( err, passwordHash, originalSalt ) {
+      var obj={
+            password : passwordHash,
+            salt : originalSalt,
+            pk : body.pk,
+          }
+      userMgr.updatePass(obj, function(result){
+        userMgr.getUser(body.pk,function(result1){
+          var obj = {
+            template : "updatepass",
+            subject : "Your HNEC app credentials",
+            locals : {
+              email : result1[0].email,
+              user : {
+                email : result1[0].email,
+                password : password
+              }
+            }
+          }
+          mailer.send(obj); 
+        cb(result);  
+        });
+      });
+    });
+  },  
   /* here we check if the user have root access */
   isRoot : function (req,res,next) {
     if (req.isAuthenticated() && req.session.level<=0) { return next(); }

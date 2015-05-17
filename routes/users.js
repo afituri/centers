@@ -35,6 +35,12 @@ router.post('/checkEmail', function(req, res) {
   });
 });
 
+router.post('/editpass',userHelpers.isAdmin,function(req,res){
+  userHelpers.updatePass(req.body,function(result){
+    logMgr.insertLog(req.session.iduser,"edit","user","password : Change ==>"+req.body.value,req.body.pk,req.body.value);
+    res.send(result);
+  });
+});
 /* Edit user . */
 router.post('/edit', function(req, res) {
   if(req.body.name=="phone_number"){

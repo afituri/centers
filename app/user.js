@@ -41,6 +41,20 @@ exports.userMgr = {
       });
     });
   },
+  /*update password and salt*/
+  updatePass : function(body,cb){
+    mysqlMgr.connect(function (conn) {
+      var date = new Date();
+      conn.query('UPDATE `user` SET `password` = ?,`salt`=?,`modify_date`=? WHERE `iduser` = ?',  [body.password,body.salt,date,body.pk],  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result); 
+        }
+      });
+    });
+  },
   /* check if email exists */
   checkEmail : function(email,cb){
     mysqlMgr.connect(function (conn) {

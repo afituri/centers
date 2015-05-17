@@ -33,6 +33,10 @@ block content
               td(width='65%')
                 a#email(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='البريد الالكترونب', data-value='#{user[0].email}')  #{user[0].email}
             tr
+              td(width='35%') الرمز السري
+              td(width='65%')
+                a#password(href='#', data-type='text', data-pk='#{user[0].iduser}', data-title='الرمز السري', data-value='')|******       
+            tr
               td الصلاحية
               td مدير
             tr

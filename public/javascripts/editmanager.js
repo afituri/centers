@@ -38,6 +38,19 @@ $(document).ready(function(){
       {value:"شخصي",text:"شخصي"},
     ]
   });
+  $('#password').editable({
+    url: '/users/editpass',
+    type: 'text',
+    pk: 1,
+    name: 'password',
+    title: 'Enter username',
+    validate: function(v) {
+      var flag = /[a-z]/.test(v)&& /\d/.test(v);
+      if(!v) return 'الرجاء ادخال الرمز السري';
+      if(v.length<8) return "طول كلمة المرور يجب ان لا تقل على 8 خانات";
+      if(!flag) return "كلمة المرور يجب ان تتكون من حروف و ارقام";
+    }
+  });
   $('#name').editable({
     url: '/users/edit',
     type: 'text',

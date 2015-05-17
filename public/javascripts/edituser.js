@@ -58,6 +58,19 @@ $(document).ready(function(){
     name: 'name',
     title: 'Enter username',
   });
+  $('#password').editable({
+    url: '/root/editpass',
+    type: 'text',
+    pk: 1,
+    name: 'password',
+    title: 'Enter username',
+    validate: function(v) {
+      var flag = /[a-z]/.test(v)&& /\d/.test(v);
+      if(!v) return 'الرجاء ادخال الرمز السري';
+      if(v.length<8) return "طول كلمة المرور يجب ان لا تقل على 8 خانات";
+      if(!flag) return "كلمة المرور يجب ان تتكون من حروف و ارقام";
+    }
+  });
   $("a[id^='phone_number']" ).editable({
     url: '/users/edit',
     type: 'text',
