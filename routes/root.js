@@ -63,7 +63,7 @@ router.get('/getUser/:id', function(req, res) {
 
 router.post('/editpass',userHelpers.isRoot,function(req,res){
   userHelpers.updatePass(req.body,function(result){
-    logMgr.insertLog(req.session.iduser,"edit","user","password : Change ",req.body.pk,req.body.value);
+    logMgr.insertLog(req.session.iduser,"edit","user","password : Change ",req.body.pk," ");
     res.send(result);
   });
 });

@@ -180,7 +180,7 @@ router.get('/:oid/employeeOffice',userHelpers.isManager, function(req, res) {
   });
 });
 /* add employee. */
-router.post('/employeeOffice/addEmployee',userHelpers.isManager, function(req, res) {
+router.post('/employeeOffice/addEmployee',userHelpers.isManager2, function(req, res) {
   employeeOfficeMgr.addemployeeoffice(req.body, function (results){
     res.redirect('/office/'+results+'/employeeOffice/');
   });

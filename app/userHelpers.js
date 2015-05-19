@@ -86,7 +86,13 @@ module.exports = {
    /* here we check if the manager have access to office */
   isManager : function (req,res,next) {
     if (req.isAuthenticated() && req.session.level<2) { return next(); }
-    if(req.isAuthenticated() && req.session.level==2 && req.params.oid==req.session.office_idoffice){ return next(); }
+    if(req.isAuthenticated() && req.session.level==2 && req.params.oid == req.session.office_idoffice){ return next(); }
+    if(!req.isAuthenticated()){res.redirect('/users/login')}
+    res.redirect('/office/'+ req.session.office_idoffice)
+  },
+  isManager2 : function (req,res,next) {
+    if (req.isAuthenticated() && req.session.level<2) { return next(); }
+    if(req.isAuthenticated() && req.session.level==2 && req.body.office_id == req.session.office_idoffice){ return next(); }
     if(!req.isAuthenticated()){res.redirect('/users/login')}
     res.redirect('/office/'+ req.session.office_idoffice)
   },
