@@ -14,7 +14,7 @@ exports.employeeMgr = {
             } 
         });
       }else{
-        conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c LEFT JOIN `employee` e  ON (`c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`status`=1) LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) GROUP BY `idemployee`limit ?,10; SELECT COUNT(*) as cnt FROM `employee` WHERE `status`=1 ;',limit, function(err, result) {
+        conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name` FROM `centers` c, `employee` e  WHERE `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`status`=1 limit ?,10; SELECT COUNT(`idemployee`) as cnt FROM `employee` WHERE `status`=1 ;',limit, function(err, result) {
           conn.release();
           if(err) {
             util.log(err);
