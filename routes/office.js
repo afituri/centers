@@ -17,6 +17,7 @@ var ss = [];
 var res =[];
 /* GET home office  page. */
 router.get('/',userHelpers.isAdmin, function(req, res) {
+  console.log(req.session);
   req.session.back = req.originalUrl;
   officeMgr.getOffice(function(result){
   var page = userHelpers.getPage(req);
@@ -31,6 +32,14 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
       }
     })
   });
+});
+/* get offices for edit employee */ 
+router.get('/getsuboffices/:id', function(req, res) {
+  console.log("2222");
+  subconstituencyMgr.getsub(req.params.id,function(result){
+    console.log(result);
+    res.send(result);
+  })
 });
 /* search Mahalla by name */
 router.get('/searchMahalla/:id', function(req, res) {
@@ -178,6 +187,10 @@ router.get('/:oid/employeeOffice',userHelpers.isManager, function(req, res) {
         res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:ss,type:employee_type,pagination : null,idoffice:idoffice});
         }
   });
+});
+// add employee office 
+router.get('/:oid/employeeOffice/addemployeeoffice',userHelpers.isManager, function(req, res) {
+  res.render('addemployeeoffice',{title: 'الموظفين',name:req.session.name,employees:ss,type:employee_type,pagination : null,idoffice:idoffice});
 });
 /* add employee. */
 router.post('/employeeOffice/addEmployee',userHelpers.isManager2, function(req, res) {

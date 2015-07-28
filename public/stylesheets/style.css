@@ -235,3 +235,9 @@ border-right:1px solid #dadada;
 .table {
   table-layout:fixed;
 }
+.dropdown-menu {
+  right: auto;
+  left: auto;
+  float: left;
+  text-align: right;
+}
