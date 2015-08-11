@@ -27,16 +27,35 @@ exports.employeeOfficeMgr = {
         } 
       });
     });
+  }, 
+   //get employesuboffice eidt 
+    getSubOffice : function(oid,cb){
+    mysqlMgr.connect(function (conn) { 
+      console.log("eeeeeeeeeeeeeeeee");
+      conn.query('SELECT * FROM  `subconstituency` WHERE  `office_idoffice` = ? ' ,oid,function(err, result) {
+        console.log(result);
+        console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwww");
+        conn.release();
+        if(err) {
+          util.log(ergetEmployeeOfficer);
+        } else {
+          cb(result);
+        } 
+      });
+    });
   },
+
   /* Add employee office  */
   addemployeeoffice : function(body,cb){
     mysqlMgr.connect(function (conn) {
+      console.log("sssssssssssssssssssssssssss");
       var phone = body.phone;
       var type = body.phone_type;
       var p_type = body.p_type;
       delete body["p_type"];
       delete body["phone"];
       delete body["phone_type"];
+      console.log(body);
       conn.query('INSERT INTO `employeeOffice` SET ?',  body,  function(err, result) {
         if(err) {
           util.log(err);
