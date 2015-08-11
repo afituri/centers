@@ -39,10 +39,12 @@ $(document).ready(function(){
   })
 
   $("a[id^='phone']").click(function() {
-    var id = $(this).data("value");   
+    var id = $(this).data("value"); 
+    $('#body').empty();
+    $('#emaill').empty();  
+    $('#loading').append('<img src="/img/31.gif" class="img-responsive" alt="Responsive image">');
     $.get('/employee/getphone/'+id, function(result){
-      $('#body').empty();
-      $('#emaill').empty();
+      $('#loading').empty();
       $('#emaill').append("<tr><td><strong>البريد الالكتروني </strong></td><td>"+result[0].email+"</td></tr>");
       for ( var i = 0; i < result.length;  i++ ) {
         $('#body').append("<tr><td>"+result[i].phone_number+"</td><td>"+result[i].type+"</td><td>"+result[i].p_type+"</td></tr>");
