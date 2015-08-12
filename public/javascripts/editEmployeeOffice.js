@@ -395,8 +395,8 @@ $(document).ready(function(){
   $('#work_type').editable({
     url: '/office/editEmployeeOfficeUpdate/',
     source:[
-      {value:"1",text:"ندب"},
-      {value:"2",text:"عقد"}],
+      {value:"2",text:"ندب"},
+      {value:"1",text:"عقد"}],
     select2: {
       width: 200,
       placeholder: 'Select center',
