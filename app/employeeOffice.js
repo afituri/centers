@@ -31,10 +31,7 @@ exports.employeeOfficeMgr = {
    //get employesuboffice eidt 
     getSubOffice : function(oid,cb){
     mysqlMgr.connect(function (conn) { 
-      console.log("eeeeeeeeeeeeeeeee");
       conn.query('SELECT * FROM  `subconstituency` WHERE  `office_idoffice` = ? ' ,oid,function(err, result) {
-        console.log(result);
-        console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwww");
         conn.release();
         if(err) {
           util.log(ergetEmployeeOfficer);
@@ -48,7 +45,6 @@ exports.employeeOfficeMgr = {
   /* Add employee office  */
   addemployeeoffice : function(body,cb){
     mysqlMgr.connect(function (conn) {
-      console.log("sssssssssssssssssssssssssss");
       var phone = body.phone;
       var type = body.phone_type;
       var p_type = body.p_type;
@@ -85,7 +81,6 @@ exports.employeeOfficeMgr = {
             if(err) {
               util.log(err);
             } else {
-              console.log(results);
               cb(results,resultz);
             } 
           });
@@ -110,7 +105,10 @@ exports.employeeOfficeMgr = {
   editEmployeeOfficeEditable : function(body,cb){
     mysqlMgr.connect(function (conn) {
       var date = new Date();
+      console.log("2222222222222222222222222222222222222222222222222222222222222222255555555555555555555555555555555555555555555555555555555");
+      console.log('UPDATE `employeeOffice` SET '+body.name+' = '+body.value+',`modify_date`='+date+' WHERE `id_emp_office` = '+body.pk);
       conn.query('UPDATE `employeeOffice` SET '+body.name+' = ?,`modify_date`=? WHERE `id_emp_office` = ?',  [body.value,date,body.pk],  function(err, result) {
+      console.log(result);
         conn.release();
         if(err) {
           util.log(err);

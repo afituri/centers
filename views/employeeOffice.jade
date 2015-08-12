@@ -111,7 +111,7 @@ block content
                 div.form-group
                   lable.h3 تاريخ الميلاد
                     #birthday.input-group.date
-                      input.form-control(type='text')
+                      input.form-control(type='text',name='birthday')
                       span.input-group-addon
                         span.glyphicon.glyphicon-calendar
                 div.form-group
@@ -131,9 +131,11 @@ block content
                   .form-group.multiple-form-group.input-group#social_input
                     .input-group
                       #social_radioBtn.btn-group
-                        a.btn.btn-primary.btn-sm.active(data-toggle='social_status', data-title='أعزب') اعزب
-                        a.btn.btn-primary.btn-sm.notActive(data-toggle='social_status', data-title='متزوج') متزوج
-                        input#social_status(type='hidden', name='social_status',value="متزوج")
+                        a.btn.btn-primary.btn-sm.active(data-toggle='social_status', data-title='1') اعزب
+                        a.btn.btn-primary.btn-sm.notActive(data-toggle='social_status', data-title='2') متزوج
+                        a.btn.btn-primary.btn-sm.notActive(data-toggle='social_status', data-title='3') مطلقة
+                        a.btn.btn-primary.btn-sm.notActive(data-toggle='social_status', data-title='4') أرملة
+                        input#social_status(type='hidden', name='social_status',value="1")
                   //- input#social_status.form-control(type="text",name="social_status", placeholder="الحالة الأجتماعية",autofocus="")      
                 div.form-group
                   lable.h3 البطاقة الشخصية
@@ -179,9 +181,9 @@ block content
                   .form-group.multiple-form-group.input-group
                     .input-group
                       #work_radioBtn.btn-group
-                        a.btn.btn-primary.btn-sm.active(data-toggle='work_type', data-title='عقد')    عقد
-                        a.btn.btn-primary.btn-sm.notActive(data-toggle='work_type', data-title='ندب')     ندب
-                        input#work_type(type='hidden', name='work_type',value="عقد")
+                        a.btn.btn-primary.btn-sm.active(data-toggle='work_type', data-title='1')    عقد
+                        a.btn.btn-primary.btn-sm.notActive(data-toggle='work_type', data-title='2')     ندب
+                        input#work_type(type='hidden', name='work_type',value="1")
                   //- input#work_type.form-control(type="text",name="work_type", placeholder="نوع العمل",autofocus="")
                 div.form-group
                   lable.h3 الدرجة
@@ -192,14 +194,14 @@ block content
                 div.form-group
                   lable.h3 تاريخ بداء العمل
                   #start_date.input-group.date
-                    input.form-control(type='text')
+                    input.form-control(type='text',name='start_date')
                     span.input-group-addon
                       span.glyphicon.glyphicon-calendar
                  //- input#start_date.form-control(type="text",name="start_date", placeholder="بداية العمل",autofocus="")
                 div.form-group
                   lable.h3 تاريخ إنتهاء العمل 
                   #end_date.input-group.date
-                    input.form-control(type='text')
+                    input.form-control(type='text',name='end_date')
                     span.input-group-addon
                       span.glyphicon.glyphicon-calendar
                   //- input#end_date.form-control(type="text",name="end_date", placeholder="سنة التخرج",autofocus="")

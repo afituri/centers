@@ -30,7 +30,7 @@ $(document).ready(function(){
     }
 
   $('#type').editable({
-      url: '',
+      url: '/office/editEmployeeOfficeUpdate/',
       source:$.type_h,
       pk: 1,
       name: 'type',
@@ -43,7 +43,7 @@ $(document).ready(function(){
   });
   $.get('/office/getsuboffices/'+$('#office_id').data("value"),function(result){
       for ( var i = 0 ; i< result.length; i++){
-        var k = new Object({id : i,value : result[i].subconstituency_id, text : result[i].subconstituency_name_ar});
+        var k = new Object({id : i,value : result[i].subconstituency_name_ar, text : result[i].subconstituency_name_ar});
         $.resul.push(k);
       }
     $('#emp_subconstituency').editable({
@@ -100,7 +100,7 @@ $(document).ready(function(){
     title: 'Enter center emp_office_name',
     validate: function(v) {
       if(!v) return 'الرجاء ادخال اسم الموظف';
-      if(v.length<5) return "يجب أن يكون الاسم أكثر من 5 حروف";
+      if(v.length<2) return "يجب أن يكون الاسم أكثر من حرفان";
     }
   });
 
@@ -190,6 +190,20 @@ $(document).ready(function(){
     source:[
       {value:"1",text:"ذكر"},
       {value:"2",text:"أنثى"}],
+    select2: {
+      width: 200,
+      placeholder: 'Select center',
+      allowClear: false
+    } 
+  });
+
+  $('#social_status').editable({
+    url: '/office/editEmployeeOfficeUpdate/',
+    source:[
+      {value:"1",text:"أعزب"},
+      {value:"2",text:"متزوج"},
+      {value:"3",text:"مطلقة"},
+      {value:"4",text:"أرملة"}],
     select2: {
       width: 200,
       placeholder: 'Select center',

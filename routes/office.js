@@ -17,7 +17,6 @@ var ss = [];
 var res =[];
 /* GET home office  page. */
 router.get('/',userHelpers.isAdmin, function(req, res) {
-  console.log(req.session);
   req.session.back = req.originalUrl;
   officeMgr.getOffice(function(result){
   var page = userHelpers.getPage(req);
@@ -35,9 +34,7 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
 });
 /* get offices for edit employee */ 
 router.get('/getsuboffices/:id', function(req, res) {
-  console.log("2222");
   subconstituencyMgr.getsub(req.params.id,function(result){
-    console.log(result);
     res.send(result);
   })
 });
@@ -196,6 +193,7 @@ router.get('/:oid/employeeOffice',userHelpers.isManager, function(req, res) {
 // });
 /* add employee. */
 router.post('/employeeOffice/addEmployee',userHelpers.isManager2, function(req, res) {
+  console.log(req.body);
   employeeOfficeMgr.addemployeeoffice(req.body, function (results){
     res.redirect('/office/'+results+'/employeeOffice/');
   });

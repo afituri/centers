@@ -48,6 +48,10 @@ block content
               td(width='65%')
                 a#sex(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الجنس' data-value='#{employee[0].sex}') 
             tr
+              td(width='35%') الحالة اﻷجتماعية
+              td(width='65%')
+                a#social_status(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الحالة الأجتماعية' data-value='#{employee[0].social_status}') 
+            tr
               td(width='35%') تاريخ الميلاد 
               td(width='65%')
                 a#birthday.date(href='#', data-type='datetime', data-pk='#{employee[0].id_emp_office}', data-title='تاريخ الميلاد' data-value='#{employee[0].birthday}') #{employee[0].birthday}
@@ -81,9 +85,9 @@ block content
               td(width='65%')
                 a#nid(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='الرقم الوطني' data-value='#{employee[0].nid}')  #{employee[0].nid}
             tr
-              td(width='35%') المكتب التابع له
-              td(width='65%')
-                a#office_id(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='المكتب التابع له' data-value='#{employee[0].office_id}') #{employee[0].office_id}
+              td.hidden(width='35%') المكتب التابع له
+              td.hidden(width='65%')
+                a#office_id.hidden(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='المكتب التابع له' data-value='#{employee[0].office_id}') #{employee[0].office}
             tr
               td(width='35%') اسم البنك
               td(width='65%')
@@ -95,7 +99,7 @@ block content
             tr
               td(width='35%') الدائرة الفرعية التابعة له
               td(width='65%')
-                a#emp_subconstituency(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الدائرة الفرعية التابعة له', data-value='#{employee[0].emp_subconstituency} ')
+                a#emp_subconstituency(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الدائرة الفرعية التابعة له', data-value='#{employee[0].emp_subconstituency} ') #{employee[0].emp_subconstituency} 
             tr
               td(width='35%') المؤهل العلمي
               td(width='65%')
@@ -120,10 +124,6 @@ block content
               td(width='35%') تاريخ البداء
               td(width='65%')
                 a#start_date(href='#', data-type='datetime',class=" table-condensed", data-pk='#{employee[0].id_emp_office}', data-title='تاريخ بداية العمل', data-value='#{employee[0].start_date}') #{employee[0].start_date}
-            tr
-              td(width='35%') نوع العمل
-              td(width='65%')
-                a#management_type(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='نوع العمل', data-value='#{employee[0].management_type} ') #{employee[0].management_type}
             tr
               td(width='35%') تاريخ النهاية
               td(width='65%')
