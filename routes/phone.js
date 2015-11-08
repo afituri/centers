@@ -32,7 +32,6 @@ router.post('/addPhoneEmployeeOffice', function(req, res) {
   for (var i=0;i<phone.length;i++) {
     phoneMgr.addphone(req.session.iduser,phone[i],type[i],p_type[i],req.body.user_id[0],req.body.user_type[0], function (results){ });
   }
-  console.log(req.body.user_id[0]);
   res.redirect('/office/editEmployeeOffice/'+req.body.user_id[0]);
 });
 /* POST addphoneM  */
