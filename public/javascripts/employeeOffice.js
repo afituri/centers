@@ -61,7 +61,8 @@ $(document).ready(function(){
 
   $('body').on('click', '#viw', function () {
     var ide = $(this).val();
-    window.location.href="/office/editEmployeeOffice/"+ide;
+    var oid = $(this).data('value');
+    window.location.href="/office/editEmployeeOffice/"+oid+"/"+ide;
   });
 
 

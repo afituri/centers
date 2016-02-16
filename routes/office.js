@@ -193,7 +193,7 @@ router.get('/deleteemployee/:id',userHelpers.isManager,function(req, res) {
   })
 });
 // editEmpOfficeTypePhone
-router.post('/editEmpOfficeTypePhone',userHelpers.isManager, function(req, res) {
+router.post('/editEmpOfficeTypePhone', function(req, res) {
   if(req.body.name=="phone_number"){
     var sender = model_step_phone(req.body,req.session.iduser);
       res.send(sender);
@@ -205,7 +205,7 @@ router.post('/editEmpOfficeTypePhone',userHelpers.isManager, function(req, res) 
     }
 });
     //chick mail
-router.post('/employeeoffice/checkEmail',userHelpers.isManager, function(req, res) {
+router.post('/employeeoffice/checkEmail', function(req, res) {
   employeeOfficeMgr.checkEmail(req.body.email, function(result){
     if(!result[0]){
       res.send(true);
@@ -216,7 +216,7 @@ router.post('/employeeoffice/checkEmail',userHelpers.isManager, function(req, re
 });
 
 /* Edit employee */
-router.post('/editEmployeeOfficeUpdate/',userHelpers.isManager, function(req, res) {
+router.post('/editEmployeeOfficeUpdate/', function(req, res) {
   employeeOfficeMgr.editEmployeeOfficeEditable(req.body,function(result){
     res.send(result);
   })
@@ -228,7 +228,7 @@ router.get('/getEmployeeType_json',userHelpers.isAdmin,function(req, res) {
 });
 
 // Edit employee Offcie
-router.get('/editEmployeeOffice/:ide', function(req, res) {
+router.get('/editEmployeeOffice/:oid/:ide',userHelpers.isManager, function(req, res) {
   employeeOfficeMgr.getEmployeeOfficeById(req.params.ide,function(result){
     if(result[0] != undefined){
     res.render('editEmployeeOffice',{title: 'عرض و تعديل موظفي اللجان',employee:result[0],phone:result[1], url:req.session.back,type:employee_type});

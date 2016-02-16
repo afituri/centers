@@ -45,7 +45,7 @@ block content
                             td #{ty}
                         td #{employee.office_name_ar}
                         td
-                          button#viw.btn.btn-primary.btn-xs(value="#{employee.id_emp_office}")
+                          button#viw.btn.btn-primary.btn-xs(value="#{employee.id_emp_office}" data-value="#{employee.office_id}")
                             span.glyphicon.glyphicon-eye-open
                         td      
                           button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{employee.id_emp_office}",data-value="#{employee.office_id}")
