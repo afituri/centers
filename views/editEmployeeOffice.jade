@@ -32,14 +32,62 @@ block content
               td(width='35%') الاسم 
               td(width='65%')
                 a#emp_office_name(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='الاسم' data-value='#{employee[0].emp_office_name}') #{employee[0].emp_office_name}
+                a#f_name(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='الاب' data-value='#{employee[0].f_name}')     #{employee[0].f_name}
+                a#g_name(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='الجد' data-value='#{employee[0].g_name}')     #{employee[0].g_name}
+                a#l_name(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='اللقب' data-value='#{employee[0].l_name}')     #{employee[0].l_name}
+            tr
+              td(width='35%') أسم الأم ثلاثي 
+              td(width='65%')
+                a#m_name(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='أسم الأم' data-value='#{employee[0].m_name}') #{employee[0].m_name}
             tr
               td(width='35%') البريد الإلكتروني
               td(width='65%')
                 a#email(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='البريد الإلكتروني' data-value='#{employee[0].email}')  #{employee[0].email} 
             tr
+              td(width='35%') الجنس
+              td(width='65%')
+                a#sex(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الجنس' data-value='#{employee[0].sex}') 
+            tr
+              td(width='35%') الحالة اﻷجتماعية
+              td(width='65%')
+                a#social_status(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الحالة الأجتماعية' data-value='#{employee[0].social_status}') 
+            tr
+              td(width='35%') تاريخ الميلاد 
+              td(width='65%')
+                a#birthday.date(href='#', data-type='datetime', data-pk='#{employee[0].id_emp_office}', data-title='تاريخ الميلاد' data-value='#{employee[0].birthday}') #{employee[0].birthday}
+
+            tr
+              td(width='35%') البطاقة الشخصية 
+              td(width='65%')
+                a#ID_number(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='البطاقة الشخصية' data-value='#{employee[0].ID_number}')  #{employee[0].ID_number}
+            tr
+              td(width='35%') رقم الجواز
+              td(width='65%')
+                a#pass_number(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='جواز السفر' data-value='#{employee[0].pass_number}')  #{employee[0].pass_number}
+            tr
+              td(width='35%') العنوان
+              td(width='65%')
+                a#address(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='العنوان' data-value='#{employee[0].address}')  #{employee[0].address}
+            tr
+              td(width='35%')  كتيب العائلة
+              td(width='65%')
+                a#family_book_number(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='ورقة العائلة' data-value='#{employee[0].family_book_number}')  #{employee[0].family_book_number}
+            tr
+              td(width='35%')  ورقة العائلة
+              td(width='65%')
+                a#family_page_number(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='ورقة العائلة' data-value='#{employee[0].family_page_number}')  #{employee[0].family_page_number}
+            tr
+              td(width='35%') رقم القيد
+              td(width='65%')
+                a#derestrict_number(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='رقم القيد' data-value='#{employee[0].derestrict_number}')  #{employee[0].derestrict_number}
+            tr
               td(width='35%') الرقم الوطني
               td(width='65%')
                 a#nid(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='الرقم الوطني' data-value='#{employee[0].nid}')  #{employee[0].nid}
+            tr
+              td.hidden(width='35%') المكتب التابع له
+              td.hidden(width='65%')
+                a#office_id.hidden(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='المكتب التابع له' data-value='#{employee[0].office_id}') #{employee[0].office}
             tr
               td(width='35%') اسم البنك
               td(width='65%')
@@ -49,14 +97,45 @@ block content
               td(width='65%')
                 a#acount_number(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='رقم الحساب', data-value='#{employee[0].acount_number} ') #{employee[0].acount_number}
             tr
+              td(width='35%') الدائرة الفرعية التابعة له
+              td(width='65%')
+                a#emp_subconstituency(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الدائرة الفرعية التابعة له', data-value='#{employee[0].emp_subconstituency} ') #{employee[0].emp_subconstituency} 
+            tr
+              td(width='35%') المؤهل العلمي
+              td(width='65%')
+                a#qualification(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='المؤهل العلمي', data-value='#{employee[0].qualification} ') #{employee[0].qualification}
+            tr
+              td(width='35%') تاريخ التخرج
+              td(width='65%')
+                a#graduation(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='تاريخ التخرج', data-value='#{employee[0].graduation} ') #{employee[0].graduation}
+            tr
+              td(width='35%') نوع العمل
+              td(width='65%')
+                a#work_type(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='نوع العمل', data-value='#{employee[0].work_type}') 
+            tr
+              td(width='35%') الدرجة الحالية
+              td(width='65%')
+                a#level(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='الدرجة الحالية', data-value='#{employee[0].level} ') #{employee[0].level}
+            tr
+              td(width='35%') قيمة المرتب
+              td(width='65%')
+                a#salary(href='#', data-type='text', data-pk='#{employee[0].id_emp_office}', data-title='المرتب', data-value='#{employee[0].salary} ') #{employee[0].salary}
+            tr
+              td(width='35%') تاريخ البداء
+              td(width='65%')
+                a#start_date(href='#', data-type='datetime',class=" table-condensed", data-pk='#{employee[0].id_emp_office}', data-title='تاريخ بداية العمل', data-value='#{employee[0].start_date}') #{employee[0].start_date}
+            tr
+              td(width='35%') تاريخ النهاية
+              td(width='65%')
+                a#end_date.table-condensed(href='#', data-type='datetime', data-pk='#{employee[0].id_emp_office}', data-title='تاريخ النهاية', data-value='#{employee[0].end_date} ') #{employee[0].end_date} 
+            tr
               td(width='35%') الصفة
               td(width='65%') 
                 for ty,id in type.hnec       
                   if id == employee[0].type           
                     a#type(href='#', data-type='select', data-pk='#{employee[0].id_emp_office}', data-title='الصفة', data-value='#{employee[0].type} ') #{ty}
-        div.btn-group.pull-left
-          button.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].id_emp_office}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
-            span.glyphicon.glyphicon-plus   
+        button.btn.btn-success.btn-xs(data-toggle='modal',value="#{employee[0].id_emp_office}", data-target='#add', data-placement='top', rel='tooltip') إضافة هاتف
+          span.glyphicon.glyphicon-plus   
         table#user.table.table-bordered.table-striped(style='clear: both')
           tbody
             each val, i in phone
@@ -146,3 +225,5 @@ block content
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/editEmployeeOffice.js")
   script(src="/javascripts/phone.js")
+  script(src="/javascripts/bootstrap-datetimepicker.js")
+  script(src="/javascripts/bootstrap-datetimepicker.fr.js")

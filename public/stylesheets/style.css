@@ -10,6 +10,19 @@
     color: #3276b1;
     background-color: #fff;
 }
+#sex_radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
+#social_radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
+#work_radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
+
 label.error {
 	
 	color: red;
@@ -234,4 +247,10 @@ border-right:1px solid #dadada;
 }
 .table {
   table-layout:fixed;
+}
+.dropdown-menu {
+  right: auto;
+  left: auto;
+  float: left;
+  text-align: right;
 }

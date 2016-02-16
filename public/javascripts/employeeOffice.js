@@ -2,8 +2,7 @@ $(document).ready(function(){
 
   // $.resul=new Array();
 
-  /* disabled  editable */
-
+  /* disabled  editable *
 
  /* Go to emlpoyeeOffice needs view or edit */
  
@@ -36,7 +35,7 @@ $(document).ready(function(){
        });
     }
   });
-
+  // phone radiobtn
   $('body').on('click', '#radioBtn a', function () {
     var sel = $(this).data('title');
     var tog = $(this).data('toggle');
@@ -45,7 +44,36 @@ $(document).ready(function(){
     $(this).siblings("a").removeClass('active').addClass('notActive');
     $(this).removeClass('notActive').addClass('active');
   })
+  //sex radiobtn
 
+  $('body').on('click','#sex_radioBtn a', function () {
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    var a= $(this).siblings("#sex");
+    a.val(sel);
+    $(this).siblings("a").removeClass('active').addClass('notActive');
+    $(this).removeClass('notActive').addClass('active');
+  })
+  //social- radiobtn
+  $('body').on('click', '#social_radioBtn a', function () {
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    var a=$(this).siblings("#social_status" );
+    a.val(sel);
+    $(this).siblings("a").removeClass('active').addClass('notActive');
+    $(this).removeClass('notActive').addClass('active');
+  })  
+  //work_type - radiobtn
+  $('body').on('click', '#work_radioBtn a', function () {
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    var a=$(this).siblings("#work_type" );
+    a.val(sel);
+    $(this).siblings("a").removeClass('active').addClass('notActive');
+    $(this).removeClass('notActive').addClass('active');
+  })
+  
+  //social- radiobtn
   $("a[id^='phone']").click(function() {
     var id = $(this).data("value");   
     $.get('/employee/getphone/'+id, function(result){
@@ -72,6 +100,44 @@ $(document).ready(function(){
     $("#deleteemployee").attr('data-id',$(this).data("value"));
   });
 
+
+      $('#birthday').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months", 
+        minViewMode: "months"
+      });
+  $('#start_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months", 
+        minViewMode: "months"
+      });
+
+    $('#end_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months", 
+        minViewMode: "months"
+      });
   $('#deleteemployee').click(function() {
     var id = $(this).val();
     var center = $(this).data("id");
@@ -86,7 +152,7 @@ $(document).ready(function(){
       },
       emp_office_name: {
         required: true,
-        minlength:5,
+        minlength:2,
       },
       bank_name: {
         required: true,

@@ -32,6 +32,12 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
     })
   });
 });
+/* get offices for edit employee */ 
+router.get('/getsuboffices/:id', function(req, res) {
+  subconstituencyMgr.getsub(req.params.id,function(result){
+    res.send(result);
+  })
+});
 /* search Mahalla by name */
 router.get('/searchMahalla/:id', function(req, res) {
   mahallaMgr.searchMahalla(req.params.id,function(result){
@@ -166,6 +172,7 @@ router.get('/:oid',userHelpers.isManager, function(req, res) {
 router.get('/:oid/employeeOffice',userHelpers.isManager, function(req, res) {
   req.session.back = req.originalUrl;
   var idoffice = req.params.oid;
+  employeeOfficeMgr.getSubOffice(req.params.oid,function(result){
   var page = userHelpers.getPage(req);
   var limit = userHelpers.getLimit(page);
   employeeOfficeMgr.getEmployeeOffice(limit,req.params.oid,function(results){
@@ -173,12 +180,17 @@ router.get('/:oid/employeeOffice',userHelpers.isManager, function(req, res) {
       if (results[1][0] != undefined){
         var pageCount = userHelpers.getPageCount(results[1][0].cnt);
         var pagination = userHelpers.paginate(page,pageCount);
-          res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:results[0],type:employee_type,pagination : pagination,idoffice:idoffice});
+          res.render('employeeOffice',{title: 'الموظفين',type_emp:result,name:req.session.name,employees:results[0],type:employee_type,pagination : pagination,idoffice:idoffice});
     }}else{
-        res.render('employeeOffice',{title: 'الموظفين',name:req.session.name,employees:ss,type:employee_type,pagination : null,idoffice:idoffice});
+        res.render('employeeOffice',{title: 'الموظفين',type_emp:result,name:req.session.name,employees:ss,type:employee_type,pagination : null,idoffice:idoffice});
         }
+    });  
   });
 });
+// // add employee office 
+// router.get('/:oid/employeeOffice/addemployeeoffice',userHelpers.isManager, function(req, res) {
+//   res.render('addemployeeoffice',{title: 'الموظفين',name:req.session.name,employees:ss,type:employee_type,pagination : null,idoffice:idoffice});
+// });
 /* add employee. */
 router.post('/employeeOffice/addEmployee',userHelpers.isManager2, function(req, res) {
   employeeOfficeMgr.addemployeeoffice(req.body, function (results){

@@ -32,7 +32,6 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
 router.get('/editemployee/:id',userHelpers.isAcsees, function(req, res) {
   employeeMgr.getemployee(req.params.id,function(result){
     URL = req.session.back;
-    console.log(result);
     res.render('editemployee', { title: "تعديل الموظفين", employee : result[0],phone : result[1] , url : URL});
   });
 });

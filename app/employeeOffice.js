@@ -27,7 +27,21 @@ exports.employeeOfficeMgr = {
         } 
       });
     });
+  }, 
+   //get employesuboffice eidt 
+    getSubOffice : function(oid,cb){
+    mysqlMgr.connect(function (conn) { 
+      conn.query('SELECT * FROM  `subconstituency` WHERE  `office_idoffice` = ? ' ,oid,function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(ergetEmployeeOfficer);
+        } else {
+          cb(result);
+        } 
+      });
+    });
   },
+
   /* Add employee office  */
   addemployeeoffice : function(body,cb){
     mysqlMgr.connect(function (conn) {
@@ -37,6 +51,7 @@ exports.employeeOfficeMgr = {
       delete body["p_type"];
       delete body["phone"];
       delete body["phone_type"];
+      console.log(body);
       conn.query('INSERT INTO `employeeOffice` SET ?',  body,  function(err, result) {
         if(err) {
           util.log(err);
@@ -66,7 +81,6 @@ exports.employeeOfficeMgr = {
             if(err) {
               util.log(err);
             } else {
-              console.log(results);
               cb(results,resultz);
             } 
           });
@@ -91,7 +105,10 @@ exports.employeeOfficeMgr = {
   editEmployeeOfficeEditable : function(body,cb){
     mysqlMgr.connect(function (conn) {
       var date = new Date();
+      console.log("2222222222222222222222222222222222222222222222222222222222222222255555555555555555555555555555555555555555555555555555555");
+      console.log('UPDATE `employeeOffice` SET '+body.name+' = '+body.value+',`modify_date`='+date+' WHERE `id_emp_office` = '+body.pk);
       conn.query('UPDATE `employeeOffice` SET '+body.name+' = ?,`modify_date`=? WHERE `id_emp_office` = ?',  [body.value,date,body.pk],  function(err, result) {
+      console.log(result);
         conn.release();
         if(err) {
           util.log(err);
