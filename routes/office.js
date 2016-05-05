@@ -187,14 +187,20 @@ router.get('/:oid/employeeOffice',userHelpers.isManager, function(req, res) {
     });  
   });
 });
-// // add employee office 
-// router.get('/:oid/employeeOffice/addemployeeoffice',userHelpers.isManager, function(req, res) {
-//   res.render('addemployeeoffice',{title: 'الموظفين',name:req.session.name,employees:ss,type:employee_type,pagination : null,idoffice:idoffice});
-// });
+// add employee office 
+router.get('/:oid/employeeOffice/addemployeeoffice', function(req, res) {
+  req.session.back = req.originalUrl;
+  var idoffice = req.params.oid;
+  employeeOfficeMgr.getSubOffice(req.params.oid,function(result){
+    console.log(result);
+    res.render('addemployeeoffice',{title: 'إضافة موظف',idoffice:idoffice,type:employee_type,type_emp:result ,name:req.session.name});
+  });
+});
 /* add employee. */
 router.post('/employeeOffice/addEmployee',userHelpers.isManager2, function(req, res) {
+  var idoffice = req.body.idoffice;
   employeeOfficeMgr.addemployeeoffice(req.body, function (results){
-    res.redirect('/office/'+results+'/employeeOffice/');
+    res.redirect('/office/'+idoffice+'/employeeOffice/');
   });
 });
 

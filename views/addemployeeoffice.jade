@@ -16,28 +16,208 @@ block content
                 a(href='/users/logout', role='menuitem', tabindex='-1') تـسـجـيـل الخـروج
       h3.text-muted.text-left    
         a(href="/")
-          img(src="../../images/hnec_logo.png")  
+          img(src="../../../images/hnec_logo.png")  
+      hr
+      h1.text-center إضافة موظف
       .row
-        .col-sm-12.col-md-11.col.col-md.offset-4
-          .modal-body
-            form#form.form-signin(role="form" , action="/office/employeeOffice/addEmployee", method="post")   
-              div.form-group
-                lable.h3 اﻻسـم
-                input#emp_office_name.form-control(type="text",name="emp_office_name", placeholder="اﻻسـم",autofocus="")
-              div.form-group
-                lable.h3 البريد الالكتروني
-                input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
-              div.form-group
-                lable.h3 الرقم الوطني
-                input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
-              div.form-group
-                lable.h3 اسم المصرف
-                input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
-              div.form-group
-                lable.h3 رقم الحساب
-                input#acount_number.form-control(type="text",name="acount_number", placeholder="رقم الحساب",autofocus="")
-              div.form-group
-                lable رقم الهاتف
+        form#form(method="post",action="/office/employeeOffice/addEmployee", accept-charset="utf-8", role="form")
+          h4.text-center البينات الشخصية
+          hr
+          .form-group
+            .row
+              .col-xs-3.col-md-3
+                label
+                  i.fa.fa-star-o
+                  span  الاسم الأول
+                input#emp_office_name.form-control(type="text", name="emp_office_name", placeholder="الأسم الأول")
+              .col-xs-3.col-md-3
+                label
+                  i.fa.fa-star-o
+                  span  أسم الأب
+                input#f_name.form-control(type="text", name="f_name", placeholder="أسم الأب")
+              .col-xs-3.col-md-3
+                label
+                  i.fa.fa-star-o
+                  span  اسم الجد
+                input#g_name.form-control(type="text", name="g_name", placeholder="اسم الجد")
+              .col-xs-3.col-md-3
+                label
+                  i.fa.fa-star-o
+                  span  اللقب
+                input#l_name.form-control(type="text", name="l_name", placeholder="اللقب")
+          .form-group
+            .row
+              .col-xs-3.col-md-3.col-md-offset-1
+                label
+                  i.fa.fa-star-o
+                  span  أسم الأم
+                input#m_name.form-control(type="text", name="m_name", placeholder="أسم الأم")
+                input#idoffice.form-control.hidden(type="text", name="idoffice",value="#{idoffice}")
+              .col-xs-3.col-md-3
+                label
+                  i.fa.fa-star-o
+                  span  تاريخ الميلاد
+                #birthday.input-group.date
+                  input.form-control(type='text',name='birthday')
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-calendar
+              .col-xs-3.col-md-4
+                label
+                  i.fa.fa-star-o
+                  span  البريد الأكتروني
+                input#email.form-control(type="text", name="email", placeholder="example@example.com")
+          .form-group
+            .row
+              .col-xs-4.col-md-4.col-md-offset-3
+                label
+                  i.fa.fa-star-o
+                    span  الحالة الأجتماعية
+                .form-group.multiple-form-group.input-group#social_input
+                  .input-group
+                    #social_radioBtn.btn-group
+                      a.btn.btn-primary.btn-sm.active(data-toggle='social_status', data-title='1') اعزب
+                      a.btn.btn-primary.btn-sm.notActive(data-toggle='social_status', data-title='2') متـزوج 
+                      a.btn.btn-primary.btn-sm.notActive(data-toggle='social_status', data-title='3') مطلقة
+                      a.btn.btn-primary.btn-sm.notActive(data-toggle='social_status', data-title='4') أرملة
+                      input#social_status(type='hidden', name='social_status',value="1")
+              .col-xs-3.col-md-3
+                label
+                  i.fa.fa-star-o
+                    span  النوع
+                .form-group.multiple-form-group.input-group#sex_input
+                  .input-group
+                    #sex_radioBtn.btn-group
+                      a.btn.btn-primary.btn-sm.active(data-toggle='sex', data-title='1') ذكر
+                      a.btn.btn-primary.btn-sm.notActive(data-toggle='sex', data-title='2') أنثى
+                      input#sex(type='hidden', name='sex',value="1")
+          .form-group
+            .row
+              .col-xs-3.col-md-3.col-md-offset-5
+                label
+                  i.fa.fa-star-o
+                  span الرقم الوظيفي
+                input#hnec_id.form-control(type="text", name="hnec_id", placeholder="XXXXX")
+          hr
+          h4.text-center البيانات الاساسية - Basic information
+          hr
+          .form-group            
+            .row
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  رقم البطاقة الشخصية
+                input#ID_number.form-control(type="text", name="ID_number", placeholder="×××××××")
+              .col-xs-3.col-md-3
+                label رقم جواز السفر
+                input#pass_number.form-control(type="text", name="pass_number", placeholder="×××××××" )
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  العنوان
+                input#address.form-control(type="text", name="address", placeholder="العناون")
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  الرقم الوطني
+                input#nid.form-control(type="text", name="nid", placeholder="××××××××××××") 
+          .form-group            
+            .row
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  رقم كتيب العائلة
+                input#family_book_number.form-control(type="text", name="family_book_number", placeholder="رقم كتيب العائلة")
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  رقم ورقة العائلة
+                input#family_page_number.form-control(type="text", name="family_page_number", placeholder="×××××××")
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  أسم المصرف
+                input#bank_name.form-control(type="text", name="bank_name", placeholder="اسم المصرف - الفرع")
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  رقم الحساب
+                input#acount_number.form-control(type="text", name="acount_number", placeholder="×××××××××××")
+          hr
+          h4.text-center بينات المفوضية  - hnec information 
+          hr
+          .form-group
+            .row
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  المؤهل العلمي
+                input#qualification.form-control(type="text", name="qualification", placeholder="المؤهل العلمي")
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  سنة التخرج
+                input#graduation.form-control(type="text", name="graduation", placeholder="2001")
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  الدرجة العلمية 
+                input#level.form-control(type="text", name="level", placeholder="الدرجة العلمية")
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  التخصص
+                input#specil.form-control(type="text", name="specil", placeholder="التخصص")
+          .form-group
+            .row
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                    span  تاريخ بداية العمل
+                #start_date.input-group.date
+                  input.form-control(type='text',name='start_date')
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-calendar
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                    span  تاريخ الزيادة إن وجد
+                #add_date.input-group.date
+                  input.form-control(type='text',name='add_date')
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-calendar
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  الـصـفـه
+                select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                  for ty,id in type.hnec
+                    option(value="#{id}") #{ty}
+              .col-xs-5.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  تاريخ الزيادة 
+                #end_date.input-group.date
+                  input.form-control(type='text',name='end_date')
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-calendar
+          .form-group
+            .row
+              .col-xs-3.col-md-3
+                label 
+                  i.fa.fa-star-o
+                  span  الراتب
+                input#salary.form-control(type="text", name="salary", placeholder="الراتب")
+              .col-xs-3.col-md-3
+                  label 
+                    i.fa.fa-star-o 
+                      span اللجنة التابعة لها
+                  select#emp_subconstituency.form-control(name="emp_subconstituency", placeholder="صفة الموظف",autofocus="")
+                    for typeemp in type_emp
+                      option(value="#{typeemp.subconstituency_name_ar}") #{typeemp.subconstituency_name_ar}
+              .col-xs-4.col-md-4
+                label 
+                  i.fa.fa-star-o
+                  span  رقم الهاتف
                 .form-group.multiple-form-group.input-group#phone_input
                   .input-group
                     #radioBtn.btn-group
@@ -61,21 +241,29 @@ block content
                     input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
                     span.input-group-btn
                       button.btn.btn-success.btn-add(type='button') +
-              div.from-group.hidden
-                lable.h3 اللجنة 
-                  select#office_id.form-control(name="office_id",placeholder="اللجنة",aria-hidden="true")
-                    option(value="#{idoffice}") #{idoffice}
-              div.form-group
-                lable.h3 الـصـفـه
-                  select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
-                    for ty,id in type.hnec
-                      option(value="#{id}") #{ty}
-              div.form-group.text-center
-                button.btn.btn-lg.btn-primary(type="submit") إضـافة        
+              .col-xs-2.col-md-2
+                label 
+                  i.fa.fa-star-o
+                    span  نوع العمل
+                .form-group.multiple-form-group.input-group
+                  .input-group
+                    #work_radioBtn.btn-group
+                      a.btn.btn-primary.btn-sm.active(data-toggle='work_type', data-title='1')    عقد
+                      a.btn.btn-primary.btn-sm.notActive(data-toggle='work_type', data-title='2')     ندب
+                      input#work_type(type='hidden', name='work_type',value="1")
+
+          hr
+          .col-xs-2.col-xs-offset-4.col-md-2.col-md-offset-5
+            button.btn.btn-primary.btn-lg(type="submit")
+              | حــــــفظ 
+              span.
+
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
   script(src="/javascripts/phone.js")
   script(src="/javascripts/employeeOffice.js")
+  script(src="/javascripts/bootstrap-datetimepicker.js") 
+
    

@@ -49,9 +49,9 @@ exports.employeeOfficeMgr = {
       var type = body.phone_type;
       var p_type = body.p_type;
       delete body["p_type"];
+      delete body["idoffice"];
       delete body["phone"];
       delete body["phone_type"];
-      console.log(body);
       conn.query('INSERT INTO `employeeOffice` SET ?',  body,  function(err, result) {
         if(err) {
           util.log(err);
@@ -60,6 +60,7 @@ exports.employeeOfficeMgr = {
             id:result.insertId,
             name :body.employee_name
           }
+          console.log(results);
           for (var i=0;i<phone.length;i++) {
               conn.query('INSERT INTO `phone` SET `user_type` = 2, `phone_number` = ?,type=?,`user_employee` =? ,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);
             }

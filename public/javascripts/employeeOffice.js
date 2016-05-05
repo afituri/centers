@@ -99,8 +99,6 @@ $(document).ready(function(){
     $('#deleteemployee').val(id);
     $("#deleteemployee").attr('data-id',$(this).data("value"));
   });
-
-
       $('#birthday').datetimepicker({
         weekStart: 1,
         todayBtn:  1,
@@ -126,6 +124,18 @@ $(document).ready(function(){
         minViewMode: "months"
       });
 
+    $('#add_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months", 
+        minViewMode: "months"
+      });
     $('#end_date').datetimepicker({
         weekStart: 1,
         todayBtn:  1,
@@ -154,6 +164,29 @@ $(document).ready(function(){
         required: true,
         minlength:2,
       },
+      emp_office_name: {
+        required: true,
+        minlength:2,
+      },
+      f_name: {
+        required: true,
+        minlength:2,
+      },
+      g_name: {
+        required: true,
+        minlength:2,
+      },
+      l_name: {
+        required: true,
+        minlength:2,
+      },
+      m_name: {
+        required: true,
+        minlength:10,
+      },
+      birthday: {
+        required: true,
+      },
       bank_name: {
         required: true,
       },
@@ -161,8 +194,18 @@ $(document).ready(function(){
         required: true,
         number: true,
         minlength:12,
+        maxlength:12,
       },
       acount_number: {
+        required: true,
+      },
+      start_date:{
+        required: true,
+      },
+      add_date:{
+        required: true,
+      },
+      end_date:{
         required: true,
       },
       'phone[]': {
@@ -173,22 +216,50 @@ $(document).ready(function(){
     },
     messages: {
       subconstituency_idsubconstituency: {
-        required: "الرجاء ادخال اسم المستخدم",
+        required: "لم يتم اختيار الدائرة الفرعية الرجاء إعادة الدخول",
       },
       emp_office_name: {
-        required: "الرجاء ادخال اسم المستخدم",
-        minlength: " يجب أن لا يكون الاسم يقل عن 5 ارقام ",
+        required: "الرجاء ادخال الأسم الأول",
+        minlength: " يجب أن لا يكون الاسم يقل عن 2 ارقام ",
+      },
+      f_name: {
+        required: "الرجاء إدخال إسم الأب",
+        minlength: " يجب أن لا يكون الاسم يقل عن 2 ارقام ",
+      },g_name: {
+        required: "الرجاء ادخال إسم الجد",
+        minlength: " يجب أن لا يكون الاسم يقل عن 2 ارقام ",
+      },
+      l_name: {
+        required: "الرجاء ادخال اللقب",
+        minlength: " يجب أن لا يكون الاسم يقل عن 2 ارقام ",
+      },
+      m_name: {
+        required: "الرجاء ادخال إسم الأم ثلاثي",
+        minlength: " يجب أن لا يكون الاسم يقل عن 10 ارقام ",
+      },
+      birthday: {
+        required: "الرجاء إحتيار  الميلاد",
       },
       bank_name: {
         required: "الرجاء ادخال اسم المصرف",
       },
       nid: {
-        required: "الرجاء ادخال اسم المستخدم",
+        required: "الرجاء إدخال الرقم الوطني",
         number: "الرجاء ادخال ارقام فقط ",
-        minlength: " يجب أن لا يكون الرقم يقل عن 12 رقم ",
+        minlength: " يجب أن  يكون الرقم يقل عن 12 رقم ",
+        maxlength: " يجب أن  يكون الرقم ﻻيزيد عن 12 رقم ",
       },
       acount_number: {
-        required: "الرجاء ادخال اسم المستخدم",
+        required: "الرجاء إدخال رقم الحساب",
+      },
+      start_date: {
+        required: "الرجاء إختيار تاريخ العمل ",
+      },
+      add_date: {
+        required: "الرجاء إختيار تاريخ الزيادة ",
+      },
+      end_date: {
+        required: "الرجاء إختيار تاريخ إنتهاء العمل",
       },
       'phone[]': {
         required: "الرجاء ادخال رقم الهاتف",
