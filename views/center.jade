@@ -131,71 +131,233 @@ block content
                   tbody#body
           .modal-footer
             button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
-  #addemployee.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-    .modal-dialog
+  #addemployee.modal.fade(role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog.modal-lg
       .modal-content
         .modal-headr.modal-header-success
           button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
           button.close(type="button",data-dismiss="modal",aria-hidden="true")
           h1 الإضـافـة
-        .row
-          .col-sm-12.col-md-11.col.col-md.offset-4
-              .modal-body
-                  form#form.form-signin(role="form" , action="/employee/addemployeeCenter/#{cent[0].center_id}", method="post")   
-                    div.form-group
-                      lable.h3 اﻻسـم
-                      input#employee_name.form-control(type="text",name="employee_name", placeholder="اﻻسـم",autofocus="")
-                    div.form-group
-                      lable.h3 البريد الالكتروني
-                      input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
-                    div.form-group
-                      lable.h3 الرقم الوطني
-                      input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
-                    div.form-group
-                      lable.h3 اسم المصرف
-                      input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
-                    div.form-group
-                      lable.h3 رقم الحساب
-                      input#account_number.form-control(type="text",name="account_number", placeholder="رقم الحساب",autofocus="")
-                    div.form-group
-                      lable رقم الهاتف
-                      .form-group.multiple-form-group.input-group#phone_input
-                        .input-group
-                          #radioBtn.btn-group
-                            a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
-                            a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
-                            input#p_type(type='hidden', name='p_type[]',value="المفوضية")
-                        .input-group
-                          .input-group-btn.input-group-select
-                            button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
-                              span.concept ليبيانا
-                              span.caret
-                            ul.dropdown-phone(role='menu')
-                              li
-                                a(href='#ليبيانا') ليبيانا
-                              li
-                                a(href='#المدار') المدار
-                              li
-                                a(href='#ثريا') ثريا
-                              li
-                            input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
-                          input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
-                          span.input-group-btn
-                            button.btn.btn-success.btn-add(type='button') +
-                    div.form-group
-                      lable.h3 الـصـفـه
-                      if cent[0].center_id == -1
-                        select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
-                          for data,i in employee_type.hnec
-                            option(value="#{i}") #{data} 
-                      else
-                        select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
-                          for data,i in employee_type.employee
-                            option(value="#{i}") #{data} 
-                    div.form-group
-                      input.input-group-select-val(type='hidden', value='#{cent[0].center_id}', name='center_idcenter')
-                    div.form-group.text-center
-                      button.btn.btn-lg.btn-primary(type="submit") إضـافة        
+        if cent[0].center_id == -1  
+          .row.form-group
+            .modal-body
+              form#form(role="form" , action="/employee/addemployeeCenter/#{cent[0].center_id}", method="post")
+                .row   
+                  div.form-group.col-md-4
+                    lable.h3 اﻻسـم
+                    input#employee_name.form-control(type="text",name="employee_name", placeholder="اﻻسـم",autofocus="")
+                  div.form-group.col-md-4
+                    lable.h3 البريد الالكتروني
+                    input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
+                  div.form-group.col-md-4
+                    lable.h3 الرقم الوطني
+                    input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
+                .row
+                  div.form-group.col-md-4
+                    lable.h3 اسم المصرف
+                    input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
+                  div.form-group.col-md-4
+                    lable.h3 رقم الحساب
+                    input#account_number.form-control(type="text",name="account_number", placeholder="رقم الحساب",autofocus="")
+                  div.form-group.col-md-4
+                    lable.h3 الـصـفـه
+                    if cent[0].center_id == -1
+                      select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                        for data,i in employee_type.hnec
+                          option(value="#{i}") #{data} 
+                    else
+                      select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                        for data,i in employee_type.employee
+                          option(value="#{i}") #{data} 
+                .row
+                  div.form-group.col-md-4
+                    lable.h3 رقم القيد
+                    input.form-control(type="text",name="registration_number", placeholder="رقم القيد",autofocus="")
+                  div.form-group.col-md-4
+                    lable.h3 اسم الام
+                    input.form-control(type="text",name="mother", placeholder="اسم الام",autofocus="")
+                  div.form-group.col-md-4
+                    lable.h3 الادارة والقسم التابع له
+                    input.form-control(type="text",name="department", placeholder="الادارة والقسم التابع له",autofocus="")
+                .row
+                  div.form-group.col-md-4
+                    lable.h3 المؤهل العلمي
+                    input.form-control(type="text",name="qualification", placeholder="المؤهل العلمي",autofocus="")
+                  div.form-group.col-md-4
+                    lable.h3 التخصص
+                    input.form-control(type="text",name="specialty", placeholder="التخصص",autofocus="")
+                  div.form-group.col-md-4
+                    lable.h3 جهة التخرج
+                    input.form-control(type="text",name="graduation", placeholder="جهة التخرج",autofocus="")
+                .row
+                  .col-md-4
+                    label
+                      i.fa.fa-star-o
+                      span  تاريخ التخرج
+                    #graduation_date.input-group.date
+                      input.form-control(type='text',name='graduation_date')
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+                  div.form-group.col-md-4
+                    lable.h3 رقم جوز السفر
+                    input.form-control(type="text",name="passport_number", placeholder="رقم جوز السفر",autofocus="")
+                  .col-md-4
+                    label
+                      i.fa.fa-star-o
+                      span  تاريخ انتهاء الجواز
+                    #passport_end.input-group.date
+                      input.form-control(type='text',name='passport_end')
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar  
+                .row
+                  div.form-group.col-md-4
+                    lable.h3 كيفية شغل الوظيفة
+                      select#job.form-control(name="job", placeholder="كيفية شغل الوظيفة",autofocus="")
+                        for data,i in job.job
+                          option(value="#{i}") #{data}
+                  .col-md-4
+                    label
+                      i.fa.fa-star-o
+                      span  تاريخ مباشرة العمل بامفوظية
+                    #start_date.input-group.date
+                      input.form-control(type='text',name='start_date')
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+                  div.form-group.col-md-4
+                    lable.h3 الوضع الحالي للموظف
+                      select#job_status.form-control(name="job_status", placeholder="الوضع الحالي للموظف",autofocus="")
+                        for data,i in job.job_status
+                          option(value="#{i}") #{data}
+                .row
+                  .col-md-4
+                    label
+                      i.fa.fa-star-o
+                      span  تاريخ الاجراء
+                    #action_date.input-group.date
+                      input.form-control(type='text',name='action_date')
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+                  div.form-group.col-md-4
+                    lable.h3 جهة العمل الاصلية
+                    input.form-control(type="text",name="previous_job", placeholder="جهة العمل الاصلية",autofocus="")
+                  div.form-group.col-md-4
+                    lable.h3 سنوات العمل السابقة
+                    input.form-control(type="number",name="job_year", placeholder="سنوات العمل السابقة",autofocus="")
+                .row
+                  div.form-group.col-md-4
+                    lable.h3 الدرجة الحالية
+                    input.form-control(type="text",name="grade", placeholder="الدرجة الحالية",autofocus="")
+                  .col-md-4
+                    label
+                      i.fa.fa-star-o
+                      span  تاريخ الحصول على الدرجة
+                    #grade_date.input-group.date
+                      input.form-control(type='text',name='grade_date')
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+                  .col-md-4
+                    label
+                      i.fa.fa-star-o
+                      span  تاريخ العلاوة السنوية
+                    #prem_date.input-group.date
+                      input.form-control(type='text',name='prem_date')
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+                .row
+                  div.form-group.col-md-4
+                    lable.h3 حضور الاستحقاقات الانتخابية السابقة
+                    textarea(name="election",rows="3")
+                  div.form-group.col-md-4
+                    lable.h3 الدورات المتحصل عليها
+                    textarea(name="course",rows="3")
+                  div.form-group.col-md-4
+                    lable رقم الهاتف
+                    .form-group.multiple-form-group.input-group#phone_input
+                      .input-group
+                        #radioBtn.btn-group
+                          a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+                          a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+                          input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+                      .input-group
+                        .input-group-btn.input-group-select
+                          button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                            span.concept ليبيانا
+                            span.caret
+                          ul.dropdown-phone(role='menu')
+                            li
+                              a(href='#ليبيانا') ليبيانا
+                            li
+                              a(href='#المدار') المدار
+                            li
+                              a(href='#ثريا') ثريا
+                            li
+                          input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+                        input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                        span.input-group-btn
+                          button.btn.btn-success.btn-add(type='button') + 
+                div.form-group
+                  input.input-group-select-val(type='hidden', value='#{cent[0].center_id}', name='center_idcenter')
+                div.form-group.text-center
+                  button.btn.btn-lg.btn-primary(type="submit") إضـافة   
+        else
+          .row
+            .col-sm-12.col-md-11.col.col-md.offset-4
+                .modal-body
+                    form#form.form-signin(role="form" , action="/employee/addemployeeCenter/#{cent[0].center_id}", method="post")   
+                      div.form-group
+                        lable.h3 اﻻسـم
+                        input#employee_name.form-control(type="text",name="employee_name", placeholder="اﻻسـم",autofocus="")
+                      div.form-group
+                        lable.h3 البريد الالكتروني
+                        input#email.form-control(type="text",name="email", placeholder="البريد الالكتروني",autofocus="") 
+                      div.form-group
+                        lable.h3 الرقم الوطني
+                        input#nid.form-control(type="text",name="nid", placeholder="الرقم الوطني",autofocus="")     
+                      div.form-group
+                        lable.h3 اسم المصرف
+                        input#bank_name.form-control(type="text",name="bank_name", placeholder="اسم المصرف",autofocus="")
+                      div.form-group
+                        lable.h3 رقم الحساب
+                        input#account_number.form-control(type="text",name="account_number", placeholder="رقم الحساب",autofocus="")
+                      div.form-group
+                        lable رقم الهاتف
+                        .form-group.multiple-form-group.input-group#phone_input
+                          .input-group
+                            #radioBtn.btn-group
+                              a.btn.btn-primary.btn-sm.active(data-toggle='p_type', data-title='المفوضية') المفوضية
+                              a.btn.btn-primary.btn-sm.notActive(data-toggle='p_type', data-title='شخصي') شخصي
+                              input#p_type(type='hidden', name='p_type[]',value="المفوضية")
+                          .input-group
+                            .input-group-btn.input-group-select
+                              button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', type='button')
+                                span.concept ليبيانا
+                                span.caret
+                              ul.dropdown-phone(role='menu')
+                                li
+                                  a(href='#ليبيانا') ليبيانا
+                                li
+                                  a(href='#المدار') المدار
+                                li
+                                  a(href='#ثريا') ثريا
+                                li
+                              input#in.input-group-select-val(type='hidden', value='ليبيانا', name='phone_type[]')
+                            input#phone.form-control(type='text', name='phone[]',placeholder="رقم الهاتف")
+                            span.input-group-btn
+                              button.btn.btn-success.btn-add(type='button') +
+                      div.form-group
+                        lable.h3 الـصـفـه
+                        if cent[0].center_id == -1
+                          select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                            for data,i in employee_type.hnec
+                              option(value="#{i}") #{data} 
+                        else
+                          select#type.form-control(name="type", placeholder="صفة الموظف",autofocus="")
+                            for data,i in employee_type.employee
+                              option(value="#{i}") #{data} 
+                      div.form-group
+                        input.input-group-select-val(type='hidden', value='#{cent[0].center_id}', name='center_idcenter')
+                      div.form-group.text-center
+                        button.btn.btn-lg.btn-primary(type="submit") إضـافة                          
   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
       .modal-content
@@ -225,6 +387,7 @@ block content
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/bootstrap-datetimepicker.js") 
   script(src="/javascripts/phone.js")
   script(src="/javascripts/center.js")
    

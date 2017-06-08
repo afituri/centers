@@ -27,6 +27,11 @@ block content
               td(width='35%') اسم الموظف 
               td(width='65%')
                 a#employee_name(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='اﻻسم' data-value='#{employee[0].employee_name}')  #{employee[0].employee_name}
+            if employee[0].center_idcenter < 0
+              tr
+                td(width='35%') اسم الام
+                td(width='65%')
+                  a#mother(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='اﻻسم' data-value='#{employee[0].mother}')  #{employee[0].mother}
             tr
               td(width='35%') البريد الإلكتروني
               td(width='65%')
@@ -43,6 +48,76 @@ block content
               td(width='35%') رقم الحساب
               td(width='65%')
                 a#account_number(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='رقم الحساب', data-value='#{employee[0].account_number} ') #{employee[0].account_number} 
+            tr
+              td(width='35%') المؤهل العلمي
+              td(width='65%')
+                a#qualification(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='المؤهل العلمي', data-value='#{employee[0].qualification} ') #{employee[0].qualification}
+            tr
+              td(width='35%') التخصص
+              td(width='65%')
+                a#specialty(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='التخصص', data-value='#{employee[0].specialty} ') #{employee[0].specialty}
+            tr
+              td(width='35%') جهة التخرج
+              td(width='65%')
+                a#graduation(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title=' جهة التخرج', data-value='#{employee[0].graduation} ') #{employee[0].graduation}
+            tr
+              td(width='35%') تاريخ التخرج
+              td(width='65%')
+                a#graduation_date(href='#', data-type='date', data-pk='#{employee[0].idemployee}', data-title=' تاريخ التخرج ', data-value='#{employee[0].graduation_date} ') #{employee[0].graduation_date}
+            tr
+              td(width='35%') رقم جواز السفر
+              td(width='65%')
+                a#passport_number(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='رقم جواز السفر ', data-value='#{employee[0].passport_number} ') #{employee[0].passport_number}
+            tr
+              td(width='35%') تاريخ انتهاء الجواز
+              td(width='65%')
+                a#passport_end(href='#', data-type='date', data-pk='#{employee[0].idemployee}', data-title=' تاريخ انتهاء الجواز', data-value='#{employee[0].passport_end} ') #{employee[0].passport_end}            
+            tr
+              td(width='35%') حضور الاستحقاقات الانتخابية السابقة
+              td(width='65%')
+                a#election(href='#', data-type='textarea', data-pk='#{employee[0].idemployee}', data-title='حضور الاستحقاقات الانتخابية السابقة ', data-value='#{employee[0].election} ') #{employee[0].election}            
+            tr
+              td(width='35%') الدورات المتحصل عليها
+              td(width='65%')
+                a#course(href='#', data-type='textarea', data-pk='#{employee[0].idemployee}', data-title='الدورات المتحصل عليها', data-value='#{employee[0].course} ') #{employee[0].course}            
+            tr
+              td(width='35%') جهة العمل الاصلية
+              td(width='65%')
+                a#previous_job(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='جهة العمل الاصلية', data-value='#{employee[0].previous_job} ') #{employee[0].previous_job}
+            if employee[0].center_idcenter < 0
+              tr
+                td(width='35%') سنوات العمل السابقة
+                td(width='65%')
+                  a#job_year(href='#', data-type='number', data-pk='#{employee[0].idemployee}', data-title='سنوات العمل السابقة', data-value='#{employee[0].job_year} ') #{employee[0].job_year}
+              tr
+                td(width='35%') تاريخ العمل بالمفوضية
+                td(width='65%')
+                  a#start_date(href='#', data-type='date', data-pk='#{employee[0].idemployee}', data-title=' تاريخ العمل بالمفوضية', data-value='#{employee[0].start_date} ') #{employee[0].start_date}
+              tr
+                td(width='35%') كيفية شغل الوظيفة
+                td(width='65%')
+                  a#job(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].job}',  data-title='كيفية شغل الوظيفة') 
+              tr
+                td(width='35%')الوضع الحالي للموظف
+                td(width='65%')
+                  a#job_status(href='#', data-type='select', data-pk='#{employee[0].idemployee}', data-value='#{employee[0].job_status}',  data-title='الوضع الحالي للموظف') 
+              tr
+                td(width='35%') تاريخ الاجراء
+                td(width='65%')
+                  a#action_date(href='#', data-type='date', data-pk='#{employee[0].idemployee}', data-title='تاريخ الاجراء ', data-value='#{employee[0].action_date} ') #{employee[0].action_date}
+              tr
+                td(width='35%') الدرجة الحالية
+                td(width='65%')
+                  a#grade(href='#', data-type='text', data-pk='#{employee[0].idemployee}', data-title='الدرجة الحالية', data-value='#{employee[0].grade} ') #{employee[0].grade}
+              tr
+                td(width='35%') تاريخ الحصول على الدرجة
+                td(width='65%')
+                  a#grade_date(href='#', data-type='date', data-pk='#{employee[0].idemployee}', data-title='تاريخ الحصول على الدرجة', data-value='#{employee[0].grade_date} ') #{employee[0].grade_date}
+              
+              tr
+                td(width='35%') تاريخ العلاوة السنوية
+                td(width='65%')
+                  a#prem_date(href='#', data-type='date', data-pk='#{employee[0].idemployee}', data-title='تاريخ العلاوة السنوية', data-value='#{employee[0].prem_date} ') #{employee[0].prem_date}
             tr
               td الصفة
               td 

@@ -38,7 +38,7 @@ $(document).ready(function(){
   })
 
   $("a[id^='phone']").click(function() {
-    var id = $(this).data("value");   
+    var id = $(this).data("value");
     $.get('/employee/getphone/'+id, function(result){
      $('#body').empty();
       $('#emaill').empty();
@@ -64,6 +64,82 @@ $(document).ready(function(){
       window.location.href="/center/"+center;
     });
   });
+  $('#graduation_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months",
+        minViewMode: "months"
+      });
+
+  $('#passport_end').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months",
+        minViewMode: "months"
+      });
+
+  $('#start_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months",
+        minViewMode: "months"
+      });
+  $('#action_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months",
+        minViewMode: "months"
+      });
+  $('#prem_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months",
+        minViewMode: "months"
+      });
+  $('#grade_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 4,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd",
+        viewMode: "months",
+        minViewMode: "months"
+      });
+
+
    $("#form").validate({
     rules: {
       subconstituency_idsubconstituency: {
@@ -124,4 +200,3 @@ $(document).ready(function(){
     }
   });
 });
- 

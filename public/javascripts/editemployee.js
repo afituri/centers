@@ -2,13 +2,15 @@ $(document).ready(function(){
   $.resul=new Array();
   $.type_h=new Array();
   $.type_e=new Array();
+  $.job=new Array();
+  $.job_status=new Array();
   /* disabled  editable*/
   var defaults = {
         disabled: true,
   };
   $.getJSON("/employee/employee_type", function( json ) {
-    var type=json.hnec;
-    var type = json.employee;
+    // var type=json.hnec;
+    // var type = json.employee;
     var i = 0;
     for(key in json.hnec){
       var k = new Object({id : i,value : key, text : json.hnec[key]});
@@ -22,7 +24,7 @@ $(document).ready(function(){
       i++;
       $.type_e.push(k);
 
-    }  
+    }
     $('#type_h').editable({
         url: '/employee/edit',
         source:$.type_h,
@@ -31,7 +33,7 @@ $(document).ready(function(){
         validate: function(v) {
           if(!v) return 'الرجاء اختيار صفة الموظف';
         }
-    }); 
+    });
     $('#type_e').editable({
     url: '/employee/edit',
     source:$.type_e,
@@ -40,12 +42,48 @@ $(document).ready(function(){
     validate: function(v) {
       if(!v) return 'الرجاء اختيار صفة الموظف';
     }
-  });    
+  });
+  });
+
+  $.getJSON("/employee/job", function( json ) {
+    var i = 0;
+  	for(key in json.job){
+  		var k = new Object({id : i,value : key, text : json.job[key]});
+  		i++;
+  		$.job.push(k);
+
+  	}
+  	for(key in json.job_status){
+  		var k = new Object({id : i,value : key, text : json.job_status[key]});
+  		i++;
+  		$.job_status.push(k);
+
+  	}
+    $('#job').editable({
+    	url: '/employee/edit',
+    	source:$.job,
+    	pk: 1,
+    	name: 'job',
+    	validate: function(v) {
+
+    		if(!v) return 'الرجاء اختيار كيفية شغل الوظيفة';
+    	}
+    });
+
+    $('#job_status').editable({
+      url: '/employee/edit',
+      source:$.job_status,
+      pk: 1,
+      name: 'job_status',
+      validate: function(v) {
+      	if(!v) return 'الرجاء اختيار الوضع الحالي للموظف';
+      }
+    });
   });
   $.extend($.fn.editable.defaults, defaults);
   $('#enable').click(function() {
     $('#user .editable').editable('toggleDisabled');
-  }); 
+  });
   $('body').on('click', '#radioBtn a', function () {
     var sel = $(this).data('title');
     var tog = $(this).data('toggle');
@@ -66,8 +104,8 @@ $(document).ready(function(){
           width: 200,
           placeholder: 'Select center',
           allowClear: false
-        } 
-    });      
+        }
+    });
   });
   $('a[id^="p_type"]').editable({
     url: '/users/edit',
@@ -85,6 +123,208 @@ $(document).ready(function(){
     validate: function(v) {
       if(!v) return 'الرجاء ادخال اسم الموظف';
     }
+  });
+  $('#qualification').editable({
+    url: '/employee/edit',
+    type: 'text',
+    pk: 1,
+    name: 'qualification',
+    title: 'Enter employee name',
+  });
+
+  $('#specialty').editable({
+    url: '/employee/edit',
+    type: 'text',
+    pk: 1,
+    name: 'specialty',
+    title: 'Enter employee name',
+  });
+
+  $('#graduation').editable({
+    url: '/employee/edit',
+    type: 'text',
+    pk: 1,
+    name: 'graduation',
+    title: 'Enter employee name',
+  });
+  $('#passport_number').editable({
+    url: '/employee/edit',
+    type: 'text',
+    pk: 1,
+    name: 'passport_number',
+    title: 'Enter employee name',
+  });
+  $('#previous_job').editable({
+    url: '/employee/edit',
+    type: 'text',
+    pk: 1,
+    name: 'previous_job',
+    title: 'Enter employee name',
+  });
+  $('#grade').editable({
+    url: '/employee/edit',
+    type: 'text',
+    pk: 1,
+    name: 'grade',
+    title: 'Enter employee name',
+  });
+  $('#job_year').editable({
+    url: '/employee/edit',
+    type: 'number',
+    pk: 1,
+    name: 'job_year',
+    title: 'Enter employee name',
+  });
+  $('#mother').editable({
+    url: '/employee/edit',
+    type: 'text',
+    pk: 1,
+    name: 'mother',
+    title: 'Enter employee name',
+  });
+  $('#election').editable({
+    url: '/employee/edit',
+    type: 'textarea',
+    pk: 1,
+    name: 'election',
+    title: 'Enter employee name',
+  });
+  $('#course').editable({
+    url: '/employee/edit',
+    type: 'textarea',
+    pk: 1,
+    name: 'course',
+    title: 'Enter employee name',
+  });
+
+  $('#graduation_date').editable({
+    url: '/employee/edit',
+    format: 'yyyy-mm-dd',
+        viewformat: 'yyyy-mm-dd',
+        datetimepicker: {
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 4,
+            minView: 2,
+            forceParse: 0,
+            format: "yyyy-mm-dd",
+            viewMode: "months",
+            minViewMode: "months"
+        },
+    type: 'text',
+    pk: 1,
+    name: 'graduation_date',
+    title: 'Enter employee name',
+  });
+  $('#grade_date').editable({
+    url: '/employee/edit',
+    format: 'yyyy-mm-dd',
+        viewformat: 'yyyy-mm-dd',
+        datetimepicker: {
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 4,
+            minView: 2,
+            forceParse: 0,
+            format: "yyyy-mm-dd",
+            viewMode: "months",
+            minViewMode: "months"
+        },
+    type: 'text',
+    pk: 1,
+    name: 'grade_date',
+    title: 'Enter employee name',
+  });
+
+  $('#prem_date').editable({
+    url: '/employee/edit',
+    format: 'yyyy-mm-dd',
+        viewformat: 'yyyy-mm-dd',
+        datetimepicker: {
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 4,
+            minView: 2,
+            forceParse: 0,
+            format: "yyyy-mm-dd",
+            viewMode: "months",
+            minViewMode: "months"
+        },
+    type: 'text',
+    pk: 1,
+    name: 'prem_date',
+    title: 'Enter employee name',
+  });
+  $('#start_date').editable({
+    url: '/employee/edit',
+    format: 'yyyy-mm-dd',
+        viewformat: 'yyyy-mm-dd',
+        datetimepicker: {
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 4,
+            minView: 2,
+            forceParse: 0,
+            format: "yyyy-mm-dd",
+            viewMode: "months",
+            minViewMode: "months"
+        },
+    type: 'text',
+    pk: 1,
+    name: 'start_date',
+    title: 'Enter employee name',
+  });
+
+  $('#action_date').editable({
+    url: '/employee/edit',
+    format: 'yyyy-mm-dd',
+        viewformat: 'yyyy-mm-dd',
+        datetimepicker: {
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 4,
+            minView: 2,
+            forceParse: 0,
+            format: "yyyy-mm-dd",
+            viewMode: "months",
+            minViewMode: "months"
+        },
+    type: 'text',
+    pk: 1,
+    name: 'action_date',
+    title: 'Enter employee name',
+  });
+
+  $('#passport_end').editable({
+    url: '/employee/edit',
+    format: 'yyyy-mm-dd',
+        viewformat: 'yyyy-mm-dd',
+        datetimepicker: {
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 4,
+            minView: 2,
+            forceParse: 0,
+            format: "yyyy-mm-dd",
+            viewMode: "months",
+            minViewMode: "months"
+        },
+    type: 'text',
+    pk: 1,
+    name: 'passport_end',
+    title: 'Enter employee name',
   });
   $('#nid').editable({
     url: '/employee/edit',
@@ -107,15 +347,15 @@ $(document).ready(function(){
     name: 'bank_name',
     title: 'Enter bank name',
   });
-    
-  
+
+
   $("a[id^='phone_number']" ).editable({
     url: '/employee/edit',
     type: 'text',
     pk: 1,
     name: 'phone_number',
     title: 'Enter phone',
-    validate: function(v) { 
+    validate: function(v) {
       var flag = /^[0-9\b]+$/.test(v);
       if(!v) return 'الرجاء ادخال رقم الهاتف';
       if(v.length<10) return "يجب أن يكون الهاتف  لا يقل عن 10 ارقام";
@@ -145,7 +385,7 @@ $(document).ready(function(){
    $('body').on('click', '#deletePhone ', function () {
     var id = $(this).val();
     $('#confphone').val(id);
-  }); 
+  });
   $('#confphone').click(function() {
     var id = $(this).val();
     $.get('/root/deletePhone/'+id, function(result){

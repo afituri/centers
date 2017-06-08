@@ -3,7 +3,7 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 exports.employeeOfficeMgr = {
   /* get employee  */
   getEmployeeOffice : function(limt,oid,cb){
-    mysqlMgr.connect(function (conn) { 
+    mysqlMgr.connect(function (conn) {
       conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `office_id`=?;' ,[oid,limt,oid],function(err, result) {
       //conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` ' ,[oid],function(err, result) {
         conn.release();
@@ -11,33 +11,33 @@ exports.employeeOfficeMgr = {
           util.log(ergetEmployeeOfficer);
         } else {
           cb(result);
-        } 
+        }
       });
     });
   },
-  //get employee eidt 
+  //get employee eidt
     getEmployeeedit : function(limt,oid,cb){
-    mysqlMgr.connect(function (conn) { 
+    mysqlMgr.connect(function (conn) {
       conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `office_id`=?;' ,[oid,limt,oid],function(err, result) {
         conn.release();
         if(err) {
           util.log(ergetEmployeeOfficer);
         } else {
           cb(result);
-        } 
+        }
       });
     });
-  }, 
-   //get employesuboffice eidt 
+  },
+   //get employesuboffice eidt
     getSubOffice : function(oid,cb){
-    mysqlMgr.connect(function (conn) { 
+    mysqlMgr.connect(function (conn) {
       conn.query('SELECT * FROM  `subconstituency` WHERE  `office_idoffice` = ? ' ,oid,function(err, result) {
         conn.release();
         if(err) {
           util.log(ergetEmployeeOfficer);
         } else {
           cb(result);
-        } 
+        }
       });
     });
   },
@@ -65,7 +65,7 @@ exports.employeeOfficeMgr = {
               conn.query('INSERT INTO `phone` SET `user_type` = 2, `phone_number` = ?,type=?,`user_employee` =? ,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);
             }
               conn.release();
-              cb(body.office_id); 
+              cb(body.office_id);
         }
       });
     });
@@ -83,7 +83,7 @@ exports.employeeOfficeMgr = {
               util.log(err);
             } else {
               cb(results,resultz);
-            } 
+            }
           });
         });
       });
@@ -98,7 +98,7 @@ exports.employeeOfficeMgr = {
           util.log(err);
         } else {
           cb(result);
-        } 
+        }
       });
     });
   },
@@ -106,7 +106,7 @@ exports.employeeOfficeMgr = {
   editEmployeeOfficeEditable : function(body,cb){
     mysqlMgr.connect(function (conn) {
       var date = new Date();
-      console.log("2222222222222222222222222222222222222222222222222222222222222222255555555555555555555555555555555555555555555555555555555");
+      console.log(body);
       console.log('UPDATE `employeeOffice` SET '+body.name+' = '+body.value+',`modify_date`='+date+' WHERE `id_emp_office` = '+body.pk);
       conn.query('UPDATE `employeeOffice` SET '+body.name+' = ?,`modify_date`=? WHERE `id_emp_office` = ?',  [body.value,date,body.pk],  function(err, result) {
       console.log(result);
@@ -115,7 +115,7 @@ exports.employeeOfficeMgr = {
           util.log(err);
         } else {
           cb(result);
-        } 
+        }
       });
     });
   },

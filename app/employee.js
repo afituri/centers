@@ -11,7 +11,7 @@ exports.employeeMgr = {
               util.log(err);
             } else {
               cb(result);
-            } 
+            }
         });
       }else{
         conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name` FROM `centers` c, `employee` e  WHERE `c`.`center_id` = `e`.`center_idcenter` AND `e`.`status`= 1 AND `c`.`status`=1 limit ?,10; SELECT COUNT(`idemployee`) as cnt FROM `employee` WHERE `status`=1 ;',limit, function(err, result) {
@@ -22,7 +22,7 @@ exports.employeeMgr = {
             cb(result);
           }
         });
-      }     
+      }
     });
   },
   /* Delete employee */
@@ -38,7 +38,7 @@ exports.employeeMgr = {
               util.log(err);
             } else {
               cb(results,resultz);
-            } 
+            }
           });
         });
       });
@@ -47,13 +47,13 @@ exports.employeeMgr = {
   /* get employee  */
   getemployee : function(id,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `idemployee`,`employee_name`,`email`,`type`,`nid`,`account_number`,`bank_name`,`center_idcenter` FROM `employee` WHERE `status`= 1 AND`idemployee` = ?;SELECT `idphone`,`phone_number`,`type`,`p_type` FROM `phone` WHERE `status`= 1 AND `user_type`=1 AND `user_employee` = ?',[id,id],  function(err, result) {
+      conn.query('SELECT * FROM `employee` WHERE `status`= 1 AND`idemployee` = ?;SELECT `idphone`,`phone_number`,`type`,`p_type` FROM `phone` WHERE `status`= 1 AND `user_type`=1 AND `user_employee` = ?',[id,id],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
         } else {
           cb(result);
-        } 
+        }
       });
     });
   },
@@ -61,12 +61,13 @@ exports.employeeMgr = {
   editEmployee : function(body,rec,cb){
     mysqlMgr.connect(function (conn) {
       var date = new Date();
+      console.log(body);
       conn.query('UPDATE `employee` SET '+body.name+' = ?,`modify_date` = ? WHERE `idemployee` = ?',  [body.value,date,body.pk],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
         } else {
-          cb(null,rec); 
+          cb(null,rec);
         }
       });
     });
@@ -92,6 +93,7 @@ exports.employeeMgr = {
         if(err) {
           util.log(err);
         } else {
+          console.log(result);
           cb(result);
         }
       });
@@ -134,7 +136,7 @@ exports.employeeMgr = {
               util.log(err);
             } else {
               cb(result);
-            } 
+            }
         });
       }else{
         conn.query('SELECT `idemployee`,`employee_name`,`e`.`email`,`e`.`type`,`c`.`name`,`phone_number` FROM `centers` c,`employee` e LEFT JOIN`phone` p  ON (`p`.`user_employee` = `e`.`idemployee` AND `p`.`user_type` = 1 AND `p`.`status`=1) WHERE  `c`.`center_id` = `e`.`center_idcenter` AND `e`.`employee_name` LIKE ? AND `e`.`status`= 1 AND `c`.`status`=1 GROUP BY `idemployee`',name, function(err, result) {
@@ -145,7 +147,7 @@ exports.employeeMgr = {
             cb(result);
           }
         });
-      }     
+      }
     });
   },
   /*Search employee in center*/
@@ -158,8 +160,8 @@ exports.employeeMgr = {
           util.log(err);
         } else {
           cb(result);
-        } 
-      });     
+        }
+      });
     });
   },
   /* check if email exists */
@@ -195,10 +197,10 @@ exports.employeeMgr = {
             name :body.employee_name
           }
           for (var i=0;i<phone.length;i++) {
-              conn.query('INSERT INTO `phone` SET `user_type` = 1, `phone_number` = ?,type=?,`user_employee` =? ,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);           
+              conn.query('INSERT INTO `phone` SET `user_type` = 1, `phone_number` = ?,type=?,`user_employee` =? ,`p_type` =?',[phone[i],type[i],results.id,p_type[i]]);
               }
         conn.release();
-          cb(results); 
+          cb(results);
         }
       });
     });

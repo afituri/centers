@@ -10,6 +10,7 @@ var officeMgr = require('../app/office').officeMgr;
 var subconstituencyMgr = require('../app/subconstituency').subconstituencyMgr;
 var Step = require('step');
 var employee_type = require('../employee_type.json');
+var job = require('../job.json');
 var employees =[];
 
 /* GET home page. */
@@ -23,7 +24,7 @@ router.get('/',userHelpers.isAdmin, function(req, res) {
       var pagination = userHelpers.paginate(page,pageCount);
       res.render('employee',{title: 'الموظفين',name:req.session.name,employees:results[0], pagination : pagination,level:req.session.level,employee_type:employee_type});
     } else {
-      res.render('employee',{title: 'الموظفين',name:req.session.name,employees:employees, pagination : null,level:req.session.level,employee_type:employee_type});      
+      res.render('employee',{title: 'الموظفين',name:req.session.name,employees:employees, pagination : null,level:req.session.level,employee_type:employee_type});
     }
   });
 });
@@ -52,6 +53,9 @@ router.post('/addemployee', function(req, res) {
 /* employee type  */
 router.get('/employee_type', function(req, res) {
   res.send(employee_type);
+});
+router.get('/job', function(req, res) {
+  res.send(job);
 });
 /* searchByname employee  */
 router.get('/searchEmployee/:id', function(req, res) {
