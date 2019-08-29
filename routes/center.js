@@ -8,6 +8,7 @@ var employee_type = require('../employee_type.json');
 var job = require('../job.json');
 
 router.get('/:cid',userHelpers.isCenter, function(req, res) {
+  console.log("im in center")
   centerMgr.getCenter(req.params.cid,function(results){
     var page = userHelpers.getPage(req);
     var limit = userHelpers.getLimit(page);

@@ -4,11 +4,11 @@ exports.employeeOfficeMgr = {
   /* get employee  */
   getEmployeeOffice : function(limt,oid,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `office_id`=?;' ,[oid,limt,oid],function(err, result) {
+      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `office_id`=?;' ,[oid,limt,oid],function(err, result) {
       //conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` ' ,[oid],function(err, result) {
         conn.release();
         if(err) {
-          util.log(ergetEmployeeOfficer);
+          util.log(err);
         } else {
           cb(result);
         }
@@ -18,10 +18,10 @@ exports.employeeOfficeMgr = {
   //get employee eidt
     getEmployeeedit : function(limt,oid,cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `office_id`=?;' ,[oid,limt,oid],function(err, result) {
+      conn.query('SELECT `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` FROM  `office` o,`employeeOffice` e LEFT JOIN `phone` p ON (`p`.`user_employee`=`e`.`id_emp_office` AND `p`.`user_type`=2 AND `p`.`status`=1)  WHERE `o`.`idoffice`=`e`.`office_id` AND `e`.`office_id`=? AND `e`.`status`=1 AND `o`.`status`=1  group by `e`.`id_emp_office`, `e`.`emp_office_name`, `e`.`email`, `e`.`type`, `e`.`nid`, `p`.`phone_number`,`e`.`office_id`, `o`.`office_name_ar`, `e`.`acount_number`, `e`.`bank_name` limit ?,10; SELECT COUNT(*) as cnt FROM `employeeOffice`  WHERE `status` = 1 AND `office_id`=?;' ,[oid,limt,oid],function(err, result) {
         conn.release();
         if(err) {
-          util.log(ergetEmployeeOfficer);
+          util.log(err);
         } else {
           cb(result);
         }
@@ -34,7 +34,7 @@ exports.employeeOfficeMgr = {
       conn.query('SELECT * FROM  `subconstituency` WHERE  `office_idoffice` = ? ' ,oid,function(err, result) {
         conn.release();
         if(err) {
-          util.log(ergetEmployeeOfficer);
+          util.log(err);
         } else {
           cb(result);
         }
