@@ -9,7 +9,7 @@ exports.centerMgr = {
         if(err) {
           util.log(err);
         } else {
-          cb(result);
+          cb(result); 
         }
       });
     });

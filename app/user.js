@@ -87,7 +87,7 @@ exports.userMgr = {
       conn.query('SELECT `iduser`,`name`,`email`,`phone_number`,`level`,`idphone`,`p_type`,`type`,`office_idoffice`,`phone_number` FROM user LEFT JOIN  office ON (office.idoffice = user.office_idoffice AND office.status=1) LEFT JOIN phone ON(phone.user_employee = user.iduser AND phone.status = 1 AND phone.user_type =0) WHERE  user.iduser = ? AND user.status = 1', id ,  function(err, result) {
         conn.release();
         if(err) {
-          util.log(err);
+          util.log(err); 
         } else {
           cb(result);
         }

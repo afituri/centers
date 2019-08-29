@@ -192,7 +192,6 @@ router.get('/:oid/employeeOffice/addemployeeoffice', function(req, res) {
   req.session.back = req.originalUrl;
   var idoffice = req.params.oid;
   employeeOfficeMgr.getSubOffice(req.params.oid,function(result){
-    console.log(result);
     res.render('addemployeeoffice',{title: 'إضافة موظف',idoffice:idoffice,type:employee_type,type_emp:result ,name:req.session.name});
   });
 });

@@ -1,6 +1,6 @@
 var mysqlMgr = require('./mysql').mysqlMgr,
   util=require('util');
-exports.employeeMgr = {
+exports.employeeMgr = { 
   /* get employee fro manager or root or admin */
   getemployees : function(limit,id,level,id_of,cb){
     mysqlMgr.connect(function (conn) {

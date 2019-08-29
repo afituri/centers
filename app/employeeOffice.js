@@ -12,7 +12,7 @@ exports.employeeOfficeMgr = {
         } else {
           cb(result);
         }
-      });
+      }); 
     });
   },
   //get employee eidt
